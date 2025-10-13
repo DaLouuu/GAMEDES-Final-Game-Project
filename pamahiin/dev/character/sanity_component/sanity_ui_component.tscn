@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsgk4iyfgu77y"]
+
+[ext_resource type="Script" uid="uid://b32mf2escbaor" path="res://dev/character/sanity_component/sanity_ui_component.gd" id="1_c4a23"]
+[ext_resource type="Texture2D" uid="uid://d1al486viux42" path="res://art/icons/brain.png" id="1_qu8op"]
+
+[sub_resource type="Gradient" id="Gradient_qu8op"]
+offsets = PackedFloat32Array(0, 0.9875, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.96876055, 0.12027355, 0.17247716, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1u0aj"]
+gradient = SubResource("Gradient_qu8op")
+
+[sub_resource type="Gradient" id="Gradient_c4a23"]
+offsets = PackedFloat32Array(0, 0.0625, 0.12916666, 1)
+colors = PackedColorArray(0.5058824, 0, 0.02745098, 1, 0.89411765, 0, 0.23921569, 1, 0.9254902, 0.92156863, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8owt7"]
+gradient = SubResource("Gradient_c4a23")
+
+[node name="SanityUIComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_c4a23")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.9999995
+offset_top = -56.0
+offset_right = 72.78146
+offset_bottom = 4.0
+grow_vertical = 0
+scale = Vector2(0.4939685, 0.39999998)
+texture = ExtResource("1_qu8op")
+expand_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 208.0
+offset_bottom = 60.16504
+grow_vertical = 0
+scale = Vector2(0.6478562, 0.19010252)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+rounded = true
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_1u0aj")
+texture_progress = SubResource("GradientTexture1D_8owt7")
+tint_under = Color(0, 0, 0, 1)
