@@ -317,8 +317,7 @@ enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://d3iyjg285p26t"
 
 [node name="VisionRay" type="RayCast2D" parent="."]
-scale = Vector2(0.76894623, -6.612821)
-target_position = Vector2(139.74326, 0)
+target_position = Vector2(186, 0)
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

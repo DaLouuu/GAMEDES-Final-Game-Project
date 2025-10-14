@@ -6,6 +6,7 @@ extends State
 
 var lose_timer: float = 0.0
 @onready var vision_ray: RayCast2D = enemy.get_node("VisionRay")
+@onready var player_detector = $"../../PlayerDetector"
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 
 func Enter() -> void:
@@ -17,11 +18,14 @@ func Physics_Update(delta: float) -> void:
 		return
 
 	# --- Update ray to point toward the player ---
+	var has_clear_sight := false
+	
 	var to_player = player.global_position - enemy.global_position
 	vision_ray.target_position = to_player
 	vision_ray.force_raycast_update()
-
-	var has_clear_sight := false
+	
+	
+	# VisionRay Collision Logic
 	if vision_ray.is_colliding():
 		var collider = vision_ray.get_collider()
 		if collider and collider.is_in_group("Player"):
@@ -32,7 +36,7 @@ func Physics_Update(delta: float) -> void:
 		# You can choose to assume it means "clear" if distance is short
 		if enemy.global_position.distance_to(player.global_position) < 300:
 			has_clear_sight = true
-		
+					
 	# --- Behavior logic ---
 	if has_clear_sight:
 		# Reset lose timer since player is visible

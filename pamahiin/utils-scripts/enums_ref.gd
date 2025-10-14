@@ -1,13 +1,31 @@
 extends Node
 # name under Globals: EnumsRef
+
+
+enum SceneLoadState {
+	VISIBLE, # All data and memory present
+	DELETE, # All data is gone with the scene
+	HIDE, # scene data is both present and running, not visible
+	REMOVE_HIDDEN # scene is just in memory, not running.
+}
+
+enum EnemyState {
+	IDLE,
+	FOLLOW,
+	ATTACK,
+	RETREAT,
+	CUSTOM1,
+	CUSTOM2,
+	CUSTOM3
+}
+
 enum LocationType {
 	MOTEL,
 	GRAVEYARD,
 	HOME,
 	GARDEN,
 	CHAPEL,
-	SARI_SARI_STORE,
-	NIGHTMARE_REALM,
+	SARI_SARI_STORE
 }
 
 
@@ -19,7 +37,11 @@ enum DialogueOutcome {
 	DEATH,
 }
 
-
+enum ItemType {
+	ARTIFACT,
+	DESTRUCTIBLE,
+	ENVIRONMENT
+}
 enum ArtifactType {
 	ROSARY,
 	HOLY_WATER,

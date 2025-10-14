@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=4 uid="uid://biovkaff3r6f1"]
+[gd_scene load_steps=27 format=4 uid="uid://biovkaff3r6f1"]
 
+[ext_resource type="Script" uid="uid://btusj7ja8nguq" path="res://dev/paul's do not touch/test_church.gd" id="1_cd04r"]
 [ext_resource type="Texture2D" uid="uid://btm4q6ici3da5" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Roof_Tilset.png" id="1_u822y"]
 [ext_resource type="Texture2D" uid="uid://dau7gucwtqw2e" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Walls_Tilset.png" id="2_ws2vn"]
 [ext_resource type="Texture2D" uid="uid://d3kxlssg4iona" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Tilled_Dirt_Wide.png" id="3_usb2y"]
 [ext_resource type="Texture2D" uid="uid://ccc6q2sumno4t" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Tilled_Dirt_Wide_v2.png" id="4_a5ovh"]
-[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="5_hq0d3"]
 [ext_resource type="PackedScene" uid="uid://6yh78lrp01kv" path="res://dev/character/npcs/enemies/enemy_antilight.tscn" id="6_a5ovh"]
 [ext_resource type="Shader" uid="uid://dax5u6f5b2eii" path="res://dev/shaders/screen_effect.gdshader" id="7_hq0d3"]
 
@@ -18,8 +18,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_a5ovh"]
-offsets = PackedFloat32Array(0, 0.003968254, 0.63492066)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.03968254, 0.03968254, 0.03968254, 1)
+offsets = PackedFloat32Array(0, 0.003968254, 0.5)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.039215688, 0.039215688, 0.039215688, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hq0d3"]
 gradient = SubResource("Gradient_a5ovh")
@@ -263,12 +263,15 @@ shader = ExtResource("7_hq0d3")
 size = Vector2(1280, 720)
 center_offset = Vector3(640, 360, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hq0d3"]
+radius = 112.4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq0d3"]
+size = Vector2(101, 27)
+
 [node name="TestChurch" type="Node2D"]
 y_sort_enabled = true
-
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("5_hq0d3")]
-z_index = 1
-position = Vector2(335, 308)
+script = ExtResource("1_cd04r")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.4351923, 0.43519226, 0.43519226, 1)
@@ -301,6 +304,7 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 z_index = 2
 position = Vector2(30, -23)
+scale = Vector2(0.64, 0.6400024)
 shape = SubResource("CircleShape2D_a5ovh")
 debug_color = Color(0.86298966, 0.0006307054, 0.8695746, 0.41960785)
 
@@ -331,6 +335,28 @@ collision_mask = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
+[node name="MeshInstance2D-ShaderCRTVig" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_cd04r")
 mesh = SubResource("QuadMesh_3tvq6")
+
+[node name="TempNextScene" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TempNextScene"]
+z_index = 1
+position = Vector2(551, 413)
+shape = SubResource("CircleShape2D_hq0d3")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="TempNextScene"]
+position = Vector2(512, 385)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TempNextScene/Area2D"]
+z_index = 1
+position = Vector2(40.5, 3.5)
+shape = SubResource("RectangleShape2D_hq0d3")
+debug_color = Color(0.90014267, 0.0001757735, 0.7652343, 0.41960785)
+
+[node name="Marker2D-SpawnP" type="Marker2D" parent="."]
+position = Vector2(385, 351)
+
+[connection signal="body_entered" from="TempNextScene/Area2D" to="." method="_on_area_2d_body_entered"]
