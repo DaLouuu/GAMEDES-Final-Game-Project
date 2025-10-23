@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm1svngkxgtnm"]
+[gd_scene load_steps=3 format=3 uid="uid://dm1svngkxgtnm"]
+
+[ext_resource type="Script" uid="uid://cfrmbrjw5ifq3" path="res://utils-scripts/menus/cheat_menu.gd" id="1_w3wuy"]
 
 [sub_resource type="Theme" id="Theme_m8fia"]
 
@@ -9,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_w3wuy")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
