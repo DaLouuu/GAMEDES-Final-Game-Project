@@ -10,11 +10,11 @@ extends Node
 var curr_2d_scene: Node = null
 var curr_gui_scene: Node = null
 
-
 func _ready() -> void:
 	Global.game_controller = self
 
-	change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
+	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "start")
+	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
 		
 		
 func change_gui_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
