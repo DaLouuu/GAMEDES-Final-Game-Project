@@ -16,7 +16,6 @@ func _ready() -> void:
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "start")
 	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
 		
-		
 func change_gui_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
 	# Placeholder: implement GUI scene swapping later
 	

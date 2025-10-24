@@ -3,6 +3,7 @@ class_name Player
 
 extends CharacterBody2D
 
+
 signal sanity_changed(new_value: float)
 @export var move_speed : float =  100
 @export var sprint_multiplier : float = 1.8
