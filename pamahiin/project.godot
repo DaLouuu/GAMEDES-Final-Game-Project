@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Global="*res://utils-scripts/global.gd"
 EnumsRef="*res://utils-scripts/enums_ref.gd"
 Ref="*res://utils-scripts/Ref.gd"
+EventBus="*res://core-systems/EventBus.gd"
+SanityMeter="*res://core-systems/SanityMeter.gd"
+Inventory="*res://core-systems/Inventory.gd"
+NoiseMeter="*res://core-systems/NoiseMeter.gd"
 
 [display]
 
