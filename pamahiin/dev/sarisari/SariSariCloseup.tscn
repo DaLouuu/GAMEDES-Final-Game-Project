@@ -1,0 +1,184 @@
+[gd_scene load_steps=16 format=3 uid="uid://bmcbbju5g58xa"]
+
+[ext_resource type="Script" uid="uid://q3pnm5cmd5sa" path="res://dev/sarisari/sari_sari_closeup.gd" id="1_g4mt2"]
+[ext_resource type="Texture2D" uid="uid://cr71x2g25kvqv" path="res://art/sarisari/background.png" id="2_ajnwc"]
+[ext_resource type="Texture2D" uid="uid://bnpq7t5hrw3ne" path="res://art/sarisari/mirror.png" id="3_mfp64"]
+[ext_resource type="Texture2D" uid="uid://bpkmwkaj0gg3q" path="res://art/sarisari/mirror_sparkle_0.png" id="4_f7yil"]
+[ext_resource type="Texture2D" uid="uid://dv3q6s1a7yp5m" path="res://art/sarisari/mirror_sparkle_1.png" id="5_x6ola"]
+[ext_resource type="Texture2D" uid="uid://b66ob02k2ouem" path="res://art/sarisari/mirror_sparkle_2.png" id="6_7ogbl"]
+[ext_resource type="Texture2D" uid="uid://dir3l1ux3i2l3" path="res://art/sarisari/mirror_sparkle_3.png" id="7_spa38"]
+[ext_resource type="Texture2D" uid="uid://dd8akqfjspndp" path="res://art/sarisari/jumpscare.png" id="8_4d2if"]
+[ext_resource type="PackedScene" uid="uid://d3u55khw8phwo" path="res://dev/quicktime/QuickTimeEvent.tscn" id="9_ajnwc"]
+[ext_resource type="Script" uid="uid://bo5sodbla3kfv" path="res://utils-scripts/visual/shake.gd" id="10_mfp64"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ypbap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mfp64")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 12.0,
+"texture": ExtResource("3_mfp64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f7yil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x6ola")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7ogbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_spa38")
+}],
+"loop": true,
+"name": &"sparkle",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yosf3"]
+size = Vector2(26, 26)
+
+[sub_resource type="Animation" id="Animation_mfp64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jumpscare:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jumpscare:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(37.999996, 4.7683716e-07)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jumpscare:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.625, 0.625)]
+}
+
+[sub_resource type="Animation" id="Animation_ajnwc"]
+resource_name = "jumpscare"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jumpscare:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jumpscare:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(37.999996, 4.7683716e-07), Vector2(-3, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jumpscare:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.625, 0.625), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f7yil"]
+_data = {
+&"RESET": SubResource("Animation_mfp64"),
+&"jumpscare": SubResource("Animation_ajnwc")
+}
+
+[node name="SariSariPannable" type="Node2D"]
+script = ExtResource("1_g4mt2")
+
+[node name="JumpscareTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="SariSariBg" type="Sprite2D" parent="."]
+texture = ExtResource("2_ajnwc")
+script = ExtResource("10_mfp64")
+max_distance = 4.0
+speed = 40.0
+duration = 0.0
+
+[node name="MirrorArea" type="Area2D" parent="."]
+
+[node name="Mirror" type="AnimatedSprite2D" parent="MirrorArea"]
+position = Vector2(38, 0)
+sprite_frames = SubResource("SpriteFrames_ypbap")
+animation = &"sparkle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MirrorArea"]
+position = Vector2(38, 0)
+shape = SubResource("RectangleShape2D_yosf3")
+
+[node name="Jumpscare" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(37.999996, 4.7683716e-07)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("8_4d2if")
+
+[node name="JumpscareAnimationPlayer" type="AnimationPlayer" parent="Jumpscare"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_f7yil")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(10, 10)
+script = ExtResource("10_mfp64")
+max_distance = 1.0
+speed = 30.0
+duration = 0.0
+
+[node name="QuickTimeEvent" parent="." instance=ExtResource("9_ajnwc")]
+key = 88
+min_inputs = 10
+max_inputs = 10
+
+[connection signal="timeout" from="JumpscareTimer" to="." method="_on_jumpscare_timer_timeout"]
+[connection signal="mouse_exited" from="MirrorArea" to="." method="_on_mirror_area_mouse_exited"]
+[connection signal="mouse_shape_entered" from="MirrorArea" to="." method="_on_mirror_area_mouse_shape_entered"]
+[connection signal="finished" from="QuickTimeEvent" to="." method="_on_quick_time_event_finished"]

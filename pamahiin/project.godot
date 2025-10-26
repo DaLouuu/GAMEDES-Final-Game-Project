@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pamahiin"
-run/main_scene="uid://c186s0p7kt6g8"
+run/main_scene="uid://bmcbbju5g58xa"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
