@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://b70dwd3hc3m8h"]
+
+[ext_resource type="Script" uid="uid://b6v468hen613e" path="res://dev/scripts/TestGraveyard.gd" id="1_mbbgg"]
+[ext_resource type="Script" uid="uid://jggqpm0na1vt" path="res://dev/scripts/PlayerTest.gd" id="2_x5mgr"]
+[ext_resource type="Script" uid="uid://cin1q6ypctj7f" path="res://dev/scripts/InteractionArea.gd" id="3_hnjjl"]
+[ext_resource type="Script" uid="uid://4aqmxsbpk1hw" path="res://dev/scripts/SacredZone.gd" id="4_vky7r"]
+[ext_resource type="Script" uid="uid://cpb0e4h205fbd" path="res://dev/scripts/Candle.gd" id="5_xsedn"]
+
+[node name="TestGraveyard" type="Node2D"]
+script = ExtResource("1_mbbgg")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+up_direction = Vector2(0.0033333148, 0.9999944)
+script = ExtResource("2_x5mgr")
+
+[node name="InteractionArea" type="Area2D" parent="Player"]
+script = ExtResource("3_hnjjl")
+
+[node name="SacredZones" type="Node2D" parent="."]
+
+[node name="GateZone" type="Area2D" parent="SacredZones"]
+position = Vector2(100, 200)
+script = ExtResource("4_vky7r")
+
+[node name="PathZone1" type="Area2D" parent="SacredZones"]
+position = Vector2(400, 200)
+script = ExtResource("4_vky7r")
+
+[node name="Candles" type="Node2D" parent="."]
+
+[node name="Candle1" type="Area2D" parent="Candles"]
+position = Vector2(300, 250)
+script = ExtResource("5_xsedn")
+
+[node name="Candle2" type="Area2D" parent="Candles"]
+position = Vector2(350, 250)
+script = ExtResource("5_xsedn")
+
+[node name="Candle3" type="Area2D" parent="Candles"]
+position = Vector2(400, 250)
+script = ExtResource("5_xsedn")
+
+[node name="Candle4" type="Area2D" parent="Candles"]
+position = Vector2(450, 250)
+script = ExtResource("5_xsedn")
+
+[node name="Candle5" type="Area2D" parent="Candles"]
+position = Vector2(500, 250)
+script = ExtResource("5_xsedn")
+
+[node name="ExitGate" type="Area2D" parent="."]
+position = Vector2(700, 300)
+
+[node name="ColorRect" type="ColorRect" parent="ExitGate"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SanityLabel" type="Label" parent="UI/HUD"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Sanity: 100%"
+
+[node name="InteractPrompt" type="Label" parent="UI/HUD"]
+custom_minimum_size = Vector2(10, 50)
+layout_mode = 0
+offset_top = 34.0
+offset_right = 141.0
+offset_bottom = 84.0
+text = "Press E to Interact"
+
+[node name="MessageLabel" type="Label" parent="UI/HUD"]
+custom_minimum_size = Vector2(10, 90)
+layout_mode = 0
+offset_top = 66.0
+offset_right = 40.0
+offset_bottom = 156.0
+text = "text \"\""
+
+[node name="InventoryDisplay" type="Label" parent="UI/HUD"]
+custom_minimum_size = Vector2(10, 130)
+layout_mode = 0
+offset_top = 96.0
+offset_right = 150.0
+offset_bottom = 226.0
