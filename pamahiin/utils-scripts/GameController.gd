@@ -1,6 +1,8 @@
 class_name GameController
 extends Node
 
+signal changed_scene_with_character
+
 @export var gui: Control
 @export var world_2d: Node2D  
 
@@ -26,12 +28,16 @@ func change_gui_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = 
 
 func change_2d_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
 	if curr_2d_scene:
-		if EnumsRef.SceneLoadState.DELETE:
-			curr_2d_scene.queue_free()
-		elif EnumsRef.SceneLoadState.HIDE:
-			curr_2d_scene.visible = false
-		elif EnumsRef.SceneLoadState.REMOVE_HIDDEN:
-			gui.remove_child(curr_2d_scene)
+		match load_state:
+			
+			EnumsRef.SceneLoadState.DELETE:
+				curr_2d_scene.queue_free()
+			EnumsRef.SceneLoadState.HIDE:
+				curr_2d_scene.visible = false
+			EnumsRef.SceneLoadState.REMOVE_HIDDEN:
+				gui.remove_child(curr_2d_scene)
+			_:
+				print("Error: Load state specified is undefined in EnumsRef")
 
 	var new_scene_instance = load(new_scene).instantiate()
 	world_2d.add_child(new_scene_instance)
@@ -42,11 +48,14 @@ func change_2d_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = E
 		# Find the spawn marker in the new scene
 		var spawn_marker = new_scene_instance.get_node_or_null("Marker2D-SpawnP")
 		if spawn_marker:
-
+			
 			player.global_position = spawn_marker.global_position
 			var camera : Camera2D = player.get_node("Camera2D")
+			changed_scene_with_character.emit()
+			
+			# Smoothing makes it so the camera doesn't auto pan to player and showing movement
 			camera.reset_smoothing()			
-
+			
 		else:
 			push_warning("No Marker2D-SpawnP found in new scene.")
 	else:
