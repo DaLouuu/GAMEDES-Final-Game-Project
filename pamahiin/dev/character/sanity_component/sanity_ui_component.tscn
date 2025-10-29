@@ -18,12 +18,11 @@ colors = PackedColorArray(0.5058824, 0, 0.02745098, 1, 0.89411765, 0, 0.23921569
 gradient = SubResource("Gradient_c4a23")
 
 [node name="SanityUIComponent" type="Control"]
+custom_minimum_size = Vector2(264, 136)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 376.0
+offset_bottom = 136.0
 size_flags_horizontal = 0
 script = ExtResource("1_c4a23")
 
@@ -33,12 +32,11 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 7.9999995
-offset_top = -56.0
-offset_right = 72.78146
-offset_bottom = 4.0
+offset_top = -136.0
+offset_right = 64.78146
+offset_bottom = -76.0
 grow_vertical = 0
-scale = Vector2(0.4939685, 0.39999998)
+scale = Vector2(1.235, 1)
 texture = ExtResource("1_qu8op")
 expand_mode = 3
 
@@ -47,12 +45,11 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -24.0
-offset_right = 208.0
-offset_bottom = 60.16504
+offset_top = -72.0
+offset_right = 304.0
+offset_bottom = 96.42105
 grow_vertical = 0
-scale = Vector2(0.6478562, 0.19010252)
+scale = Vector2(1, 0.19)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 50)

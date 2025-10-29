@@ -1,7 +1,8 @@
 class_name EnemyIdle extends State
 
-@export var move_speed := 20
-
+@export var move_speed := 200.0
+@export var wander_minTime := 1
+@export var wander_maxTime := 3
 var move_direction : Vector2
 var wander_time
 @onready var vision_ray: RayCast2D = enemy.get_node("VisionRay")
@@ -11,7 +12,7 @@ var wander_time
 func randomize_wander():
 	
 	move_direction = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
-	wander_time = randf_range(1,3)
+	wander_time = randf_range(wander_minTime,wander_maxTime)
 
 func Enter():
 	player_detector.body_entered.connect(_on_body_entered)
@@ -20,11 +21,16 @@ func Enter():
 	
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
-		print("Player detected — switching to follow.")
-		Transitioned.emit(self, "EnemyFollow")
-		var to_player = player.global_position - enemy.global_position
-		vision_ray.target_position = to_player
+		vision_ray.look_at(player.global_position)
 		vision_ray.force_raycast_update()
+		var hit = vision_ray.get_collider()
+		if hit and hit.is_in_group("EnemyVisionBlock"):
+			return
+		else:
+			Transitioned.emit(self, "EnemyFollow")
+			
+		
+
 		
 func Update(delta:float):
 	if wander_time > 0:
@@ -34,7 +40,8 @@ func Update(delta:float):
 func Physics_Update(_delta:float):
 	if not enemy || not player:
 		return
-	# 🔍 Update ray direction toward player
+	#  Update ray direction toward player
 		
 	enemy.velocity = move_direction * move_speed
+
 		
