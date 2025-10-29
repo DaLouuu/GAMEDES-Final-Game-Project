@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cowtkfl77v062"]
+
+[ext_resource type="Script" uid="uid://khbu468b03br" path="res://utils-scripts/GameController.gd" id="1_g5kj1"]
+[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="2_tvc0n"]
+[ext_resource type="PackedScene" uid="uid://dm1svngkxgtnm" path="res://utils/menus/cheats/cheat_menu.tscn" id="3_4oscx"]
+[ext_resource type="PackedScene" uid="uid://bsgk4iyfgu77y" path="res://dev/character/sanity_component/sanity_ui_component.tscn" id="4_q3r7k"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="GameController" type="Node" parent="." node_paths=PackedStringArray("world_2d")]
+script = ExtResource("1_g5kj1")
+world_2d = NodePath("World2D")
+metadata/_custom_type_script = "uid://khbu468b03br"
+
+[node name="World2D" type="Node2D" parent="GameController"]
+
+[node name="Player" parent="GameController/World2D" instance=ExtResource("2_tvc0n")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("3_4oscx")]
+
+[node name="SanityUIComponent" parent="CanvasLayer" instance=ExtResource("4_q3r7k")]
+mouse_filter = 2

@@ -247,7 +247,7 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_10mfh")
 states/Walk/position = Vector2(434, 92)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_t8sd1"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_nf2gw"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ctw3t")]
 
-[node name="PlayerCat" type="CharacterBody2D"]
+[node name="PlayerCat" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_u0lhy")
 metadata/_edit_horizontal_guides_ = [-31.0]
 
