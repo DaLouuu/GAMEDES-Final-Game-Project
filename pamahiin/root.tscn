@@ -3,7 +3,14 @@
 [ext_resource type="Script" uid="uid://khbu468b03br" path="res://utils-scripts/GameController.gd" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="2_28aoi"]
 
-[node name="root" type="Node"]
+[node name="root" type="Window"]
+oversampling_override = 1.0
+mode = 3
+title = "Pamahiin"
+position = Vector2i(0, 36)
+size = Vector2i(1280, 720)
+content_scale_mode = 2
+content_scale_factor = 3.0
 
 [node name="GameController" type="Node" parent="." node_paths=PackedStringArray("gui", "world_2d")]
 script = ExtResource("1_pyidc")
@@ -11,7 +18,7 @@ gui = NodePath("GUI")
 world_2d = NodePath("World2D")
 metadata/_custom_type_script = "uid://khbu468b03br"
 
-[node name="Player" parent="GameController" instance=ExtResource("2_28aoi")]
+[node name="Player" parent="GameController" groups=["Player"] instance=ExtResource("2_28aoi")]
 z_index = 10
 y_sort_enabled = true
 

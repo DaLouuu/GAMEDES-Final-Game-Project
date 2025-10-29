@@ -2,16 +2,9 @@ extends Node2D
 
 
 @onready var spawnPoint : Marker2D = $"Marker2D-SpawnP"
-@onready var enemy : CharacterBody2D = $EnemyAntilight
-@onready var worldEnvironment : WorldEnvironment = $WorldEnvironment
 
-var player : CharacterBody2D
 
-func _ready():
-	enemy.start_funcs()
-	
 
-	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
