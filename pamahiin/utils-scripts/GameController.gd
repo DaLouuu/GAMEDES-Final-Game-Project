@@ -5,11 +5,20 @@ extends Node
 @export var world_2d: Node2D  
 
 var player: CharacterBody2D
-
 var curr_2d_scene: Node = null
 var curr_gui_scene: Node = null
 
+# --- Dynamic Menus ---
+var exit_menu: Control
+var cheat_menu: Control
+var inventory_menu: Control
+
 signal hostiles_toggled(enabled: bool)
+
+# --- Preloads for Dynamic Instancing ---
+const ExitMenuScene := preload("res://utils/menus/exit_menu.tscn")
+const CheatMenuScene := preload("res://utils/menus/cheats/cheat_menu.tscn")
+const InventoryMenuScene := preload("res://utils/menus/inventory_menu.tscn")
 
 # ---------------------------------------
 # Initialization
@@ -17,9 +26,9 @@ signal hostiles_toggled(enabled: bool)
 func _ready() -> void:
 	Global.game_controller = self
 
-	await get_tree().process_frame  # wait one frame to let Player load
+	await get_tree().process_frame
 	player = get_node_or_null("World2D/Player")
-	
+
 	if player:
 		if not player.is_in_group("Player"):
 			player.add_to_group("Player")
@@ -27,17 +36,59 @@ func _ready() -> void:
 		push_warning("⚠️ Player not found in GameController at startup.")
 
 	change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
-	
 	add_to_group("game_controller")
+
+	# 🆕 Dynamically add menus
+	_create_exit_menu()
+	_create_cheat_menu()
+	_create_inventory_menu()
+
+# ---------------------------------------
+# Menu Creation Functions
+# ---------------------------------------
+func _create_exit_menu() -> void:
+	exit_menu = ExitMenuScene.instantiate()
+	gui.add_child(exit_menu)
+
+	# Connect signals
+	exit_menu.resumed.connect(_on_game_resumed)
+	exit_menu.main_menu.connect(_on_main_menu_pressed)
+	exit_menu.quit_game.connect(_on_quit_game_pressed)
+
+	exit_menu.visible = false
+	print("✅ Exit Menu loaded dynamically.")
+
+func _create_cheat_menu() -> void:
+	cheat_menu = CheatMenuScene.instantiate()
+	gui.add_child(cheat_menu)
+	cheat_menu.visible = false
+	print("✅ Cheat Menu loaded dynamically.")
+
+func _create_inventory_menu() -> void:
+	inventory_menu = InventoryMenuScene.instantiate()
+	gui.add_child(inventory_menu)
+	inventory_menu.visible = false
+	print("✅ Inventory Menu placeholder loaded (hidden).")
+
+# ---------------------------------------
+# Exit Menu Signal Callbacks
+# ---------------------------------------
+func _on_game_resumed() -> void:
+	print("▶ Game resumed.")
+	get_tree().paused = false
+
+func _on_main_menu_pressed() -> void:
+	print("🏠 Returning to main menu...")
+	get_tree().paused = false
+	# get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func _on_quit_game_pressed() -> void:
+	print("❌ Quitting game...")
+	get_tree().quit()
 
 # ---------------------------------------
 # Scene Management
 # ---------------------------------------
-func change_gui_scene(_new_scene: String, _load_state: EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
-	# Placeholder for future GUI swapping logic
-	return
-
-
 func change_2d_scene(new_scene: String, _load_state: EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
 	if curr_2d_scene:
 		match _load_state:
@@ -52,9 +103,7 @@ func change_2d_scene(new_scene: String, _load_state: EnumsRef.SceneLoadState = E
 	world_2d.add_child(new_scene_instance)
 	curr_2d_scene = new_scene_instance
 
-	# ---- PLAYER HANDLING ----
 	if player:
-		# Find the spawn marker in the new scene
 		var spawn_marker = new_scene_instance.get_node_or_null("Marker2D-SpawnP")
 		if spawn_marker:
 			player.global_position = spawn_marker.global_position
@@ -66,37 +115,11 @@ func change_2d_scene(new_scene: String, _load_state: EnumsRef.SceneLoadState = E
 		push_error("Player not initialized in GameController.")
 
 # ---------------------------------------
-# Hostile Management
+# Utility Functions
 # ---------------------------------------
 func set_hostiles_enabled(enabled: bool) -> void:
 	print("Hostiles enabled:", enabled)
 	for node in world_2d.get_children():
 		if node.is_in_group("Enemies"):
 			node.process_mode = Node.PROCESS_MODE_ALWAYS if enabled else Node.PROCESS_MODE_DISABLED
-
 	emit_signal("hostiles_toggled", enabled)
-
-# ---------------------------------------
-# Utility Functions
-# ---------------------------------------
-func heal_player_sanity(amount: int = -1) -> void:
-	if not player:
-		push_warning("heal_player_sanity() called but player not found.")
-		return
-	if amount == -1:
-		player.sanity = player.max_sanity
-	else:
-		player.sanity = min(player.sanity + amount, player.max_sanity)
-	player.emit_signal("sanity_changed", player.sanity)
-
-
-func teleport_player_to_marker(marker_name: String) -> void:
-	if not player or not curr_2d_scene:
-		push_warning("teleport_player_to_marker(): Player or scene missing.")
-		return
-	var marker = curr_2d_scene.get_node_or_null(marker_name)
-	if marker:
-		player.global_position = marker.global_position
-		print("Teleported player to marker:", marker_name)
-	else:
-		push_warning("Marker '%s' not found in current scene." % marker_name)

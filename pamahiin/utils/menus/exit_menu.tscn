@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfni5mfp5ofa5"]
+
+[ext_resource type="Script" uid="uid://dkgktkrejnwqo" path="res://utils-scripts/menus/exit_menu.gd" id="1_x0k64"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uid0"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+
+[node name="ExitMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_x0k64")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0uid0")
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="CenterContainer/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Panel/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Main Menu" type="Button" parent="CenterContainer/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="CenterContainer/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
