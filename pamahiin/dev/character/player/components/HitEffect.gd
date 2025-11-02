@@ -1,6 +1,5 @@
 class_name HitEffect
-extends Resource
-
+extends Node
 # Common interface
-func apply(target: Node, data: Dictionary) -> void:
+func apply(damage: float, player:CharacterBody2D) -> void:
 	push_warning("HitEffect.apply() not implemented.")
