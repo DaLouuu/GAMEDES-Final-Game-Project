@@ -3,6 +3,7 @@ class_name Player
 
 extends CharacterBody2D
 
+
 signal sanity_changed(new_value: float)
 signal sanity_damaged
 
