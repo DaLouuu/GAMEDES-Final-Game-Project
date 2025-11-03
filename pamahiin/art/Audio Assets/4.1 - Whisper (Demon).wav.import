@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1q28xd2uditj"
+path="res://.godot/imported/4.1 - Whisper (Demon).wav-bbd897257582c2a233da5687970d2525.sample"
+
+[deps]
+
+source_file="res://art/Audio Assets/4.1 - Whisper (Demon).wav"
+dest_files=["res://.godot/imported/4.1 - Whisper (Demon).wav-bbd897257582c2a233da5687970d2525.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

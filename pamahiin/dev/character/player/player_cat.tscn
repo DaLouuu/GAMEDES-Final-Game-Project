@@ -1,12 +1,17 @@
-[gd_scene load_steps=35 format=3 uid="uid://cbiyjqctoq0j3"]
+[gd_scene load_steps=40 format=3 uid="uid://cbiyjqctoq0j3"]
 
 [ext_resource type="Texture2D" uid="uid://c37o4alfhrho8" path="res://art/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_k8dsg"]
 [ext_resource type="Script" uid="uid://e8vo2bsuywb5" path="res://dev/character/player/player_cat.gd" id="1_u0lhy"]
+[ext_resource type="Resource" uid="uid://dp4dsw13mlp8d" path="res://dev/resource_scripts/inventory/player_inventory.tres" id="2_u0b4o"]
 [ext_resource type="Script" uid="uid://b6o4m7pjfqf0g" path="res://dev/character/player/interaction_component.gd" id="3_hhb2n"]
 [ext_resource type="PackedScene" uid="uid://dfit58o77nitj" path="res://dev/character/player/interaction_component_ui.tscn" id="4_gx6m4"]
 [ext_resource type="Script" uid="uid://dglu3aa55phcp" path="res://dev/character/player/components/HitEffectManager.gd" id="5_ipawb"]
-[ext_resource type="Script" uid="uid://dfextwrggf02y" path="res://dev/camera_effects/camera_2d_shake.gd" id="6_1f8vj"]
+[ext_resource type="Script" uid="uid://dfextwrggf02y" path="res://dev/camera_effects/camera_effect_manager.gd" id="6_1f8vj"]
 [ext_resource type="PackedScene" uid="uid://bsgk4iyfgu77y" path="res://dev/character/sanity_component/sanity_ui_component.tscn" id="7_6merf"]
+[ext_resource type="Script" uid="uid://bpgerp0xif3aw" path="res://dev/character/player/components/HItEffectPoison.gd" id="7_crtd1"]
+[ext_resource type="Script" uid="uid://d3yisgeep3p7b" path="res://dev/character/player/components/HitEffectDamage.gd" id="8_c8r0g"]
+[ext_resource type="PackedScene" uid="uid://bpbf560c0338r" path="res://dev/resource_scripts/inventory/inventory_ui.tscn" id="9_ohocd"]
+[ext_resource type="Texture2D" uid="uid://br7dqghldew4e" path="res://dev/light_textures/lantern_round.tres" id="10_04nme"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gx6m4"]
 
@@ -247,12 +252,15 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_10mfh")
 states/Walk/position = Vector2(434, 92)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_t8sd1"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_nf2gw"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ctw3t")]
 
-[node name="PlayerCat" type="CharacterBody2D"]
+[node name="PlayerCat" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_u0lhy")
+move_speed = 300.0
+inventory = ExtResource("2_u0b4o")
 metadata/_edit_horizontal_guides_ = [-31.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 3
+scale = Vector2(4, 4)
 texture = ExtResource("1_k8dsg")
 hframes = 4
 vframes = 4
@@ -271,7 +279,7 @@ shape = SubResource("CircleShape2D_gx6m4")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
 occluder = SubResource("OccluderPolygon2D_71ai2")
-occluder_light_mask = 32
+occluder_light_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -287,7 +295,7 @@ deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_qwdhh")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = Vector2(0.14393938, 0.10476196)
-parameters/Walk/blend_position = Vector2(-0.18181819, 0.20634913)
+parameters/Walk/blend_position = Vector2(-0.0025839806, 0.92473114)
 
 [node name="InteractionComponentUI" parent="." instance=ExtResource("4_gx6m4")]
 
@@ -297,6 +305,14 @@ one_shot = true
 
 [node name="HitEffectManager" type="Node" parent="."]
 script = ExtResource("5_ipawb")
+
+[node name="HitEffectPoison" type="Node" parent="HitEffectManager"]
+script = ExtResource("7_crtd1")
+metadata/_custom_type_script = "uid://bpgerp0xif3aw"
+
+[node name="HitEffectDamage" type="Node" parent="HitEffectManager"]
+script = ExtResource("8_c8r0g")
+metadata/_custom_type_script = "uid://d3yisgeep3p7b"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("../Camera2D")
@@ -308,6 +324,36 @@ script = ExtResource("6_1f8vj")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SanityUIComponent" parent="CanvasLayer" instance=ExtResource("7_6merf")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_right = 34.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory_UI" parent="." instance=ExtResource("9_ohocd")]
+visible = false
+z_index = 11
+offset_left = -328.0
+offset_top = -211.0
+offset_right = 345.0
+offset_bottom = -211.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(3, -3, 283, -125, 279, 164, 0, 0, 0, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 3.8146973e-06)
+scale = Vector2(10.363281, 7.46875)
+enabled = false
+shadow_enabled = true
+shadow_item_cull_mask = 33
+texture = ExtResource("10_04nme")
 
 [connection signal="body_entered" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_entered"]
 [connection signal="body_exited" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_exited"]
+[connection signal="timeout" from="InvulTimer" to="." method="_on_invul_timer_timeout"]

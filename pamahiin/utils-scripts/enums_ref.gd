@@ -9,6 +9,8 @@ enum SceneLoadState {
 	REMOVE_HIDDEN # scene is just in memory, not running.
 }
 
+
+
 enum EnemyState {
 	IDLE,
 	FOLLOW,
@@ -42,6 +44,8 @@ enum ItemType {
 	DESTRUCTIBLE,
 	ENVIRONMENT
 }
+
+
 enum ArtifactType {
 	ROSARY,
 	HOLY_WATER,
