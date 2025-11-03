@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://khbu468b03br"
 [node name="Player" parent="GameController" instance=ExtResource("2_28aoi")]
 z_index = 10
 y_sort_enabled = true
+position = Vector2(245, 99)
 
 [node name="GUI" type="Control" parent="GameController"]
 layout_mode = 3
