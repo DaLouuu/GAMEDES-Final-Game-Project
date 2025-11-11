@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cg60lo4rvy6a8"]
 
-[ext_resource type="Script" uid="uid://ds3tlfbps2o7w" path="res://dev/ace-motel/CutsceneController.gd" id="1_scq1k"]
-[ext_resource type="Shader" uid="uid://d2bajgea8dvgf" path="res://dev/ace-motel/cutscene_test.gdshader" id="2_5w17c"]
+[ext_resource type="Script" uid="uid://ds3tlfbps2o7w" path="res://map_phase/motel/church_cutscene/CutsceneController.gd" id="1_scq1k"]
+[ext_resource type="Shader" uid="uid://d2bajgea8dvgf" path="res://map_phase/motel/church_cutscene/cutscene_test.gdshader" id="2_5w17c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3m2e3"]
 shader = ExtResource("2_5w17c")

@@ -47,6 +47,7 @@ func _physics_process(delta):
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up") 
 	)
+	input_direction = input_direction.normalized()
 	update_animation_parameters(input_direction)
 	
 	# Sprinting multiplier
@@ -55,6 +56,8 @@ func _physics_process(delta):
 		current_speed *= sprint_multiplier
 	
 	velocity = input_direction * current_speed
+	
+	move_and_slide()
 	
 	# move_and_slide() is very static when hitting object, move_and_collied accounts for object hit	
 	var collision = move_and_collide(velocity * delta)
