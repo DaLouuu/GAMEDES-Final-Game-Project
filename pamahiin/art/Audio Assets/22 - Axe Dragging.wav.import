@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfm2dw1qf6foq"
+path="res://.godot/imported/22 - Axe Dragging.wav-f8d015a47e9e378a752310518dfa764d.sample"
+
+[deps]
+
+source_file="res://art/Audio Assets/22 - Axe Dragging.wav"
+dest_files=["res://.godot/imported/22 - Axe Dragging.wav-f8d015a47e9e378a752310518dfa764d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

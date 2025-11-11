@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://osnhnx0vlk5e"
+path="res://.godot/imported/29 - Gecko Sounds.wav-a1e0ded5afe60f6e26b2a9b03e76169a.sample"
+
+[deps]
+
+source_file="res://art/Audio Assets/29 - Gecko Sounds.wav"
+dest_files=["res://.godot/imported/29 - Gecko Sounds.wav-a1e0ded5afe60f6e26b2a9b03e76169a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

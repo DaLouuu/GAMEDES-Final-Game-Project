@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cbiyjqctoq0j3"]
+[gd_scene load_steps=40 format=3 uid="uid://cbiyjqctoq0j3"]
 
 [ext_resource type="Texture2D" uid="uid://c37o4alfhrho8" path="res://art/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_k8dsg"]
 [ext_resource type="Script" uid="uid://e8vo2bsuywb5" path="res://dev/character/player/player_cat.gd" id="1_u0lhy"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dglu3aa55phcp" path="res://dev/character/player/components/HitEffectManager.gd" id="5_ipawb"]
 [ext_resource type="Script" uid="uid://dfextwrggf02y" path="res://dev/camera_effects/camera_effect_manager.gd" id="6_1f8vj"]
 [ext_resource type="PackedScene" uid="uid://bsgk4iyfgu77y" path="res://dev/character/sanity_component/sanity_ui_component.tscn" id="7_6merf"]
+[ext_resource type="Script" uid="uid://bpgerp0xif3aw" path="res://dev/character/player/components/HItEffectPoison.gd" id="7_crtd1"]
+[ext_resource type="Script" uid="uid://d3yisgeep3p7b" path="res://dev/character/player/components/HitEffectDamage.gd" id="8_c8r0g"]
 [ext_resource type="PackedScene" uid="uid://bpbf560c0338r" path="res://dev/resource_scripts/inventory/inventory_ui.tscn" id="9_ohocd"]
 [ext_resource type="Texture2D" uid="uid://br7dqghldew4e" path="res://dev/light_textures/lantern_round.tres" id="10_04nme"]
 
@@ -303,6 +305,14 @@ one_shot = true
 
 [node name="HitEffectManager" type="Node" parent="."]
 script = ExtResource("5_ipawb")
+
+[node name="HitEffectPoison" type="Node" parent="HitEffectManager"]
+script = ExtResource("7_crtd1")
+metadata/_custom_type_script = "uid://bpgerp0xif3aw"
+
+[node name="HitEffectDamage" type="Node" parent="HitEffectManager"]
+script = ExtResource("8_c8r0g")
+metadata/_custom_type_script = "uid://d3yisgeep3p7b"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("../Camera2D")

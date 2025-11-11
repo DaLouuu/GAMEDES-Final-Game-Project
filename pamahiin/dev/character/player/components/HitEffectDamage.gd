@@ -1,8 +1,17 @@
 class_name HitEffectDamage
 extends HitEffect
 
-func apply(target: Node, data: Dictionary) -> void:
-	if not target.has_method("ReceiveSanityDamage"):
-		push_warning("Target cannot receive sanity damage.")
-		return
-	var amount = data.get("amount", 0)
+func apply(damage: float, player:CharacterBody2D) -> void:
+
+		
+	player.sanity_damaged.connect(player.camera.start_shake)
+	# Clamping restricts between 0 and max sanity value
+	player.sanity = clamp(player.sanity - damage, 0, player.max_sanity)
+
+	print("💢 Player sanity now:", player.sanity)
+	player.sanity_changed.emit(player.sanity)
+	player.sanity_damaged.emit()
+	player.is_invulnerable = true
+	player.invul_timer.start()
+	player.sanity_damaged.disconnect(player.camera.start_shake)
+	

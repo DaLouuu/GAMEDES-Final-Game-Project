@@ -10,7 +10,7 @@ extends State
 # initial count of enemy would lose track of player
 @export var lose_timer: float = 0.0
 @export var move_behavior: MoveType
-
+@export var hit_distance : int  = 20
 
 func Enter() -> void:
 	print("Enemy following player.")
@@ -59,9 +59,10 @@ func Physics_Update(delta: float) -> void:
 			Transitioned.emit(self, "EnemyIdle")
 			print("Lost sight of player — switching to idle.")
 			
-			
-	if enemy.global_position.distance_to(player.global_position) < 20:
-		player.ReceiveSanityDamage(25, "HitEffectDamage")		
+	
+	# Theres two types of damage currently HitEffectPoison and HitEffectDamage		
+	if enemy.global_position.distance_to(player.global_position) < hit_distance:
+		player.ReceiveSanityDamage(30.0, "HitEffectPoison")		
 
 func Exit() -> void:
 	enemy.velocity = Vector2.ZERO

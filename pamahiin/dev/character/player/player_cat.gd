@@ -3,6 +3,7 @@ class_name Player
 
 extends CharacterBody2D
 
+
 signal sanity_changed(new_value: float)
 signal sanity_damaged
 
@@ -84,21 +85,19 @@ func ReceiveSanityDamage(dmg: float, effect_name : String):
 	if is_invulnerable:
 		return
 	
+
+	# Hit effect manager should implement how sanity would be decreased	
+	hit_effect_manager.apply_hit_effect(effect_name, dmg, self)	
 	
 	# Clamping restricts between 0 and max sanity value
-	sanity = clamp(sanity - dmg, 0, max_sanity)
-	
-	
-	print("💢 Player sanity now:", sanity)
-	sanity_changed.emit(sanity)
-	sanity_damaged.emit()
-	
-	# Hit effect manager should implement how sanity would be decreased	
-	hit_effect_manager.apply_hit_effect(effect_name, dmg)
-	
-	
-	is_invulnerable = true
-	invul_timer.start()
+	#sanity = clamp(sanity - dmg, 0, max_sanity)
+	#
+	#
+	#print("💢 Player sanity now:", sanity)
+	#sanity_changed.emit(sanity)
+	#sanity_damaged.emit()
+	#is_invulnerable = true
+	#invul_timer.start()
 
 # ✅ When invulnerability period ends
 func _on_invul_timer_timeout():

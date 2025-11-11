@@ -14,7 +14,6 @@ var blur_material
 func _ready():
 	original_offset = camera.offset
 	original_zoom = camera.zoom
-	player.sanity_damaged.connect(start_shake)
 	var sprite = get_node_or_null("../CanvasLayer/BlurSprite")
 	if sprite:
 		print("Sprite ready for blur")
