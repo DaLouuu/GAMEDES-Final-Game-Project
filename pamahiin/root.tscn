@@ -9,7 +9,7 @@ gui = NodePath("GUI")
 world_2d = NodePath("World2D")
 metadata/_custom_type_script = "uid://khbu468b03br"
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_28aoi")]
+[node name="Player" parent="." instance=ExtResource("2_28aoi")]
 z_index = 10
 y_sort_enabled = true
 
