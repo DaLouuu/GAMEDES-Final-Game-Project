@@ -18,5 +18,10 @@ func _ready() -> void:
 	_update_display()
 
 func _update_display() -> void:
-	_item_display.texture = slot_info.item.texture
-	_count_display.text = str(slot_info.count)
+	if _item_display and _count_display and slot_info and slot_info.item:
+		_item_display.texture = slot_info.item.texture
+		if slot_info.count > 1:
+			_count_display.text = str(slot_info.count)
+		else:
+			_count_display.text = ""
+			

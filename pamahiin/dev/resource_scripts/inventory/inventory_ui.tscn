@@ -1,28 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpbf560c0338r"]
+[gd_scene load_steps=3 format=3 uid="uid://bpbf560c0338r"]
 
 [ext_resource type="Script" uid="uid://pgv1qy7w4rjs" path="res://dev/resource_scripts/inventory/inventory_ui.gd" id="1_n6rbn"]
-[ext_resource type="Script" uid="uid://dkyg0c066y8ju" path="res://dev/resource_scripts/inventory/inventory.gd" id="2_q1r7v"]
-[ext_resource type="Script" uid="uid://blro4ehy7et10" path="res://dev/resource_scripts/inventory/inventory_slot.gd" id="3_tc07h"]
-[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="4_dt5rh"]
-[ext_resource type="Texture2D" uid="uid://bt2fuaio5hslp" path="res://icon.svg" id="5_m80k6"]
-
-[sub_resource type="Resource" id="Resource_wsq2v"]
-script = ExtResource("4_dt5rh")
-name = "asdf"
-description = "xcvb"
-texture = ExtResource("5_m80k6")
-metadata/_custom_type_script = "uid://26w5lr3t485j"
-
-[sub_resource type="Resource" id="Resource_six2s"]
-script = ExtResource("3_tc07h")
-item = SubResource("Resource_wsq2v")
-count = 2
-metadata/_custom_type_script = "uid://blro4ehy7et10"
-
-[sub_resource type="Resource" id="Resource_tc07h"]
-script = ExtResource("2_q1r7v")
-slots = Array[ExtResource("3_tc07h")]([SubResource("Resource_six2s")])
-metadata/_custom_type_script = "uid://dkyg0c066y8ju"
+[ext_resource type="Resource" uid="uid://dp4dsw13mlp8d" path="res://dev/resource_scripts/inventory/player_inventory.tres" id="2_q1r7v"]
 
 [node name="InventoryUI" type="MarginContainer"]
 anchors_preset = 15
@@ -35,7 +14,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 script = ExtResource("1_n6rbn")
-inventory = SubResource("Resource_tc07h")
+inventory = ExtResource("2_q1r7v")
 
 [node name="ItemContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

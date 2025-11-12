@@ -17,6 +17,7 @@ func _update_inventory_slots() -> void:
 		slot_ui.queue_free()
 	
 	for slot in inventory.slots:
+		
 		var slot_ui: InventoryUISlot = INVENTORY_SLOT_SCN.instantiate(PackedScene.GEN_EDIT_STATE_MAIN_INHERITED)
 		slot_ui.slot_info = slot
 	

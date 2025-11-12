@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://csd3b5o4mm6y7"]
+[gd_scene load_steps=3 format=3 uid="uid://csd3b5o4mm6y7"]
 
 [ext_resource type="Texture2D" uid="uid://d261sn68crb5f" path="res://dev/resource_scripts/inventory/inventory_slot.png" id="1_1nb6p"]
 [ext_resource type="Script" uid="uid://dodtx3akr5r7v" path="res://dev/resource_scripts/inventory/inventory_ui_slot.gd" id="1_82yjn"]
-[ext_resource type="Texture2D" uid="uid://bt2fuaio5hslp" path="res://icon.svg" id="3_l7lor"]
 
 [node name="Inventory_UI_Slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -36,7 +35,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ItemDisplay" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("3_l7lor")
 expand_mode = 5
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -69,4 +67,4 @@ scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 64
-text = "10"
+text = "nil"
