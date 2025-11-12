@@ -42,6 +42,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 Player=""
 EnemyVisionBlock="To block certain Ray2Ds"
+Enemy=""
 
 [input]
 

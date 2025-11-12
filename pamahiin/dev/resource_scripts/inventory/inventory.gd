@@ -31,7 +31,6 @@ func obtain(item: InvItem, count: int = 1) -> void:
 	assert(count > 0, "Cannot obtain an item < 1 times.")
 	
 	var existing_slot_idx := slots.find_custom(func (s): return s.item == item)
-	print("Current size: ", slots.size())
 	if existing_slot_idx == -1:
 		var new_slot := InvSlot.new()
 		new_slot.item = item

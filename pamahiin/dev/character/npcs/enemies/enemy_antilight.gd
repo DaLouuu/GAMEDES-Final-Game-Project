@@ -4,10 +4,12 @@ extends CharacterBody2D
 signal begin_behaviors
 signal stop_behaviors
 
-
+@export var follow_speed: float = 300.0
 @export var move_speed: float = 200.0
 @export var detection_radius: float = 120.0
 @export var wander_interval: float = 2.0
+@export var move_behavior: MoveType
+
 @onready var PlayerDetector: Area2D = $PlayerDetector
 @onready var vision_ray : RayCast2D = $VisionRay
 

@@ -11,8 +11,16 @@ extends State
 @export var lose_timer: float = 0.0
 @export var move_behavior: MoveType
 @export var hit_distance : int  = 20
+@export var detection_radius: float = 120
 
 func Enter() -> void:
+	
+	if move_behavior:
+		pass
+	else:
+		move_behavior = enemy.move_behavior
+	detection_radius = enemy.detection_radius
+	move_speed = enemy.follow_speed
 	print("Enemy following player.")
 	lose_timer = 0.0
 
@@ -33,7 +41,8 @@ func Physics_Update(delta: float) -> void:
 		if collider and collider.is_in_group("EnemyVisionBlock"):
 			has_clear_sight = false
 		else:
-			has_clear_sight = true	
+			if enemy.global_position.distance_to(player.global_position) < detection_radius:
+				has_clear_sight = true	
 
 
 					
