@@ -107,7 +107,8 @@ func turnOnLight():
 	$PointLight2D.enabled = true
 	
 # Player adds item to his inventory	
-func collect(item : InvItem):
+func collect(item : InvItem, count: int  = 1):
 	if item.name == "Lantern":
 		turnOnLight()
-	inventory.insert(item)
+	inventory.obtain(item, count)
+	

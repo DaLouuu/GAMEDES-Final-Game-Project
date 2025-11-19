@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpbf560c0338r"]
+
+[ext_resource type="Script" uid="uid://pgv1qy7w4rjs" path="res://dev/resource_scripts/inventory/inventory_ui.gd" id="1_n6rbn"]
+[ext_resource type="Resource" uid="uid://dp4dsw13mlp8d" path="res://dev/resource_scripts/inventory/player_inventory.tres" id="2_q1r7v"]
+
+[node name="InventoryUI" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_n6rbn")
+inventory = ExtResource("2_q1r7v")
+
+[node name="ItemContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+alignment = 2
