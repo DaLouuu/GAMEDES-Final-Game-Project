@@ -17,8 +17,18 @@ signal sanity_damaged
 @export var inventory: Inventory
 @export var has_light : bool = false
 
+@export var footstep_sfx_map: Dictionary[String, Resource] = {
+	"ground_stone": preload("uid://ddty6kh3k1x7p"),
+	"salt": preload("uid://qnqi6x0wy5g7")
+}
+@export var tile_maps: Node
+
+var is_cutscene_controlled := false
 var is_invulnerable: bool = false
 var max_sanity : float = 100.0
+
+var _is_footstep_sfx_playing: Dictionary[String, bool] = {}
+
 # onready get animation_tree under this node
 @onready var animation_tree = $AnimationTree 
 @onready var state_machine= animation_tree.get("parameters/playback")
@@ -29,6 +39,8 @@ var max_sanity : float = 100.0
 
 
 func _ready():
+	_init_footstep_sfx_playing_dict()
+	
 	update_animation_parameters(starting_direction)
 	remote_transform_2d.remote_path = camera.get_path()
 	
@@ -41,6 +53,8 @@ func _ready():
 
 # Anything moving and colliding is always under the collision
 func _physics_process(delta):
+	if is_cutscene_controlled:
+		return
 	
 	# Smart logic cancelling inputs of both directional keys
 	var input_direction = Vector2(
@@ -57,10 +71,10 @@ func _physics_process(delta):
 	velocity = input_direction * current_speed
 	
 	# move_and_slide() is very static when hitting object, move_and_collied accounts for object hit	
-	var collision = move_and_collide(velocity * delta)
+	var collision = move_and_slide()
 
-	if collision and collision.get_collider().is_in_group("door"):
-		collision.get_collider().play_open()   # call method on door
+	#if collision and collision.get_collider().is_in_group("door"):
+		#collision.get_collider().play_open()   # call method on door
 	pick_new_state()
 
 
@@ -111,3 +125,62 @@ func collect(item : InvItem):
 	if item.name == "Lantern":
 		turnOnLight()
 	inventory.insert(item)
+
+
+## CUTSCENE UTIL
+
+func lerp_towards(target: Marker2D, duration: float) -> void:
+	is_cutscene_controlled = true
+	
+	var dir := (target.global_position - global_position).normalized()
+	update_animation_parameters(dir)
+	pick_new_state()
+	
+	var tween := get_tree().create_tween()
+	tween.tween_property(self, "global_position", target.global_position, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	await tween.finished
+	
+	velocity = Vector2.ZERO
+	update_animation_parameters(Vector2.ZERO)
+	pick_new_state()
+	
+	is_cutscene_controlled = false
+
+
+## FOOTSTEP SFX
+
+func _init_footstep_sfx_playing_dict() -> void:
+	for tile_type in footstep_sfx_map:
+		_is_footstep_sfx_playing[tile_type] = false
+
+func attempt_play_footsteps() -> void:
+	var tile_data: Array[TileData] = []
+	
+	for child in tile_maps.get_children():
+		var tilemap := child as TileMapLayer
+		
+		var tile_position := tilemap.local_to_map(tilemap.to_local(global_position))
+		var data := tilemap.get_cell_tile_data(tile_position)
+		
+		if data:
+			tile_data.push_back(data)
+	
+	for tile_datum in tile_data:
+		var tile_type = tile_datum.get_custom_data('footstep_sfx')
+		
+		if footstep_sfx_map.has(tile_type) and not _is_footstep_sfx_playing[tile_type]:
+			var audio_player := AudioStreamPlayer2D.new()
+			audio_player.stream = footstep_sfx_map[tile_type]
+			audio_player.global_position = global_position
+			
+			get_tree().root.add_child(audio_player)
+			
+			_is_footstep_sfx_playing[tile_type] = true
+			
+			audio_player.finished.connect(func():
+				audio_player.queue_free()
+				_is_footstep_sfx_playing[tile_type] = false
+			)
+			
+			audio_player.play()

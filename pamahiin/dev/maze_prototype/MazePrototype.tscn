@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://de0lwi4xr6tfy" path="res://dev/maze_prototype/sprites/spritesheet.png" id="1_dd4pv"]
 [ext_resource type="PackedScene" uid="uid://n44gq1gn4dcs" path="res://dev/maze_prototype/PrototypePlayer.tscn" id="2_71ipl"]
 [ext_resource type="Texture2D" uid="uid://b7trsc281hjfr" path="res://dev/maze_prototype/sprites/point_light.webp" id="3_1ji8k"]
-[ext_resource type="AudioStream" uid="uid://b7mrwolushgqt" path="res://dev/maze_prototype/audio/wind.mp3" id="4_q2dhh"]
-[ext_resource type="AudioStream" uid="uid://dcwpwjgsgkot0" path="res://dev/maze_prototype/audio/scary-cave-392041.mp3" id="5_xsb22"]
-[ext_resource type="Script" uid="uid://cweybxvfhrt3m" path="res://dev/maze_prototype/cave_shocker.gd" id="6_4a1ek"]
+[ext_resource type="AudioStream" uid="uid://b7mrwolushgqt" path="res://art/Audio Assets/footsteps/cave_ambience.mp3" id="4_q2dhh"]
+[ext_resource type="AudioStream" uid="uid://dcwpwjgsgkot0" path="res://art/Audio Assets/footsteps/cave_echoes.mp3" id="5_xsb22"]
+[ext_resource type="Script" uid="uid://cweybxvfhrt3m" path="res://map_phase/cave/cave_shocker.gd" id="6_4a1ek"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1ji8k"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -92,6 +92,7 @@ texture_scale = 0.35
 position = Vector2(0, 8.005)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.10747979, 0.107479714, 0.10747973, 1)
 
 [node name="CaveAmbience" type="AudioStreamPlayer" parent="."]

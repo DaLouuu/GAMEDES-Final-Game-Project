@@ -33,8 +33,8 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 	
-	if velocity.length_squared() > 0:
-		_play_footsteps()
+	#if velocity.length_squared() > 0:
+		#_play_footsteps()
 		
 func _play_footsteps() -> void:
 	var tile_data: Array[TileData] = []
