@@ -1,31 +1,24 @@
 extends Control
 
-@onready var inventory : Inventory = preload("res://dev/resource_scripts/inventory/player_inventory.tres")
-@onready var slots: Array = $NinePatchRect/GridContainer.get_children()
-var is_open = false
+const INVENTORY_SLOT_SCN = preload("uid://csd3b5o4mm6y7")
 
+@export var inventory: Inventory
+
+@onready var _item_container: HBoxContainer = $ItemContainer
 
 func _ready():
-	inventory.update.connect(update_slots)
-	close()
+	_update_inventory_slots()
+	inventory.updated.connect(_update_inventory_slots)
 
-func update_slots():
-	for i in range(min(inventory.slots.size(), slots.size())):
-		slots[i].update(inventory.slots[i])
-
-func _process(delta):
-	if Input.is_action_just_pressed("inventory"):
-		if is_open:
-			update_slots()
-			
-			close()
-		else:
-			open()
-
-func open():
-	self.visible = true
-	is_open = true
-func close():
-	visible = false
-	is_open = false
+func _update_inventory_slots() -> void:
+	# Dumb approach: clear and re-set everything
+	for slot_ui in _item_container.get_children():
+		_item_container.remove_child(slot_ui)
+		slot_ui.queue_free()
 	
+	for slot in inventory.slots:
+		
+		var slot_ui: InventoryUISlot = INVENTORY_SLOT_SCN.instantiate(PackedScene.GEN_EDIT_STATE_MAIN_INHERITED)
+		slot_ui.slot_info = slot
+	
+		_item_container.add_child(slot_ui)

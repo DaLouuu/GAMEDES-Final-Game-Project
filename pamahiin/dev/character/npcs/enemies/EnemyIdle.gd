@@ -15,6 +15,8 @@ func randomize_wander():
 	wander_time = randf_range(wander_minTime,wander_maxTime)
 
 func Enter():
+	move_speed = enemy.move_speed
+
 	player_detector.body_entered.connect(_on_body_entered)
 	randomize_wander()	
 	
@@ -29,8 +31,8 @@ func _on_body_entered(body: Node) -> void:
 		else:
 			Transitioned.emit(self, "EnemyFollow")
 			
-		
 
+	
 		
 func Update(delta:float):
 	if wander_time > 0:

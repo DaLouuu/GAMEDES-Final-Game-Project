@@ -11,8 +11,16 @@ extends State
 @export var lose_timer: float = 0.0
 @export var move_behavior: MoveType
 @export var hit_distance : int  = 20
+@export var detection_radius: float = 120
 
 func Enter() -> void:
+	
+	if move_behavior:
+		pass
+	else:
+		move_behavior = enemy.move_behavior
+	detection_radius = enemy.detection_radius
+	move_speed = enemy.follow_speed
 	print("Enemy following player.")
 	lose_timer = 0.0
 
@@ -29,11 +37,12 @@ func Physics_Update(delta: float) -> void:
 	# VisionRay Collision Logic
 	if vision_ray.is_colliding():
 		var collider = vision_ray.get_collider()
-		print("Hit:", collider)
+		#print("Hit:", collider)
 		if collider and collider.is_in_group("EnemyVisionBlock"):
 			has_clear_sight = false
 		else:
-			has_clear_sight = true	
+			if enemy.global_position.distance_to(player.global_position) < detection_radius:
+				has_clear_sight = true	
 
 
 					
@@ -53,11 +62,11 @@ func Physics_Update(delta: float) -> void:
 		# Can't see player, count up timer
 		
 		lose_timer += delta
-		print("Can't see player: ", lose_timer)
+		#print("Can't see player: ", lose_timer)
 		
 		if lose_timer >= lost_threshold:
 			Transitioned.emit(self, "EnemyIdle")
-			print("Lost sight of player — switching to idle.")
+			#print("Lost sight of player — switching to idle.")
 			
 	
 	# Theres two types of damage currently HitEffectPoison and HitEffectDamage		

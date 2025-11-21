@@ -389,13 +389,15 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Inventory_UI" parent="." instance=ExtResource("9_ohocd")]
-visible = false
+[node name="Inventory_UI" parent="CanvasLayer" instance=ExtResource("9_ohocd")]
 z_index = 11
-offset_left = -328.0
-offset_top = -211.0
-offset_right = 345.0
-offset_bottom = -211.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -673.0
+offset_top = -15.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Area2D" type="Area2D" parent="."]
 

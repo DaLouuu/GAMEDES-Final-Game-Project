@@ -1,10 +1,12 @@
 class_name EnemyStop extends State
 
 func Enter():
-	enemy = $"../.."
 	enemy.begin_behaviors.connect(transitionBackToIdle)
-	pass			
-		
+	enemy.stop_behaviors.connect(transitionBackToStop)
+	
+func transitionBackToStop():
+	Transitioned.emit(self, "EnemyStop")	
+	
 func transitionBackToIdle():
 	Transitioned.emit(self, "EnemyIdle")
 		
