@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c6nis3wj67h8q"
+path="res://.godot/imported/inspect_paper_clue.dialogue-2324708258d5dc6f7160bd7fe022d02c.tres"
+
+[deps]
+
+source_file="res://dialogue/house_dialogues/inspect_paper_clue.dialogue"
+dest_files=["res://.godot/imported/inspect_paper_clue.dialogue-2324708258d5dc6f7160bd7fe022d02c.tres"]
+
+[params]
+
+defaults=true

@@ -27,7 +27,8 @@ enum LocationType {
 	HOME,
 	GARDEN,
 	CHAPEL,
-	SARI_SARI_STORE
+	CAVE,
+	WORLD
 }
 
 

@@ -1,0 +1,122 @@
+[gd_scene load_steps=10 format=3 uid="uid://iaww1imnros0"]
+
+[ext_resource type="Texture2D" uid="uid://bhjtkbbin3d4j" path="res://map_phase/houses/assets/House 2/House_House2_1stFloor_Door.png" id="1_egtrv"]
+[ext_resource type="Script" uid="uid://b3mi1h2vs4ms4" path="res://map_phase/houses/assets/House 2/house_2_door.gd" id="2_r3ji5"]
+[ext_resource type="Texture2D" uid="uid://0kfsg8k7jxdo" path="res://map_phase/houses/assets/House 2/House_House2_1stFloor_DoorOpen.png" id="2_wbu45"]
+[ext_resource type="AudioStream" uid="uid://bi14kem5hjv03" path="res://art/Audio Assets/12-door-opening-fast_short.wav" id="3_r3ji5"]
+[ext_resource type="AudioStream" uid="uid://bkpg8q5brq1d0" path="res://art/Audio Assets/14-door-close-slow_short.wav" id="4_rahnq"]
+
+[sub_resource type="Animation" id="Animation_sh5f7"]
+resource_name = "open_door"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_egtrv"), ExtResource("2_wbu45")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D-Open:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vh0hj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_egtrv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D-Open:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D-Close:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_v1u2w"]
+resource_name = "close_door"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_wbu45"), ExtResource("1_egtrv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D-Close:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qme71"]
+_data = {
+&"RESET": SubResource("Animation_vh0hj"),
+&"close_door": SubResource("Animation_v1u2w"),
+&"open_door": SubResource("Animation_sh5f7")
+}
+
+[node name="House2Door" type="Sprite2D"]
+texture = ExtResource("1_egtrv")
+script = ExtResource("2_r3ji5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qme71")
+}
+
+[node name="AudioStreamPlayer2D-Open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_r3ji5")
+
+[node name="AudioStreamPlayer2D-Close" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rahnq")
