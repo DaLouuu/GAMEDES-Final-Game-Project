@@ -17,8 +17,18 @@ signal sanity_damaged
 @export var inventory: Inventory
 @export var has_light : bool = false
 
+@export var footstep_sfx_map: Dictionary[String, Resource] = {
+	"ground_stone": preload("uid://ddty6kh3k1x7p"),
+	"salt": preload("uid://qnqi6x0wy5g7")
+}
+@export var tile_maps: Node
+
+var is_cutscene_controlled := false
 var is_invulnerable: bool = false
 var max_sanity : float = 100.0
+
+var _is_footstep_sfx_playing: Dictionary[String, bool] = {}
+
 # onready get animation_tree under this node
 @onready var animation_tree = $AnimationTree 
 @onready var state_machine= animation_tree.get("parameters/playback")
@@ -29,6 +39,8 @@ var max_sanity : float = 100.0
 
 
 func _ready():
+	_init_footstep_sfx_playing_dict()
+	
 	update_animation_parameters(starting_direction)
 	remote_transform_2d.remote_path = camera.get_path()
 	
@@ -41,6 +53,8 @@ func _ready():
 
 # Anything moving and colliding is always under the collision
 func _physics_process(delta):
+	if is_cutscene_controlled:
+		return
 	
 	# Smart logic cancelling inputs of both directional keys
 	var input_direction = Vector2(
@@ -57,10 +71,10 @@ func _physics_process(delta):
 	velocity = input_direction * current_speed
 	
 	# move_and_slide() is very static when hitting object, move_and_collied accounts for object hit	
-	var collision = move_and_collide(velocity * delta)
+	var collision = move_and_slide()
 
-	if collision and collision.get_collider().is_in_group("door"):
-		collision.get_collider().play_open()   # call method on door
+	#if collision and collision.get_collider().is_in_group("door"):
+		#collision.get_collider().play_open()   # call method on door
 	pick_new_state()
 
 

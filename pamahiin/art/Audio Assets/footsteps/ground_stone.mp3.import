@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddty6kh3k1x7p"
+path="res://.godot/imported/ground_stone.mp3-73c69fd9723e21e931461d74bf673ec6.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/ground_stone.mp3"
+dest_files=["res://.godot/imported/ground_stone.mp3-73c69fd9723e21e931461d74bf673ec6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
