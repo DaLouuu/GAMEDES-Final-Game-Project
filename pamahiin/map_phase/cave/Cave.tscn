@@ -215,7 +215,7 @@ player = NodePath("../_debug/PlayerCat")
 one_shot = true
 
 [node name="_debug" type="Node2D" parent="."]
-position = Vector2(-2, -40)
+position = Vector2(9, -30)
 
 [node name="PlayerCat" parent="_debug" node_paths=PackedStringArray("tile_maps") instance=ExtResource("2_non6b")]
 move_speed = 150.0
