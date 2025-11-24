@@ -38,7 +38,7 @@ move_behavior = SubResource("Resource_pr151")
 
 [node name="VisionRay" type="RayCast2D" parent="."]
 position = Vector2(2.2500005, 4.25)
-scale = Vector2(0.4000001, 1)
+scale = Vector2(10, 10)
 target_position = Vector2(-15.624998, 579.75)
 collision_mask = 5
 collide_with_areas = true
