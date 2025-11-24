@@ -1,7 +1,6 @@
 class_name EnemyFollow
 extends State
 
-@export var move_speed: float = 300.0
 @export var lost_threshold: float = 3.0  # seconds before giving up
 @onready var vision_ray: RayCast2D = enemy.get_node("VisionRay")
 @onready var player_detector = $"../../PlayerDetector"
@@ -22,7 +21,6 @@ func Enter() -> void:
 		move_behavior = enemy.move_behavior
 	detection_radius = enemy.detection_radius
 	hit_effect_type = enemy.hit_effect_type
-	move_speed = enemy.follow_speed
 	damage_to_player = enemy.damage_to_player
 	print("Enemy following player.")
 	lose_timer = 0.0
@@ -31,8 +29,7 @@ func Physics_Update(delta: float) -> void:
 	if not player or not enemy:
 		return
 
-	# --- Update ray to point toward the player ---
-	var has_clear_sight := false
+	var has_clear_sight := true
 	
 	vision_ray.look_at(player.global_position)
 	vision_ray.force_raycast_update()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbim0h8qggemx"]
+[gd_scene load_steps=16 format=3 uid="uid://bbim0h8qggemx"]
 
 [ext_resource type="Script" uid="uid://cg8e08h6r6xco" path="res://map_phase/houses/puzzle_pathways/final/house_puzzle_final.gd" id="1_3ojjj"]
 [ext_resource type="Texture2D" uid="uid://ck4dcu7rqfq06" path="res://map_phase/houses/assets/house1_ver1_full_tileset.png" id="2_okpin"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="7_0314r"]
 [ext_resource type="AudioStream" uid="uid://d1q28xd2uditj" path="res://art/Audio Assets/4.1 - Whisper (Demon).wav" id="8_g2h2x"]
 [ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/enemy/white_lady.tscn" id="9_46wa1"]
+[ext_resource type="Script" uid="uid://whvb15n5eldd" path="res://dev/character/npcs/enemies/MoveZigZag.gd" id="10_x5ia3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ojjj"]
 texture = ExtResource("2_okpin")
@@ -96,6 +97,13 @@ size = Vector2(253.5, 36.652542)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0314r"]
 shader = ExtResource("4_3ojjj")
 
+[sub_resource type="Resource" id="Resource_x5ia3"]
+script = ExtResource("10_x5ia3")
+zigzag_frequency = 10.0
+zigzag_amplitude = 3.0
+move_speed = 450.0
+metadata/_custom_type_script = "uid://whvb15n5eldd"
+
 [node name="HousePuzzleFinal" type="Node2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_3ojjj")
@@ -145,7 +153,8 @@ stream = ExtResource("8_g2h2x")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="WhiteLady" parent="." instance=ExtResource("9_46wa1")]
-position = Vector2(800, 573)
+position = Vector2(784, -42)
+move_behavior = SubResource("Resource_x5ia3")
 
 [connection signal="body_entered" from="Area2D-BackToRoom" to="." method="_on_area_2d_back_to_room_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

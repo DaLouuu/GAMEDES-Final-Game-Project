@@ -81,7 +81,7 @@ func _ready():
 	for ctrl in $CanvasLayer.get_children():
 		if ctrl is Control:
 			ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_init_footstep_sfx_playing_dict()
+	#_init_footstep_sfx_playing_dict()
 	
 	update_animation_parameters(starting_direction)
 	remote_transform_2d.remote_path = camera.get_path()

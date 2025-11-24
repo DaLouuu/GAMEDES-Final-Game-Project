@@ -6,7 +6,7 @@ class_name EnemyIdle extends State
 var move_direction : Vector2
 var wander_time
 @onready var vision_ray: RayCast2D = enemy.get_node("VisionRay")
-@onready var player_detector: Area2D = enemy.get_node("PlayerDetector")
+@onready var player_detector: Area2D = $"../../PlayerDetector"
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 
 func randomize_wander():
@@ -19,6 +19,8 @@ func Enter():
 
 	player_detector.body_entered.connect(_on_body_entered)
 	randomize_wander()	
+	
+
 	
 	
 func _on_body_entered(body: Node) -> void:
@@ -35,6 +37,12 @@ func _on_body_entered(body: Node) -> void:
 	
 		
 func Update(delta:float):
+	var overlapping = player_detector.get_overlapping_bodies()
+	
+	if overlapping.size() > 0:
+		for b in overlapping:
+			if b.is_in_group("Player"):
+				_on_body_entered(b)
 	if wander_time > 0:
 		wander_time -= delta
 	else:
