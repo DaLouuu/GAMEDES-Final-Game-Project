@@ -5,13 +5,13 @@ var effects: Dictionary = {}
 
 func _ready():
 	# Register available effects
-	effects["HitEffectDamage"] = HitEffectDamage.new()
-	effects["HitEffectPoison"] = HitEffectPoison.new()
+	effects[EnumsRef.HitEffectType.HitEffectDamage] = HitEffectDamage.new()
+	effects[EnumsRef.HitEffectType.HitEffectPoison] = HitEffectPoison.new()
 	
 	
 	
 
-func apply_hit_effect(effect_name: String, amount: float, player : CharacterBody2D) -> void:
+func apply_hit_effect(effect_name: EnumsRef.HitEffectType, amount: float, player : CharacterBody2D) -> void:
 	var effect = effects.get(effect_name)
 	if effect:
 		effect.apply( amount, player)

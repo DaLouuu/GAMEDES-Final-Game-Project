@@ -20,14 +20,18 @@ enum EnemyState {
 	CUSTOM2,
 	CUSTOM3
 }
-
+enum HitEffectType{
+	HitEffectDamage,
+	HitEffectPoison
+}
 enum LocationType {
 	MOTEL,
 	GRAVEYARD,
 	HOME,
 	GARDEN,
 	CHAPEL,
-	SARI_SARI_STORE
+	CAVE,
+	WORLD
 }
 
 
@@ -41,8 +45,10 @@ enum DialogueOutcome {
 
 enum ItemType {
 	ARTIFACT,
+	PUZZLE,
 	DESTRUCTIBLE,
-	ENVIRONMENT
+	ENVIRONMENT,
+	UTIL
 }
 
 

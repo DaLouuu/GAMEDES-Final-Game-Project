@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d1s5aplwb7enm"
+path="res://.godot/imported/old_lady_greets.dialogue-b922af80802efc3b5da49c8ef75979aa.tres"
+
+[deps]
+
+source_file="res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue"
+dest_files=["res://.godot/imported/old_lady_greets.dialogue-b922af80802efc3b5da49c8ef75979aa.tres"]
+
+[params]
+
+defaults=true

@@ -3,7 +3,6 @@ extends Node2D
 
 @onready var spawnPoint : Marker2D = $"Marker2D-SpawnP"
 @onready var enemy : CharacterBody2D = $EnemyAntilight
-@onready var worldEnvironment : WorldEnvironment = $WorldEnvironment
 
 var player : CharacterBody2D
 

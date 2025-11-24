@@ -16,7 +16,10 @@ signal sanity_damaged
 @export var invul_duration : float = 5.0
 @export var inventory: Inventory
 @export var has_light : bool = false
+@export var sprintSoundMaxDistance = 350
+@export var walkSoundMaxDistance = 200
 
+var footsteps_Sound : AudioStream
 @export var footstep_sfx_map: Dictionary[String, Resource] = {
 	"ground_stone": preload("uid://ddty6kh3k1x7p"),
 	"salt": preload("uid://qnqi6x0wy5g7")
@@ -24,6 +27,7 @@ signal sanity_damaged
 @export var tile_maps: Node
 
 var is_cutscene_controlled := false
+
 var is_invulnerable: bool = false
 var max_sanity : float = 100.0
 
@@ -36,9 +40,47 @@ var _is_footstep_sfx_playing: Dictionary[String, bool] = {}
 @onready var invul_timer = $InvulTimer
 @onready var remote_transform_2d = $RemoteTransform2D
 @onready var camera : Camera2D = $Camera2D
+@onready var audioPlayer : AudioStreamPlayer2D = $"AudioStreamPlayer2D-FootSound"
+@onready var uiLayer:CanvasLayer = $CanvasLayer
 
-
+func changeFootstepSound():
+	if not Global.game_controller:
+		return
+		
+	var location = Global.game_controller.locationType
+	var audio_path = "res://art/Audio Assets/"
+	var isCave: bool = false
+	# Map location types to footstep sounds
+	match location:
+		EnumsRef.LocationType.GRAVEYARD, \
+		EnumsRef.LocationType.GARDEN, \
+		EnumsRef.LocationType.WORLD:
+			# Grass footsteps
+			footsteps_Sound = load(audio_path + "5 - Stomping on Grass.wav")
+			
+		EnumsRef.LocationType.MOTEL, \
+		EnumsRef.LocationType.HOME:
+			# Tile footsteps
+			footsteps_Sound = load(audio_path + "6 - Stomping on Tile.wav")
+			
+		EnumsRef.LocationType.CHAPEL:
+						# Stone footsteps
+			footsteps_Sound = load(audio_path + "7 - Stomping on Stone.wav")
+		EnumsRef.LocationType.CAVE:
+			audioPlayer.stream =null
+			isCave = true
+	
+	# Update the audio player with new footstep sound
+	if footsteps_Sound and audioPlayer and not isCave:
+		audioPlayer.stream = footsteps_Sound
+		print("🔊 Footstep sound changed to: ", location)
+		
+	
+	
 func _ready():
+	for ctrl in $CanvasLayer.get_children():
+		if ctrl is Control:
+			ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_init_footstep_sfx_playing_dict()
 	
 	update_animation_parameters(starting_direction)
@@ -65,11 +107,37 @@ func _physics_process(delta):
 	
 	# Sprinting multiplier
 	var current_speed = move_speed
-	if Input.is_action_pressed("sprint"):
-		current_speed *= sprint_multiplier
+	var is_sprinting = Input.is_action_pressed("sprint")
 	
+	if is_sprinting:
+		current_speed *= sprint_multiplier
+		# Speed up animation to match sprint speed
+		animation_tree.set("parameters/TimeScale/scale", sprint_multiplier)
+		# Also speed up footstep sounds
+		#if audioPlayer:
+			#audioPlayer.pitch_scale = sprint_multiplier
+			#if Global.game_controller.locationType and Global.game_controller.locationType == EnumsRef.LocationType.WORLD:
+				#audioPlayer.volume_db = -8.0
+			#else:
+				#audioPlayer.volume_db = 10.0
+				#
+			#audioPlayer.max_distance = sprintSoundMaxDistance
+			
+	else:
+		# Normal animation speed
+		animation_tree.set("parameters/TimeScale/scale", 1.0)
+		# Normal footstep pitch
+		if audioPlayer:
+			
+			audioPlayer.pitch_scale = 1.0
+			audioPlayer.volume_db = 10.0
+			
+			audioPlayer.max_distance = walkSoundMaxDistance
+		
 	velocity = input_direction * current_speed
 	
+	
+
 	# move_and_slide() is very static when hitting object, move_and_collied accounts for object hit	
 	var collision = move_and_slide()
 
@@ -95,7 +163,7 @@ func pick_new_state():
 		state_machine.travel("Idle")
 
 # Sanity Logic
-func ReceiveSanityDamage(dmg: float, effect_name : String):	
+func ReceiveSanityDamage(dmg: float, effect_name : EnumsRef.HitEffectType):	
 	if is_invulnerable:
 		return
 	
@@ -125,4 +193,3 @@ func collect(item : InvItem, count: int  = 1):
 	if item.name == "Lantern":
 		turnOnLight()
 	inventory.obtain(item, count)
-	
