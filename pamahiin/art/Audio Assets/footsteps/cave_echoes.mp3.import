@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcwpwjgsgkot0"
+path="res://.godot/imported/cave_echoes.mp3-21f63c8dc433c0df88e908f1a8ba7ff1.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/cave_echoes.mp3"
+dest_files=["res://.godot/imported/cave_echoes.mp3-21f63c8dc433c0df88e908f1a8ba7ff1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

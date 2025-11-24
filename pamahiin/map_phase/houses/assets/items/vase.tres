@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://c3bj6vucbsef1"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_s6n41"]
+[ext_resource type="Texture2D" uid="uid://bqnpavalkk7rk" path="res://map_phase/houses/assets/objects_art/Vase/HouseInt_Vase.png" id="2_3l3wm"]
+
+[resource]
+script = ExtResource("1_s6n41")
+name = "Vase"
+description = Array[String](["Just a vase"])
+texture = ExtResource("2_3l3wm")
+metadata/_custom_type_script = "uid://26w5lr3t485j"

@@ -339,6 +339,7 @@ z_index = 1
 position = Vector2(337, 1007)
 collision_layer = 4
 collision_mask = 4
+scale_move = 4.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

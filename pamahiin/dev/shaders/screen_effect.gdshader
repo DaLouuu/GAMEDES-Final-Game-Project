@@ -2,9 +2,8 @@ shader_type canvas_item;
 
 render_mode unshaded, skip_vertex_transform;
 
-
 const float curvature = 4.0;
-const float vignette_mul = 2.0;
+const float vignette_mul = 1.5; // Affects the black corners sizes least to great, direct proportional
 const float blur_val = 0.1;
 const float ratio_to_window_size_y = 180.0;
 uniform sampler2D screen_texture: hint_screen_texture;
@@ -25,7 +24,10 @@ void fragment() {
 
 	screen_color -= vignette * vignette_mul;
 	//COLOR = vec4(warped_uv, 0.0, 1.0);
+	    // global darkening
+
 	COLOR = vec4(screen_color, 1.0);
+	
 }
 
 //void light() {

@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_lsm10")
 name = "Desk"
+description = Array[String](["Desk item...", "Not particularly cool"])
 texture = ExtResource("2_4no36")
 metadata/_custom_type_script = "uid://26w5lr3t485j"
