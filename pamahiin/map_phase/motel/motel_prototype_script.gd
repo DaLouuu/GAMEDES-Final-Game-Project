@@ -1,20 +1,34 @@
 extends Node2D
 
 @onready var area = $StaticBody2D/Area2D
+@onready var scene_cam = $SceneCamera
 
-# Called when the node enters the scene tree for the first time.
+var player: Node = null
+var _camera_active := false
+
 func _ready() -> void:
-	var player_scene = load("res://dev/character/player/player_cat.tscn")
-	var player = player_scene.instantiate()
-	add_child(player)
-	player.position = Vector2(300, 200)  # change as needed
-	area.connect("area_entered", Callable(self, "_on_body_entered"))
+	# Make sure _process runs
+	set_process(true)
 	
-func _on_body_entered(body):
-	if body.is_in_group("Player"):
-		print("Player can interact with this object!")
-		
+	player = get_node_or_null("PlayerCat")
+	# Connect the area signal if not connected in editor
+	if player:
+		var player_cam = player.get_node("Camera2D")
+		if player_cam:
+			player_cam.zoom = Vector2(1.75, 1.75)
+			_camera_active = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("Player"):
+		return
+
+	player = body  # reference the existing player
+
+	# Disable player's camera
+	var player_cam = player.get_node("Camera2D")
+	if player_cam:
+		player_cam.zoom = Vector2(1.5,1.5)
+
+	_camera_active = true
+
+	print("Motel camera active!")
