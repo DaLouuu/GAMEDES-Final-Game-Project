@@ -1,0 +1,106 @@
+[gd_scene load_steps=16 format=3 uid="uid://c6karpfd60fbv"]
+
+[ext_resource type="Script" uid="uid://b7wt7sjxrdxq5" path="res://map_phase/houses/assets/enemy/enemy_default.gd" id="1_w4enn"]
+[ext_resource type="Texture2D" uid="uid://cbgq27iuaanln" path="res://map_phase/houses/assets/objects_art/White Lady.png" id="2_81jrg"]
+[ext_resource type="Script" uid="uid://whvb15n5eldd" path="res://dev/character/npcs/enemies/MoveZigZag.gd" id="2_cqprk"]
+[ext_resource type="Script" uid="uid://b6o4m7pjfqf0g" path="res://dev/character/player/interaction_component.gd" id="3_cqprk"]
+[ext_resource type="PackedScene" uid="uid://dfit58o77nitj" path="res://dev/character/player/interaction_component_ui.tscn" id="4_pr151"]
+[ext_resource type="Script" uid="uid://ctot4gl1ebgyg" path="res://dev/character/npcs/enemies/State Machine.gd" id="5_63nvw"]
+[ext_resource type="Script" uid="uid://rsp5661n6cg2" path="res://dev/character/npcs/enemies/EnemyIdle.gd" id="6_bewoi"]
+[ext_resource type="Script" uid="uid://d3iyjg285p26t" path="res://dev/character/npcs/enemies/EnemyFollow.gd" id="7_pw5c6"]
+[ext_resource type="Script" uid="uid://bxbgvpofpqjp2" path="res://dev/character/npcs/enemies/EnemyStop.gd" id="8_k0qx0"]
+
+[sub_resource type="Resource" id="Resource_pr151"]
+script = ExtResource("2_cqprk")
+metadata/_custom_type_script = "uid://whvb15n5eldd"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xv5iy"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dywf3"]
+cull_mode = 2
+polygon = PackedVector2Array(-3, -7, 0, -7, 1, -6, 3, -6, 4, -3, 5, 0, 3, 3, 2, 6, 0, 8, -2, 6, -3, 4, -3, 2, -3, -3, -5, -6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuk4d"]
+size = Vector2(26, 78)
+
+[sub_resource type="Animation" id="Animation_81jrg"]
+resource_name = "walk_right"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cqprk"]
+_data = {
+&"walk_right": SubResource("Animation_81jrg")
+}
+
+[node name="WhiteLady" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_w4enn")
+detection_radius = 800.0
+move_behavior = SubResource("Resource_pr151")
+
+[node name="VisionRay" type="RayCast2D" parent="."]
+position = Vector2(2.2500005, 4.25)
+scale = Vector2(0.4000001, 1)
+target_position = Vector2(-15.624998, 579.75)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerDetector"]
+position = Vector2(2.9999924, -70.99999)
+rotation = 1.6143805
+scale = Vector2(1.77, 1.77)
+polygon = PackedVector2Array(-8, -34, 5.25, -34, 37.25, -128, 206.5, -144.75, 344.74683, -17.862568, 207.25, 134.75, 37.75, 105.5, 3.25, 32, -9, 27.5, -6.25, 10.5, -6, -13)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 3
+texture = ExtResource("2_81jrg")
+
+[node name="InteractionComponent" type="Area2D" parent="Sprite2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_cqprk")
+interaction_parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/InteractionComponent"]
+position = Vector2(0, 5)
+rotation = 0.58849967
+shape = SubResource("CircleShape2D_xv5iy")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_dywf3")
+occluder_light_mask = 0
+
+[node name="InteractionComponentUI" parent="." instance=ExtResource("4_pr151")]
+
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_63nvw")
+initial_state = NodePath("EnemyStop")
+metadata/_custom_type_script = "uid://ctot4gl1ebgyg"
+
+[node name="EnemyIdle" type="Node" parent="State_Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_bewoi")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://rsp5661n6cg2"
+
+[node name="EnemyFollow" type="Node" parent="State_Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_pw5c6")
+hit_distance = 40
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://d3iyjg285p26t"
+
+[node name="EnemyStop" type="Node" parent="State_Machine" node_paths=PackedStringArray("enemy") groups=["Enemy"]]
+script = ExtResource("8_k0qx0")
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 5
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_tuk4d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cqprk")
+}
+
+[connection signal="body_entered" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_entered"]
+[connection signal="body_exited" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_exited"]

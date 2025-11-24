@@ -30,6 +30,7 @@ var max_sanity : float = 100.0
 @onready var remote_transform_2d = $RemoteTransform2D
 @onready var camera : Camera2D = $Camera2D
 @onready var audioPlayer : AudioStreamPlayer2D = $"AudioStreamPlayer2D-FootSound"
+@onready var uiLayer:CanvasLayer = $CanvasLayer
 
 func changeFootstepSound():
 	if not Global.game_controller:
@@ -37,7 +38,7 @@ func changeFootstepSound():
 		
 	var location = Global.game_controller.locationType
 	var audio_path = "res://art/Audio Assets/"
-	
+	var isCave: bool = false
 	# Map location types to footstep sounds
 	match location:
 		EnumsRef.LocationType.GRAVEYARD, \
@@ -51,19 +52,24 @@ func changeFootstepSound():
 			# Tile footsteps
 			footsteps_Sound = load(audio_path + "6 - Stomping on Tile.wav")
 			
-		EnumsRef.LocationType.CHAPEL, \
-		EnumsRef.LocationType.CAVE:
-			# Stone footsteps
+		EnumsRef.LocationType.CHAPEL:
+						# Stone footsteps
 			footsteps_Sound = load(audio_path + "7 - Stomping on Stone.wav")
+		EnumsRef.LocationType.CAVE:
+			audioPlayer.stream =null
+			isCave = true
 	
 	# Update the audio player with new footstep sound
-	if footsteps_Sound and audioPlayer:
+	if footsteps_Sound and audioPlayer and not isCave:
 		audioPlayer.stream = footsteps_Sound
 		print("🔊 Footstep sound changed to: ", location)
 		
 	
 	
 func _ready():
+	for ctrl in $CanvasLayer.get_children():
+		if ctrl is Control:
+			ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	update_animation_parameters(starting_direction)
 	remote_transform_2d.remote_path = camera.get_path()
 	
@@ -93,14 +99,14 @@ func _physics_process(delta):
 		# Speed up animation to match sprint speed
 		animation_tree.set("parameters/TimeScale/scale", sprint_multiplier)
 		# Also speed up footstep sounds
-		if audioPlayer:
-			audioPlayer.pitch_scale = sprint_multiplier
-			if Global.game_controller.locationType == EnumsRef.LocationType.WORLD:
-				audioPlayer.volume_db = -8.0
-			else:
-				audioPlayer.volume_db = 10.0
-				
-			audioPlayer.max_distance = sprintSoundMaxDistance
+		#if audioPlayer:
+			#audioPlayer.pitch_scale = sprint_multiplier
+			#if Global.game_controller.locationType and Global.game_controller.locationType == EnumsRef.LocationType.WORLD:
+				#audioPlayer.volume_db = -8.0
+			#else:
+				#audioPlayer.volume_db = 10.0
+				#
+			#audioPlayer.max_distance = sprintSoundMaxDistance
 			
 	else:
 		# Normal animation speed
@@ -142,7 +148,7 @@ func pick_new_state():
 		state_machine.travel("Idle")
 
 # Sanity Logic
-func ReceiveSanityDamage(dmg: float, effect_name : String):	
+func ReceiveSanityDamage(dmg: float, effect_name : EnumsRef.HitEffectType):	
 	if is_invulnerable:
 		return
 	

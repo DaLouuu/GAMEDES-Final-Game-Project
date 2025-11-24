@@ -11,14 +11,12 @@ func goto_coming_out_from_spawn() -> void:
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
-		print("Hitting door")
 		houseDoor.play_open()
 	
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
-		print("Hitting door")
 		houseDoor.play_close()
 
 

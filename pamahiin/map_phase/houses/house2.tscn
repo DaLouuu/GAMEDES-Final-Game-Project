@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://q550nc2phic5"]
+[gd_scene load_steps=12 format=3 uid="uid://q550nc2phic5"]
 
 [ext_resource type="Script" uid="uid://tap0gg6ygwmm" path="res://map_phase/houses/house_2.gd" id="1_0c50s"]
 [ext_resource type="TileSet" uid="uid://b4tuxeandetbo" path="res://map_phase/world_map_tile_texture.tres" id="1_t6vhb"]
@@ -7,12 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://cqbyu6fm6rmrc" path="res://map_phase/houses/assets/House 2/House_House2_Roof.png" id="4_sjeli"]
 [ext_resource type="Texture2D" uid="uid://pyaa5wh06wet" path="res://map_phase/houses/assets/House_Trees1.png" id="4_ypj35"]
 [ext_resource type="PackedScene" uid="uid://iaww1imnros0" path="res://map_phase/houses/assets/House 2/house2_door.tscn" id="6_sjeli"]
+[ext_resource type="PackedScene" uid="uid://dds6v1b14r58m" path="res://dev/resource_scripts/inventory/items/item_template.tscn" id="8_7w1um"]
+[ext_resource type="Resource" uid="uid://pp4b5hqcibut" path="res://dev/resource_scripts/inventory/items/desk.tres" id="9_33jfp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypj35"]
 size = Vector2(17, 9)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7w1um"]
-radius = 2.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w1um"]
+size = Vector2(20, 16.5)
 
 [node name="House2" type="Node2D"]
 scale = Vector2(4, 4)
@@ -37,7 +39,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_ypj35")
 
 [node name="Area2D-SoundTrigger" type="Area2D" parent="." groups=["InteractArea"]]
-position = Vector2(-55.75, -23.5)
+position = Vector2(-55.5, -22)
 collision_layer = 3
 collision_mask = 3
 
@@ -49,11 +51,11 @@ debug_color = Color(1, 0.44476238, 0.5614961, 0.41960785)
 
 [node name="Area2D-ToRoom" type="Area2D" parent="."]
 z_index = 10
-position = Vector2(195.25, 252.25)
+position = Vector2(195, 250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-ToRoom"]
-position = Vector2(-0.25, -1.5)
-shape = SubResource("CircleShape2D_7w1um")
+position = Vector2(-0.25, -3.25)
+shape = SubResource("RectangleShape2D_7w1um")
 
 [node name="HouseParts" type="Node" parent="."]
 
@@ -86,5 +88,14 @@ position = Vector2(395.5, 114.25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_sjeli")
 
+[node name="Marker2D-OutFromP" type="Marker2D" parent="."]
+position = Vector2(194.5, 278.5)
+
+[node name="ItemTemplate" parent="." instance=ExtResource("8_7w1um")]
+position = Vector2(265.25, 293)
+item = ExtResource("9_33jfp")
+isInspectable = true
+
 [connection signal="body_entered" from="Area2D-SoundTrigger" to="." method="_on_area_2d_sound_trigger_body_entered"]
 [connection signal="body_exited" from="Area2D-SoundTrigger" to="." method="_on_area_2d_sound_trigger_body_exited"]
+[connection signal="body_entered" from="Area2D-ToRoom" to="." method="_on_area_2d_to_room_body_entered"]

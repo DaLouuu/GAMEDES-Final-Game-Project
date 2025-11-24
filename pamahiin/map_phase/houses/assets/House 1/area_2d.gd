@@ -11,6 +11,7 @@ func show_popup():
 		load("res://dialogue/house_dialogues/inspect_paper_clue.dialogue"),
         "start"
 	)
+	$"../AudioStreamPlayer2D".play(2.78)
 
 func _ready():
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)

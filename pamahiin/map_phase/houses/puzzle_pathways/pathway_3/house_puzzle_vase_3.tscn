@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqhqdungw47sw"]
+[gd_scene load_steps=10 format=3 uid="uid://bqhqdungw47sw"]
 
 [ext_resource type="Script" uid="uid://dkx48fwg2tg6" path="res://map_phase/houses/puzzle_pathways/pathway_3/house_puzzle_vase_3.gd" id="1_3xc7d"]
 [ext_resource type="Texture2D" uid="uid://ck4dcu7rqfq06" path="res://map_phase/houses/assets/house1_ver1_full_tileset.png" id="2_ftww8"]
 [ext_resource type="Shader" uid="uid://dax5u6f5b2eii" path="res://dev/shaders/screen_effect.gdshader" id="3_dqwy0"]
 [ext_resource type="QuadMesh" uid="uid://b7bui5a06ao3p" path="res://dev/shaders/mesh_empty.tres" id="4_ytjdw"]
+[ext_resource type="PackedScene" uid="uid://dds6v1b14r58m" path="res://dev/resource_scripts/inventory/items/item_template.tscn" id="5_ytjdw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gxu5f"]
 texture = ExtResource("2_ftww8")
@@ -91,7 +92,7 @@ size = Vector2(253.5, 36.652542)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_028kv"]
 shader = ExtResource("3_dqwy0")
 
-[node name="HousePuzzleVase" type="Node2D"]
+[node name="HousePuzzleFinal" type="Node2D"]
 script = ExtResource("1_3xc7d")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -144,5 +145,7 @@ shape = SubResource("RectangleShape2D_bs3y1")
 [node name="MeshInstance2D-ShaderCRTVig" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_028kv")
 mesh = ExtResource("4_ytjdw")
+
+[node name="ItemTemplate" parent="." instance=ExtResource("5_ytjdw")]
 
 [connection signal="body_entered" from="Area2D-Answer" to="." method="_on_area_2d_answer_body_entered"]

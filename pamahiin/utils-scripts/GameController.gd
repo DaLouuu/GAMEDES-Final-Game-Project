@@ -9,7 +9,7 @@ signal changed_scene_with_character
 
 @onready var player: CharacterBody2D = $"Player"
 
-var locationType: EnumsRef.LocationType
+var locationType: EnumsRef.LocationType = EnumsRef.LocationType.HOME
 var curr_2d_scene: Node = null
 var curr_gui_scene: Node = null
 
@@ -20,7 +20,7 @@ func _ready() -> void:
 	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
-	change_2d_scene("res://map_phase/houses/house1.tscn")
+	change_2d_scene("res://map_phase/houses/house2.tscn")
 	
 
 
@@ -31,6 +31,7 @@ func change_gui_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = 
 	
 	
 	return
+
 func change_2d_scene_check_from(new_scene: String, isComingOut = true, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
 	if curr_2d_scene:
 		match load_state:

@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://dds6v1b14r58m"]
+
+[ext_resource type="Shader" uid="uid://bhpym5e45mhsw" path="res://dev/resource_scripts/inventory/items/item_template_saturation.gdshader" id="1_8ioot"]
+[ext_resource type="Script" uid="uid://dmyk68k0p0akb" path="res://dev/resource_scripts/inventory/items/item_template.gd" id="1_jyctp"]
+[ext_resource type="Texture2D" uid="uid://dsv0boro5vk0h" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Basic_Furniture.png" id="2_8mude"]
+[ext_resource type="Texture2D" uid="uid://dp7l7vxyp75c2" path="res://art/icons/inspect.png" id="3_8ioot"]
+[ext_resource type="Resource" uid="uid://cb1oubdju6ais" path="res://dev/resource_scripts/inventory/items/key.tres" id="3_8mude"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65je2"]
+shader = ExtResource("1_8ioot")
+shader_parameter/saturation = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_65je2"]
+
+[node name="ItemTemplate" type="Node2D"]
+material = SubResource("ShaderMaterial_65je2")
+script = ExtResource("1_jyctp")
+hover_tex = ExtResource("3_8ioot")
+item = ExtResource("3_8mude")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8mude")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_65je2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

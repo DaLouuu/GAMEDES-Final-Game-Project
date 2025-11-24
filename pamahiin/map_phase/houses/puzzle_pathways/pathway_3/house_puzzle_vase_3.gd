@@ -1,9 +1,11 @@
 extends Node2D
 
+@onready var default_coords: Vector2 = $"Marker2D-SpawnP".position
+
 
 func _on_area_2d_back_to_room_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/house1_room.tscn")
+		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/house2_room.tscn")
 
 
 func _on_area_2d_answer_body_entered(body: Node2D) -> void:

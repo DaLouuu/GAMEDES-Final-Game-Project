@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbim0h8qggemx"]
+[gd_scene load_steps=14 format=3 uid="uid://bbim0h8qggemx"]
 
-[ext_resource type="Script" uid="uid://w3mu6cwo3rjm" path="res://map_phase/houses/puzzle_pathways/pathway_2/house_puzzle_bullets_2.gd" id="1_4b5gw"]
+[ext_resource type="Script" uid="uid://cg8e08h6r6xco" path="res://map_phase/houses/puzzle_pathways/final/house_puzzle_final.gd" id="1_3ojjj"]
 [ext_resource type="Texture2D" uid="uid://ck4dcu7rqfq06" path="res://map_phase/houses/assets/house1_ver1_full_tileset.png" id="2_okpin"]
-[ext_resource type="PackedScene" uid="uid://bur2upiuc0r0x" path="res://map_phase/houses/puzzle_pathways/final/key_sprite.tscn" id="3_82kr7"]
 [ext_resource type="Shader" uid="uid://dax5u6f5b2eii" path="res://dev/shaders/screen_effect.gdshader" id="4_3ojjj"]
 [ext_resource type="QuadMesh" uid="uid://b7bui5a06ao3p" path="res://dev/shaders/mesh_empty.tres" id="5_1miyo"]
+[ext_resource type="PackedScene" uid="uid://dds6v1b14r58m" path="res://dev/resource_scripts/inventory/items/item_template.tscn" id="5_3ojjj"]
+[ext_resource type="Texture2D" uid="uid://bdcweejtr77py" path="res://map_phase/houses/assets/enemy/jumpscare_image.jpg" id="5_0314r"]
+[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="7_0314r"]
+[ext_resource type="AudioStream" uid="uid://d1q28xd2uditj" path="res://art/Audio Assets/4.1 - Whisper (Demon).wav" id="8_g2h2x"]
+[ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/enemy/white_lady.tscn" id="9_46wa1"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gxu5f"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ojjj"]
 texture = ExtResource("2_okpin")
 8:0/0 = 0
 9:0/0 = 0
@@ -84,7 +88,7 @@ texture = ExtResource("2_okpin")
 4:8/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_tn652"]
-sources/0 = SubResource("TileSetAtlasSource_gxu5f")
+sources/0 = SubResource("TileSetAtlasSource_3ojjj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs3y1"]
 size = Vector2(253.5, 36.652542)
@@ -93,7 +97,8 @@ size = Vector2(253.5, 36.652542)
 shader = ExtResource("4_3ojjj")
 
 [node name="HousePuzzleFinal" type="Node2D"]
-script = ExtResource("1_4b5gw")
+position = Vector2(0, 12)
+script = ExtResource("1_3ojjj")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)
@@ -112,14 +117,35 @@ position = Vector2(755, 1509)
 position = Vector2(60.25, 118)
 shape = SubResource("RectangleShape2D_bs3y1")
 
-[node name="Sprite2D" parent="." instance=ExtResource("3_82kr7")]
-position = Vector2(804, 387)
-scale = Vector2(3.42, 3.42)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("5_0314r")
 
 [node name="MeshInstance2D-ShaderCRTVig" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_0314r")
 mesh = ExtResource("5_1miyo")
 
+[node name="ItemTemplate" parent="." instance=ExtResource("5_3ojjj")]
+position = Vector2(793, 390)
+scale = Vector2(2.575, 2.575)
+isInspectable = true
+isCollectible = true
+
+[node name="PlayerCat" parent="." instance=ExtResource("7_0314r")]
+position = Vector2(781, 836)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_g2h2x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="WhiteLady" parent="." instance=ExtResource("9_46wa1")]
+position = Vector2(800, 573)
+
 [connection signal="body_entered" from="Area2D-BackToRoom" to="." method="_on_area_2d_back_to_room_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

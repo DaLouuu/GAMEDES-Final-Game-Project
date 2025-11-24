@@ -1,23 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://b707qwac3ws43"]
+[gd_scene load_steps=6 format=3 uid="uid://b707qwac3ws43"]
 
 [ext_resource type="Texture2D" uid="uid://dsv0boro5vk0h" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Basic_Furniture.png" id="1_bveaj"]
 [ext_resource type="Script" uid="uid://bail54xuk2qg1" path="res://dev/resource_scripts/inventory/items/desk_item.gd" id="1_dvgga"]
 [ext_resource type="Resource" uid="uid://pp4b5hqcibut" path="res://dev/resource_scripts/inventory/items/desk.tres" id="2_vya42"]
+[ext_resource type="Texture2D" uid="uid://dp7l7vxyp75c2" path="res://art/icons/inspect.png" id="4_y5u0i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vya42"]
 
 [node name="DeskItem" type="Node2D"]
 script = ExtResource("1_dvgga")
+hover_tex = ExtResource("4_y5u0i")
 item = ExtResource("2_vya42")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bveaj")
 
 [node name="Area2D" type="Area2D" parent="."]
-z_index = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_vya42")
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(5.9604645e-08, -12)
+scale = Vector2(0.05, 0.046217572)
+texture = ExtResource("4_y5u0i")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

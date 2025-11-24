@@ -1,8 +1,7 @@
 extends Sprite2D
 
 
-func open_door():
+func play_open():
 	$AnimationPlayer.play("open_door")
-	
-func close_door():
+func play_close():
 	$AnimationPlayer.play("close_door")

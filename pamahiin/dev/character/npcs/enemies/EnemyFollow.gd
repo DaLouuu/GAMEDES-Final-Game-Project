@@ -12,7 +12,8 @@ extends State
 @export var move_behavior: MoveType
 @export var hit_distance : int  = 20
 @export var detection_radius: float = 120
-
+var hit_effect_type : EnumsRef.HitEffectType
+var damage_to_player : float
 func Enter() -> void:
 	
 	if move_behavior:
@@ -20,7 +21,9 @@ func Enter() -> void:
 	else:
 		move_behavior = enemy.move_behavior
 	detection_radius = enemy.detection_radius
+	hit_effect_type = enemy.hit_effect_type
 	move_speed = enemy.follow_speed
+	damage_to_player = enemy.damage_to_player
 	print("Enemy following player.")
 	lose_timer = 0.0
 
@@ -30,6 +33,7 @@ func Physics_Update(delta: float) -> void:
 
 	# --- Update ray to point toward the player ---
 	var has_clear_sight := false
+	
 	vision_ray.look_at(player.global_position)
 	vision_ray.force_raycast_update()
 	
@@ -71,7 +75,7 @@ func Physics_Update(delta: float) -> void:
 	
 	# Theres two types of damage currently HitEffectPoison and HitEffectDamage		
 	if enemy.global_position.distance_to(player.global_position) < hit_distance:
-		player.ReceiveSanityDamage(30.0, "HitEffectPoison")		
+		player.ReceiveSanityDamage(damage_to_player, hit_effect_type)		
 
 func Exit() -> void:
 	enemy.velocity = Vector2.ZERO
