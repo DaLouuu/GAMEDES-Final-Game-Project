@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8fegnh450g03"]
+[gd_scene load_steps=10 format=3 uid="uid://8fegnh450g03"]
 
 [ext_resource type="Texture2D" uid="uid://co0hfht6sg4nc" path="res://art/Lantern 5 Small - Bronze and Orange.png" id="1_qpb1q"]
 [ext_resource type="Script" uid="uid://c73aa8x5nr7q1" path="res://dev/resource_scripts/inventory/items/lantern_item.gd" id="1_u5pgl"]
@@ -63,6 +63,7 @@ frame = 20
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(2.4648438, 1.9082031)
+color = Color(0.6776482, 0.61456525, 0.20367697, 1)
 shadow_enabled = true
 shadow_item_cull_mask = 97
 texture = ExtResource("4_f7dao")
@@ -85,7 +86,6 @@ debug_color = Color(0.31179655, 0.06611787, 0.86047596, 0.41960785)
 shape = SubResource("CircleShape2D_qpb1q")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_h0xik")
 autoplay = true
 max_distance = 250.0
 

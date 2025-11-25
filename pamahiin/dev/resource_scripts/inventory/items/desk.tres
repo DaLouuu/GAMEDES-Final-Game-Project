@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://pp4b5hqcibut"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_lsm10"]
+[ext_resource type="Texture2D" uid="uid://dsv0boro5vk0h" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Basic_Furniture.png" id="2_4no36"]
+
+[resource]
+script = ExtResource("1_lsm10")
+name = "Desk"
+description = Array[String](["Desk item...", "Not particularly cool"])
+texture = ExtResource("2_4no36")
+metadata/_custom_type_script = "uid://26w5lr3t485j"

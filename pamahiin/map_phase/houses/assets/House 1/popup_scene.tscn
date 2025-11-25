@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://c358d5gy7jh17"]
+
+[ext_resource type="Script" uid="uid://dpfkaptchimy1" path="res://map_phase/houses/assets/House 1/torn_paper_popup_canvas_layer.gd" id="1_v3nqn"]
+[ext_resource type="Texture2D" uid="uid://c4hx62hi55hlh" path="res://map_phase/houses/assets/HouseInt - Torn Paper.png" id="2_f7s8r"]
+[ext_resource type="Texture2D" uid="uid://csi4jopn2w7yh" path="res://map_phase/houses/assets/Baybayin Text.png" id="3_ao6ei"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_v3nqn")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 454.0
+offset_bottom = 198.0
+scale = Vector2(1.87, 1.87)
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_f7s8r")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer/TextureRect"]
+layout_mode = 0
+offset_left = 49.19786
+offset_top = 35.828876
+offset_right = 166.67534
+offset_bottom = 153.30635
+texture = ExtResource("3_ao6ei")
+expand_mode = 3
+stretch_mode = 5

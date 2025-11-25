@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://c447o0wyxn3x5"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_ip0uf"]
+[ext_resource type="Texture2D" uid="uid://drwdy5bptyfy2" path="res://dev/resource_scripts/inventory/items/Lantern icon.png" id="2_8tett"]
+
+[resource]
+script = ExtResource("1_ip0uf")
+name = "Lantern"
+description = Array[String](["Just a lantern. Tf you on about"])
+texture = ExtResource("2_8tett")
+metadata/_custom_type_script = "uid://26w5lr3t485j"
