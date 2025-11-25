@@ -139,13 +139,10 @@ material = SubResource("ShaderMaterial_0314r")
 mesh = ExtResource("5_1miyo")
 
 [node name="ItemTemplate" parent="." instance=ExtResource("5_3ojjj")]
-position = Vector2(793, 390)
+position = Vector2(795, 389.99997)
 scale = Vector2(2.575, 2.575)
 isInspectable = true
 isCollectible = true
-
-[node name="PlayerCat" parent="." instance=ExtResource("7_0314r")]
-position = Vector2(781, 836)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_g2h2x")
@@ -153,8 +150,12 @@ stream = ExtResource("8_g2h2x")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="WhiteLady" parent="." instance=ExtResource("9_46wa1")]
+visible = false
 position = Vector2(784, -42)
 move_behavior = SubResource("Resource_x5ia3")
+
+[node name="PlayerCat" parent="." instance=ExtResource("7_0314r")]
+position = Vector2(666, 708)
 
 [connection signal="body_entered" from="Area2D-BackToRoom" to="." method="_on_area_2d_back_to_room_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
