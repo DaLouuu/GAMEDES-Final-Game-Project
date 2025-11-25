@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfax4a3qwanlk"]
+
+[ext_resource type="Texture2D" uid="uid://beoxemue5w2m0" path="res://map_phase/graveyard/assets/Graveyard_Door_Cover.png" id="1_3joj6"]
+[ext_resource type="PackedScene" uid="uid://20htc0onvef7" path="res://map_phase/graveyard/scenes/graveyard-proper/Gate.tscn" id="2_qsiv3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq11q"]
+size = Vector2(9, 51)
+
+[node name="GateHouse" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-29, -18)
+shape = SubResource("RectangleShape2D_dq11q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(29, -17)
+shape = SubResource("RectangleShape2D_dq11q")
+
+[node name="Area2D" parent="." instance=ExtResource("2_qsiv3")]
+position = Vector2(0, -2)
+
+[node name="GraveyardDoorCover" type="Sprite2D" parent="."]
+position = Vector2(0, -51)
+scale = Vector2(0.62794125, 0.66375)
+texture = ExtResource("1_3joj6")

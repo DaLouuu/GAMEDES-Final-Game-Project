@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dckft7xtx3els"]
+
+[ext_resource type="Texture2D" uid="uid://ty23rj0nnq70" path="res://map_phase/graveyard/assets/Fence, Gate, Signs/Graveyard_Fence_Front.png" id="1_hr62e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr62e"]
+size = Vector2(33, 28)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GraveyardFenceFront" type="Sprite2D" parent="."]
+position = Vector2(-9.536743e-07, -18)
+scale = Vector2(0.29648757, 0.39697805)
+texture = ExtResource("1_hr62e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -19)
+shape = SubResource("RectangleShape2D_hr62e")

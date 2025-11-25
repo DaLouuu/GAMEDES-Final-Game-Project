@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://7205d2mdoc2x"]
+
+[ext_resource type="Script" uid="uid://bj7i46f8bwgh4" path="res://script/graveyard-new/smallsign.gd" id="1_7lg6i"]
+[ext_resource type="Texture2D" uid="uid://cl3e8jakyfhu0" path="res://map_phase/graveyard/assets/Fence, Gate, Signs/small sign.png" id="1_nkvfc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7lg6i"]
+radius = 8.062258
+
+[node name="SmallSign" type="Area2D" groups=["Player"]]
+script = ExtResource("1_7lg6i")
+
+[node name="SmallSign" type="Sprite2D" parent="."]
+position = Vector2(0, -8.000002)
+scale = Vector2(0.15650828, 0.22321427)
+texture = ExtResource("1_nkvfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_7lg6i")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -45.0
+offset_top = -40.0
+offset_right = 45.0
+offset_bottom = -17.0
+theme_override_font_sizes/font_size = 9
+
+[node name="PromptLabel" type="Label" parent="."]
+offset_left = -37.0
+offset_top = -39.0
+offset_right = 38.0
+offset_bottom = -16.0
+theme_override_font_sizes/font_size = 9
+
+[connection signal="body_entered" from="." to="." method="_on_Sign_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Sign_body_exited"]

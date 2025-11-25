@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca2t75cxm2q7m"]
+
+[ext_resource type="Texture2D" uid="uid://so5r6joqvqdm" path="res://map_phase/graveyard/assets/Fence, Gate, Signs/Graveyard_Fence_Pillar.png" id="1_i6mqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6mqp"]
+size = Vector2(16, 50.5)
+
+[node name="Pillar" type="Node2D"]
+
+[node name="GraveyardFencePillar" type="Sprite2D" parent="."]
+position = Vector2(0, -22)
+scale = Vector2(0.34852937, 0.41750002)
+texture = ExtResource("1_i6mqp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -24.75)
+shape = SubResource("RectangleShape2D_i6mqp")
