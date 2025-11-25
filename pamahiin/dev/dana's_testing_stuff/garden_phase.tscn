@@ -1,9 +1,9 @@
 [gd_scene load_steps=55 format=4 uid="uid://cyqsdqbaspryc"]
 
-[ext_resource type="Texture2D" uid="uid://q8u2nla0cwfb" path="res://map_phase/garden/Grass/Corner.png" id="1_nlmiy"]
-[ext_resource type="Texture2D" uid="uid://bwej5fs22d6mk" path="res://map_phase/garden/Grass/Middle_1.png" id="2_nl4u2"]
-[ext_resource type="Texture2D" uid="uid://c6dp16xeqj40i" path="res://map_phase/garden/Grass/Middle_2.png" id="3_1twh2"]
-[ext_resource type="Texture2D" uid="uid://i0pmeq4xgbo4" path="res://map_phase/garden/Grass/Middle_3.png" id="4_hdwni"]
+[ext_resource type="Texture2D" uid="uid://bpo30nsus5lg1" path="res://art/GAMEDES art/Grass/Corner top left.png" id="1_nlmiy"]
+[ext_resource type="Texture2D" uid="uid://da5f3jy0mnaey" path="res://art/GAMEDES art/Grass/Middle_1.png" id="2_nl4u2"]
+[ext_resource type="Texture2D" uid="uid://btmtmw3r5qxwq" path="res://art/GAMEDES art/Grass/Middle_2.png" id="3_1twh2"]
+[ext_resource type="Texture2D" uid="uid://375wxvc2drj5" path="res://art/GAMEDES art/Grass/Middle_3.png" id="4_hdwni"]
 [ext_resource type="Texture2D" uid="uid://dnkgfnjrnaist" path="res://map_phase/garden/Flowers & Rocks/Garden_Flower1.png" id="5_n3wh6"]
 [ext_resource type="PackedScene" uid="uid://ckppi2km5a6ip" path="res://dev/dana's_testing_stuff/Player.tscn" id="5_sswdb"]
 [ext_resource type="Texture2D" uid="uid://bs3orhfdr2s62" path="res://map_phase/garden/Flowers & Rocks/Garden_Flower2.png" id="6_kdcv5"]
@@ -30,7 +30,7 @@
 [ext_resource type="Script" uid="uid://bqwps21quferp" path="res://utils-scripts/ZoneAController.gd" id="20_p32c4"]
 [ext_resource type="PackedScene" uid="uid://cdkqkqf8jc7yt" path="res://dev/dana's_testing_stuff/signage.tscn" id="23_fne1g"]
 [ext_resource type="Script" uid="uid://cbqngajf04ty8" path="res://utils-scripts/CicadaTimer.gd" id="29_2cbjx"]
-[ext_resource type="AudioStream" uid="uid://bl3xlyf5vixgw" path="res://art/Audio Assets/35 - cicadas buzzing.mp3" id="29_405qd"]
+[ext_resource type="AudioStream" uid="uid://e1pdx1ublcov" path="res://art/Audio Assets/35 - cicadas buzzing.mp3" id="29_405qd"]
 [ext_resource type="Script" uid="uid://dkts5qggt4eme" path="res://utils-scripts/GardenState.gd" id="32_2cbjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_am7ft"]
