@@ -15,6 +15,8 @@ var curr_gui_scene: Node = null
 
 func _ready() -> void:
 	Global.game_controller = self
+	DialogueManager.get_current_scene = func():
+		return Global.game_controller.curr_2d_scene
 
 	#DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "start")
 	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
@@ -32,7 +34,7 @@ func change_gui_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = 
 	
 	return
 
-func change_2d_scene_check_from(new_scene: String, isComingOut = true, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
+func change_2d_scene_check_from(new_scene: String, startFuncs = false, isComingOut = true, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
 	if curr_2d_scene:
 		match load_state:
 			
@@ -58,7 +60,8 @@ func change_2d_scene_check_from(new_scene: String, isComingOut = true, load_stat
 
 			if new_scene_instance.has_method("getLocationType"):
 				locationType = new_scene_instance.getLocationType()
-
+			if new_scene_instance.has_method("start_funcs") and startFuncs:
+				new_scene_instance.start_funcs()
 
 			player.changeFootstepSound()
 			player.global_position = spawn_marker.global_position

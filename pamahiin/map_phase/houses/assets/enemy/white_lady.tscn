@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6karpfd60fbv"]
+[gd_scene load_steps=17 format=3 uid="uid://c6karpfd60fbv"]
 
 [ext_resource type="Script" uid="uid://b7wt7sjxrdxq5" path="res://map_phase/houses/assets/enemy/enemy_default.gd" id="1_w4enn"]
 [ext_resource type="Texture2D" uid="uid://cbgq27iuaanln" path="res://map_phase/houses/assets/objects_art/White Lady.png" id="2_81jrg"]
@@ -14,6 +14,9 @@
 script = ExtResource("2_cqprk")
 move_speed = 400.0
 metadata/_custom_type_script = "uid://whvb15n5eldd"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81jrg"]
+radius = 925.8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xv5iy"]
 
@@ -47,11 +50,8 @@ collide_with_areas = true
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerDetector"]
-position = Vector2(2.9999924, -70.99999)
-rotation = 1.6143805
-scale = Vector2(1.77, 1.77)
-polygon = PackedVector2Array(-8, -34, 5.25, -34, 37.25, -128, 206.5, -144.75, 344.74683, -17.862568, 207.25, 134.75, 37.75, 105.5, 3.25, 32, -9, 27.5, -6.25, 10.5, -6, -13)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_81jrg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 3

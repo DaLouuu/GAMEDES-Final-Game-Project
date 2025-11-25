@@ -30,6 +30,9 @@ var player = null
 ## Depending on the sprite, collision might be too small and needs adjustment, open debug menu and toggle `Visible Collision Shapes` to check it grow or not.
 @export var collision_scale = 1.0
 
+@export var collect_text = "Grab"
+@export var collision_pos_offset: Vector2 = Vector2(Vector2.ZERO)
+
 # References to child nodes
 @onready var area_2d = $Area2D
 @onready var sprite_2d = $Sprite2D
@@ -43,9 +46,7 @@ var original_saturation: float = 1.0
 
 var default_shader = load("res://dev/resource_scripts/inventory/items/item_template.gdshader")
 var default_shader_saturation = load("res://dev/resource_scripts/inventory/items/item_template_saturation.gdshader")
-func _enter_tree():
-	$Area2D.input_pickable = true
-	$Area2D.z_index = 100
+
 func _update_item():
 	if item and sprite_2d:
 		sprite_2d.texture = item.texture
@@ -63,8 +64,8 @@ func _ready():
 		var mat = ShaderMaterial.new()
 		mat.shader = default_shader
 		sprite_2d.material = mat
-		
-
+	$CanvasLayer/Label.text = collect_text	
+	$Area2D/CollisionShape2D.position = collision_pos_offset
 func create_hover_icon():
 	pass
 	## Create a sprite for the hover icon
@@ -83,8 +84,13 @@ func create_hover_icon():
 	#add_child(hover_icon)
 
 func _process(_delta):
-	if is_player_in_area and Input.is_action_just_pressed("interact"):
+	if is_player_in_area and Input.is_action_just_pressed("interact") and isCollectible:
 		collect_item()
+	elif is_player_in_area and Input.is_action_just_pressed("interact") and isInspectable and not isCollectible:
+		inspect_func()
+	elif is_player_in_area and Input.is_action_just_pressed("interact") and isInspectable and isCollectible:
+		collect_item()
+	
 
 func collect_item():
 	if not isCollectible:
@@ -195,6 +201,7 @@ func hide_hover_feedback():
 # Original Area2D body detection (for keyboard interaction)
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"): 
+		$CanvasLayer/Label.visible = true
 		is_player_in_area = true
 		enlarge_upon_near()
 		player = body
@@ -202,6 +209,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"): 
+		$CanvasLayer/Label.visible = false
 		is_player_in_area = false
 		reset_state()
 		player = null

@@ -76,6 +76,7 @@ position = Vector2(-1.875, -5.201248)
 shape = SubResource("RectangleShape2D_mqay7")
 
 [node name="Area2D-VoicesTrigger" type="Area2D" parent="."]
+visible = false
 script = ExtResource("6_mqay7")
 whisper_chance = 0.2
 min_volume_db = -15.0

@@ -8,14 +8,14 @@ var locationType : EnumsRef.LocationType = EnumsRef.LocationType.HOME
 func getLocationType()->EnumsRef.LocationType:
 	return locationType
 func _ready():
-	if $ItemTemplate.has_signal("item_collected"):
-		$ItemTemplate.item_collected.connect(jumpscare_node)
+	if $"Puzzle/ItemTemplate-Key".has_signal("item_collected"):
+		$"Puzzle/ItemTemplate-Key".item_collected.connect(jumpscare_node)
 	else:
 		print("❌ ItemTemplate does NOT have signal item_collected")
 	
 func jumpscare_node(item:InvItem):
 	print("boo")
-	
+	GameState.HOUSE_has_gotten_house_key = true
 	var rect := $CanvasLayer/TextureRect
 	rect.visible = true
 	rect.modulate.a = 1.0
@@ -47,7 +47,11 @@ func jumpscare_node(item:InvItem):
 func _on_area_2d_back_to_room_body_entered(body: Node2D) -> void:
 	$AudioStreamPlayer2D.stop()
 	
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and GameState.HOUSE_has_gotten_house_key:
+		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/puzzle_pathways/pathway_3/house_puzzle_vase_3.tscn", true)
+	else:
 		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/house2_room.tscn")
+		
+		
 func _on_Timer_timeout():
 	pass

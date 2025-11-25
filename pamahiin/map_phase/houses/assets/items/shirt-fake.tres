@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://dcwyptg1xyjn6"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_a8igd"]
+[ext_resource type="Texture2D" uid="uid://ba5x0fok6b6v5" path="res://map_phase/houses/assets/objects_art/00 _ Free Assets/shirt.png" id="2_qjl5s"]
+
+[resource]
+script = ExtResource("1_a8igd")
+name = "shirt blue"
+description = Array[String](["Just a shirt"])
+texture = ExtResource("2_qjl5s")
+metadata/_custom_type_script = "uid://26w5lr3t485j"

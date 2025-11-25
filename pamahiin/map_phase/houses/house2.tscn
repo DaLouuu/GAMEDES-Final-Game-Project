@@ -73,6 +73,14 @@ position = Vector2(777, 746)
 scale = Vector2(4, 4)
 texture = ExtResource("4_sjeli")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="HouseParts"]
+position = Vector2(5, 46)
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HouseParts/StaticBody2D"]
+polygon = PackedVector2Array(537, 615, 1025, 620, 1043, 707, 1043, 958, 556, 958, 503, 953, 511, 649)
+
 [node name="HouseTrees3" type="Sprite2D" parent="."]
 position = Vector2(67.75, 297)
 scale = Vector2(0.5, 0.5)

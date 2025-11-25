@@ -1,4 +1,463 @@
 ~ start
-[[Hi|Hello|Howdy]], this is some dialogue.
-Old Lady: Hello
+
+if GameState.HOUSE_finished_puzzle and GameState.HOUSE_ARTIFACT_has_artifact_rosary
+	Old Lady: [#knowing] You've returned. I can feel it... the child's spirit has quieted.
+	Old Lady: Come, sit. Let me read what you've seen.
+	=> final_revelation
+elif GameState.HOUSE_has_met_ghost_girl and GameState.HOUSE_has_read_clue
+	Old Lady: [#mystical] Ah... you carry the weight of secrets, I can sense it.
+	Old Lady: The spirits whisper around you like moths to a flame.
+	=> main_menu
+elif GameState.HOUSE_has_met_ghost_girl
+	Old Lady: [#observant] A visitor... but not alone, I think.
+	Old Lady: You've seen something. Your eyes tell me this.
+	=> main_menu
+else
+	Old Lady: [#calm] [[Come in, child|Enter, young one|Step inside]]. I have been expecting someone.
+	=> main_menu
+
+~ main_menu
+Old Lady: The spirits are restless today. What do you seek?
+if GameState.HOUSE_has_read_clue and GameState.HOUSE_has_met_ghost_girl
+	- Tell me about the house nearby => ask_about_house
+	- Who are you? => ask_about_albularyo
+	- I saw a young girl's spirit => about_ghost_girl
+	- I found strange markings on a paper	 => about_puzzle_items
+	- I should leave => farewell
+elif GameState.HOUSE_has_read_clue and not GameState.HOUSE_has_asked_about_clues
+	- Tell me about the house nearby => ask_about_house
+	- Who are you? => ask_about_albularyo
+	- I found strange markings and items [/if]	 => about_puzzle_items
+	- I should leave => farewell
+elif GameState.HOUSE_has_met_ghost_girl
+	- Tell me about the house nearby => ask_about_house
+	- Who are you? => ask_about_albularyo
+	- I saw a young girl's spirit => about_ghost_girl
+	- I should leave => farewell
+else
+	- Tell me about the house nearby => ask_about_house
+	- Who are you? => ask_about_albularyo
+	- I should leave => farewell
+
+
+~ ask_about_house
+
+Old Lady: [#somber] That bahay... *she looks toward the smaller house*
+Old Lady: It has been empty for many years now. Empty of the living, at least.
+
+if GameState.HOUSE_has_met_ghost_girl
+	Old Lady: [#knowing] But you already know this, don't you?
+	Old Lady: The child still wanders there, searching.
+	- Searching for what? => ghost_purpose
+	- Why can't she leave? => ghost_trapped
+	- I see => main_menu
+else
+	Old Lady: [#warning] Be careful if you go there. Some things remain that do not wish to be forgotten.
+	- What happened there? => house_history
+	- Why do you live so close? => why_stay_close
+	- I understand => main_menu
+
+~ house_history
+
+Old Lady: [#heavy] A sad tale, that one. The Amerikano came with their promises.
+Old Lady: They built their camps, brought their soldiers, their "civilization."
+
+if GameState.HOUSE_has_met_ghost_girl or GameState.HOUSE_has_read_clue
+	Old Lady: [#bitter] That child's nanay... she was young. Too young.
+	Old Lady: One of the soldiers took a liking to her. Not all likings are welcomed, anak.
+	=> dark_history
+else
+	Old Lady: [#cryptic] The walls of that house remember things best left in darkness.
+	Old Lady: But the dead... they do not forget.
+	=> main_menu
+
+~ dark_history
+
+Old Lady: [#grave] The girl was born from that... union. If you can call it such.
+Old Lady: Mestiza, they called her. Beautiful, like her mother. Cursed, some whispered.
+
+if GameState.HOUSE_has_read_clue
+	Old Lady: [#knowing] You've seen the signs, haven't you? In that house?
+	Old Lady: Ancient script. Ala-ala. Memory.
+	- The shirt? => about_shirt
+	- The bullet? => about_bullet  
+	- The vase? => about_vase
+	- Tell me everything => explain_all_items
+else
+	Old Lady: [#mysterious] If you look closely in that bahay, you will see the story written.
+	Old Lady: Written in the old way. In Baybayin. The script our elders used before the Kastila came.
+	=> main_menu
+
+~ why_stay_close
+
+Old Lady: [#dutiful] Someone must remember. Someone must tend to the restless.
+Old Lady: The Americans took our people to their fairs. Put them in cages like animals.
+Old Lady: "World's Fair," they called it. Showcased us like curiosities from a savage land.
+
+if GameState.HOUSE_has_met_ghost_girl
+	Old Lady: [#connected] That child's lolo was one of them. Taken across the ocean.
+	Old Lady: He never returned. Died of cold in a foreign land, they say.
+	- That's horrible
+		Old Lady: [#knowing] Horror is what they brought with them, anak. 
+		Old Lady: Guns, disease, shame. That family bore all three.
+		=> main_menu
+	- The girl knows this?
+		Old Lady: [#mystical] The dead know everything. And nothing. 
+		Old Lady: She knows pain. She knows she is unfinished.
+		=> main_menu
+else
+	Old Lady: [#weary] My duty is to the spirits that linger. To help them find peace, if I can.
+	=> main_menu
+
+~ ask_about_albularyo
+
+Old Lady: [#matter-of-fact] I am what you might call an albularyo. A healer of sorts.
+Old Lady: Though these days, I heal more spirits than bodies.
+
+- What do you mean?
+	Old Lady: [#patient] When the Amerikano came, they brought doctors with needles and white coats.
+	Old Lady: They called our ways "superstition." Primitive magic.
+	Old Lady: But when their medicine cannot help, when spirits linger... they still come to us.
+	=> main_menu
+- Can you help the girl? => can_help_ghost
+- I see => main_menu
+
+~ about_ghost_girl
+
+Old Lady: [#knowing] Ah, yes. The child with sad eyes.
+Old Lady: Maria, her nanay called her. Though she had another name too - her father's name.
+
+- What happened to her?
+	Old Lady: [#sorrowful] Lagnat. The fever. It took so many children in those years.
+	Old Lady: But that is not why she lingers, anak.
+	=> why_ghost_lingers
+- How long has she been there?
+	Old Lady: [#distant] Three tag-ulan now. Three years of wandering.
+	Old Lady: Time means little to the dead, but to us... it weighs heavy.
+	=> main_menu
+if GameState.HOUSE_ARTIFACT_has_artifact_rosary
+	- She gave me her rosary => show_rosary
+
+~ why_ghost_lingers
+
+Old Lady: [#mystical] The dead stay for unfinished business. Always.
+Old Lady: That child was trying to understand her story. Where she came from.
+
+if GameState.HOUSE_has_read_clue
+	Old Lady: [#knowing] The path she made - you've seen it, yes?
+	Old Lady: Ala-ala. Memory. Written in Baybayin, the old script.
+	Old Lady: Each choice, each item... it tells her story. Her family's story.
+	- Tell me about the items => about_puzzle_items
+	- I need to understand better => explain_all_items
+	- I think I understand => main_menu
+else
+	Old Lady: [#cryptic] In that house, she left clues. A path to walk.
+	Old Lady: Only when someone follows it, understands it, can she be free.
+	=> main_menu
+
+~ ghost_purpose
+
+Old Lady: [#teaching] Searching to understand. To be seen. To be remembered.
+Old Lady: The child was born of violence and shame. Died before she could understand why.
+Old Lady: Now her spirit tries to tell the story, hoping someone will listen.
+
+if GameState.HOUSE_has_read_clue
+	Old Lady: [#hopeful] And you have listened, haven't you? You've seen her path.
+	Old Lady: The Baybayin script. Ala-ala. She calls for memory.
+	=> main_menu
+else
+	Old Lady: [#guiding] If you return to that house, look carefully. She has made a path.
+	=> main_menu
+
+~ ghost_trapped
+
+Old Lady: [#explaining] Spirits linger when they are bound by confusion, by pain, by stories untold.
+Old Lady: That child carries the weight of colonization in her very blood.
+Old Lady: Born of force, raised in shame, died in sickness brought by foreign ships.
+
+- Can she be freed? => can_help_ghost
+- That's so sad => main_menu
+
+~ can_help_ghost
+
+Old Lady: [#hopeful] Perhaps. If someone follows her path. Understands her story.
+Old Lady: The dead do not want pity, anak. They want to be witnessed.
+
+if GameState.HOUSE_has_read_clue
+	Old Lady: [#encouraging] You have seen the path. Walk it fully. Make the right choices.
+	Old Lady: Follow the ala-ala. The memory. Let it guide you.
+else
+	Old Lady: [#guiding] Return to that house. Look for the path she has made.
+	Old Lady: Three choices. Each one matters.
+
+if GameState.HOUSE_finished_puzzle and GameState.HOUSE_ARTIFACT_has_artifact_rosary
+	Old Lady: [#mystical] But understanding alone is not enough to free her, anak.
+	Old Lady: The spirit must be released properly. Through prayer.
+	- Prayer? => about_chapel_ritual
+	- I see => main_menu
+else
+	=> main_menu
+
+~ show_rosary
+
+set GameState.HOUSE_has_shown_rosary = true
+
+Old Lady: [#reverent] *takes the rosary carefully, running her weathered fingers over the beads*
+Old Lady: This belonged to her nanay. Blessed by the padre when she was baptized.
+
+if GameState.HOUSE_has_met_ghost_girl
+	Old Lady: [#mystical] The child gave this to you? This means she trusts you.
+	Old Lady: The rosary was her only inheritance. From her mother's side, at least.
+	- What about her father's side?
+		Old Lady: [#bitter] The Amerikano? He left nothing but his blue eyes and pale skin.
+		Old Lady: Made her mestiza. Made her neither one thing nor another.
+		Old Lady: In those times, that was its own kind of curse.
+		=> after_rosary_reveal
+	- Why give it to me?
+		Old Lady: [#knowing] Because she needs help. The dead cannot change their own fate.
+		Old Lady: They can only wait for the living to understand them.
+		=> after_rosary_reveal
+else
+	Old Lady: [#surprised] Where did you find this?
+	- A girl gave it to me
+		Old Lady: [#realization] A girl... *her eyes widen* You've seen her, then.
+		Old Lady: The child who wanders that house.
+		set GameState.HOUSE_has_met_ghost_girl = true
+		=> about_ghost_girl
+	- In the house nearby
+		Old Lady: [#knowing] Impossible. I sealed that house myself after the child died.
+		Old Lady: Unless... unless she left it for you.
+		set GameState.HOUSE_has_met_ghost_girl = true
+		=> about_ghost_girl
+
+~ after_rosary_reveal
+
+Old Lady: [#important] This rosary... it will be needed for the final ritual.
+
+if GameState.HOUSE_finished_puzzle
+	Old Lady: [#instructing] You have walked her path. You understand her memory.
+	Old Lady: Now you must help her spirit cross over. At the old chapel.
+	- Tell me about this ritual => about_chapel_ritual
+	- I understand => main_menu
+else
+	Old Lady: [#guiding] But first, you must walk her path. Understand her ala-ala.
+	Old Lady: Only then can the rosary be used for its true purpose.
+	=> main_menu
+
+~ about_puzzle_items
+
+
+
+Old Lady: [#teaching] Ah, you've seen them. The markers of her story.
+Old Lady: That child was clever, even in death. She left a path.
+Old Lady: And she marked it in Baybayin - ᜀᜎᜀᜎ - ala-ala. Memory.
+
+if GameState.HOUSE_finished_puzzle
+	Old Lady: [#approving] And you walked it. You understood her memory.
+	=> explain_all_items
+if GameState.HOUSE_read_first_item_puzzle
+	Old Lady: [#guiding] Oh I vividly remember some memories of my daughter.
+	- Tell me about all of her => explain_all_items
+
+~ about_shirt
+
+Old Lady: [#solemn] The baro. Small, worn. American cloth.
+Old Lady: The Amerikano soldiers brought their textiles. Gave them to the women they... favored.
+Old Lady: That child's nanay was given such cloth. Made into baro for the baby born of shame.
+
+if GameState.HOUSE_finished_puzzle
+	Old Lady: [#knowing] You chose that path first. The beginning. Her birth.
+	Old Lady: Good. Memory must start from the beginning.
+	=> main_menu
+else
+	Old Lady: [#cryptic] Birth from violence leaves a mark, anak. The first memory is always the hardest.
+	=> about_puzzle_items
+
+~ about_bullet
+
+Old Lady: [#heavy] The bala. American-made. From the Krag rifles they carried.
+Old Lady: When our people resisted, when they fought back against the occupation...
+Old Lady: Those bullets were the answer. They killed thousands of us.
+
+if GameState.HOUSE_finished_puzzle
+	Old Lady: [#knowing] You chose that path second. The resistance. The struggle of her lolo.
+	Old Lady: Good. Memory must honor those who fought.
+	=> main_menu
+else
+	Old Lady: [#bitter] That child's lolo - her nanay's father - he fought bravely.
+	Old Lady: Before they took him to their fair. Before he died in the cold.
+	Old Lady: His memory is the second path.
+	=> about_puzzle_items
+
+~ about_vase
+
+Old Lady: [#mournful] The plorera with no bulaklak. Empty.
+Old Lady: The child's nanay loved flowers. Gumamela, sampaguita, from the gardens.
+Old Lady: But after the shame, after the whispers began... no more flowers.
+
+if GameState.HOUSE_finished_puzzle
+	Old Lady: [#knowing] You chose that path last. The end. Her death.
+	Old Lady: Good. Memory must acknowledge the ending.
+	=> main_menu
+else
+	Old Lady: [#sad] The vase sat empty until the day the fever took the child.
+	Old Lady: Then the nanay filled it once, for the funeral. Then emptied it forever.
+	Old Lady: Her death is the final path. The last memory.
+	=> about_puzzle_items
+~ explain_all_items
+
+set GameState.HOUSE_has_asked_about_clues = true
+
+Old Lady: [#teaching] Listen carefully, anak. This is the story written in that house.
+Old Lady: Written in Baybayin. ᜀᜎᜀᜎ. Ala-ala. Memory.
+
+Old Lady: [#solemn] First - the baro. The child's shirt, made from American cloth.
+Old Lady: Her nanay was young, beautiful. An Amerikano soldier took notice.
+Old Lady: What he wanted, he took. As they all did in those days.
+Old Lady: This is the first memory. Birth.
+
+Old Lady: [#heavy] Second - the bala. The bullet from their Krag rifles.
+Old Lady: The child's lolo fought against them. Bravely. Fiercely.
+Old Lady: They captured him. Put him in a cage. Took him to their "World's Fair."
+Old Lady: Displayed him like an animal. He died there, far from home.
+Old Lady: This is the second memory. Resistance.
+
+Old Lady: [#mournful] Third - the plorera. The vase that once held flowers.
+Old Lady: The child's nanay loved beauty. But shame emptied her life of it.
+Old Lady: When the fever took the child, the last flower died.
+Old Lady: This is the final memory. Death.
+
+Old Lady: [#mystical] Three paths. Three memories. Baro, bala, plorera.
+Old Lady: The child's spirit needs someone to walk these paths in order. To remember her story.
+
+if GameState.HOUSE_finished_puzzle
+	Old Lady: [#proud] And you did, anak. You followed the ala-ala. You witnessed her memory.
+	if GameState.HOUSE_ARTIFACT_has_artifact_rosary
+		Old Lady: [#instructing] Now, with her mother's rosary, you can complete the final step.
+		- What final step? => about_chapel_ritual
+		- I understand => main_menu
+	else
+		Old Lady: [#guiding] But to truly free her, you need her mother's rosary.
+		Old Lady: The child should have given it to you. Did she?
+		=> main_menu
+else
+	Old Lady: [#guiding] Return to that house. Walk the path she made.
+	Old Lady: Follow the Baybayin script. Ala-ala. Let memory guide you.
+	Old Lady: Choose the baro first, then the bala, then the plorera.
+	Old Lady: Only then will she know her story has been heard.
+	=> main_menu
+
+~ about_chapel_ritual
+
+Old Lady: [#solemn] To release a restless spirit, understanding is not enough.
+Old Lady: You must perform the ritual of release. At the old chapel near that house.
+
+if GameState.HOUSE_finished_puzzle and GameState.HOUSE_ARTIFACT_has_artifact_rosary
+	Old Lady: [#instructing] You have walked her path. You carry her mother's rosary.
+	Old Lady: Go to the chapel. Light a candle. Say the prayers.
+	Old Lady: The rosary will guide you. The spirit will feel it and know peace.
+	- What prayers should I say?
+		Old Lady: [#wise] The words matter less than the intention, anak.
+		Old Lady: Pray for her release. For her understanding. For her peace.
+		Old Lady: The rosary has been blessed. It knows what to do.
+		=> ritual_details
+	- Will this truly free her?
+		Old Lady: [#honest] Nothing is certain with spirits, anak.
+		Old Lady: But when someone witnesses their pain and prays for their release...
+		Old Lady: Most find peace. Most can finally rest.
+		=> ritual_details
+else
+	Old Lady: [#patient] But you are not ready yet, anak.
+	if not GameState.HOUSE_finished_puzzle
+		Old Lady: First, walk her path. Understand her ala-ala.
+	if not GameState.HOUSE_ARTIFACT_has_artifact_rosary
+		Old Lady: And you will need her mother's rosary. The child should give it to you.
+	=> main_menu
+
+~ ritual_details
+
+Old Lady: [#instructing] When you are ready, go to the chapel.
+Old Lady: You will know when the time is right. The spirit will guide you there.
+Old Lady: Light a candle. Hold the rosary. Speak from your heart.
+
+Old Lady: [#mystical] If your intention is pure, if you truly understand her memory...
+Old Lady: The spirit will know. And she will be free.
+
+- I'll do this => main_menu
+- I need to prepare more => main_menu
+
+~ final_revelation
+
+Old Lady: [#sensing] I can feel it. The shift in the air. The lightening.
+Old Lady: You've done it, haven't you? The ritual at the chapel.
+
+Old Lady: [#peaceful] The child's spirit has quieted. She is not gone - the dead never truly leave.
+Old Lady: But she is... settled. No longer wandering. No longer confused.
+
+Old Lady: [#teaching] You have done what the Amerikano never did, anak.
+Old Lady: You listened. You bore witness to the pain they caused.
+Old Lady: That child was born of their violence, orphaned by their greed, killed by their disease.
+
+Old Lady: [#grateful] But now someone knows. Someone remembers. Someone prayed.
+Old Lady: That is the only justice the dead can ever receive.
+
+- What happens to her now?
+	Old Lady: [#mystical] She will fade, slowly. The pain will ease.
+	Old Lady: Perhaps she will be reborn. Perhaps she will simply rest.
+	Old Lady: Either way, she is free of her wandering.
+	=> final_wisdom
+- What about her family?
+	Old Lady: [#somber] Her nanay died of heartbreak two years after the child.
+	Old Lady: Her lolo died in the cold of that foreign land.
+	Old Lady: Her father? *spits* He returned to America. Married. Had other children.
+	Old Lady: Never once looked back at what he left here.
+	=> final_wisdom
+
+~ final_wisdom
+
+Old Lady: [#teaching] You carry the story now, anak. That is burden and gift both.
+Old Lady: Let it remind you what colonization truly means.
+Old Lady: Not just governments and borders. But bodies. Lives. Children.
+
+Old Lady: [#knowing] The Amerikano wrote our history in their books.
+Old Lady: But we carry the truth in our bones, in our ghosts, in our memories.
+Old Lady: In our Baybayin. ᜀᜎᜀᜎ. Ala-ala. Never forget.
+
+=> epilogue
+
+~ epilogue
+
+Old Lady: [#blessing] Go with the spirits' blessing, anak.
+Old Lady: You have done what few can - witnessed pain without turning away.
+Old Lady: That makes you a keeper of stories. A voice for the silenced.
+
+Old Lady: [#peaceful] The child rests now. But her memory lives in you.
+Old Lady: That is the best any of us can hope for.
+
+=> END
+
+~ farewell
+
+if GameState.HOUSE_finished_puzzle and GameState.HOUSE_ARTIFACT_has_artifact_rosary and not GameState.HOUSE_chapel_ritual_complete
+	Old Lady: [#urgent] Wait, anak. You have done the work of memory.
+	Old Lady: But the child's spirit still needs release. Go to the chapel.
+	Old Lady: With the rosary. Complete what you started.
+	=> END
+elif GameState.HOUSE_finished_puzzle and GameState.HOUSE_chapel_ritual_complete
+	Old Lady: [#peaceful] Go in peace, anak. You have done well.
+	Old Lady: The spirits smile on you. The child rests.
+	=> END
+elif GameState.HOUSE_has_met_ghost_girl and not GameState.HOUSE_has_read_clue
+	Old Lady: [#warning] Before you go. Look for her path.
+	Old Lady: Look for the paper over there, it may guide you. 
+	Old Lady: The spirit cannot rest until someone walks it.
+	=> END
+elif GameState.HOUSE_has_read_clue and not GameState.HOUSE_finished_puzzle
+	Old Lady: [#encouraging] Think on what you've seen, anak. The path will make sense.
+	Old Lady: Baro, bala, plorera. In that order. The memory from birth to death.
+	=> END
+else
+	Old Lady: [#calm] Return when you are ready. The spirits are patient.
+	=> END
+
 => END

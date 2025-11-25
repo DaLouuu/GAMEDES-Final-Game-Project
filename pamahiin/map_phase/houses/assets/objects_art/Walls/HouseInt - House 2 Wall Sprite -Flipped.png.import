@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbiaaf4pd82ew"
-path="res://.godot/imported/VasesAssetPackTransparent.png-b02daf15a8f02587a30fea7ba25fa2f7.ctex"
+uid="uid://dkjx0mel0i6p"
+path="res://.godot/imported/HouseInt - House 2 Wall Sprite -Flipped.png-a859411d0505a296cc72f58c1740fcce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map_phase/houses/assets/objects_art/00 _ Free Assets/VasesAssetPackTransparent.png"
-dest_files=["res://.godot/imported/VasesAssetPackTransparent.png-b02daf15a8f02587a30fea7ba25fa2f7.ctex"]
+source_file="res://map_phase/houses/assets/objects_art/Walls/HouseInt - House 2 Wall Sprite -Flipped.png"
+dest_files=["res://.godot/imported/HouseInt - House 2 Wall Sprite -Flipped.png-a859411d0505a296cc72f58c1740fcce.ctex"]
 
 [params]
 
