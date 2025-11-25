@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://cyqsdqbaspryc"]
+[gd_scene load_steps=55 format=4 uid="uid://cyqsdqbaspryc"]
 
 [ext_resource type="Texture2D" uid="uid://q8u2nla0cwfb" path="res://map_phase/garden/Grass/Corner.png" id="1_nlmiy"]
 [ext_resource type="Texture2D" uid="uid://bwej5fs22d6mk" path="res://map_phase/garden/Grass/Middle_1.png" id="2_nl4u2"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://cdkqkqf8jc7yt" path="res://dev/dana's_testing_stuff/signage.tscn" id="23_fne1g"]
 [ext_resource type="Script" uid="uid://cbqngajf04ty8" path="res://utils-scripts/CicadaTimer.gd" id="29_2cbjx"]
 [ext_resource type="AudioStream" uid="uid://bl3xlyf5vixgw" path="res://art/Audio Assets/35 - cicadas buzzing.mp3" id="29_405qd"]
+[ext_resource type="Script" uid="uid://dkts5qggt4eme" path="res://utils-scripts/GardenState.gd" id="32_2cbjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_am7ft"]
 texture = ExtResource("1_nlmiy")
@@ -163,34 +164,35 @@ position = Vector2(5, 1151)
 [node name="Trees" type="Node2D" parent="Environment/Props"]
 position = Vector2(-2, 494)
 
-[node name="Treedoor" parent="Environment/Props/Trees" instance=ExtResource("16_kdcv5")]
+[node name="Treedoor" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
 position = Vector2(341, 309)
 metadata/_edit_group_ = true
 
 [node name="Trunk" parent="Environment/Props/Trees/Treedoor" index="1"]
 texture = ExtResource("17_4opa5")
 
-[node name="Treedoor2" parent="Environment/Props/Trees" instance=ExtResource("16_kdcv5")]
+[node name="Treedoor2" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
 position = Vector2(92, 93)
 metadata/_edit_group_ = true
 
 [node name="Trunk" parent="Environment/Props/Trees/Treedoor2" index="1"]
 texture = ExtResource("18_mekk0")
 
-[node name="Treedoor3" parent="Environment/Props/Trees" instance=ExtResource("16_kdcv5")]
+[node name="Treedoor3" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
 position = Vector2(598, 86)
 metadata/_edit_group_ = true
 
-[node name="Treedoor4" parent="Environment/Props/Trees" instance=ExtResource("16_kdcv5")]
+[node name="Treedoor4" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
 position = Vector2(854, 261)
 metadata/_edit_group_ = true
 
 [node name="Trunk" parent="Environment/Props/Trees/Treedoor4" index="1"]
 texture = ExtResource("19_p32c4")
 
-[node name="ZoneAController" type="Node" parent="Environment/Props/Trees" node_paths=PackedStringArray("cicada_timer")]
+[node name="ZoneAController" type="Node" parent="Environment/Props/Trees" node_paths=PackedStringArray("cicada_timer", "cicada_player")]
 script = ExtResource("20_p32c4")
 cicada_timer = NodePath("../../../Effects/CicadaTimer")
+cicada_player = NodePath("../../../Effects/CicadaPlayer")
 
 [node name="Mounds" type="Node2D" parent="Environment/Props"]
 
@@ -5731,6 +5733,9 @@ remote_path = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="MC"]
 zoom = Vector2(3, 3)
+
+[node name="GardenState" type="Node" parent="."]
+script = ExtResource("32_2cbjx")
 
 [editable path="Environment/Props/Trees/Treedoor"]
 [editable path="Environment/Props/Trees/Treedoor2"]

@@ -22,7 +22,7 @@ EnumsRef="*res://utils-scripts/enums_ref.gd"
 Ref="*res://utils-scripts/Ref.gd"
 Savestate="*res://utils/savestate/Savestate.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-GameState="*res://GameState.gd"
+GameState="res://GameState.gd"
 
 [dialogue_manager]
 
