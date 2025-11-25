@@ -38,7 +38,7 @@ func jumpscare_node(item:InvItem):
 	# Hide after 1 second
 	await get_tree().create_timer(1.0).timeout
 	$WhiteLady.start_funcs()
-	
+	$WhiteLady.visible = true
 	rect.visible = false
 
 
