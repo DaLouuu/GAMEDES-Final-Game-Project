@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://btmtmw3r5qxwq" path="res://art/GAMEDES art/Grass/Middle_2.png" id="3_1twh2"]
 [ext_resource type="Texture2D" uid="uid://375wxvc2drj5" path="res://art/GAMEDES art/Grass/Middle_3.png" id="4_hdwni"]
 [ext_resource type="Texture2D" uid="uid://dnkgfnjrnaist" path="res://map_phase/garden/Flowers & Rocks/Garden_Flower1.png" id="5_n3wh6"]
-[ext_resource type="PackedScene" uid="uid://ckppi2km5a6ip" path="res://dev/dana's_testing_stuff/Player.tscn" id="5_sswdb"]
 [ext_resource type="Texture2D" uid="uid://bs3orhfdr2s62" path="res://map_phase/garden/Flowers & Rocks/Garden_Flower2.png" id="6_kdcv5"]
 [ext_resource type="Texture2D" uid="uid://csd63ynftj30o" path="res://map_phase/garden/Flowers & Rocks/Garden_Flower3.png" id="7_r2txa"]
 [ext_resource type="Texture2D" uid="uid://dryeq38wp0dk3" path="res://map_phase/garden/Flowers & Rocks/Garden_Flowers4.png" id="8_6o14t"]
@@ -18,11 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://dxg76tvedny8r" path="res://map_phase/garden/Fences & Door/Garden_Fence_Side_L_Corner.png" id="15_nhv60"]
 [ext_resource type="PackedScene" uid="uid://dp66p8v8rpwbu" path="res://dev/dana's_testing_stuff/treedoor.tscn" id="16_kdcv5"]
 [ext_resource type="Texture2D" uid="uid://t4kfw3yukxq3" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Scratches.png" id="17_4opa5"]
-[ext_resource type="PackedScene" uid="uid://dvgjmivplmuht" path="res://dev/dana's_testing_stuff/soilmound.tscn" id="17_fne1g"]
 [ext_resource type="PackedScene" uid="uid://be3aleowsfjpa" path="res://dev/dana's_testing_stuff/fog.tscn" id="17_r2txa"]
 [ext_resource type="Texture2D" uid="uid://guyeujptgpr" path="res://art/GAMEDES art/Trees & Bush/Garden_Bush.png" id="17_sy3qf"]
 [ext_resource type="Texture2D" uid="uid://dbfi208ii3db5" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Wind 1.png" id="18_mekk0"]
-[ext_resource type="PackedScene" uid="uid://bn7io2j3yfewx" path="res://dev/dana's_testing_stuff/rockspirit.tscn" id="18_nhv60"]
 [ext_resource type="Texture2D" uid="uid://13j5fojx81a2" path="res://art/GAMEDES art/Trees & Bush/Garden_Grass1.png" id="19_l5576"]
 [ext_resource type="Texture2D" uid="uid://bl7ikueu8a44w" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Spiral 1.png" id="19_p32c4"]
 [ext_resource type="Texture2D" uid="uid://b7gluepug3qqu" path="res://art/GAMEDES art/Trees & Bush/Garden_Plant1.png" id="20_fne1g"]
@@ -32,6 +29,9 @@
 [ext_resource type="Script" uid="uid://cbqngajf04ty8" path="res://utils-scripts/CicadaTimer.gd" id="29_2cbjx"]
 [ext_resource type="AudioStream" uid="uid://e1pdx1ublcov" path="res://art/Audio Assets/35 - cicadas buzzing.mp3" id="29_405qd"]
 [ext_resource type="Script" uid="uid://dkts5qggt4eme" path="res://utils-scripts/GardenState.gd" id="32_2cbjx"]
+[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="32_oool1"]
+[ext_resource type="Script" uid="uid://cjv17wjx0bj2x" path="res://dev/dana's_testing_stuff/DwendeSpawner.gd" id="33_ook4w"]
+[ext_resource type="PackedScene" uid="uid://boxtooqck02ur" path="res://dev/dana's_testing_stuff/dwende.tscn" id="34_cghnp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_am7ft"]
 texture = ExtResource("1_nlmiy")
@@ -164,6 +164,15 @@ position = Vector2(5, 1151)
 [node name="Trees" type="Node2D" parent="Environment/Props"]
 position = Vector2(-2, 494)
 
+[node name="GardenState" type="Node" parent="Environment/Props/Trees"]
+script = ExtResource("32_2cbjx")
+
+[node name="ZoneAController" type="Node" parent="Environment/Props/Trees" node_paths=PackedStringArray("cicada_timer", "cicada_player", "duwende_spawner")]
+script = ExtResource("20_p32c4")
+cicada_timer = NodePath("../../../Effects/CicadaTimer")
+cicada_player = NodePath("../../../Effects/CicadaPlayer")
+duwende_spawner = NodePath("../../../../DwendeSpawner")
+
 [node name="Treedoor" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
 position = Vector2(341, 309)
 metadata/_edit_group_ = true
@@ -173,6 +182,7 @@ texture = ExtResource("17_4opa5")
 
 [node name="Treedoor2" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
 position = Vector2(92, 93)
+is_correct_tree = true
 metadata/_edit_group_ = true
 
 [node name="Trunk" parent="Environment/Props/Trees/Treedoor2" index="1"]
@@ -188,86 +198,6 @@ metadata/_edit_group_ = true
 
 [node name="Trunk" parent="Environment/Props/Trees/Treedoor4" index="1"]
 texture = ExtResource("19_p32c4")
-
-[node name="ZoneAController" type="Node" parent="Environment/Props/Trees" node_paths=PackedStringArray("cicada_timer", "cicada_player")]
-script = ExtResource("20_p32c4")
-cicada_timer = NodePath("../../../Effects/CicadaTimer")
-cicada_player = NodePath("../../../Effects/CicadaPlayer")
-
-[node name="Mounds" type="Node2D" parent="Environment/Props"]
-
-[node name="Soilmound" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2562, 731)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound2" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2667, 603)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound3" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2544, 538)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound4" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2153, 576)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound5" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2838, 557)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound6" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2064, 712)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound7" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2319, 487)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound8" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2293, 690)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound9" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2439, 638)
-scale = Vector2(0.5, 0.5)
-
-[node name="Soilmound10" parent="Environment/Props/Mounds" instance=ExtResource("17_fne1g")]
-position = Vector2(2730, 729)
-scale = Vector2(0.5, 0.5)
-
-[node name="Rocks" type="Node2D" parent="Environment/Props"]
-position = Vector2(864, 1179)
-
-[node name="Rockspirit" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(248, -2001)
-
-[node name="Rockspirit2" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(351, -1755)
-
-[node name="Rockspirit3" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(900, -1989)
-
-[node name="Rockspirit4" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(1020, -1803)
-
-[node name="Rockspirit5" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(748, -1660)
-
-[node name="Rockspirit6" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(184, -1588)
-
-[node name="Rockspirit7" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(581, -1935)
-
-[node name="Rockspirit8" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(442, -2150)
-
-[node name="Rockspirit9" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(916, -1408)
-
-[node name="Rockspirit10" parent="Environment/Props/Rocks" instance=ExtResource("18_nhv60")]
-position = Vector2(1077, -2237)
 
 [node name="WellArea" type="Node2D" parent="Environment/Props"]
 
@@ -5725,39 +5655,20 @@ script = ExtResource("29_2cbjx")
 [node name="CicadaPlayer" type="AudioStreamPlayer" parent="Environment/Effects"]
 stream = ExtResource("29_405qd")
 
-[node name="MC" parent="." instance=ExtResource("5_sswdb")]
-position = Vector2(1075, 2199)
+[node name="PlayerCat" parent="." instance=ExtResource("32_oool1")]
+position = Vector2(1132, 2187)
+scale = Vector2(0.3, 0.3)
+move_speed = 100.0
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MC"]
-remote_path = NodePath("../Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="MC"]
+[node name="Camera2D" parent="PlayerCat" index="8"]
 zoom = Vector2(3, 3)
 
-[node name="GardenState" type="Node" parent="."]
-script = ExtResource("32_2cbjx")
+[node name="DwendeSpawner" type="Node2D" parent="."]
+script = ExtResource("33_ook4w")
+duwende_scene = ExtResource("34_cghnp")
 
 [editable path="Environment/Props/Trees/Treedoor"]
 [editable path="Environment/Props/Trees/Treedoor2"]
 [editable path="Environment/Props/Trees/Treedoor3"]
 [editable path="Environment/Props/Trees/Treedoor4"]
-[editable path="Environment/Props/Mounds/Soilmound"]
-[editable path="Environment/Props/Mounds/Soilmound2"]
-[editable path="Environment/Props/Mounds/Soilmound3"]
-[editable path="Environment/Props/Mounds/Soilmound4"]
-[editable path="Environment/Props/Mounds/Soilmound5"]
-[editable path="Environment/Props/Mounds/Soilmound6"]
-[editable path="Environment/Props/Mounds/Soilmound7"]
-[editable path="Environment/Props/Mounds/Soilmound8"]
-[editable path="Environment/Props/Mounds/Soilmound9"]
-[editable path="Environment/Props/Mounds/Soilmound10"]
-[editable path="Environment/Props/Rocks/Rockspirit"]
-[editable path="Environment/Props/Rocks/Rockspirit2"]
-[editable path="Environment/Props/Rocks/Rockspirit3"]
-[editable path="Environment/Props/Rocks/Rockspirit4"]
-[editable path="Environment/Props/Rocks/Rockspirit5"]
-[editable path="Environment/Props/Rocks/Rockspirit6"]
-[editable path="Environment/Props/Rocks/Rockspirit7"]
-[editable path="Environment/Props/Rocks/Rockspirit8"]
-[editable path="Environment/Props/Rocks/Rockspirit9"]
-[editable path="Environment/Props/Rocks/Rockspirit10"]
+[editable path="PlayerCat"]

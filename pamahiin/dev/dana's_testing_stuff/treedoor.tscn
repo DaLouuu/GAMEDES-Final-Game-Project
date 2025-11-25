@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cn0q3oleuybn8" path="res://dev/dana's_testing_stuff/treedoor.gd" id="1_j7s1x"]
 [ext_resource type="Texture2D" uid="uid://bdv6yfxrgtrv8" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Canopy ONLY.png" id="1_k5rx0"]
 [ext_resource type="Texture2D" uid="uid://c81j3aa7v7not" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Eye 1.png" id="2_11fuk"]
-[ext_resource type="AudioStream" uid="uid://daf170or3ok4g" path="res://art/Audio Assets/36 - Knocking.mp3" id="4_j7s1x"]
+[ext_resource type="AudioStream" uid="uid://m1w2taljyobf" path="res://art/Audio Assets/36 - Knocking.mp3" id="4_j7s1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laovf"]
-size = Vector2(86, 122)
+size = Vector2(131.5, 149)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5rx0"]
 size = Vector2(19, 54)
@@ -53,6 +53,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0.45, -49)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Canopy:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_gcbb2"]
 resource_name = "correct_flash"
@@ -67,7 +79,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.627451, 1, 0.6666667, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(2.430603e-05, 0.8593163, 0.31056026, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Canopy:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.85882354, 0.30980393, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_78arc"]
@@ -95,7 +119,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.45, -49), Vector2(0.42, -49), Vector2(0.42, -49), Vector2(0.4, -49), Vector2(0.42, -49), Vector2(0.42, -49)]
+"values": [Vector2(0.45, -49), Vector2(-3, -49), Vector2(3, -49), Vector2(-2, -49), Vector2(2, -49), Vector2(0.45, -49)]
 }
 
 [sub_resource type="Animation" id="Animation_mn163"]
@@ -111,7 +135,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.6901961, 0.6901961, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.9999706, 0.124327384, 0.29837832, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Canopy:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.1254902, 0.29803923, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e3pof"]
@@ -136,7 +172,7 @@ texture = ExtResource("2_11fuk")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -24)
+position = Vector2(2, -13)
 shape = SubResource("RectangleShape2D_laovf")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

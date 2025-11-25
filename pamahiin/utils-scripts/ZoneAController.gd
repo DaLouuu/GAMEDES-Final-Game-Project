@@ -1,121 +1,182 @@
 extends Node
 
+signal garden_state_ready(state)    # NEW — lets treedoors know GardenState is ready
+
 @export var cicada_timer: Timer
 @export var cicada_player: AudioStreamPlayer
-@export var duwende_spawner: Node = null   # assign later if needed
+@export var duwende_spawner: Node = null
+
+var zone_a_locked := false
+var _garden_state_ready := false
+
 
 func _ready():
-	# Connect all trees in group "treedoor"
-	for td in get_tree().get_nodes_in_group("treedoor"):
-		if td.has_signal("correct_knock"):
-			td.correct_knock.connect(_on_correct_knock)
-		else:
-			push_warning("TreeDoor missing 'correct_knock' signal: %s" % td)
-
-		if td.has_signal("wrong_knock"):
-			td.wrong_knock.connect(_on_wrong_knock)
-		else:
-			push_warning("TreeDoor missing 'wrong_knock' signal: %s" % td)
-
-	# ---- Validate GameController ----
-	if Global.game_controller == null:
-		push_error("Global.game_controller is NULL. Ensure GameController scene is loaded BEFORE the Garden scene.")
-	else:
-		if Global.game_controller.garden_state == null:
-			push_warning("GameController.garden_state is NULL. Add a GardenState node to the Garden scene.")
-
-	# ---- Connect cicada timer ----
-	if cicada_timer:
-		var callback := Callable(self, "_on_cicada_timer_timeout")
-		if not cicada_timer.is_connected("timeout", callback):
-			cicada_timer.timeout.connect(callback)
-
+	_setup_controller_fallback()
+	_connect_treedoors()
+	_connect_cicada_timer()
 	start_cicadas()
 
 
-# -------------------------------------------------------
-#   CORRECT KNOCK
-# -------------------------------------------------------
-func _on_correct_knock(_tree):
-	var gc = Global.game_controller
-	var gs = (gc.garden_state if gc != null else null)
+# ---------------------------------------------------------
+# GAME CONTROLLER + GARDEN STATE FALLBACK (IMPROVED)
+# ---------------------------------------------------------
+func _setup_controller_fallback():
+	if Global.game_controller != null:
+		# GameController exists → try to attach GS
+		call_deferred("_retry_attach_garden_state")
+		return
 
-	if gs != null:
-		if gs.found_stick_zone_a:
-			return
+	print("ZoneA: No GameController found. Creating fallback.")
+
+	var temp_gc := Node.new()
+	temp_gc.name = "TempGameController"
+	temp_gc.set("garden_state", null)
+
+	get_tree().root.call_deferred("add_child", temp_gc)
+	Global.game_controller = temp_gc
+
+	call_deferred("_retry_attach_garden_state")
+
+func _retry_attach_garden_state():
+	if _garden_state_ready:
+		return  # Already done
+
+	var gc = Global.game_controller
+	if gc == null:
+		call_deferred("_retry_attach_garden_state")
+		return
+
+	# Find GardenState anywhere
+	var gs = get_tree().root.find_child("GardenState", true, false)
+
+	if gs:
+		gc.set("garden_state", gs)
+		_garden_state_ready = true
+		print("ZoneA: GardenState successfully attached.")
+		
+		# --- FIX: SYNC CICADA STATE ---
+		# If the audio is already playing, ensure the State knows it!
+		if cicada_player and cicada_player.playing:
+			gs.cicadas_active = true
+			print("ZoneA: Synced cicadas_active to TRUE")
+		# ------------------------------
+
+		emit_signal("garden_state_ready", gs)
+	else:
+		# Try again next frame
+		call_deferred("_retry_attach_garden_state")
+
+# ---------------------------------------------------------
+# TREEDOOR SIGNALS
+# ---------------------------------------------------------
+func _connect_treedoors():
+	for td in get_tree().get_nodes_in_group("treedoor"):
+		td.correct_knock.connect(_on_correct_knock)
+		td.wrong_knock.connect(_on_wrong_knock)
+
+
+# ---------------------------------------------------------
+# TIMER CONNECT
+# ---------------------------------------------------------
+func _connect_cicada_timer():
+	if cicada_timer:
+		var cb := Callable(self, "_on_cicada_timer_timeout")
+		if not cicada_timer.is_connected("timeout", cb):
+			cicada_timer.timeout.connect(cb)
+
+
+# ---------------------------------------------------------
+# CORRECT KNOCK
+# ---------------------------------------------------------
+func _on_correct_knock(tree):
+	if zone_a_locked:
+		return
+
+	var gs = _gs()
+	if gs:
 		gs.found_stick_zone_a = true
 		gs.zone_a_completed = true
 		gs.total_sticks_collected += 1
-	else:
-		print("Warning: garden_state not reachable during correct knock.")
 
-	# Stop cicadas
-	if cicada_player and cicada_player.playing:
-		cicada_player.stop()
+	print("ZoneA: CORRECT knock on tree ", tree.name)
 
-	if cicada_timer and not cicada_timer.is_stopped():
-		cicada_timer.stop()
+	zone_a_locked = true  
+	stop_cicadas()
 
-	if gs != null:
-		gs.cicadas_active = false
+	# TODO: spawn stick item
 
 
-# -------------------------------------------------------
-#   WRONG KNOCK
-# -------------------------------------------------------
+# ---------------------------------------------------------
+# WRONG KNOCK
+# ---------------------------------------------------------
 func _on_wrong_knock(tree):
-	print("WRONG knock on:", tree.marking_id)
+	if zone_a_locked:
+		print("ZoneA: WRONG knock ignored — zone completed.")
+		return
 
+	print("ZoneA: WRONG knock on tree ", tree.name)
+
+	var player = get_tree().get_first_node_in_group("Player")
+	if player:
+		if player.has_method("apply_sanity_damage"):
+			player.apply_sanity_damage(5)
+		elif player.has_node("sanity_component"):
+			player.get_node("sanity_component").take_damage(5)
+
+	# DWENDE SPAWN FIX
 	if duwende_spawner and duwende_spawner.has_method("spawn"):
-		duwende_spawner.spawn(tree.global_position)
-	else:
-		print("Duwende spawner not assigned or missing spawn().")
+		var dir = Vector2.RIGHT.rotated(randf() * TAU)
+		# CHANGED: Increased 12 -> 60 so it doesn't instantly die
+		duwende_spawner.spawn(tree.global_position + dir * 60)
 
-
-# -------------------------------------------------------
-#   CICADA CONTROL
-# -------------------------------------------------------
+# ---------------------------------------------------------
+# CICADA CONTROL
+# ---------------------------------------------------------
 func start_cicadas():
+	var gs = _gs()
+	if gs:
+		gs.cicadas_active = true
+
+	if cicada_player and not cicada_player.playing:
+		cicada_player.play()
+
 	if cicada_timer:
 		cicada_timer.start()
-
-	var gc = Global.game_controller
-	if gc != null and gc.garden_state != null:
-		gc.garden_state.cicadas_active = true
-	elif cicada_player and not cicada_player.playing:
-		cicada_player.play()
 
 
 func stop_cicadas():
 	if cicada_timer:
 		cicada_timer.stop()
 
-	var gc = Global.game_controller
-	if gc != null and gc.garden_state != null:
-		gc.garden_state.cicadas_active = false
+	var gs = _gs()
+	if gs:
+		gs.cicadas_active = false
 
-	if cicada_player and cicada_player.playing:
+	if cicada_player:
 		cicada_player.stop()
 
 
-# -------------------------------------------------------
-#   TIMER TIMEOUT
-# -------------------------------------------------------
 func _on_cicada_timer_timeout():
-	var gc = Global.game_controller
-	var gs = (gc.garden_state if gc != null else null)
+	var gs = _gs()
 
-	if gs != null:
+	if gs:
 		gs.cicadas_active = !gs.cicadas_active
-
 		if gs.cicadas_active:
-			if cicada_player: cicada_player.play()
+			cicada_player.play()
 		else:
-			if cicada_player: cicada_player.stop()
+			cicada_player.stop()
 	else:
-		# fallback
-		if cicada_player:
-			if cicada_player.playing:
-				cicada_player.stop()
-			else:
-				cicada_player.play()
+		if cicada_player.playing:
+			cicada_player.stop()
+		else:
+			cicada_player.play()
+
+
+# ---------------------------------------------------------
+# GET GardenState safely
+# ---------------------------------------------------------
+func _gs():
+	var gc = Global.game_controller
+	if gc == null:
+		return null
+	return gc.get("garden_state")
