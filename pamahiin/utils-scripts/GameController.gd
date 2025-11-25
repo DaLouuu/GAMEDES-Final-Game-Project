@@ -20,7 +20,8 @@ func _ready() -> void:
 	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
-	change_2d_scene("res://map_phase/houses/house2.tscn")
+	#change_2d_scene("res://map_phase/houses/house2.tscn")
+	change_2d_scene("res://dev/dana's_testing_stuff/garden_phase.tscn")
 	
 
 

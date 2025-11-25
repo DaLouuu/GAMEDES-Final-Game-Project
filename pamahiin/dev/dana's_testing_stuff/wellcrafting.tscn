@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcsrif8oijnrq"]
+
+[ext_resource type="Texture2D" uid="uid://boi1h6htkrrld" path="res://map_phase/garden/Garden_Well.png" id="1_itpsu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vicfh"]
+size = Vector2(94.5, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh4ji"]
+size = Vector2(59, 63.5)
+
+[node name="Wellcrafting" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_itpsu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_vicfh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4.5, -2.25)
+shape = SubResource("RectangleShape2D_sh4ji")

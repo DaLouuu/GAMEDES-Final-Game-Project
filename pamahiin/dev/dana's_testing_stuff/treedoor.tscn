@@ -1,0 +1,169 @@
+[gd_scene load_steps=13 format=3 uid="uid://dp66p8v8rpwbu"]
+
+[ext_resource type="Script" uid="uid://cn0q3oleuybn8" path="res://dev/dana's_testing_stuff/treedoor.gd" id="1_j7s1x"]
+[ext_resource type="Texture2D" uid="uid://bdv6yfxrgtrv8" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Canopy ONLY.png" id="1_k5rx0"]
+[ext_resource type="Texture2D" uid="uid://c81j3aa7v7not" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Eye 1.png" id="2_11fuk"]
+[ext_resource type="AudioStream" uid="uid://daf170or3ok4g" path="res://art/Audio Assets/36 - Knocking.mp3" id="4_j7s1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laovf"]
+size = Vector2(86, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5rx0"]
+size = Vector2(19, 54)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j7s1x"]
+radius = 13.0
+height = 40.0
+
+[sub_resource type="Animation" id="Animation_0j417"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trunk:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Trunk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Canopy:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.45, -49)]
+}
+
+[sub_resource type="Animation" id="Animation_gcbb2"]
+resource_name = "correct_flash"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trunk:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.627451, 1, 0.6666667, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_78arc"]
+resource_name = "shake"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trunk:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3, 0), Vector2(3, 0), Vector2(-2, 0), Vector2(2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Canopy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.45, -49), Vector2(0.42, -49), Vector2(0.42, -49), Vector2(0.4, -49), Vector2(0.42, -49), Vector2(0.42, -49)]
+}
+
+[sub_resource type="Animation" id="Animation_mn163"]
+resource_name = "wrong_flash"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trunk:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.6901961, 0.6901961, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e3pof"]
+_data = {
+&"RESET": SubResource("Animation_0j417"),
+&"correct_flash": SubResource("Animation_gcbb2"),
+&"shake": SubResource("Animation_78arc"),
+&"wrong_flash": SubResource("Animation_mn163")
+}
+
+[node name="Treedoor" type="Node2D"]
+script = ExtResource("1_j7s1x")
+
+[node name="Canopy" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(0.45, -49)
+texture = ExtResource("1_k5rx0")
+
+[node name="Trunk" type="Sprite2D" parent="."]
+texture = ExtResource("2_11fuk")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_laovf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+light_mask = 0
+position = Vector2(-1, -12)
+shape = SubResource("RectangleShape2D_k5rx0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 9)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_j7s1x")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j7s1x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e3pof")
+}
+
+[node name="InteractionPrompt" type="Label" parent="."]
+visible = false
+offset_left = -5.0
+offset_top = -127.0
+offset_right = 4.0
+offset_bottom = -104.0
+text = "E"
+autowrap_mode = 3
