@@ -1,0 +1,41 @@
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://cqvsnia434ywx"]
+
+[ext_resource type="Texture2D" uid="uid://wdyvyvo5p4xa" path="res://map_phase/garden/Fences & Door/Garden_Door.png" id="1_3a51f"]
+[ext_resource type="Texture2D" uid="uid://7eciluxsfjy4" path="res://map_phase/garden/Fences & Door/Garden_Fence_L_Edge.png" id="2_jib6c"]
+[ext_resource type="Texture2D" uid="uid://cbtii3xvgusqb" path="res://map_phase/garden/Fences & Door/Garden_Fence_M.png" id="3_def7t"]
+[ext_resource type="Texture2D" uid="uid://d3t8xal4a3esk" path="res://map_phase/garden/Fences & Door/Garden_Fence_M_Cont.png" id="4_egugs"]
+[ext_resource type="Texture2D" uid="uid://g4wy7k8we2pk" path="res://map_phase/garden/Fences & Door/Garden_Fence_Side_L.png" id="5_0t5f5"]
+[ext_resource type="Texture2D" uid="uid://dxg76tvedny8r" path="res://map_phase/garden/Fences & Door/Garden_Fence_Side_L_Corner.png" id="6_h5xht"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33qw2"]
+texture = ExtResource("1_3a51f")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yex2g"]
+texture = ExtResource("2_jib6c")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g27jl"]
+texture = ExtResource("3_def7t")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wffo8"]
+texture = ExtResource("4_egugs")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iw07v"]
+texture = ExtResource("5_0t5f5")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n661h"]
+texture = ExtResource("6_h5xht")
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_33qw2")
+sources/1 = SubResource("TileSetAtlasSource_yex2g")
+sources/2 = SubResource("TileSetAtlasSource_g27jl")
+sources/3 = SubResource("TileSetAtlasSource_wffo8")
+sources/4 = SubResource("TileSetAtlasSource_iw07v")
+sources/5 = SubResource("TileSetAtlasSource_n661h")
