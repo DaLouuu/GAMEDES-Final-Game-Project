@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 
 var HOUSE_ARTIFACT_has_artifact_rosary = false
