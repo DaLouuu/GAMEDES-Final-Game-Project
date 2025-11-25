@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m1w2taljyobf"
+path="res://.godot/imported/36 - Knocking.mp3-87b0ff02064be570f342b5c29047842b.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/36 - Knocking.mp3"
+dest_files=["res://.godot/imported/36 - Knocking.mp3-87b0ff02064be570f342b5c29047842b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
