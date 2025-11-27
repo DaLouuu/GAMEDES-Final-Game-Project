@@ -1,6 +1,8 @@
 extends Node2D
 var locationType : EnumsRef.LocationType = EnumsRef.LocationType.HOME
-
+@onready var tileMap:TileMap = $TileMap
+func getTileMap()->TileMap:
+	return tileMap
 func getLocationType()->EnumsRef.LocationType:
 	return locationType
 

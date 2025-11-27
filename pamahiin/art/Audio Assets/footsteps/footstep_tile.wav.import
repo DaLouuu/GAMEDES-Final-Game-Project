@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cccmwejegywa6"
+path="res://.godot/imported/footstep_tile.wav-4db84af0d2d61478a371b9dfe4a13d55.sample"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/footstep_tile.wav"
+dest_files=["res://.godot/imported/footstep_tile.wav-4db84af0d2d61478a371b9dfe4a13d55.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

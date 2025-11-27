@@ -8,7 +8,7 @@ func getLocationType()->EnumsRef.LocationType:
 func goto_coming_out_from_spawn() -> void:
 	houseDoor.play_close()
 	
-	
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
 		houseDoor.play_open()

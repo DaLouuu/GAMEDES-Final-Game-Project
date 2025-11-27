@@ -45,6 +45,7 @@ Player=""
 EnemyVisionBlock="To block certain Ray2Ds"
 Enemy=""
 InteractArea=""
+tilemaps="TileMap searcher for faster indexing"
 
 [input]
 

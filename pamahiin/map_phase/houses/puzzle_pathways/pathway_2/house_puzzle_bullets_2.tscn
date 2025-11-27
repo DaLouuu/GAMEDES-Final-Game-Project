@@ -16,7 +16,7 @@
 [ext_resource type="Resource" uid="uid://8rk0mg4enke" path="res://map_phase/houses/assets/items/vase-fake.tres" id="14_xb5vg"]
 [ext_resource type="Texture2D" uid="uid://bj4rf637ngd4r" path="res://map_phase/houses/assets/objects_art/Floor-Carpet/HouseInt_X PATH.png" id="15_ooabh"]
 [ext_resource type="Resource" uid="uid://c3bj6vucbsef1" path="res://map_phase/houses/assets/items/vase.tres" id="16_a5nc5"]
-[ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/enemy/white_lady.tscn" id="17_gq01x"]
+[ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/npcs/enemy/white_lady.tscn" id="17_gq01x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs3y1"]
 size = Vector2(253.5, 36.652542)

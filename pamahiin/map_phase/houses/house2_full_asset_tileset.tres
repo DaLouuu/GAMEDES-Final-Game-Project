@@ -203,6 +203,7 @@ texture = ExtResource("5_116hu")
 4:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
+1:1/0/custom_data_0 = &"wood"
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
@@ -701,6 +702,8 @@ texture = ExtResource("10_0uu16")
 
 [resource]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "footstep_sfx"
+custom_data_layer_0/type = 21
 sources/1 = SubResource("TileSetAtlasSource_47pp5")
 sources/2 = SubResource("TileSetAtlasSource_2tqnf")
 sources/0 = SubResource("TileSetAtlasSource_de18i")

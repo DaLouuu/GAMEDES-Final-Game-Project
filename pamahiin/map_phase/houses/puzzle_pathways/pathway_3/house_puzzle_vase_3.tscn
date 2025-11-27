@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://rtueee8tki4g" path="res://map_phase/houses/assets/items/bullets-fake.tres" id="13_gfj05"]
 [ext_resource type="Resource" uid="uid://c3bj6vucbsef1" path="res://map_phase/houses/assets/items/vase.tres" id="14_14f3u"]
 [ext_resource type="Texture2D" uid="uid://bd2g6f2s1bscl" path="res://map_phase/houses/assets/objects_art/Floor-Carpet/HouseInt_Pitchfork_Slant.png" id="15_e0t27"]
-[ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/enemy/white_lady.tscn" id="16_88pmd"]
+[ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/npcs/enemy/white_lady.tscn" id="16_88pmd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_028kv"]
 shader = ExtResource("3_dqwy0")

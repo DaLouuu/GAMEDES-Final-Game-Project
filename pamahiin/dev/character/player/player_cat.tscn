@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cbiyjqctoq0j3"]
+[gd_scene load_steps=43 format=3 uid="uid://cbiyjqctoq0j3"]
 
 [ext_resource type="Script" uid="uid://e8vo2bsuywb5" path="res://dev/character/player/player_cat.gd" id="1_u0lhy"]
 [ext_resource type="Resource" uid="uid://dp4dsw13mlp8d" path="res://dev/resource_scripts/inventory/player_inventory.tres" id="2_u0b4o"]
@@ -13,14 +13,15 @@
 [ext_resource type="Script" uid="uid://d3yisgeep3p7b" path="res://dev/character/player/components/HitEffectDamage.gd" id="8_c8r0g"]
 [ext_resource type="PackedScene" uid="uid://bpbf560c0338r" path="res://dev/resource_scripts/inventory/inventory_ui.tscn" id="9_ohocd"]
 [ext_resource type="Texture2D" uid="uid://br7dqghldew4e" path="res://dev/light_textures/lantern_round.tres" id="10_04nme"]
-[ext_resource type="AudioStream" uid="uid://cwfsoflnjlibk" path="res://art/Audio Assets/6 - Stomping on Tile.wav" id="13_c8r0g"]
+[ext_resource type="PackedScene" uid="uid://eacn5vqet4jd" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
+[ext_resource type="AudioStream" uid="uid://cvuuwq222nvfx" path="res://art/Audio Assets/20 - Player Grab.wav" id="15_mxnrt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gx6m4"]
 radius = 43.8
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_71ai2"]
 cull_mode = 2
-polygon = PackedVector2Array(-3, -7, 0, -7, 1, -6, 3, -6, 4, -3, 5, 0, 3, 3, 2, 6, 0, 8, -2, 6, -3, 4, -3, 2, -3, -3, -5, -6)
+polygon = PackedVector2Array(-10, -28, -1, -30, 9, -28, 13, -20, 6, -6, 5, -3, 6, 3, 3, 23, 3, 28, -7, 26, -8, 4, -8, 0, -6, -3, -14, -18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8dsg"]
 size = Vector2(22, 39)
@@ -187,9 +188,15 @@ tracks/1/path = NodePath("AudioStreamPlayer2D-FootSound")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footsteps"
+}, {
+"args": [],
+"method": &"stop"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_10mfh"]
@@ -218,8 +225,8 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [3.7],
-"method": &"play"
+"args": [],
+"method": &"play_footsteps"
 }, {
 "args": [],
 "method": &"stop"
@@ -252,8 +259,8 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [3.7],
-"method": &"play"
+"args": [],
+"method": &"play_footsteps"
 }, {
 "args": [],
 "method": &"stop"
@@ -286,8 +293,8 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [3.7],
-"method": &"play"
+"args": [],
+"method": &"play_footsteps"
 }, {
 "args": [],
 "method": &"stop"
@@ -479,10 +486,13 @@ shadow_enabled = true
 shadow_item_cull_mask = 33
 texture = ExtResource("10_04nme")
 
-[node name="AudioStreamPlayer2D-FootSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_c8r0g")
-volume_db = 10.0
-max_distance = 300.0
+[node name="AudioStreamPlayer2D-FootSound" parent="." node_paths=PackedStringArray("player") instance=ExtResource("14_mxnrt")]
+player = NodePath("..")
+
+[node name="AnimationPlayer-GrabSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_mxnrt")
+volume_db = -7.429
+max_distance = 200.0
 
 [connection signal="body_entered" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_entered"]
 [connection signal="body_exited" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_exited"]

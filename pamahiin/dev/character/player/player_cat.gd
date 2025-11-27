@@ -22,7 +22,13 @@ signal sanity_damaged
 var footsteps_Sound : AudioStream
 @export var footstep_sfx_map: Dictionary[String, Resource] = {
 	"ground_stone": preload("uid://ddty6kh3k1x7p"),
-	"salt": preload("uid://qnqi6x0wy5g7")
+	"salt": preload("uid://qnqi6x0wy5g7"),
+	"wood_plank": preload("uid://4xdwy8c4atu4"),
+	"carpet": preload("uid://bryk4kumpuid"),
+	"grass": preload("uid://dqwal04bj3dqk"),
+	"stone": preload("uid://deyrlfjtlv8c3"),
+	"tile": preload("uid://cccmwejegywa6")
+	
 }
 @export var tile_maps: Node
 
@@ -42,38 +48,38 @@ var _is_footstep_sfx_playing: Dictionary[String, bool] = {}
 @onready var camera : Camera2D = $Camera2D
 @onready var audioPlayer : AudioStreamPlayer2D = $"AudioStreamPlayer2D-FootSound"
 @onready var uiLayer:CanvasLayer = $CanvasLayer
-
+@onready var GrabSound_asp:AudioStreamPlayer2D = $"AnimationPlayer-GrabSound"
 func changeFootstepSound():
 	if not Global.game_controller:
 		return
 		
-	var location = Global.game_controller.locationType
-	var audio_path = "res://art/Audio Assets/"
-	var isCave: bool = false
-	# Map location types to footstep sounds
-	match location:
-		EnumsRef.LocationType.GRAVEYARD, \
-		EnumsRef.LocationType.GARDEN, \
-		EnumsRef.LocationType.WORLD:
-			# Grass footsteps
-			footsteps_Sound = load(audio_path + "5 - Stomping on Grass.wav")
-			
-		EnumsRef.LocationType.MOTEL, \
-		EnumsRef.LocationType.HOME:
-			# Tile footsteps
-			footsteps_Sound = load(audio_path + "6 - Stomping on Tile.wav")
-			
-		EnumsRef.LocationType.CHAPEL:
-						# Stone footsteps
-			footsteps_Sound = load(audio_path + "7 - Stomping on Stone.wav")
-		EnumsRef.LocationType.CAVE:
-			audioPlayer.stream =null
-			isCave = true
-	
-	# Update the audio player with new footstep sound
-	if footsteps_Sound and audioPlayer and not isCave:
-		audioPlayer.stream = footsteps_Sound
-		print("🔊 Footstep sound changed to: ", location)
+	#var location = Global.game_controller.locationType
+	#var audio_path = "res://art/Audio Assets/"
+	#var isCave: bool = false
+	## Map location types to footstep sounds
+	#match location:
+		#EnumsRef.LocationType.GRAVEYARD, \
+		#EnumsRef.LocationType.GARDEN, \
+		#EnumsRef.LocationType.WORLD:
+			## Grass footsteps
+			#footsteps_Sound = load(audio_path + "5 - Stomping on Grass.wav")
+			#
+		#EnumsRef.LocationType.MOTEL, \
+		#EnumsRef.LocationType.HOME:
+			## Tile footsteps
+			#footsteps_Sound = load(audio_path + "6 - Stomping on Tile.wav")
+			#
+		#EnumsRef.LocationType.CHAPEL:
+						## Stone footsteps
+			#footsteps_Sound = load(audio_path + "7 - Stomping on Stone.wav")
+		#EnumsRef.LocationType.CAVE:
+			#audioPlayer.stream =null
+			#isCave = true
+	#
+	## Update the audio player with new footstep sound
+	#if footsteps_Sound and audioPlayer and not isCave:
+		#audioPlayer.stream = footsteps_Sound
+		#print("🔊 Footstep sound changed to: ", location)
 		
 	
 	
@@ -113,26 +119,17 @@ func _physics_process(delta):
 		current_speed *= sprint_multiplier
 		# Speed up animation to match sprint speed
 		animation_tree.set("parameters/TimeScale/scale", sprint_multiplier)
-		# Also speed up footstep sounds
-		#if audioPlayer:
-			#audioPlayer.pitch_scale = sprint_multiplier
-			#if Global.game_controller.locationType and Global.game_controller.locationType == EnumsRef.LocationType.WORLD:
-				#audioPlayer.volume_db = -8.0
-			#else:
-				#audioPlayer.volume_db = 10.0
-				#
-			#audioPlayer.max_distance = sprintSoundMaxDistance
-			
+		 #Also speed up footstep sounds
+		audioPlayer.pitch_scale = sprint_multiplier
+		audioPlayer.volume_db = 5.0
+		
 	else:
 		# Normal animation speed
 		animation_tree.set("parameters/TimeScale/scale", 1.0)
-		# Normal footstep pitch
-		if audioPlayer:
-			
-			audioPlayer.pitch_scale = 1.0
-			audioPlayer.volume_db = 10.0
-			
-			audioPlayer.max_distance = walkSoundMaxDistance
+
+		audioPlayer.pitch_scale = 1.0
+		audioPlayer.volume_db = 0
+
 		
 	velocity = input_direction * current_speed
 	
@@ -192,11 +189,11 @@ func turnOnLight():
 func collect(item : InvItem):
 	if item.name == "Lantern":
 		turnOnLight()
+	GrabSound_asp.play(0.10)
 	inventory.obtain(item)
 
 
 ## CUTSCENE UTIL
-
 func lerp_towards(target: Marker2D, duration: float) -> void:
 	is_cutscene_controlled = true
 	
@@ -221,34 +218,3 @@ func lerp_towards(target: Marker2D, duration: float) -> void:
 func _init_footstep_sfx_playing_dict() -> void:
 	for tile_type in footstep_sfx_map:
 		_is_footstep_sfx_playing[tile_type] = false
-
-func attempt_play_footsteps() -> void:
-	var tile_data: Array[TileData] = []
-	
-	for child in tile_maps.get_children():
-		var tilemap := child as TileMapLayer
-		
-		var tile_position := tilemap.local_to_map(tilemap.to_local(global_position))
-		var data := tilemap.get_cell_tile_data(tile_position)
-		
-		if data:
-			tile_data.push_back(data)
-	
-	for tile_datum in tile_data:
-		var tile_type = tile_datum.get_custom_data('footstep_sfx')
-		
-		if footstep_sfx_map.has(tile_type) and not _is_footstep_sfx_playing[tile_type]:
-			var audio_player := AudioStreamPlayer2D.new()
-			audio_player.stream = footstep_sfx_map[tile_type]
-			audio_player.global_position = global_position
-			
-			get_tree().root.add_child(audio_player)
-			
-			_is_footstep_sfx_playing[tile_type] = true
-			
-			audio_player.finished.connect(func():
-				audio_player.queue_free()
-				_is_footstep_sfx_playing[tile_type] = false
-			)
-			
-			audio_player.play()

@@ -7,9 +7,8 @@ signal changed_scene_with_character
 @export var world_2d: Node2D  
 
 
-@onready var player: CharacterBody2D = $"Player"
+@onready var player: Player = $"Player"
 
-var locationType: EnumsRef.LocationType = EnumsRef.LocationType.HOME
 var curr_2d_scene: Node = null
 var curr_gui_scene: Node = null
 
@@ -58,12 +57,9 @@ func change_2d_scene_check_from(new_scene: String, startFuncs = false, isComingO
 		if spawn_marker:
 
 
-			if new_scene_instance.has_method("getLocationType"):
-				locationType = new_scene_instance.getLocationType()
+
 			if new_scene_instance.has_method("start_funcs") and startFuncs:
 				new_scene_instance.start_funcs()
-
-			player.changeFootstepSound()
 			player.global_position = spawn_marker.global_position
 			var camera : Camera2D = player.get_node("Camera2D")
 			changed_scene_with_character.emit()
@@ -102,11 +98,7 @@ func change_2d_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = E
 		# Find the spawn marker in the new scene
 		var spawn_marker = new_scene_instance.get_node_or_null("Marker2D-SpawnP")
 		if spawn_marker:
-			if new_scene_instance.has_method("getLocationType"):
-				locationType = new_scene_instance.getLocationType()
 
-
-			player.changeFootstepSound()
 			
 			player.global_position = spawn_marker.global_position
 			var camera : Camera2D = player.get_node("Camera2D")
