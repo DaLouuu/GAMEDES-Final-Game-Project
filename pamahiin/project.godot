@@ -23,6 +23,7 @@ Ref="*res://utils-scripts/Ref.gd"
 Savestate="*res://utils/savestate/Savestate.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameState="*res://GameState.gd"
+AudioManager="*res://AudioManager.gd"
 
 [dialogue_manager]
 

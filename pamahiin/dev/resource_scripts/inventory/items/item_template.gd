@@ -30,7 +30,6 @@ var player = null
 ## Depending on the sprite, collision might be too small and needs adjustment, open debug menu and toggle `Visible Collision Shapes` to check it grow or not.
 @export var collision_scale = 1.0
 
-@export var collect_text = "Grab"
 @export var collision_pos_offset: Vector2 = Vector2(Vector2.ZERO)
 
 # References to child nodes
@@ -64,7 +63,6 @@ func _ready():
 		var mat = ShaderMaterial.new()
 		mat.shader = default_shader
 		sprite_2d.material = mat
-	$CanvasLayer/Label.text = collect_text	
 	$Area2D/CollisionShape2D.position = collision_pos_offset
 func create_hover_icon():
 	pass
@@ -201,7 +199,7 @@ func hide_hover_feedback():
 # Original Area2D body detection (for keyboard interaction)
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"): 
-		$CanvasLayer/Label.visible = true
+		$TextureRect.visible = true
 		is_player_in_area = true
 		enlarge_upon_near()
 		player = body
@@ -209,7 +207,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"): 
-		$CanvasLayer/Label.visible = false
+		$TextureRect.visible = false
 		is_player_in_area = false
 		reset_state()
 		player = null

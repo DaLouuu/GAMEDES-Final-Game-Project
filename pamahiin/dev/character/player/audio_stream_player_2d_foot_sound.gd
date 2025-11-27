@@ -30,6 +30,7 @@ func attempt_play_footsteps() -> void:
 		
 		if data:
 			var data_type = data.get_custom_data("footstep_sfx")
-			stream = footstep_sfx_map[ data_type ]
+			if data_type:
+				stream = footstep_sfx_map[ data_type ]
 
 			

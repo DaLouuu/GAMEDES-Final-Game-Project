@@ -6,11 +6,28 @@ signal changed_scene_with_character
 @export var gui: Control
 @export var world_2d: Node2D  
 
-
+enum AUDIO_PLAY {CHASE_HOUSE}
 @onready var player: Player = $"Player"
 
 var curr_2d_scene: Node = null
 var curr_gui_scene: Node = null
+var audioDictionary: Dictionary[AUDIO_PLAY, Resource] = {
+	AUDIO_PLAY.CHASE_HOUSE: preload("uid://bc7c7kecbm4bl"),
+
+	
+}
+
+func play_curr_global_audio(playType : AUDIO_PLAY):
+	if audioDictionary.has(playType):
+		AudioManager.music_player.stream = audioDictionary[playType]
+		AudioManager.music_player.play()
+
+
+func stop_curr_global_audio():
+	AudioManager.music_player.stop()
+
+	
+
 
 func _ready() -> void:
 	Global.game_controller = self

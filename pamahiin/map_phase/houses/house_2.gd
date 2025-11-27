@@ -1,10 +1,7 @@
 extends Node2D
 
 @onready var houseDoor : Sprite2D  = $HouseParts/House2Door
-var locationType : EnumsRef.LocationType = EnumsRef.LocationType.WORLD
 
-func getLocationType()->EnumsRef.LocationType:
-	return locationType
 func goto_coming_out_from_spawn() -> void:
 	houseDoor.play_close()
 

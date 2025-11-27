@@ -10,7 +10,10 @@ enum SceneLoadState {
 }
 
 
-
+enum NPCState{
+	IDLE,
+	MOVE
+}
 enum EnemyState {
 	IDLE,
 	FOLLOW,

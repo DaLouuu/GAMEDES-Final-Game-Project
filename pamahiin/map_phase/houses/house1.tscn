@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://icyko4i288yl" path="res://map_phase/houses/assets/House 1/House_House1_Roof.png" id="4_luwkh"]
 [ext_resource type="PackedScene" uid="uid://cemqg6ie4ocey" path="res://map_phase/houses/assets/House 1/house1_door.tscn" id="5_gqi42"]
 [ext_resource type="Script" uid="uid://bjpoxee16qe4u" path="res://scripts/whisper_controller.gd" id="6_mqay7"]
-[ext_resource type="PackedScene" uid="uid://b707qwac3ws43" path="res://dev/resource_scripts/inventory/items/desk_item.tscn" id="7_luwkh"]
+[ext_resource type="PackedScene" uid="uid://dds6v1b14r58m" path="res://dev/resource_scripts/inventory/items/item_template.tscn" id="7_fnn6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnn6e"]
 size = Vector2(17, 9)
@@ -96,8 +96,8 @@ autostart = true
 [node name="Marker2D-OutFromP" type="Marker2D" parent="."]
 position = Vector2(194.5, 278.5)
 
-[node name="DeskItem" parent="." instance=ExtResource("7_luwkh")]
-position = Vector2(296.5, 320.5)
+[node name="ItemTemplate" parent="." instance=ExtResource("7_fnn6e")]
+position = Vector2(239.25, 302)
 
 [connection signal="body_entered" from="Area2D-SoundTrigger" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D-SoundTrigger" to="." method="_on_area_2d_body_exited"]

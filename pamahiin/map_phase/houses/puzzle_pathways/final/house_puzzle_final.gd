@@ -24,17 +24,19 @@ func jumpscare_node(item:InvItem):
 	# Create tween
 	var t := create_tween()
 	t.set_parallel(true)  # run effects simultaneously
+	$AudioStreamPlayer2D.volume_db=10
 	$AudioStreamPlayer2D.play(15.33)
+	
 
 	# Rapid scale jitter (shake effect)
 	t.tween_property(rect, "scale", Vector2(1.1, 0.9), 0.05).as_relative()
 	t.tween_property(rect, "scale", Vector2(0.9, 1.1), 0.05).as_relative()
 	t.tween_property(rect, "scale", Vector2(1.05, 1.05), 0.05).as_relative()
 	t.tween_property(rect, "scale", Vector2(0.95, 0.95), 0.05).as_relative()
-
+	Global.game_controller.play_curr_global_audio(GameController.AUDIO_PLAY.CHASE_HOUSE)
 	# Slow zoom-in over 1 second
 	t.tween_property(rect, "scale", Vector2(1.5, 1.5), 1.0)
-
+	
 	# Hide after 1 second
 	await get_tree().create_timer(1.0).timeout
 	$WhiteLady.start_funcs()
