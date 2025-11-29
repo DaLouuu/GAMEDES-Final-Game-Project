@@ -102,9 +102,7 @@ func setCutsceneAnimationBehavior(state : String, direction : Vector2):
 # Anything moving and colliding is always under the collision
 func _physics_process(delta):
 	if is_cutscene_controlled:
-		print("DEBUG")
 		if is_motel_introduction:
-			print("DEBUG")
 			update_animation_parameters(cutscene_animation_direction)
 			state_machine.travel(cutscene_animation_state)
 		return
