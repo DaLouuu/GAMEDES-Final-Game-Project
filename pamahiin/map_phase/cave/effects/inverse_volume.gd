@@ -22,7 +22,6 @@ func _process(_delta: float) -> void:
 	ratio = clamp(ratio, 0.0, 1.0)
 	
 	volume_db = lerp(near_volume_db, far_volume_db, ratio)
-	print(get_path(), volume_db)
 
 
 func _get_player() -> Player:
