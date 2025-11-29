@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5mqcvtc108yn"]
+
+[ext_resource type="Script" uid="uid://bd17ubyhko0qd" path="res://script/graveyard-new/shrine.gd" id="1_3ih4y"]
+[ext_resource type="Texture2D" uid="uid://c4qhi1rsqdlhm" path="res://art/GAMEDES art/Shrine/complete shrine.png" id="1_7i207"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7i207"]
+size = Vector2(31.15625, 68)
+
+[node name="Shrine" type="Area2D" groups=["Player"]]
+script = ExtResource("1_3ih4y")
+
+[node name="CompleteShrine" type="Sprite2D" parent="."]
+scale = Vector2(0.9720336, 1.3286287)
+texture = ExtResource("1_7i207")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.421875, 25)
+shape = SubResource("RectangleShape2D_7i207")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

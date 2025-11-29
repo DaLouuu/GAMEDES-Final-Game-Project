@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8yn5ttk6w8vm"]
+
+[ext_resource type="Texture2D" uid="uid://btfdxlj76bbli" path="res://map_phase/graveyard/assets/Mud-Dirt/Mud_Tomb.png" id="1_hyib3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3wsb"]
+size = Vector2(12, 11)
+
+[node name="Area2D" type="Area2D"]
+
+[node name="MudTomb" type="Sprite2D" parent="."]
+position = Vector2(0, -7.000001)
+scale = Vector2(0.75, 0.8125)
+texture = ExtResource("1_hyib3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -7.000001)
+scale = Vector2(0.75, 0.8125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.61538315)
+scale = Vector2(1.3333334, 1.2307693)
+shape = SubResource("RectangleShape2D_p3wsb")
