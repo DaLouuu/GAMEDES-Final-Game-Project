@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgikxbb8cutv0"
-path="res://.godot/imported/cave_sprites.png-8e15e171e526b7ad7866cd79ff2086f3.ctex"
+uid="uid://cnv5uhijii0e2"
+path="res://.godot/imported/jumpscare.jpg-a3aeba960e47a17e45ffea8928ab0f7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/GAMEDES art/Cave/cave_sprites.png"
-dest_files=["res://.godot/imported/cave_sprites.png-8e15e171e526b7ad7866cd79ff2086f3.ctex"]
+source_file="res://art/GAMEDES art/Cave/jumpscare.jpg"
+dest_files=["res://.godot/imported/jumpscare.jpg-a3aeba960e47a17e45ffea8928ab0f7d.ctex"]
 
 [params]
 

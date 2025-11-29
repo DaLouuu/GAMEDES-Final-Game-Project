@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv47fu3pxwub6"]
+
+[ext_resource type="Script" uid="uid://cqtwj4j6pq7hb" path="res://map_phase/cave/interactables/cobweb.gd" id="1_bsnun"]
+[ext_resource type="Texture2D" uid="uid://dgikxbb8cutv0" path="res://art/GAMEDES art/Cave/cave_sprites.png" id="1_tljec"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bsnun"]
+
+[node name="Cobweb" type="Node2D"]
+script = ExtResource("1_bsnun")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bsnun")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tljec")
+hframes = 16
+vframes = 4
+frame = 8
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

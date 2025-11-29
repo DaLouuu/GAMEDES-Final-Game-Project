@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ejkgp7n6rmt1"
+path="res://.godot/imported/wing_flap_1.mp3-b745ecf131363bf58bde3bd729308982.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/Cave/wing_flap_1.mp3"
+dest_files=["res://.godot/imported/wing_flap_1.mp3-b745ecf131363bf58bde3bd729308982.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

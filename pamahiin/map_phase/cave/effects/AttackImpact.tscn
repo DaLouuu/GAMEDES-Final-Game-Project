@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cag8p67hnquaq"]
+
+[ext_resource type="Script" uid="uid://caegws6fk50hw" path="res://map_phase/cave/effects/attack_impact.gd" id="1_2b8xn"]
+[ext_resource type="Texture2D" uid="uid://cnv5uhijii0e2" path="res://art/GAMEDES art/Cave/jumpscare.jpg" id="2_7dfid"]
+[ext_resource type="AudioStream" uid="uid://qodgo14imaoq" path="res://art/Audio Assets/Cave/screech.mp3" id="3_4imng"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7dfid"]
+blend_mode = 1
+
+[node name="AttackImpact" type="Node"]
+script = ExtResource("1_2b8xn")
+
+[node name="Jumpscare" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_7dfid")
+scale = Vector2(2.7879999, 2.7879999)
+texture = ExtResource("2_7dfid")
+
+[node name="ScreechPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4imng")
+volume_db = -7.0
