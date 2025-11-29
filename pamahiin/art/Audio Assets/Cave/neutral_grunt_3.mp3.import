@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c3xd6jgax266v"
+path="res://.godot/imported/neutral_grunt_3.mp3-e59450a3288bb4e3e95af1a1ca6b3915.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/Cave/neutral_grunt_3.mp3"
+dest_files=["res://.godot/imported/neutral_grunt_3.mp3-e59450a3288bb4e3e95af1a1ca6b3915.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

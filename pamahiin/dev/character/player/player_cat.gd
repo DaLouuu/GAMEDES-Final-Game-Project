@@ -21,8 +21,9 @@ signal sanity_damaged
 
 var footsteps_Sound : AudioStream
 @export var footstep_sfx_map: Dictionary[String, Resource] = {
-	"ground_stone": preload("uid://ddty6kh3k1x7p"),
-	"salt": preload("uid://qnqi6x0wy5g7")
+	"salt": preload("uid://qnqi6x0wy5g7"),
+	"stone": preload("uid://ddty6kh3k1x7p"),
+	"bone": preload("uid://cfueffcslv628")
 }
 @export var tile_maps: Node
 
@@ -211,6 +212,32 @@ func lerp_towards(target: Marker2D, duration: float) -> void:
 	
 	velocity = Vector2.ZERO
 	update_animation_parameters(Vector2.ZERO)
+	pick_new_state()
+	
+	is_cutscene_controlled = false
+
+func move_towards(target: DirectionMarker) -> void:
+	is_cutscene_controlled = true
+	
+	var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+	navigation_agent_2d.target_position = target.global_position
+	
+	await get_tree().physics_frame
+	
+	while not navigation_agent_2d.is_navigation_finished():
+		var direction: Vector2 = navigation_agent_2d.get_next_path_position() - global_position
+		direction = direction.normalized()
+	
+		velocity = velocity.lerp(direction * move_speed, 5 * get_process_delta_time())
+		move_and_slide()
+			
+		update_animation_parameters(direction)
+		pick_new_state()
+	
+		await get_tree().physics_frame
+	
+	velocity = Vector2.ZERO
+	update_animation_parameters(target.direction)
 	pick_new_state()
 	
 	is_cutscene_controlled = false
