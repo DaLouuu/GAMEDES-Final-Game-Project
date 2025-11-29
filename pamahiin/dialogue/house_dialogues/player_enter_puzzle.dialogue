@@ -1,0 +1,10 @@
+~ start
+
+if GameState.HOUSE_finished_puzzle == false and GameState.HOUSE_has_read_clue == false:
+	I should check around first
+elif GameState.HOUSE_finished_puzzle == true:
+	Why am I even trying to go back?
+elif GameState.HOUSE_has_met_ghost_girl == false:
+	Yeah I know a scary path when I see one. Not now.
+
+=> END

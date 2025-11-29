@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbiaaf4pd82ew"
-path="res://.godot/imported/VasesAssetPackTransparent.png-b02daf15a8f02587a30fea7ba25fa2f7.ctex"
+uid="uid://da4sv07hm51js"
+path="res://.godot/imported/grab.png-6538431e9ca1507983c4e12aa8dabca3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map_phase/houses/assets/objects_art/00 _ Free Assets/VasesAssetPackTransparent.png"
-dest_files=["res://.godot/imported/VasesAssetPackTransparent.png-b02daf15a8f02587a30fea7ba25fa2f7.ctex"]
+source_file="res://art/icons/grab.png"
+dest_files=["res://.godot/imported/grab.png-6538431e9ca1507983c4e12aa8dabca3.ctex"]
 
 [params]
 

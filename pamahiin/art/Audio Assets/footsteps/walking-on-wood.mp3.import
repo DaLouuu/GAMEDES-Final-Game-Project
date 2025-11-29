@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://coigt6xbitm3u"
+path="res://.godot/imported/walking-on-wood.mp3-2cb17da38aac0677aa21a6f180765b0b.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/walking-on-wood.mp3"
+dest_files=["res://.godot/imported/walking-on-wood.mp3-2cb17da38aac0677aa21a6f180765b0b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

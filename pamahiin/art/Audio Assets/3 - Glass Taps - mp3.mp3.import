@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfypebxf0hrnn"
+path="res://.godot/imported/3 - Glass Taps - mp3.mp3-e5594213f2d2480ef46d0b9c0dd1825a.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/3 - Glass Taps - mp3.mp3"
+dest_files=["res://.godot/imported/3 - Glass Taps - mp3.mp3-e5594213f2d2480ef46d0b9c0dd1825a.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=120.0
+beat_count=0
+bar_beats=4

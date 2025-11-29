@@ -23,6 +23,7 @@ Ref="*res://utils-scripts/Ref.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Savestate="*res://utils/savestate/Savestate.gd"
 GameState="*res://GameState.gd"
+AudioManager="*res://AudioManager.gd"
 
 [dialogue_manager]
 
@@ -45,6 +46,7 @@ Player=""
 EnemyVisionBlock="To block certain Ray2Ds"
 Enemy=""
 InteractArea=""
+tilemaps="TileMap searcher for faster indexing"
 
 [input]
 
@@ -97,7 +99,7 @@ cursor_interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue", "res://dialogue/house_dialogues/player_enter_puzzle.dialogue", "res://dialogue/house_dialogues/little_girl.dialogue")
 
 [layer_names]
 
