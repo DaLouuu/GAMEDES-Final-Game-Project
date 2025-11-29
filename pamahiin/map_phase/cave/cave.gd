@@ -2,6 +2,7 @@ extends Node2D
 
 const CAMERA_ZOOM := 3.0
 const PLAYER_MOVE_SPEED := 65
+const PLAYER_SCALE := 0.5
 const PLAYER_SPRINT_MULTIPLAYER := 1.75
 const SANITY_DAMAGE := 20
 
@@ -19,12 +20,13 @@ var _has_entered_main_room := false
 func _ready() -> void:
 	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, true)
 	
-	_init_player()
-	
 	for enemy: CaveMonster in _get_enemies():
 		enemy.player_attack_started.connect(_on_player_attack_started)
 		enemy.player_attack_ended.connect(_on_player_attack_ended)
 
+func _enter_tree() -> void:
+	_init_player()
+	
 func _exit_tree() -> void:
 	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, false)
 	
@@ -46,12 +48,16 @@ func _on_end_entrance_body_entered(_body: Node2D) -> void:
 		
 		_end_entrance_shadow.visible = true
 	else:
-		# TODO: Bring player outside, back to the world map
-		pass
+		Global.game_controller.change_2d_scene_check_from("uid://cyc8laq2oakj0")
 
-func _on_main_entrance_body_entered(_body: Node2D) -> void:
-	# TODO: Bring player outside, back to the world map
-	pass
+func _on_main_entrance_body_entered(body: Node2D) -> void:
+	if not is_inside_tree():
+		return
+	
+	if not body.is_in_group("Player"):
+		return
+
+	Global.game_controller.change_2d_scene_check_from("uid://cyc8laq2oakj0")
 
 func _on_player_attack_started() -> void:
 	_attacker_count += 1
@@ -88,6 +94,7 @@ func _get_player() -> Player:
 func _init_player() -> void:
 	var player := _get_player()
 
+	player.scale = Vector2(PLAYER_SCALE, PLAYER_SCALE)
 	player.move_speed = PLAYER_MOVE_SPEED
 	player.sprint_multiplier = PLAYER_SPRINT_MULTIPLAYER
 	player.camera.zoom = Vector2(CAMERA_ZOOM, CAMERA_ZOOM)
