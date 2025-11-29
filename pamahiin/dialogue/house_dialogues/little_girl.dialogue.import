@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cbdrs2pml6cgy"
+path="res://.godot/imported/little_girl.dialogue-66824902211ea3d1f57b169793735366.tres"
+
+[deps]
+
+source_file="res://dialogue/house_dialogues/little_girl.dialogue"
+dest_files=["res://.godot/imported/little_girl.dialogue-66824902211ea3d1f57b169793735366.tres"]
+
+[params]
+
+defaults=true

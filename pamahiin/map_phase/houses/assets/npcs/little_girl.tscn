@@ -1,23 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bpd8l2bnrcvqr"]
+[gd_scene load_steps=16 format=3 uid="uid://bpd8l2bnrcvqr"]
 
 [ext_resource type="Texture2D" uid="uid://djwbff8ntbgr1" path="res://map_phase/houses/assets/objects_art/Little Girl Ghost/Little Girl Ghost Sprite 1.png" id="1_agb1r"]
 [ext_resource type="Script" uid="uid://dnmvtfbifk70r" path="res://map_phase/houses/assets/npcs/npc_default.gd" id="1_uifb1"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://c1q8wogpntcmm" path="res://map_phase/houses/assets/npcs/npc_default.tres" id="2_q1leg"]
-
-[sub_resource type="Animation" id="Animation_q1leg"]
-resource_name = "idle_up"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
 
 [sub_resource type="Animation" id="Animation_uifb1"]
 length = 0.001
@@ -49,21 +34,6 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_cpm7h"]
-resource_name = "idle_right"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-
 [sub_resource type="Animation" id="Animation_583fy"]
 resource_name = "idle_left"
 tracks/0/type = "value"
@@ -79,10 +49,8 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_al6lq"]
-resource_name = "walk_right"
-length = 0.4
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_cpm7h"]
+resource_name = "idle_right"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -90,16 +58,14 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333, 0.23333335),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 5]
+"values": [3]
 }
 
-[sub_resource type="Animation" id="Animation_2lwo1"]
-resource_name = "walk_left"
-length = 0.4
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_q1leg"]
+resource_name = "idle_up"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -107,27 +73,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333, 0.23333335),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_p5f35"]
-resource_name = "walk_up"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333, 0.23333335),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 5]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_agb1r"]
@@ -147,6 +96,57 @@ tracks/0/keys = {
 "values": [1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_2lwo1"]
+resource_name = "walk_left"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_al6lq"]
+resource_name = "walk_right"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_p5f35"]
+resource_name = "walk_up"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p5f35"]
 _data = {
 &"RESET": SubResource("Animation_uifb1"),
@@ -162,6 +162,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agb1r"]
 size = Vector2(15, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uifb1"]
+radius = 18.2
 
 [node name="LittleGirl" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -194,4 +197,11 @@ wait_time = 2.0
 avoidance_enabled = true
 radius = 50.0
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uifb1")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

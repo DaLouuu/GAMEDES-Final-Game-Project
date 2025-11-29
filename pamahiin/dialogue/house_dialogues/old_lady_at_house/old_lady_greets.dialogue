@@ -27,7 +27,7 @@ if GameState.HOUSE_has_read_clue and GameState.HOUSE_has_met_ghost_girl
 elif GameState.HOUSE_has_read_clue and not GameState.HOUSE_has_asked_about_clues
 	- Tell me about the house nearby => ask_about_house
 	- Who are you? => ask_about_albularyo
-	- I found strange markings and items [/if]	 => about_puzzle_items
+	- I found strange markings and items	 => about_puzzle_items
 	- I should leave => farewell
 elif GameState.HOUSE_has_met_ghost_girl
 	- Tell me about the house nearby => ask_about_house
@@ -51,11 +51,7 @@ if GameState.HOUSE_has_met_ghost_girl
 	- Searching for what? => ghost_purpose
 	- Why can't she leave? => ghost_trapped
 	- I see => main_menu
-else
-	Old Lady: [#warning] Be careful if you go there. Some things remain that do not wish to be forgotten.
-	- What happened there? => house_history
-	- Why do you live so close? => why_stay_close
-	- I understand => main_menu
+
 
 ~ house_history
 
@@ -65,27 +61,9 @@ Old Lady: They built their camps, brought their soldiers, their "civilization."
 if GameState.HOUSE_has_met_ghost_girl or GameState.HOUSE_has_read_clue
 	Old Lady: [#bitter] That child's nanay... she was young. Too young.
 	Old Lady: One of the soldiers took a liking to her. Not all likings are welcomed, anak.
-	=> dark_history
 else
 	Old Lady: [#cryptic] The walls of that house remember things best left in darkness.
 	Old Lady: But the dead... they do not forget.
-	=> main_menu
-
-~ dark_history
-
-Old Lady: [#grave] The girl was born from that... union. If you can call it such.
-Old Lady: Mestiza, they called her. Beautiful, like her mother. Cursed, some whispered.
-
-if GameState.HOUSE_has_read_clue
-	Old Lady: [#knowing] You've seen the signs, haven't you? In that house?
-	Old Lady: Ancient script. Ala-ala. Memory.
-	- The shirt? => about_shirt
-	- The bullet? => about_bullet  
-	- The vase? => about_vase
-	- Tell me everything => explain_all_items
-else
-	Old Lady: [#mysterious] If you look closely in that bahay, you will see the story written.
-	Old Lady: Written in the old way. In Baybayin. The script our elders used before the Kastila came.
 	=> main_menu
 
 ~ why_stay_close
@@ -148,7 +126,6 @@ if GameState.HOUSE_has_read_clue
 	Old Lady: Ala-ala. Memory. Written in Baybayin, the old script.
 	Old Lady: Each choice, each item... it tells her story. Her family's story.
 	- Tell me about the items => about_puzzle_items
-	- I need to understand better => explain_all_items
 	- I think I understand => main_menu
 else
 	Old Lady: [#cryptic] In that house, she left clues. A path to walk.
@@ -173,7 +150,7 @@ else
 
 Old Lady: [#explaining] Spirits linger when they are bound by confusion, by pain, by stories untold.
 Old Lady: That child carries the weight of colonization in her very blood.
-Old Lady: Born of force, raised in shame, died in sickness brought by foreign ships.
+Old Lady: Born not from love, raised in shame, died by our own kind.
 
 - Can she be freed? => can_help_ghost
 - That's so sad => main_menu
@@ -249,86 +226,44 @@ else
 
 
 Old Lady: [#teaching] Ah, you've seen them. The markers of her story.
-Old Lady: That child was clever, even in death. She left a path.
+Old Lady: That child's mother was clever, even in death. She left a path.
 Old Lady: And she marked it in Baybayin - ᜀᜎᜀᜎ - ala-ala. Memory.
-
-if GameState.HOUSE_finished_puzzle
-	Old Lady: [#approving] And you walked it. You understood her memory.
-	=> explain_all_items
-if GameState.HOUSE_read_first_item_puzzle
-	Old Lady: [#guiding] Oh I vividly remember some memories of my daughter.
-	- Tell me about all of her => explain_all_items
 
 ~ about_shirt
 
-Old Lady: [#solemn] The baro. Small, worn. American cloth.
-Old Lady: The Amerikano soldiers brought their textiles. Gave them to the women they... favored.
-Old Lady: That child's nanay was given such cloth. Made into baro for the baby born of shame.
-
+Old Lady: [#solemn] Ah I remember those, times. A first uncommon gift we would receive at the time.
+Old Lady: [#solemn] She did not have a choice on rejecting this gift, as that mother would have to do hardest of things to survive.
+Old Lady: [#solemn] To love a man, she did not.
+		
 if GameState.HOUSE_finished_puzzle
 	Old Lady: [#knowing] You chose that path first. The beginning. Her birth.
 	Old Lady: Good. Memory must start from the beginning.
 	=> main_menu
-else
-	Old Lady: [#cryptic] Birth from violence leaves a mark, anak. The first memory is always the hardest.
-	=> about_puzzle_items
 
 ~ about_bullet
-
-Old Lady: [#heavy] The bala. American-made. From the Krag rifles they carried.
-Old Lady: When our people resisted, when they fought back against the occupation...
-Old Lady: Those bullets were the answer. They killed thousands of us.
+Old Lady: After the war started to die down, it was luckily at this time her daughter was born
+Old lady: Still scattered debris would also be lying around nearby.
+Old Lady: [#heavy] The little child would always collect shiny things around. Sometimes leaving mess on the floor
 
 if GameState.HOUSE_finished_puzzle
-	Old Lady: [#knowing] You chose that path second. The resistance. The struggle of her lolo.
+	Old Lady: [#knowing] You chose that path second. The resistance. The struggle of her mother.
 	Old Lady: Good. Memory must honor those who fought.
 	=> main_menu
-else
-	Old Lady: [#bitter] That child's lolo - her nanay's father - he fought bravely.
-	Old Lady: Before they took him to their fair. Before he died in the cold.
-	Old Lady: His memory is the second path.
-	=> about_puzzle_items
+
 
 ~ about_vase
 
-Old Lady: [#mournful] The plorera with no bulaklak. Empty.
-Old Lady: The child's nanay loved flowers. Gumamela, sampaguita, from the gardens.
-Old Lady: But after the shame, after the whispers began... no more flowers.
+Old Lady: But even the prettiest of moments in the world has its last moments.
+Old Lady: Even if you were to say both they were branching sides of the same tree, they will see themselves as the right side.
+Old Lady: Even after the war, our own kind would mark individuals like them as traitors
+Old Lady: Sigh...Oh how I wish they didn't have to loot most items when they have already slaughtered their own. The only thing that survived wasn't even originally from them
 
 if GameState.HOUSE_finished_puzzle
 	Old Lady: [#knowing] You chose that path last. The end. Her death.
 	Old Lady: Good. Memory must acknowledge the ending.
 	=> main_menu
-else
-	Old Lady: [#sad] The vase sat empty until the day the fever took the child.
-	Old Lady: Then the nanay filled it once, for the funeral. Then emptied it forever.
-	Old Lady: Her death is the final path. The last memory.
-	=> about_puzzle_items
-~ explain_all_items
 
-set GameState.HOUSE_has_asked_about_clues = true
-
-Old Lady: [#teaching] Listen carefully, anak. This is the story written in that house.
-Old Lady: Written in Baybayin. ᜀᜎᜀᜎ. Ala-ala. Memory.
-
-Old Lady: [#solemn] First - the baro. The child's shirt, made from American cloth.
-Old Lady: Her nanay was young, beautiful. An Amerikano soldier took notice.
-Old Lady: What he wanted, he took. As they all did in those days.
-Old Lady: This is the first memory. Birth.
-
-Old Lady: [#heavy] Second - the bala. The bullet from their Krag rifles.
-Old Lady: The child's lolo fought against them. Bravely. Fiercely.
-Old Lady: They captured him. Put him in a cage. Took him to their "World's Fair."
-Old Lady: Displayed him like an animal. He died there, far from home.
-Old Lady: This is the second memory. Resistance.
-
-Old Lady: [#mournful] Third - the plorera. The vase that once held flowers.
-Old Lady: The child's nanay loved beauty. But shame emptied her life of it.
-Old Lady: When the fever took the child, the last flower died.
-Old Lady: This is the final memory. Death.
-
-Old Lady: [#mystical] Three paths. Three memories. Baro, bala, plorera.
-Old Lady: The child's spirit needs someone to walk these paths in order. To remember her story.
+=> main_menu
 
 if GameState.HOUSE_finished_puzzle
 	Old Lady: [#proud] And you did, anak. You followed the ala-ala. You witnessed her memory.

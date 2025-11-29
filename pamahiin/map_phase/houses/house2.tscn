@@ -18,6 +18,7 @@ size = Vector2(17, 9)
 size = Vector2(20, 16.5)
 
 [node name="House2" type="Node2D"]
+top_level = true
 scale = Vector2(4, 4)
 script = ExtResource("1_0c50s")
 
@@ -80,31 +81,36 @@ position = Vector2(265.25, 293)
 item = ExtResource("9_33jfp")
 isInspectable = true
 
-[node name="TreeGroup" type="Node" parent="."]
-
-[node name="HouseTrees3" parent="TreeGroup" instance=ExtResource("8_33jfp")]
-position = Vector2(271, 1188)
+[node name="HouseTrees3" parent="." instance=ExtResource("8_33jfp")]
+position = Vector2(67.75, 297)
+scale = Vector2(0.25, 0.25)
 region_rect = Rect2(136, 336, 192, 136)
 
-[node name="HouseTrees4" type="Sprite2D" parent="TreeGroup"]
+[node name="HouseTrees4" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(206, 366)
+position = Vector2(51.5, 91.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_ypj35")
 
-[node name="HouseTrees5" type="Sprite2D" parent="TreeGroup"]
+[node name="HouseTrees5" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(1582, 457)
+position = Vector2(395.5, 114.25)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_sjeli")
 
-[node name="HouseTrees2" type="Sprite2D" parent="TreeGroup"]
+[node name="HouseTrees2" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(702, 1928)
+position = Vector2(175.5, 482)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_sjeli")
 
-[node name="HouseTrees1" type="Sprite2D" parent="TreeGroup"]
+[node name="HouseTrees1" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(1740.5, 1077)
+position = Vector2(435.125, 269.25)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_ypj35")
+
+[node name="TreeGroup" type="Node" parent="."]
 
 [connection signal="body_entered" from="Area2D-SoundTrigger" to="." method="_on_area_2d_sound_trigger_body_entered"]
 [connection signal="body_exited" from="Area2D-SoundTrigger" to="." method="_on_area_2d_sound_trigger_body_exited"]

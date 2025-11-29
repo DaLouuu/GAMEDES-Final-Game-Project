@@ -1,6 +1,7 @@
 extends Node
 # name under Globals: EnumsRef
 
+enum LOCAL_FROM_TYPE {H1, H2}
 
 enum SceneLoadState {
 	VISIBLE, # All data and memory present

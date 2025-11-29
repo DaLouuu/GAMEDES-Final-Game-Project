@@ -516,19 +516,6 @@ layer_4/tile_data = PackedInt32Array(1245221, 7, 0, 1310757, 7, 1, 1245222, 6554
 
 [node name="Puzzle" type="Node" parent="."]
 
-[node name="ItemTemplate-Shirt" parent="Puzzle" instance=ExtResource("5_ytjdw")]
-position = Vector2(532, 733)
-item = ExtResource("12_2c65w")
-isInspectable = true
-collision_scale = 3.0
-
-[node name="ItemTemplate-Bullets" parent="Puzzle" instance=ExtResource("5_ytjdw")]
-position = Vector2(809, 592)
-scale = Vector2(0.8, 0.8)
-item = ExtResource("13_gfj05")
-isInspectable = true
-collision_scale = 3.0
-
 [node name="ItemTemplate-Vase" parent="Puzzle" instance=ExtResource("5_ytjdw")]
 position = Vector2(835, 781)
 item = ExtResource("14_14f3u")

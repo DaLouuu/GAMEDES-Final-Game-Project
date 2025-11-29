@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://coemh8xcwabvy"]
+[gd_scene load_steps=14 format=4 uid="uid://coemh8xcwabvy"]
 
 [ext_resource type="Script" uid="uid://dqqaflb3k8s0u" path="res://map_phase/houses/house_2_room.gd" id="1_ws1gk"]
 [ext_resource type="TileSet" uid="uid://xgb1kfo8b417" path="res://map_phase/houses/house2_full_asset_tileset.tres" id="2_ws1gk"]
@@ -21,6 +21,9 @@ shader_parameter/saturation = 1.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6u4xy"]
 shader = ExtResource("6_4473s")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws1gk"]
+size = Vector2(33.333344, 18.333336)
 
 [node name="House2Room" type="Node2D"]
 scale = Vector2(3, 3)
@@ -95,6 +98,14 @@ mesh = ExtResource("7_sfsx6")
 
 [node name="Lantern" parent="." instance=ExtResource("8_j5k75")]
 position = Vector2(93, 84.33333)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(253.33334, 31.333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.83333397)
+shape = SubResource("RectangleShape2D_ws1gk")
+debug_color = Color(0.6428652, 0.5153701, 0.26751333, 0.41960785)
 
 [connection signal="body_entered" from="Area2D-ToRoom" to="." method="_on_area_2d_to_room_body_entered"]
 [connection signal="body_entered" from="Area2D-BackToWorld" to="." method="_on_area_2d_back_to_world_body_entered"]

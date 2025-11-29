@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dnr4tntj5e2rt"
+path="res://.godot/imported/player_enter_puzzle.dialogue-4d4a0de67586513d823f905c2c440ed3.tres"
+
+[deps]
+
+source_file="res://dialogue/house_dialogues/player_enter_puzzle.dialogue"
+dest_files=["res://.godot/imported/player_enter_puzzle.dialogue-4d4a0de67586513d823f905c2c440ed3.tres"]
+
+[params]
+
+defaults=true

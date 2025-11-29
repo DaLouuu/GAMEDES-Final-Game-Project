@@ -1,5 +1,5 @@
 extends Node2D
-
+@export var backFromPosition: Vector2 = Vector2(194.25, 297.0)
 @onready var houseDoor : Sprite2D  = $HouseParts/House2Door
 
 func goto_coming_out_from_spawn() -> void:

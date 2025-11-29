@@ -1,6 +1,10 @@
+class_name House1
 extends Node2D
+@export var backFromPosition = Vector2(249, 334)
 @onready var backFrom : Marker2D = $"Marker2D-OutFromP"
-@onready var houseDoor:Sprite2D = $HouseParts/House1Door
+@onready var houseDoor:Sprite2D = $House1Door
+
+
 var locationType : EnumsRef.LocationType = EnumsRef.LocationType.WORLD
 
 func getLocationType()->EnumsRef.LocationType:
