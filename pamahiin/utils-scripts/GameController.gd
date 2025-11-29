@@ -43,7 +43,8 @@ func _ready() -> void:
 	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
-	change_2d_scene("res://map_phase/houses/house_together.tscn")
+	#change_2d_scene("res://map_phase/houses/house_together.tscn")
+	change_2d_scene("res://map_phase/cave/Cave.tscn")
   # Try to attach GardenState if current scene has one
 	#_find_and_set_garden_state()
 
@@ -114,13 +115,12 @@ func change_2d_scene_check_from(new_scene: String, startFuncs = false, isComingO
 	world_2d.add_child(new_scene_instance)
 	curr_2d_scene = new_scene_instance
 
-	_after_scene_loaded(new_scene_instance)
+	#_after_scene_loaded(new_scene_instance)
 
 	# --- PLAYER HANDLING ---
 	if player:
 		var spawn_marker = new_scene_instance.get_node_or_null("Marker2D-OutFromP")
-
-
+		if spawn_marker:
 			if new_scene_instance.has_method("start_funcs") and startFuncs:
 				new_scene_instance.start_funcs()
 			player.global_position = spawn_marker.global_position
@@ -158,7 +158,7 @@ func change_2d_scene(new_scene: String, load_state: EnumsRef.SceneLoadState = En
 	world_2d.add_child(new_scene_instance)
 	curr_2d_scene = new_scene_instance
 
-	_after_scene_loaded(new_scene_instance)
+	#_after_scene_loaded(new_scene_instance)
 
 	# --- PLAYER HANDLING ---
 	if player:

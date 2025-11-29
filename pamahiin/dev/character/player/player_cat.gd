@@ -27,7 +27,7 @@ var footsteps_Sound : AudioStream
 	"carpet": preload("uid://bryk4kumpuid"),
 	"grass": preload("uid://dqwal04bj3dqk"),
 	"stone": preload("uid://deyrlfjtlv8c3"),
-	"tile": preload("uid://cccmwejegywa6")
+	"tile": preload("uid://cccmwejegywa6"),
 	"bone": preload("uid://cfueffcslv628")
 }
 @export var tile_maps: Node
