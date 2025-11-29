@@ -4,7 +4,18 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasLayer/StartDelay.timeout.connect(_on_start_delay_timeout)
+	$PlayerCat.is_cutscene_controlled = true
+	$Camera2D.make_current()
+	$AnimationPlayer.play("playground")
+	$AnimationPlayer.animation_finished.connect(_on_animation_finished)
+	#DialogueManager.show_dialogue_balloon(_DIALOGUE_CHURCH)
+	#await DialogueManager.dialogue_ended
+	
+# use only if no dialogue after playing animation
+func _on_animation_finished(anim_name: String):
+	if anim_name == "playground":
+		$PlayerCat.is_cutscene_controlled = false
+		$PlayerCat/Camera2D.make_current()
 	
 
 func _on_start_delay_timeout():

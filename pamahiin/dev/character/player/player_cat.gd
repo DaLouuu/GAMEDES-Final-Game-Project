@@ -27,6 +27,9 @@ var footsteps_Sound : AudioStream
 @export var tile_maps: Node
 
 var is_cutscene_controlled := false
+var cutscene_animation_state := "Idle"
+var cutscene_animation_direction := Vector2.DOWN
+var is_motel_introduction := false
 
 var is_invulnerable: bool = false
 var max_sanity : float = 100.0
@@ -92,10 +95,18 @@ func _ready():
 		print(obj.name)
 		print(obj.get_path())
 		
+func setCutsceneAnimationBehavior(state : String, direction : Vector2):
+	cutscene_animation_state = state
+	cutscene_animation_direction = direction
 
 # Anything moving and colliding is always under the collision
 func _physics_process(delta):
 	if is_cutscene_controlled:
+		print("DEBUG")
+		if is_motel_introduction:
+			print("DEBUG")
+			update_animation_parameters(cutscene_animation_direction)
+			state_machine.travel(cutscene_animation_state)
 		return
 	
 	# Smart logic cancelling inputs of both directional keys

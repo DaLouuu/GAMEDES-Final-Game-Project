@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dc8vmwm663ygj"
+path="res://.godot/imported/toilet_interact.dialogue-0d5253878d8fbd9e30f609744fa7ac95.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/toilet_interact.dialogue"
+dest_files=["res://.godot/imported/toilet_interact.dialogue-0d5253878d8fbd9e30f609744fa7ac95.tres"]
+
+[params]
+
+defaults=true

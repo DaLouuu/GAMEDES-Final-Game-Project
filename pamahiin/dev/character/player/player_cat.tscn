@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://36gcbqnboa6a" path="res://dev/character/player/Character_Spritesheet_Walking.png" id="3_5cym0"]
 [ext_resource type="Script" uid="uid://b6o4m7pjfqf0g" path="res://dev/character/player/interaction_component.gd" id="3_hhb2n"]
 [ext_resource type="PackedScene" uid="uid://dfit58o77nitj" path="res://dev/character/player/interaction_component_ui.tscn" id="4_gx6m4"]
-[ext_resource type="Script" path="res://dev/character/player/player_animation_tree.gd" id="5_5cym0"]
+[ext_resource type="Script" uid="uid://k3s344uqwqnq" path="res://dev/character/player/player_animation_tree.gd" id="5_5cym0"]
 [ext_resource type="Script" uid="uid://dglu3aa55phcp" path="res://dev/character/player/components/HitEffectManager.gd" id="5_ipawb"]
 [ext_resource type="Script" uid="uid://dfextwrggf02y" path="res://dev/camera_effects/camera_effect_manager.gd" id="6_1f8vj"]
 [ext_resource type="PackedScene" uid="uid://bsgk4iyfgu77y" path="res://dev/character/sanity_component/sanity_ui_component.tscn" id="7_6merf"]
@@ -416,8 +416,8 @@ libraries = {
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_qwdhh")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(0.14393938, 0.10476196)
-parameters/Walk/blend_position = Vector2(-0.29522026, 0.1748879)
+parameters/Idle/blend_position = Vector2(-0.2641815, 0.20224214)
+parameters/Walk/blend_position = Vector2(-0.20870423, 0.1748879)
 script = ExtResource("5_5cym0")
 
 [node name="InteractionComponentUI" parent="." instance=ExtResource("4_gx6m4")]
@@ -463,8 +463,6 @@ anchor_left = 1.0
 anchor_top = 1.0
 offset_left = -673.0
 offset_top = -15.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 

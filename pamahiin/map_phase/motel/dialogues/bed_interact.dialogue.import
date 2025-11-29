@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://f8a6gu5adgco"
+path="res://.godot/imported/bed_interact.dialogue-da8041956d3862b7e252d9979fe147a0.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/bed_interact.dialogue"
+dest_files=["res://.godot/imported/bed_interact.dialogue-da8041956d3862b7e252d9979fe147a0.tres"]
+
+[params]
+
+defaults=true

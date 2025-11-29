@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dvcb3xt1rvlto"
+path="res://.godot/imported/bathtub_interact.dialogue-01cc89ea3a0a3d93522b46ba018c2a61.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/bathtub_interact.dialogue"
+dest_files=["res://.godot/imported/bathtub_interact.dialogue-01cc89ea3a0a3d93522b46ba018c2a61.tres"]
+
+[params]
+
+defaults=true

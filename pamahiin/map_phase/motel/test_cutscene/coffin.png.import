@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d35ce66ncln1u"
-path="res://.godot/imported/coffin.png-f1cfa74acfba053753c63b9d0f686ad1.ctex"
+path="res://.godot/imported/coffin.png-34cabe55e8cb395e0ced0b75d6451905.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map_phase/motel/church_cutscene/coffin.png"
-dest_files=["res://.godot/imported/coffin.png-f1cfa74acfba053753c63b9d0f686ad1.ctex"]
+source_file="res://map_phase/motel/test_cutscene/coffin.png"
+dest_files=["res://.godot/imported/coffin.png-34cabe55e8cb395e0ced0b75d6451905.ctex"]
 
 [params]
 

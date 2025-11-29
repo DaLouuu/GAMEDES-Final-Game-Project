@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://bev6rvoc16yms"]
+[gd_scene load_steps=69 format=4 uid="uid://bev6rvoc16yms"]
 
 [ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="1_34l4x"]
 [ext_resource type="Script" uid="uid://cutmlrc6ks8pe" path="res://map_phase/motel/motel_prototype_script.gd" id="1_rwiny"]
@@ -6,18 +6,198 @@
 [ext_resource type="Texture2D" uid="uid://delicqoh2qe2x" path="res://map_phase/motel/assets/floor/mid_floor_motel.png" id="2_umaxr"]
 [ext_resource type="Texture2D" uid="uid://dnls5k4gmvtwv" path="res://map_phase/motel/assets/floor/side_floor_motel.png" id="3_34l4x"]
 [ext_resource type="Texture2D" uid="uid://dwruwiifk3tcw" path="res://map_phase/motel/assets/wall/bot_wall_motel.png" id="4_pge43"]
+[ext_resource type="Texture2D" uid="uid://ypi5u0ibh7oe" path="res://map_phase/motel/assets/bathroom/bathroom floor/bathroom floor.png" id="5_8fqaf"]
 [ext_resource type="Texture2D" uid="uid://b7co47h8pfvjm" path="res://map_phase/motel/assets/wall/corner_wall_motel.png" id="5_rwiny"]
 [ext_resource type="Texture2D" uid="uid://sq34ttiem8ws" path="res://map_phase/motel/assets/wall/side_wall_motel.png" id="6_xtdm5"]
 [ext_resource type="Texture2D" uid="uid://hmw5ob64n3mt" path="res://map_phase/motel/assets/wall/top_wall_motel.png" id="7_6wl64"]
 [ext_resource type="Texture2D" uid="uid://beqduqds3xpcb" path="res://map_phase/motel/assets/wall/side_wall_motelspecial.png" id="8_pge43"]
 [ext_resource type="Texture2D" uid="uid://bivflasghkhs3" path="res://map_phase/motel/assets/bed/bed_motel.png" id="8_umaxr"]
 [ext_resource type="Texture2D" uid="uid://bi0s1w4qb7ooc" path="res://map_phase/motel/assets/furniture/bed cabinet.png" id="11_dmw8e"]
+[ext_resource type="Texture2D" uid="uid://dyv7n4lsl180n" path="res://map_phase/motel/assets/bathroom/bathroom walls/bot bathroom wall.png" id="11_xbr43"]
 [ext_resource type="Texture2D" uid="uid://ca61b052w4ehn" path="res://map_phase/motel/assets/furniture/closet side profile.png" id="12_hpbim"]
+[ext_resource type="Texture2D" uid="uid://muxgks38lp34" path="res://map_phase/motel/assets/bathroom/bathroom walls/top bathroom wall.png" id="12_mk1ck"]
+[ext_resource type="Texture2D" uid="uid://bmq2em0fgmrt8" path="res://map_phase/motel/assets/bed/bed_blanket_layer.png" id="12_v4fx0"]
 [ext_resource type="PackedScene" uid="uid://8fegnh450g03" path="res://dev/resource_scripts/inventory/items/lantern.tscn" id="12_xtdm5"]
+[ext_resource type="Script" uid="uid://d0ie1ff8rd06e" path="res://map_phase/motel/bed.gd" id="14_6puld"]
 [ext_resource type="Texture2D" uid="uid://bgopf302m88ji" path="res://map_phase/motel/assets/bathroom/bath tub.png" id="15_qn1lx"]
 [ext_resource type="Texture2D" uid="uid://cndvvsvf3vlmf" path="res://map_phase/motel/assets/bathroom/bathroom mirror.png" id="16_v4fx0"]
+[ext_resource type="Texture2D" uid="uid://b8djh0n7gdhik" path="res://map_phase/motel/assets/bed/bottom_frame_layer.png" id="17_pt38b"]
 [ext_resource type="Texture2D" uid="uid://br8teqe3k7kq4" path="res://map_phase/motel/assets/bathroom/sink.png" id="17_vspby"]
 [ext_resource type="Texture2D" uid="uid://cqba1xyjb0wxj" path="res://map_phase/motel/assets/bathroom/toilet.png" id="18_ob2wa"]
+[ext_resource type="Script" uid="uid://uygjoa3ym2oh" path="res://map_phase/motel/closet.gd" id="19_mk1ck"]
+[ext_resource type="Script" uid="uid://dkoqpm78eqlt" path="res://map_phase/motel/bathtub.gd" id="20_mk1ck"]
+[ext_resource type="Texture2D" uid="uid://wdyvyvo5p4xa" path="res://map_phase/garden/Fences & Door/Garden_Door.png" id="20_vspby"]
+[ext_resource type="Script" uid="uid://x2cdtqtj1ykk" path="res://map_phase/motel/sink.gd" id="23_y8ovt"]
+[ext_resource type="Script" uid="uid://dhhkbnrucbawc" path="res://map_phase/motel/toilet.gd" id="25_lilbk"]
+
+[sub_resource type="Animation" id="Animation_v4fx0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-217, 106)]
+}
+
+[sub_resource type="Animation" id="Animation_qn1lx"]
+resource_name = "motel_introduction_part1"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-217, 106), Vector2(125, 106), Vector2(125, -175)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": ["Idle", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vspby"]
+resource_name = "motel_introduction_part2"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3.5, 4.5, 4.6, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(125, -175), Vector2(110, -175), Vector2(110, 100), Vector2(-70, 100), Vector2(-70, -100), Vector2(-68, -100), Vector2(-68, -205)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3.5, 4.5, 4.6, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": ["Walk", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ob2wa"]
+resource_name = "motel_introduction_part3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(242, -210)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Idle", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pt38b"]
+resource_name = "motel_introduction_cutscene_release"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(172, -169)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Idle", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vspby"]
+_data = {
+&"RESET": SubResource("Animation_v4fx0"),
+&"motel_introduction_cutscene_release": SubResource("Animation_pt38b"),
+&"motel_introduction_part1": SubResource("Animation_qn1lx"),
+&"motel_introduction_part2": SubResource("Animation_vspby"),
+&"motel_introduction_part3": SubResource("Animation_ob2wa")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmw8e"]
 texture = ExtResource("1_yboj4")
@@ -31,10 +211,15 @@ texture = ExtResource("2_umaxr")
 texture = ExtResource("3_34l4x")
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y8ovt"]
+texture = ExtResource("5_8fqaf")
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_thkev"]
 sources/0 = SubResource("TileSetAtlasSource_dmw8e")
 sources/1 = SubResource("TileSetAtlasSource_hpbim")
 sources/2 = SubResource("TileSetAtlasSource_ed33o")
+sources/3 = SubResource("TileSetAtlasSource_y8ovt")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qn1lx"]
 texture = ExtResource("4_pge43")
@@ -59,12 +244,22 @@ texture = ExtResource("7_6wl64")
 texture = ExtResource("8_pge43")
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lilbk"]
+texture = ExtResource("11_xbr43")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6puld"]
+texture = ExtResource("12_mk1ck")
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_vy0li"]
 sources/0 = SubResource("TileSetAtlasSource_qn1lx")
 sources/1 = SubResource("TileSetAtlasSource_v4fx0")
 sources/2 = SubResource("TileSetAtlasSource_vspby")
 sources/3 = SubResource("TileSetAtlasSource_ob2wa")
 sources/5 = SubResource("TileSetAtlasSource_rwiny")
+sources/6 = SubResource("TileSetAtlasSource_lilbk")
+sources/7 = SubResource("TileSetAtlasSource_6puld")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vy0li"]
 texture = ExtResource("6_xtdm5")
@@ -78,15 +273,25 @@ texture = ExtResource("7_6wl64")
 texture = ExtResource("4_pge43")
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fqaf"]
+texture = ExtResource("11_xbr43")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbr43"]
+texture = ExtResource("12_mk1ck")
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_6wl64"]
 sources/1 = SubResource("TileSetAtlasSource_pge43")
 sources/2 = SubResource("TileSetAtlasSource_xtdm5")
 sources/0 = SubResource("TileSetAtlasSource_vy0li")
+sources/3 = SubResource("TileSetAtlasSource_8fqaf")
+sources/4 = SubResource("TileSetAtlasSource_xbr43")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_34l4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34l4x"]
-size = Vector2(19.666668, 35.000004)
+size = Vector2(19.666668, 19.2381)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wl64"]
 size = Vector2(60.66667, 95.99999)
@@ -94,47 +299,69 @@ size = Vector2(60.66667, 95.99999)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thkev"]
 size = Vector2(13.333332, 45.333332)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8ovt"]
+size = Vector2(21.71429, 30.285717)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vy0li"]
 size = Vector2(38.66667, 15.999998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lilbk"]
+size = Vector2(42.666664, 23.666668)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fqaf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xbr43"]
 size = Vector2(20, 15.599998)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6puld"]
+size = Vector2(21.2, 24.399994)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk1ck"]
 size = Vector2(22.666658, 16.666668)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt38b"]
+size = Vector2(26.666664, 24.333338)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4fx0"]
+size = Vector2(30, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vspby"]
+size = Vector2(39, 105)
+
 [node name="MotelPrototype" type="Node2D"]
 script = ExtResource("1_rwiny")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vspby")
+}
 
 [node name="MapLayer" type="Node" parent="."]
 
 [node name="FloorLayer" type="TileMapLayer" parent="MapLayer"]
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAD//wAAAQAAAAAAAAAAAAAAAgAAAAAAAAAAAP//AgAAAAAAAAD/////AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAABAAAAAQAAAAAAAAABAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAADD+//7/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAABAP3/AQAAAAAAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAAAAP3/AgAAAAAAAAD///3/AgAAAAAAADD+//3/AQAAAAAAAAD9//3/AQAAAAAAAAD8//3/AQAAAAAAAAD8////AQAAAAAAAAD8/wAAAQAAAAAAAAADAPz/AQAAAAAAAAACAPz/AQAAAAAAAAABAPz/AQAAAAAAAAAAAPz/AgAAAAAAAAD///z/AgAAAAAAADD+//z/AQAAAAAAAAD9//z/AQAAAAAAAAD8//z/AQAAAAAAAAD7//z/AgAAAAAAAAD7//3/AgAAAAAAAAD7//7/AgAAAAAAAAD7////AgAAAAAAAAD7/wAAAQAAAAAAAAADAAAAAQAAAAAAAAADAP//AQAAAAAAAAADAP7/AQAAAAAAAAADAP3/AQAAAAAAAAD7//v/AAAAAAAAAAD8//v/AgAAAAAAAFD9//v/AgAAAAAAAFD+//v/AgAAAAAAAFD///v/AAAAAAAAAFAAAPv/AAAAAAAAAAABAPv/AgAAAAAAAFACAPv/AgAAAAAAAFADAPv/AgAAAAAAAFAEAPv/AgAAAAAAAFAEAPz/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAEAAAAAQAAAAAAAAD7/wEAAAAAAAAAAAAEAAEAAQAAAAAAAAD8/wEAAgAAAAAAAFD9/wEAAgAAAAAAAFD+/wEAAQAAAAAAAAD//wEAAgAAAAAAAFAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAD7/wIAAQAAAAAAAAD7/wMAAAAAAAAAAGD8/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAMAAgAAAAAAAGD8/wMAAgAAAAAAAGD9/wMAAgAAAAAAAGD+/wMAAgAAAAAAAGD//wMAAgAAAAAAAGAAAAMAAgAAAAAAAGABAAMAAgAAAAAAAGACAAMAAgAAAAAAAGADAAMAAgAAAAAAAGABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAFAAMAAAAAAAAAADAFAPv/AAAAAAAAAFAFAAIAAgAAAAAAADAFAAEAAgAAAAAAADAFAAAAAgAAAAAAADAFAP//AgAAAAAAADAFAP7/AgAAAAAAADAFAP3/AgAAAAAAADAFAPz/AgAAAAAAADD9//7/AQAAAAAAAAD8//7/AQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD//wAAAwAAAAAAAAAAAAAAAgAAAAAAAAAAAP//AgAAAAAAAAD/////AwAAAAAAAAD+////AwAAAAAAAAD+/wAAAwAAAAAAAAABAAAAAQAAAAAAAAABAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP7/AgAAAAAAAAD///7/AwAAAAAAAAD+//7/AwAAAAAAAAD9////AwAAAAAAAAD9/wAAAwAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAABAP3/AQAAAAAAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAAAAP3/AgAAAAAAAAD///3/AwAAAAAAAAD+//3/AwAAAAAAAAD9//3/AwAAAAAAAAD8//3/AwAAAAAAAAD8////AwAAAAAAAAD8/wAAAwAAAAAAAAADAPz/AQAAAAAAAAACAPz/AQAAAAAAAAABAPz/AQAAAAAAAAAAAPz/AgAAAAAAAAD///z/AwAAAAAAAAD+//z/AwAAAAAAAAD9//z/AwAAAAAAAAD8//z/AwAAAAAAAAD7//z/AwAAAAAAAAD7//3/AwAAAAAAAAD7//7/AwAAAAAAAAD7////AwAAAAAAAAD7/wAAAwAAAAAAAAADAAAAAQAAAAAAAAADAP//AQAAAAAAAAADAP7/AQAAAAAAAAADAP3/AQAAAAAAAAD7//v/AwAAAAAAAAD8//v/AwAAAAAAAAD9//v/AwAAAAAAAAD+//v/AwAAAAAAAAD///v/AwAAAAAAAAAAAPv/AAAAAAAAAAABAPv/AgAAAAAAAFACAPv/AgAAAAAAAFADAPv/AgAAAAAAAFAEAPv/AgAAAAAAAFAEAPz/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAEAAAAAQAAAAAAAAD7/wEAAAAAAAAAAAAEAAEAAQAAAAAAAAD8/wEAAgAAAAAAAFD9/wEAAgAAAAAAAFD+/wEAAQAAAAAAAAD//wEAAgAAAAAAAFAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAD7/wIAAQAAAAAAAAD7/wMAAAAAAAAAAGD8/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAMAAgAAAAAAAGD8/wMAAgAAAAAAAGD9/wMAAgAAAAAAAGD+/wMAAgAAAAAAAGD//wMAAgAAAAAAAGAAAAMAAgAAAAAAAGABAAMAAgAAAAAAAGACAAMAAgAAAAAAAGADAAMAAgAAAAAAAGABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAFAAMAAAAAAAAAADAFAPv/AAAAAAAAAFAFAAIAAgAAAAAAADAFAAEAAgAAAAAAADAFAAAAAgAAAAAAADAFAP//AgAAAAAAADAFAP7/AgAAAAAAADAFAP3/AgAAAAAAADAFAPz/AgAAAAAAADD9//7/AwAAAAAAAAD8//7/AwAAAAAAAAA=")
 tile_set = SubResource("TileSet_thkev")
-metadata/_edit_lock_ = true
 
 [node name="WallLayer" type="TileMapLayer" parent="MapLayer"]
 z_index = 2
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAD7//r/AAAAAAAAAAD8//r/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AgAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAADAPr/AAAAAAAAAAAEAPr/AAAAAAAAAAD7//n/AAAAAAAAADD7//j/AgAAAAAAAFAEAPn/AAAAAAAAADAEAPj/AgAAAAAAAFD8//n/AAAAAAAAADD8//j/AgAAAAAAAFADAPn/AAAAAAAAADADAPj/AgAAAAAAAFD6/wEAAgAAAAAAAAD6/wAAAgAAAAAAAAD6////AgAAAAAAAAD6//7/AgAAAAAAAAD6//3/AgAAAAAAAAD6//z/AgAAAAAAAAD6//v/AgAAAAAAAAD6//r/AgAAAAAAAAD9//n/AAAAAAAAADD+//n/AAAAAAAAADD///n/AgAAAAAAAAAAAPn/AwAAAAAAAGABAPn/AAAAAAAAADACAPn/AAAAAAAAADD6//n/AgAAAAAAAAD9//j/AgAAAAAAAFD+//j/AgAAAAAAAFD///j/AgAAAAAAAFAAAPj/AgAAAAAAAFABAPj/AgAAAAAAAFACAPj/AgAAAAAAAFD6//j/AQAAAAAAAFAFAPj/AgAAAAAAAFD9////AwAAAAAAAAD/////AwAAAAAAAAD8////AwAAAAAAAAD7////AwAAAAAAAAD///7/AgAAAAAAAAD///3/AgAAAAAAAAD///z/AgAAAAAAAAD///v/AgAAAAAAAAD6/wIAAgAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAEAAQAAgAAAAAAAGADAAQAAgAAAAAAAGACAAQAAgAAAAAAAGABAAQAAgAAAAAAAGAAAAQAAgAAAAAAAGD//wQAAgAAAAAAAGD+/wQAAgAAAAAAAGD9/wQAAgAAAAAAAGD8/wQAAgAAAAAAAGD7/wQAAgAAAAAAAGD6/wMAAgAAAAAAAAD6/wQAAQAAAAAAAAAFAAQAAgAAAAAAAGAAAP7/AgAAAAAAADAAAP3/AgAAAAAAADAAAPz/AgAAAAAAADAAAPv/AgAAAAAAADAAAP//BQAAAAAAADAAAAAABQAAAAAAADAGAPn/AgAAAAAAADAGAPr/AgAAAAAAADAGAPv/AgAAAAAAADAGAPz/AgAAAAAAADAGAP3/AgAAAAAAADAGAP7/AgAAAAAAADAGAP//AgAAAAAAADAGAAAAAgAAAAAAADAGAAEAAgAAAAAAADAGAAIAAgAAAAAAADAGAAMAAgAAAAAAADAGAAQAAQAAAAAAAGAGAPj/AQAAAAAAADAFAPr/AAAAAAAAAAAFAPn/AAAAAAAAADA=")
+tile_map_data = PackedByteArray("AAD7//r/BgAAAAAAAAD8//r/BgAAAAAAAAD9//r/BgAAAAAAAAD+//r/BgAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAADAPr/AAAAAAAAAAAEAPr/AAAAAAAAAAD7//n/BgAAAAAAAAD7//j/AgAAAAAAAFAEAPn/AAAAAAAAADAEAPj/AgAAAAAAAFD8//n/BgAAAAAAAAD8//j/AgAAAAAAAFADAPn/AAAAAAAAADADAPj/AgAAAAAAAFD6/wEAAgAAAAAAAAD6/wAAAgAAAAAAAAD6////AgAAAAAAAAD6//7/AgAAAAAAAAD6//3/AgAAAAAAAAD6//z/AgAAAAAAAAD6//v/AgAAAAAAAAD6//r/AgAAAAAAAAD9//n/BgAAAAAAAAD+//n/BgAAAAAAAAAAAPn/AwAAAAAAAGABAPn/AAAAAAAAADACAPn/AAAAAAAAADD6//n/AgAAAAAAAAD9//j/AgAAAAAAAFD+//j/AgAAAAAAAFD///j/AgAAAAAAAFAAAPj/AgAAAAAAAFABAPj/AgAAAAAAAFACAPj/AgAAAAAAAFD6//j/AQAAAAAAAFAFAPj/AgAAAAAAAFD9////AwAAAAAAAAD/////AwAAAAAAAAD8////AwAAAAAAAAD7////AwAAAAAAAAD///7/AgAAAAAAAAD///3/AgAAAAAAAAD///z/AgAAAAAAAAD///v/AgAAAAAAAAD6/wIAAgAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAEAAQAAgAAAAAAAGADAAQAAgAAAAAAAGACAAQAAgAAAAAAAGABAAQAAgAAAAAAAGAAAAQAAgAAAAAAAGD//wQAAgAAAAAAAGD+/wQAAgAAAAAAAGD9/wQAAgAAAAAAAGD8/wQAAgAAAAAAAGD7/wQAAgAAAAAAAGD6/wMAAgAAAAAAAAD6/wQAAQAAAAAAAAAFAAQAAgAAAAAAAGAAAP7/AgAAAAAAADAAAP3/AgAAAAAAADAAAPz/AgAAAAAAADAAAPv/AgAAAAAAADAAAP//BQAAAAAAADAAAAAABQAAAAAAADAGAPn/AgAAAAAAADAGAPr/AgAAAAAAADAGAPv/AgAAAAAAADAGAPz/AgAAAAAAADAGAP3/AgAAAAAAADAGAP7/AgAAAAAAADAGAP//AgAAAAAAADAGAAAAAgAAAAAAADAGAAEAAgAAAAAAADAGAAIAAgAAAAAAADAGAAMAAgAAAAAAADAGAAQAAQAAAAAAAGAGAPj/AQAAAAAAADAFAPr/AAAAAAAAAAAFAPn/AAAAAAAAADA=")
 tile_set = SubResource("TileSet_vy0li")
-metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MapLayer"]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapLayer/StaticBody2D"]
 z_index = 5
 position = Vector2(-246, -341)
-polygon = PackedVector2Array(5, 5, 8, 99, 219, 100, 218, 282, 187, 284, 187, 385, 276, 386, 278, 80, 524, 74, 524, 522, 18, 524, 17, 387, 159, 386, 159, 286, 21, 284, 20, -18, -11, -14, -11, 552, 552, 550, 551, -12, 5, -14)
+polygon = PackedVector2Array(5, 5, 8, 99, 219, 100, 218, 285, 195, 285, 194, 386, 276, 386, 278, 80, 524, 74, 524, 522, 18, 524, 17, 387, 154, 387, 153, 284, 21, 284, 20, -18, -11, -14, -11, 552, 552, 550, 551, -12, 5, -14)
 
 [node name="3DLayer" type="TileMapLayer" parent="MapLayer"]
 z_index = 1
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAD///r/AgAAAAAAAAAAAPr/AAAAAAAAADAAAPn/AgAAAAAAADD///n/AgAAAAAAADA=")
+tile_map_data = PackedByteArray("AAAAAPr/AAAAAAAAADAAAPn/AgAAAAAAADA=")
 tile_set = SubResource("TileSet_6wl64")
 metadata/_edit_lock_ = true
 
@@ -148,43 +375,56 @@ metadata/_edit_lock_ = true
 [node name="5DLayer" type="TileMapLayer" parent="MapLayer"]
 z_index = 4
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAAAAPr/AAAAAAAAADAAAPn/AAAAAAAAADA=")
+tile_map_data = PackedByteArray("AAAAAPr/AAAAAAAAADAAAPn/AAAAAAAAADD///n/BAAAAAAAAFD///r/BAAAAAAAAFA=")
 tile_set = SubResource("TileSet_6wl64")
 metadata/_edit_lock_ = true
 
 [node name="PlayerCat" parent="." instance=ExtResource("1_34l4x")]
 z_index = 6
 position = Vector2(-217, 106)
+scale = Vector2(1.5, 1.5)
+
+[node name="Bed" type="StaticBody2D" parent="."]
+z_index = 2
+position = Vector2(244.00002, -216)
+scale = Vector2(1.75, 1.75)
+physics_material_override = SubResource("PhysicsMaterial_34l4x")
+script = ExtResource("14_6puld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
+position = Vector2(0, 19.714287)
+scale = Vector2(2.9999988, 2.9999988)
+shape = SubResource("RectangleShape2D_34l4x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bed"]
+z_index = 2
+scale = Vector2(3, 3)
+texture = ExtResource("8_umaxr")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bed"]
+z_index = 4
+scale = Vector2(2.9999998, 2.9999998)
+texture = ExtResource("12_v4fx0")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Bed"]
+position = Vector2(0, 13.857157)
+scale = Vector2(2.9999988, 2.2559516)
+texture = ExtResource("17_pt38b")
+
+[node name="BedArea" type="Area2D" parent="Bed"]
+z_index = 1
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="BedProx" type="CollisionShape2D" parent="Bed/BedArea"]
+shape = SubResource("RectangleShape2D_6wl64")
 metadata/_edit_lock_ = true
 
 [node name="Lantern" parent="." instance=ExtResource("12_xtdm5")]
 z_index = 4
 position = Vector2(173, -249)
-
-[node name="Bed" type="StaticBody2D" parent="."]
-z_index = 2
-position = Vector2(244, -215)
-scale = Vector2(1.75, 1.75)
-physics_material_override = SubResource("PhysicsMaterial_34l4x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
-scale = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_34l4x")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Bed"]
-z_index = 1
-scale = Vector2(3, 3)
-texture = ExtResource("8_umaxr")
-metadata/_edit_lock_ = true
-
-[node name="Area2D" type="Area2D" parent="Bed"]
-z_index = 1
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed/Area2D"]
-shape = SubResource("RectangleShape2D_6wl64")
-metadata/_edit_lock_ = true
 
 [node name="Cabinet" type="StaticBody2D" parent="."]
 position = Vector2(173, -233)
@@ -197,12 +437,12 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cabinet"]
 polygon = PackedVector2Array(-11, -11.5, -11, -0.5, -5, -3.5, -0.5, -5, 13, -5, 13, -11.5)
-metadata/_edit_lock_ = true
 
 [node name="Closet" type="StaticBody2D" parent="."]
 z_index = 5
 position = Vector2(76, -229)
 scale = Vector2(3.5, 3.5)
+script = ExtResource("19_mk1ck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Closet"]
 position = Vector2(-6, 0)
@@ -213,10 +453,18 @@ metadata/_edit_lock_ = true
 texture = ExtResource("12_hpbim")
 metadata/_edit_lock_ = true
 
+[node name="ClosetArea" type="Area2D" parent="Closet"]
+
+[node name="ClosetProx" type="CollisionShape2D" parent="Closet/ClosetArea"]
+position = Vector2(-3.1428566, 7.428566)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_y8ovt")
+
 [node name="Bathtub" type="StaticBody2D" parent="."]
 z_index = 3
 position = Vector2(-174, -237.00002)
 scale = Vector2(3, 3)
+script = ExtResource("20_mk1ck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bathtub"]
 position = Vector2(-0.33333588, -1.6666641)
@@ -227,10 +475,16 @@ metadata/_edit_lock_ = true
 texture = ExtResource("15_qn1lx")
 metadata/_edit_lock_ = true
 
+[node name="BathtubArea" type="Area2D" parent="Bathtub"]
+
+[node name="BathtubProx" type="CollisionShape2D" parent="Bathtub/BathtubArea"]
+position = Vector2(1, 1.8333359)
+shape = SubResource("RectangleShape2D_lilbk")
+
 [node name="Bathroom Mirror" type="StaticBody2D" parent="."]
 z_index = 5
-position = Vector2(-66, -294.00003)
-scale = Vector2(2.5, 2.5)
+position = Vector2(-47.000004, -304)
+scale = Vector2(3, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bathroom Mirror"]
 shape = SubResource("RectangleShape2D_8fqaf")
@@ -243,8 +497,9 @@ metadata/_edit_lock_ = true
 
 [node name="Sink" type="StaticBody2D" parent="."]
 z_index = 5
-position = Vector2(-68.00001, -246)
+position = Vector2(-49, -245)
 scale = Vector2(2.5, 2.5)
+script = ExtResource("23_y8ovt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sink"]
 position = Vector2(0, -2.199997)
@@ -256,10 +511,18 @@ metadata/_edit_lock_ = true
 texture = ExtResource("17_vspby")
 metadata/_edit_lock_ = true
 
+[node name="SinkArea" type="Area2D" parent="Sink"]
+
+[node name="SinkProx" type="CollisionShape2D" parent="Sink/SinkArea"]
+position = Vector2(-0.6000004, 2.199997)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_6puld")
+
 [node name="Toilet" type="StaticBody2D" parent="."]
 z_index = 7
 position = Vector2(-210, -103)
 scale = Vector2(3, 3)
+script = ExtResource("25_lilbk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Toilet"]
 position = Vector2(2, 6)
@@ -269,3 +532,27 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Toilet"]
 texture = ExtResource("18_ob2wa")
 metadata/_edit_lock_ = true
+
+[node name="ToiletArea" type="Area2D" parent="Toilet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toilet/ToiletArea"]
+position = Vector2(3.3333282, 5.5000114)
+shape = SubResource("RectangleShape2D_pt38b")
+
+[node name="Bathroom Door" type="StaticBody2D" parent="."]
+z_index = 2
+position = Vector2(-72, -1)
+
+[node name="DoorCollision" type="CollisionShape2D" parent="Bathroom Door"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_v4fx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bathroom Door"]
+scale = Vector2(5, 5)
+texture = ExtResource("20_vspby")
+
+[node name="DoorArea" type="Area2D" parent="Bathroom Door"]
+
+[node name="DoorAreaProx" type="CollisionShape2D" parent="Bathroom Door/DoorArea"]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_vspby")
