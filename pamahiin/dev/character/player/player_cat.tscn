@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://36gcbqnboa6a" path="res://dev/character/player/Character_Spritesheet_Walking.png" id="3_5cym0"]
 [ext_resource type="Script" uid="uid://b6o4m7pjfqf0g" path="res://dev/character/player/interaction_component.gd" id="3_hhb2n"]
 [ext_resource type="PackedScene" uid="uid://dfit58o77nitj" path="res://dev/character/player/interaction_component_ui.tscn" id="4_gx6m4"]
-[ext_resource type="Script" uid="uid://k3s344uqwqnq" path="res://dev/character/player/player_animation_tree.gd" id="5_5cym0"]
+[ext_resource type="Script" path="res://dev/character/player/player_animation_tree.gd" id="5_5cym0"]
 [ext_resource type="Script" uid="uid://dglu3aa55phcp" path="res://dev/character/player/components/HitEffectManager.gd" id="5_ipawb"]
 [ext_resource type="Script" uid="uid://dfextwrggf02y" path="res://dev/camera_effects/camera_effect_manager.gd" id="6_1f8vj"]
 [ext_resource type="PackedScene" uid="uid://bsgk4iyfgu77y" path="res://dev/character/sanity_component/sanity_ui_component.tscn" id="7_6merf"]
@@ -479,9 +479,9 @@ grow_vertical = 0
 polygon = PackedVector2Array(3, -3, 283, -125, 279, 164, 0, 0, 0, 0)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-101, 80)
-scale = Vector2(10.363281, 7.46875)
+scale = Vector2(5, 5)
 enabled = false
+color = Color(1, 0.835, 0.33999997, 1)
 shadow_enabled = true
 shadow_item_cull_mask = 33
 texture = ExtResource("10_04nme")
@@ -493,6 +493,11 @@ player = NodePath("..")
 stream = ExtResource("15_mxnrt")
 volume_db = -7.429
 max_distance = 200.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 8
+simplify_path = true
+simplify_epsilon = 2.0
 
 [connection signal="body_entered" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_entered"]
 [connection signal="body_exited" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_exited"]

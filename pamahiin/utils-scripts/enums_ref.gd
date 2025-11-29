@@ -26,7 +26,8 @@ enum EnemyState {
 }
 enum HitEffectType{
 	HitEffectDamage,
-	HitEffectPoison
+	HitEffectPoison,
+	HitEffectCustom # Controlled by another component
 }
 enum LocationType {
 	MOTEL,

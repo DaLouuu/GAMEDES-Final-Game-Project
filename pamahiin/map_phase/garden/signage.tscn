@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdkqkqf8jc7yt"]
+
+[ext_resource type="Texture2D" uid="uid://4b13tdg87if3" path="res://art/GAMEDES art/Items/Garden_WoodenSign.png" id="1_tgd30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysg5a"]
+size = Vector2(6, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6vh2"]
+size = Vector2(34, 17)
+
+[node name="Signage" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tgd30")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_ysg5a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_x6vh2")
