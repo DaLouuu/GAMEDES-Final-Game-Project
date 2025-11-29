@@ -1,6 +1,6 @@
 extends Node2D
 
-const SLOWED_MOVE_SPEED := 20.0
+const SLOWED_MOVE_SPEED := 30.0
 
 var _initial_move_speed := 0.0
 

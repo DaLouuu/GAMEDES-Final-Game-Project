@@ -13,7 +13,6 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_bsnun")
-disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tljec")
