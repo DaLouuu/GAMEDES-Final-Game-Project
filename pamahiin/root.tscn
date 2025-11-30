@@ -22,12 +22,5 @@ offset_bottom = 40.0
 
 [node name="World2D" type="Node2D" parent="."]
 
-[node name="root" type="Window" parent="."]
-oversampling_override = 1.0
-mode = 3
-title = "Pamahiin"
-position = Vector2i(0, 36)
-size = Vector2i(1280, 720)
-visible = false
-content_scale_mode = 2
-content_scale_factor = 3.0
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+attenuation = 0.0017602553

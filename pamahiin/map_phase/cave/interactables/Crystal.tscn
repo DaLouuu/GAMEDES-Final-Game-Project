@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://byj6caynuunot"]
+
+[ext_resource type="Script" uid="uid://cys07bjd4bu0d" path="res://map_phase/cave/interactables/crystal.gd" id="1_0g2uk"]
+[ext_resource type="Texture2D" uid="uid://dgikxbb8cutv0" path="res://art/GAMEDES art/Cave/cave_sprites.png" id="1_1orug"]
+[ext_resource type="Texture2D" uid="uid://b7trsc281hjfr" path="res://art/GAMEDES art/Cave/crystal_light.webp" id="3_oo4bl"]
+[ext_resource type="AudioStream" uid="uid://dwubtiarbvvkt" path="res://art/Audio Assets/Cave/crystal_glow.mp3" id="4_3xgej"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1orug"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g7qw"]
+radius = 5.0990195
+
+[node name="Crystal" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_0g2uk")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1orug")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1orug")
+hframes = 16
+vframes = 4
+frame = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3g7qw")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.44180003, 0.62447345, 0.94, 1)
+energy = 0.0
+texture = ExtResource("3_oo4bl")
+texture_scale = 0.25
+
+[node name="GlowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3xgej")
+volume_db = -3.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

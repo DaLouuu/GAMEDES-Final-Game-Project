@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://rtueee8tki4g"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_mbth5"]
+[ext_resource type="Texture2D" uid="uid://b0gr7ngw2f6c4" path="res://map_phase/houses/assets/objects_art/HouseInt - Bullet Shrapnels.png" id="2_fxige"]
+
+[resource]
+script = ExtResource("1_mbth5")
+name = "Bullets"
+description = Array[String](["These look shells of bullets"])
+texture = ExtResource("2_fxige")
+metadata/_custom_type_script = "uid://26w5lr3t485j"

@@ -20,9 +20,10 @@ config/icon="res://icon.svg"
 Global="*res://utils-scripts/global.gd"
 EnumsRef="*res://utils-scripts/enums_ref.gd"
 Ref="*res://utils-scripts/Ref.gd"
-Savestate="*res://utils/savestate/Savestate.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Savestate="*res://utils/savestate/Savestate.gd"
 GameState="*res://GameState.gd"
+AudioManager="*res://AudioManager.gd"
 
 [dialogue_manager]
 
@@ -45,6 +46,7 @@ Player=""
 EnemyVisionBlock="To block certain Ray2Ds"
 Enemy=""
 InteractArea=""
+tilemaps="TileMap searcher for faster indexing"
 
 [input]
 
@@ -117,7 +119,7 @@ move_right={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue", "res://map_phase/motel/dialogues/motel_part1.dialogue", "res://map_phase/motel/dialogues/motel_part2.dialogue", "res://map_phase/motel/dialogues/motel_part3.dialogue", "res://map_phase/motel/dialogues/closet_interact.dialogue", "res://map_phase/motel/dialogues/sink_interact.dialogue", "res://map_phase/motel/dialogues/bathtub_interact.dialogue", "res://map_phase/motel/dialogues/toilet_interact.dialogue", "res://map_phase/motel/dialogues/bed_interact.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue", "res://dialogue/house_dialogues/player_enter_puzzle.dialogue", "res://dialogue/house_dialogues/little_girl.dialogue")
 
 [layer_names]
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://eacn5vqet4jd"]
+
+[ext_resource type="Script" uid="uid://dded0ql1npoyk" path="res://dev/character/player/audio_stream_player_2d_foot_sound.gd" id="1_ok5h3"]
+
+[node name="AudioStreamPlayer2D-FootSound" type="AudioStreamPlayer2D"]
+volume_db = 10.0
+max_distance = 300.0
+script = ExtResource("1_ok5h3")

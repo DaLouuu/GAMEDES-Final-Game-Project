@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dm7mdnjngywwm"
+path="res://.godot/imported/footsteps on carpet.mp3-3d70996b91b238036201cf68b062bb00.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/footsteps on carpet.mp3"
+dest_files=["res://.godot/imported/footsteps on carpet.mp3-3d70996b91b238036201cf68b062bb00.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

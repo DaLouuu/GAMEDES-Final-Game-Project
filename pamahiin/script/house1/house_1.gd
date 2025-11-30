@@ -1,6 +1,10 @@
+class_name House1
 extends Node2D
+@export var backFromPosition = Vector2(249, 334)
 @onready var backFrom : Marker2D = $"Marker2D-OutFromP"
-@onready var houseDoor:Sprite2D = $HouseParts/House1Door
+@onready var houseDoor:Sprite2D = $House1Door
+
+
 var locationType : EnumsRef.LocationType = EnumsRef.LocationType.WORLD
 
 func getLocationType()->EnumsRef.LocationType:
@@ -8,7 +12,7 @@ func getLocationType()->EnumsRef.LocationType:
 func goto_coming_out_from_spawn() -> void:
 	houseDoor.play_close()
 	
-	
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
 		houseDoor.play_open()

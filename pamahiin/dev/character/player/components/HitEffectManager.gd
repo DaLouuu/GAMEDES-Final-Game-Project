@@ -7,7 +7,7 @@ func _ready():
 	# Register available effects
 	effects[EnumsRef.HitEffectType.HitEffectDamage] = HitEffectDamage.new()
 	effects[EnumsRef.HitEffectType.HitEffectPoison] = HitEffectPoison.new()
-	
+	effects[EnumsRef.HitEffectType.HitEffectCustom] = HitEffectCustom.new()	
 	
 	
 
