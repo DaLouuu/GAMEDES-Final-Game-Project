@@ -21,7 +21,7 @@ signal sanity_damaged
 
 var footsteps_Sound : AudioStream
 @export var footstep_sfx_map: Dictionary[String, Resource] = {
-	"ground_stone": preload("uid://ddty6kh3k1x7p"),
+	"cave_stone": preload("uid://ddty6kh3k1x7p"),
 	"salt": preload("uid://qnqi6x0wy5g7"),
 	"wood_plank": preload("uid://4xdwy8c4atu4"),
 	"carpet": preload("uid://bryk4kumpuid"),
@@ -243,10 +243,11 @@ func move_towards(target: DirectionMarker) -> void:
 func _init_footstep_sfx_playing_dict() -> void:
 	for tile_type in footstep_sfx_map:
 		_is_footstep_sfx_playing[tile_type] = false
+
 func attempt_play_footsteps() -> void:
 	var tile_data: Array[TileData] = []
 	
-	for child in tile_maps.get_children():
+	for child in get_tree().get_nodes_in_group("tilemaps"):
 		var tilemap := child as TileMapLayer
 		
 		var tile_position := tilemap.local_to_map(tilemap.to_local(global_position))

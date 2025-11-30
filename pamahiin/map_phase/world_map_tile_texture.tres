@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://b4tuxeandetbo"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://c6le0wc7geyog"]
 
 [ext_resource type="Texture2D" uid="uid://b16cg6kjwuij5" path="res://map_phase/houses/assets/Fences.png" id="1_ljfnx"]
 [ext_resource type="Texture2D" uid="uid://dphgv71np6ag7" path="res://art/GAMEDES art/Grass/Grass Full Tileset.png" id="1_vh1p4"]
