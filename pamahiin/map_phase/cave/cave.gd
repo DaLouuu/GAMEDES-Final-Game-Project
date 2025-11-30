@@ -4,7 +4,7 @@ const CAMERA_ZOOM := 3.0
 const PLAYER_MOVE_SPEED := 65
 const PLAYER_SCALE := 0.5
 const PLAYER_SPRINT_MULTIPLAYER := 1.75
-const SANITY_DAMAGE := 20
+const SANITY_DAMAGE := 13
 
 const _CAVE_ENDING_DIALOGUE = preload("uid://cploqh0i3n2c5")
 
