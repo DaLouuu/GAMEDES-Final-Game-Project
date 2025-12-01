@@ -1,0 +1,8 @@
+~ start
+if not GameState.HOUSE_has_met_ghost_girl:
+	I don't think I have a reason to go to this scarier house first.
+elif not GameState.HOUSE_ARTIFACT_has_artifact_rosary:
+	I think I forgot to ask the girl about the rosary.
+	
+	
+=> END

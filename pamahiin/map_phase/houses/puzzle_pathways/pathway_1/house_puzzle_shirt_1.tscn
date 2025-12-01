@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://o4ehcga7kp4f"]
+[gd_scene load_steps=30 format=4 uid="uid://o4ehcga7kp4f"]
 
 [ext_resource type="Texture2D" uid="uid://ck4dcu7rqfq06" path="res://map_phase/houses/assets/house1_ver1_full_tileset.png" id="1_bs3y1"]
 [ext_resource type="Script" uid="uid://8vjpnatd6547" path="res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.gd" id="1_gxu5f"]
@@ -14,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://dtftljekysnxc" path="res://map_phase/houses/assets/items/shirt.tres" id="11_gxwxb"]
 [ext_resource type="Resource" uid="uid://rtueee8tki4g" path="res://map_phase/houses/assets/items/bullets-fake.tres" id="14_hjfql"]
 [ext_resource type="Resource" uid="uid://8rk0mg4enke" path="res://map_phase/houses/assets/items/vase-fake.tres" id="15_hjfql"]
-[ext_resource type="Resource" uid="uid://c3bj6vucbsef1" path="res://map_phase/houses/assets/items/vase.tres" id="15_jfa4r"]
 [ext_resource type="Texture2D" uid="uid://573trgf5uog8" path="res://map_phase/houses/assets/objects_art/Floor-Carpet/HouseInt_Pitchfork.png" id="16_jfa4r"]
 [ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/npcs/enemy/white_lady.tscn" id="17_bna3e"]
 [ext_resource type="AudioStream" uid="uid://cycw2p0udsvlm" path="res://art/Audio Assets/footsteps/eerie-atmosphere-ambience-372558.mp3" id="18_6syu3"]
@@ -561,7 +560,7 @@ size = Vector2(253.5, 36.652542)
 size = Vector2(253.5, 36.652542)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6syu3"]
-size = Vector2(70.08325, 444.71945)
+size = Vector2(70.08325, 483.1899)
 
 [node name="HousePuzzleShirt" type="Node2D"]
 script = ExtResource("1_gxu5f")
@@ -609,7 +608,7 @@ mesh = ExtResource("4_e5n4b")
 [node name="Puzzle" type="Node" parent="."]
 
 [node name="ItemTemplate-Shirt" parent="Puzzle" instance=ExtResource("10_iherr")]
-position = Vector2(532, 733)
+position = Vector2(1193, 769)
 item = ExtResource("11_gxwxb")
 isInspectable = true
 collision_scale = 3.0
@@ -640,7 +639,7 @@ shape = SubResource("RectangleShape2D_bs3y1")
 
 [node name="Area2D-Answer" type="Area2D" parent="PathWayTp"]
 z_index = 10
-position = Vector2(1840.0001, 770.00006)
+position = Vector2(1844, 769)
 rotation = 1.5854226
 scale = Vector2(0.9999999, 0.9999999)
 
@@ -658,7 +657,7 @@ shape = SubResource("RectangleShape2D_bs3y1")
 
 [node name="Area2D-Block2" type="Area2D" parent="PathWayTp"]
 z_index = 10
-position = Vector2(60, 770.99994)
+position = Vector2(53.999878, 767.99994)
 rotation = 1.5918742
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathWayTp/Area2D-Block2"]
@@ -691,7 +690,7 @@ collision_scale = 3.0
 
 [node name="ItemTemplate-Vase" parent="Puzzle2" instance=ExtResource("10_iherr")]
 position = Vector2(-2327, 329)
-item = ExtResource("15_jfa4r")
+item = ExtResource("15_hjfql")
 collision_scale = 7.0
 collision_pos_offset = Vector2(-5, 10)
 
@@ -739,8 +738,8 @@ position = Vector2(754.99994, 806.99994)
 rotation = -1.5605382
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-150.4277, 56.54593)
-scale = Vector2(1.0000002, 1.0000002)
+position = Vector2(-150.42761, 64.07153)
+scale = Vector2(1.0000005, 1.0000005)
 shape = SubResource("RectangleShape2D_6syu3")
 debug_color = Color(0.84259087, 0.20632654, 0.78932494, 0.41960785)
 
@@ -753,6 +752,36 @@ one_shot = true
 [node name="Timer2-MoveTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="BlockingNodes" type="Node" parent="."]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(-61, 635)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D2"]
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(445, 427)
+rotation = 3.1336052
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D3"]
+position = Vector2(-1265.1511, -612.1247)
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(586, 1659.0002)
+rotation = 4.685294
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D4"]
+polygon = PackedVector2Array(86.48071, 20.350342, 88.69922, -24.60608, -57, -17, -57, 354, -57, 396, 77.88159, 485.28802, 78.18237, 437.2785, 46.194336, 436.41156, 47.088135, 403.42377, 15.072754, 403.55646, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, 4.2072754, 103.151855, 26.334473, 98.749695, 22.555664, 53.630737, 54.679443, 49.49945, 57.491455, 19.564697)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(1039, -67)
+rotation = 1.6083138
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D5"]
+polygon = PackedVector2Array(68.552246, 13.43811, 63.866455, -31.417725, -57, -17, -57, 354, -57, 396, 83.9577, 477.18658, 85.2677, 432.1057, 52.32843, 434.34277, 51.05316, 400.3667, 18.076355, 401.6045, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, -9.277496, 99.41785, 6.523651, 93.82129, 5.0608215, 54.848755, 36.813232, 47.652588, 35.57544, 14.675781)
 
 [connection signal="body_entered" from="PathWayTp/Area2D-BackToRoom" to="." method="_on_area_2d_back_to_room_body_entered"]
 [connection signal="body_entered" from="PathWayTp/Area2D-Answer" to="." method="_on_area_2d_answer_body_entered"]

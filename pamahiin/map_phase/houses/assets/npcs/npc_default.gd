@@ -14,20 +14,20 @@ extends CharacterBody2D
 var move_direction : Vector2 = Vector2.ZERO
 var current_state = EnumsRef.NPCState.IDLE
 var is_player_in_range = false
-
+var runner = null
 func _ready():
 	select_new_direction()
 	pick_new_state()
-	
-func _process(_delta: float) -> void:
+
+func _process(delta: float) -> void:
 	if is_player_in_range and Input.is_action_just_pressed("interact"):
-		
-		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/house_dialogues/little_girl.dialogue"))
-			
+		runner = DialogueManager.show_example_dialogue_balloon(load("res://dialogue/house_dialogues/little_girl.dialogue"))
+	
+	
 func _physics_process(_delta):
 	if current_state == EnumsRef.NPCState.IDLE:
 		return
-	
+			
 	velocity = move_direction * move_speed
 	move_and_slide()
 
@@ -67,8 +67,10 @@ func _on_timer_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	is_player_in_range = true
+	if body.is_in_group("Player"):
+		is_player_in_range = true
 
-
+func free_npc(_item:InvItem):
+	self.queue_free()
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	is_player_in_range = false

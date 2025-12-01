@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_1r3jn")
 name = "Bullets"
-description = Array[String](["These look shells of bullets"])
+description = Array[String](["These look shells of bullets. They've been moved way further up here."])
 texture = ExtResource("2_lrthb")
 metadata/_custom_type_script = "uid://26w5lr3t485j"

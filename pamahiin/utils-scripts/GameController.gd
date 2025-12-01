@@ -17,6 +17,11 @@ var audioDictionary: Dictionary[AUDIO_PLAY, Resource] = {
 	
 }
 
+func update_artifactCheck():
+	Global.artifactCount =0
+	if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
+		Global.artifactCount += 1
+
 func play_curr_global_audio(playType : AUDIO_PLAY):
 	if audioDictionary.has(playType):
 		AudioManager.music_player.stream = audioDictionary[playType]
@@ -43,8 +48,8 @@ func _ready() -> void:
 	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
-	#change_2d_scene("res://map_phase/houses/house_together.tscn")
-	change_2d_scene("res://map_phase/cave/Cave.tscn")
+	change_2d_scene("res://map_phase/houses/house_together.tscn")
+	#change_2d_scene("res://map_phase/cave/Cave.tscn")
   # Try to attach GardenState if current scene has one
 	#_find_and_set_garden_state()
 

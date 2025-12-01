@@ -44,14 +44,17 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
 		is_player_in_body = true
+		if $"../TextureRect":
+			$"../TextureRect".visible = true
 		enlarge_upon_near()
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
 		is_player_in_body = false
+		if $"../TextureRect":
+			$"../TextureRect".visible = false
 		reset_state()
-
 
 func _on_mouse_entered() -> void:
 	enlarge_upon_near()

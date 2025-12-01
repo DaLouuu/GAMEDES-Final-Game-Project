@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://2nwjrtwvcpe4"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_qht3s"]
+[ext_resource type="Texture2D" uid="uid://dk2thj1bw7kjm" path="res://map_phase/chapel/assets/holy water basin/holy water basin empty.png" id="2_jrft6"]
+
+[resource]
+script = ExtResource("1_qht3s")
+name = "empty_chalice"
+description = Array[String](["Empty chalice with a message", "\"As God began the first day... Let there be light\"", "Am I suppose to follow the days of creation? Seems like it."])
+texture = ExtResource("2_jrft6")
+metadata/_custom_type_script = "uid://26w5lr3t485j"

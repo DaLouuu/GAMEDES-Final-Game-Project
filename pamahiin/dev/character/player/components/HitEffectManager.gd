@@ -11,7 +11,7 @@ func _ready():
 	
 	
 
-func apply_hit_effect(effect_name: EnumsRef.HitEffectType, amount: float, player : CharacterBody2D) -> void:
+func apply_hit_effect(effect_name: EnumsRef.HitEffectType, amount: float, player : Player) -> void:
 	var effect = effects.get(effect_name)
 	if effect:
 		effect.apply( amount, player)

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cxuaor0ngxvsn"
+path="res://.godot/imported/GAMECONTROLLER_UPDATE.dialogue-d144528e63b0d31d254ebb5ad79ed314.tres"
+
+[deps]
+
+source_file="res://dialogue/GAMECONTROLLER_UPDATE.dialogue"
+dest_files=["res://.godot/imported/GAMECONTROLLER_UPDATE.dialogue-d144528e63b0d31d254ebb5ad79ed314.tres"]
+
+[params]
+
+defaults=true

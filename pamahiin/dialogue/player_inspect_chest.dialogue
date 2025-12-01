@@ -1,0 +1,15 @@
+import "res://dialogue/GAMECONTROLLER_UPDATE.dialogue" as finished_check
+~ start
+do playTreasureOpen()
+You inpsect the chest... *
+You see both a little girl with cracked opened skull beside a rosary. *
+if not GameState.HOUSE_has_artifact_rosary_said_in_dialogue:
+	do playObtainedItem()
+	set GameState.HOUSE_has_artifact_rosary_said_in_dialogue = true
+	You get the rosary from her*
+	=>< finished_check/update
+
+Hmm, she's gone.
+I better move out now.
+
+=> END

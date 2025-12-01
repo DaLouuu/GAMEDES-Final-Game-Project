@@ -89,13 +89,11 @@ else
 
 ~ ask_about_albularyo
 
-Old Lady: [#matter-of-fact] I am what you might call an albularyo. A healer of sorts.
-Old Lady: Though these days, I heal more spirits than bodies.
+Old Lady: [#matter-of-fact] I am an old dead witch. I'll just be an old lady in your eyes.
+Old Lady: These days, I wander through this house and take care of it.
 
-- What do you mean?
-	Old Lady: [#patient] When the Amerikano came, they brought doctors with needles and white coats.
-	Old Lady: They called our ways "superstition." Primitive magic.
-	Old Lady: But when their medicine cannot help, when spirits linger... they still come to us.
+- What's in this house?
+	Old Lady: [#patient] An old restless spirit, a particular mother in immense regret
 	=> main_menu
 - Can you help the girl? => can_help_ghost
 - I see => main_menu
@@ -142,9 +140,7 @@ if GameState.HOUSE_has_read_clue
 	Old Lady: [#hopeful] And you have listened, haven't you? You've seen her path.
 	Old Lady: The Baybayin script. Ala-ala. She calls for memory.
 	=> main_menu
-else
-	Old Lady: [#guiding] If you return to that house, look carefully. She has made a path.
-	=> main_menu
+=> main_menu
 
 ~ ghost_trapped
 
@@ -158,7 +154,7 @@ Old Lady: Born not from love, raised in shame, died by our own kind.
 ~ can_help_ghost
 
 Old Lady: [#hopeful] Perhaps. If someone follows her path. Understands her story.
-Old Lady: The dead do not want pity, anak. They want to be witnessed.
+Old Lady: The dead do not want pity, anak. They want to be witnessed. Your kind seems the most impactful.
 
 if GameState.HOUSE_has_read_clue
 	Old Lady: [#encouraging] You have seen the path. Walk it fully. Make the right choices.
@@ -313,10 +309,10 @@ else
 
 Old Lady: [#instructing] When you are ready, go to the chapel.
 Old Lady: You will know when the time is right. The spirit will guide you there.
-Old Lady: Light a candle. Hold the rosary. Speak from your heart.
+Old Lady: Light a candle. Hold the artifacts.
 
-Old Lady: [#mystical] If your intention is pure, if you truly understand her memory...
-Old Lady: The spirit will know. And she will be free.
+Old Lady: [#mystical] If your intention is pure, if you truly understand THEIR memory...
+Old Lady: The spirits will know. And she THEY will be free.
 
 - I'll do this => main_menu
 - I need to prepare more => main_menu
@@ -329,10 +325,6 @@ Old Lady: You've done it, haven't you? The ritual at the chapel.
 Old Lady: [#peaceful] The child's spirit has quieted. She is not gone - the dead never truly leave.
 Old Lady: But she is... settled. No longer wandering. No longer confused.
 
-Old Lady: [#teaching] You have done what the Amerikano never did, anak.
-Old Lady: You listened. You bore witness to the pain they caused.
-Old Lady: That child was born of their violence, orphaned by their greed, killed by their disease.
-
 Old Lady: [#grateful] But now someone knows. Someone remembers. Someone prayed.
 Old Lady: That is the only justice the dead can ever receive.
 
@@ -342,33 +334,22 @@ Old Lady: That is the only justice the dead can ever receive.
 	Old Lady: Either way, she is free of her wandering.
 	=> final_wisdom
 - What about her family?
-	Old Lady: [#somber] Her nanay died of heartbreak two years after the child.
-	Old Lady: Her lolo died in the cold of that foreign land.
-	Old Lady: Her father? *spits* He returned to America. Married. Had other children.
-	Old Lady: Never once looked back at what he left here.
+	Old Lady: [#somber] Her nanay died protecting her as much as she can to the Filipinos who thought they were traitors.
+	Old Lady: Her father? an Ameriance presumably killed by said Filipino guerillas.
+	Old Lady: Never once both parents truly loved, the mother used him as protection, the father sees her as a reward.
 	=> final_wisdom
 
 ~ final_wisdom
 
 Old Lady: [#teaching] You carry the story now, anak. That is burden and gift both.
 Old Lady: Let it remind you what colonization truly means.
-Old Lady: Not just governments and borders. But bodies. Lives. Children.
+Old Lady: Not just governments and borders. But bodies. Lives. Children that your ancestors held.
 
 Old Lady: [#knowing] The Amerikano wrote our history in their books.
 Old Lady: But we carry the truth in our bones, in our ghosts, in our memories.
 Old Lady: In our Baybayin. ᜀᜎᜀᜎ. Ala-ala. Never forget.
-
-=> epilogue
-
-~ epilogue
-
-Old Lady: [#blessing] Go with the spirits' blessing, anak.
-Old Lady: You have done what few can - witnessed pain without turning away.
-Old Lady: That makes you a keeper of stories. A voice for the silenced.
-
-Old Lady: [#peaceful] The child rests now. But her memory lives in you.
-Old Lady: That is the best any of us can hope for.
-
+Old Lady: You may continue your jounrey around here. There should be a cave to the east, and a garden somewhere in south. A chapel and graveyard is up north.
+Old lady: Be warned... the old chapel needs you to gather 4 artifact items to enter.
 => END
 
 ~ farewell
@@ -377,10 +358,6 @@ if GameState.HOUSE_finished_puzzle and GameState.HOUSE_ARTIFACT_has_artifact_ros
 	Old Lady: [#urgent] Wait, anak. You have done the work of memory.
 	Old Lady: But the child's spirit still needs release. Go to the chapel.
 	Old Lady: With the rosary. Complete what you started.
-	=> END
-elif GameState.HOUSE_finished_puzzle and GameState.HOUSE_chapel_ritual_complete
-	Old Lady: [#peaceful] Go in peace, anak. You have done well.
-	Old Lady: The spirits smile on you. The child rests.
 	=> END
 elif GameState.HOUSE_has_met_ghost_girl and not GameState.HOUSE_has_read_clue
 	Old Lady: [#warning] Before you go. Look for her path.

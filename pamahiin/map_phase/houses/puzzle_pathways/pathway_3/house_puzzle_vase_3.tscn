@@ -481,16 +481,16 @@ sources/7 = SubResource("TileSetAtlasSource_dnj5k")
 size = Vector2(253.5, 36.652542)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eevoy"]
-size = Vector2(8, 250)
+size = Vector2(15.8567505, 473.93597)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my0lo"]
-size = Vector2(62, 263)
+size = Vector2(61.95908, 438.81195)
 
 [node name="HousePuzzleVase" type="Node2D"]
 script = ExtResource("1_3xc7d")
 
 [node name="Marker2D-SpawnP" type="Marker2D" parent="."]
-position = Vector2(1678, 815)
+position = Vector2(1656, 800)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -617,10 +617,11 @@ position = Vector2(-1977, 348)
 polygon = PackedVector2Array(-65, -103, -75, 35, 500, 604, 465, -273, -87, -278, -334, -278, -872, -264, -950, 693, 281, 750, 515, 750, 478, 607, 241, 606, -75, 300, -66, 614, -255, 610, -255, 298, -576, 632, -817, 612, -795, 576, -251, 27, -251, -113)
 
 [node name="Area2D-StopSound" type="Area2D" parent="."]
-position = Vector2(1276, 759)
+position = Vector2(713, 541.00006)
+rotation = 1.5682762
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-StopSound"]
-position = Vector2(6, 9)
+position = Vector2(17.928284, -102.96796)
 shape = SubResource("RectangleShape2D_eevoy")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -628,11 +629,42 @@ stream = ExtResource("17_eevoy")
 attenuation = 0.28717458
 
 [node name="Area2D-PlayGlass" type="Area2D" parent="."]
-position = Vector2(1637, 791)
+position = Vector2(778.00006, 124)
+rotation = -1.5590398
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-PlayGlass"]
-position = Vector2(21, 21.5)
+position = Vector2(91.02048, 38.906067)
 shape = SubResource("RectangleShape2D_my0lo")
+
+[node name="BlockingNodes" type="Node" parent="."]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(-54, 634)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D2"]
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(452, 426)
+rotation = 3.1336052
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D3"]
+position = Vector2(-1265.1511, -612.1247)
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(593, 1658.0002)
+rotation = 4.685294
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D4"]
+polygon = PackedVector2Array(86.48071, 20.350342, 88.69922, -24.60608, -57, -17, -57, 354, -57, 396, 77.88159, 485.28802, 78.18237, 437.2785, 46.194336, 436.41156, 47.088135, 403.42377, 15.072754, 403.55646, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, 4.2072754, 103.151855, 26.334473, 98.749695, 22.555664, 53.630737, 54.679443, 49.49945, 57.491455, 19.564697)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(1046, -68)
+rotation = 1.6083138
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D5"]
+polygon = PackedVector2Array(68.552246, 13.43811, 63.866455, -31.417725, -57, -17, -57, 354, -57, 396, 83.9577, 477.18658, 85.2677, 432.1057, 52.32843, 434.34277, 51.05316, 400.3667, 18.076355, 401.6045, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, -9.277496, 99.41785, 6.523651, 93.82129, 5.0608215, 54.848755, 36.813232, 47.652588, 35.57544, 14.675781)
 
 [connection signal="body_entered" from="PathwaysTp-Normal/Area2D-Block1" to="." method="_on_area_2d_back_to_room_body_entered"]
 [connection signal="body_entered" from="PathwaysTp-Normal/Area2D-Answer" to="." method="_on_area_2d_answer_body_entered"]

@@ -171,7 +171,7 @@ func inspect_func():
 	DialogueManager.dialogue_ended.connect(item_emit_finish)
 func item_emit_finish():
 	item_inspected_finish.emit(item)
-	DialogueManager.dialogue_ended.disconnect(item_emit_finish)
+	#DialogueManager.dialogue_ended.disconnect(item_emit_finish)
 func on_item_clicked():
 	print("🖱️ Item clicked: ", item.name if item else "Unknown")
 	item_clicked.emit(item)

@@ -1,32 +1,22 @@
 ~ start
 
 if GameState.HOUSE_has_met_ghost_girl
-	Maria: [#quiet] You came back. HI again mister.
+	Little Girl: [#quiet] You came back. HI again mister.
 	=> main_menu
 else
-	Maria: [#surprised] Oh! A visitor!
-	Maria: [#shy] I... I don't get many visitors anymore.
+	Little Girl: [#surprised] Oh! A visitor!
+	Little Girl: [#shy] I... I don't get many visitors anymore.
+	Little Girl: [#shy] My name's Maria.
 	set GameState.HOUSE_has_met_ghost_girl = true
 	=> first_meeting
 
 ~ first_meeting
 
-Maria: [#innocent] Are you lost? This place is confusing, I know.
-- Who are you?
-	Maria: [#simple] My name is Maria. I'm... [wait=0.5]I live here. Sort of.
-	- Sort of?
-		=> about_living_here
-	- How old are you?
-		Maria: [#counting] *counts on her fingers* Seven! I think. [wait=0.3]It's hard to remember sometimes.
-		=> first_meeting
-- Where are your parents?
-	=> about_parents
-- I'm looking for something
-	=> looking_for_something
-
+Maria: [#innocent] Are you lost? This place is confusing I know.
+	
 ~ main_menu
-
-Maria: [#waiting] Did you need something?
+set GameState.HOUSE_has_met_ghost_girl = true
+Maria: [#waiting] Do you need something?
 - Tell me about yourself => about_maria
 - Do you know about a rosary? => about_rosary
 - Why are you here? => about_living_here
@@ -35,31 +25,35 @@ Maria: [#waiting] Did you need something?
 
 ~ about_maria
 
-Maria: [#simple] I'm Maria. That's my name.
-Maria: [#uncertain] At least... I think that's what Mommy called me.
+Maria: [#simple] Well I'm a young girl that Mom would call as the most beatiful and cutest woman ever
+Maria: [#simple] I'm born from a Filipino Mother and American Dad.
 
-- How did you... what happened to you?
-	Maria: [#confused] What do you mean?
-	- How did you die?
-		Maria: [#puzzled] Die? [wait=0.5]I don't... I don't remember dying.
-		Maria: [#troubled] Sometimes I try to remember yesterday, but it feels like... fog.
-		Maria: [#childlike] Do you ever forget things? It's like that, but... more.
-		=> after_death_question
-	- Never mind
-		=> main_menu
+How did you... what happened to you?
+Maria: [#confused] What do you mean?
+	
+- How did you die?
+	Maria: [#puzzled] Die? [wait=0.5]I don't... I don't remember dying.
+	Maria: [#troubled] Sometimes I try to remember yesterday, but it feels like... fog.
+	Maria: [#childlike] Do you ever forget things? It's like that, but... more.
+	=> after_death_question
+- Never mind
+	=> main_menu
 - What do you do here?
 	Maria: [#lonely] I wait, mostly. And sometimes I... [wait=0.3]I try to remember things.
 	Maria: [#frustrated] But remembering is hard. Everything feels fuzzy.
 	=> main_menu
 - Do you like it here?
 	Maria: [#sad] No. It's lonely. And cold sometimes.
-	Maria: [#hopeful] But maybe if someone helps me, I can... I can go somewhere else.
+	Maria: [#hopeful] But maybe I'm curious on opening this box
+	Maria: [#hopeful] It contains a rosary and mother's cherished things
+	Maria: [#hopeful] I just sense something that personally relates to me
+	Maria: [#hopeful] So that must be it
 	=> main_menu
 
 ~ after_death_question
 
 Maria: [#distant] Sometimes I hear Mommy crying. But when I look for her, she's not there.
-Maria: [#confused] And sometimes I feel hot. Very hot. Like fever.
+Maria: [#confused] And sometimes I feel dizzy and very hot. It's not like a fever but very striking.
 Maria: [#innocent] But that's just a feeling. It goes away.
 
 - I'm sorry
@@ -82,7 +76,7 @@ Maria: [#matter-of-fact] Mommy brought me here one day. She said we had to hide.
 	=> about_hiding
 - Where is your real house?
 	Maria: [#vague] I... I can't remember. [wait=0.3]It's one of the fuzzy things.
-	Maria: [#frustrated] I remember the garden though. Mommy's flowers. Red and white ones.
+	Maria: [#frustrated] I remember the garden though. Mommy's flowers. She likes the purple ones ones.
 	Maria: [#wistful] And I remember the sound of boots. Soldiers walking past our window.
 	=> main_menu
 
@@ -104,14 +98,13 @@ Maria: [#confused] And when I woke up, Mommy was gone. And everything feels... d
 
 ~ about_parents
 
-Maria: [#simple] Mommy is... [wait=0.5]I don't know where Mommy is.
-Maria: [#matter-of-fact] And Papa... Papa didn't live with us.
+Maria: [#simple] Mommy and Daddy is... [wait=0.5]I don't know where they are.
 
 - Why not?
 	Maria: [#innocent] Papa had to stay at the garrison. With the other soldiers.
 	Maria: [#explaining] But he would visit sometimes. Bring food. And cloth from the ship.
 	Maria: [#uncertain] Mommy would get quiet when he came. But she'd smile. A tired smile.
-	Maria: [#childlike] I think she was happy for the food. We were always hungry back then.
+	Maria: [#childlike] I think she was happy for the food.
 	=> about_parents_relationship
 - Do you miss them?
 	Maria: [#honest] I miss Mommy. [wait=0.3]I don't remember Papa enough to miss him.
@@ -124,11 +117,10 @@ Maria: [#matter-of-fact] And Papa... Papa didn't live with us.
 	Maria: [#thoughtful] *tilts head* I don't know. [wait=0.3]I never saw them hold hands.
 	Maria: [#remembering] Papa would give Mommy things. And she would thank him. Very polite.
 	Maria: [#innocent] Like when you thank someone for helping you carry water.
-	Maria: [#confused] Is that love? It seemed... different from the stories.
 	=> about_papa_more
 - What was their relationship like?
 	Maria: [#describing] Papa would come. Mommy would serve him food. He would eat.
-	Maria: [#observing] Sometimes he'd pat my head and say words I didn't understand. English words.
+	Maria: [#observing] Sometimes he'd pat my head.
 	Maria: [#matter-of-fact] Then he'd leave. And Mommy would count the coins he left.
 	Maria: [#childlike] She always looked relieved when he came. But also... sad.
 	=> about_papa_more
@@ -140,154 +132,33 @@ Maria: [#matter-of-fact] And Papa... Papa didn't live with us.
 	Maria: [#remembering] His hands were big. Rough. He'd ruffle my hair sometimes.
 	Maria: [#uncertain] And his eyes were blue. Like mine. People would stare at my eyes.
 	Maria: [#innocent] Mommy said I was lucky. That Papa's visits meant we had food.
-	Maria: [#confused] But Lolo's face would get angry when Papa came. He'd leave the house.
-	=> papa_visits
 - It's okay not to remember
 	Maria: [#relieved] Thank you for saying that.
 	=> main_menu
 
-~ papa_visits
-
-- Why would Lolo get angry?
-	Maria: [#uncertain] I don't know. [wait=0.3]Adults were always acting strange.
-	Maria: [#remembering] One time I heard Lolo and Mommy arguing. He said something about "dishonor."
-	Maria: [#innocent] Mommy was crying. She said "What choice did I have? We were starving."
-	Maria: [#confused] I didn't understand what they meant. We had food from Papa.
-	=> about_protection
-- Did Papa visit often?
-	Maria: [#counting] Sometimes every week. Sometimes not for a long time.
-	Maria: [#observing] When he didn't come for a while, Mommy would get thin. And quiet.
-	Maria: [#matter-of-fact] Then he'd come back with rice and dried fish. And Mommy would smile again.
-	=> main_menu
-
-~ about_protection
-
-Maria: [#remembering] I heard Mommy talking to herself once. When she thought I was asleep.
-Maria: [#quoting] She said "At least he keeps the other soldiers away. At least we're safe."
-Maria: [#innocent] I think she meant Papa was protecting us. Like a hero!
-Maria: [#confused] But her voice sounded... not happy. Just... tired.
-
-- That must have been hard for your mother
-	Maria: [#thoughtful] I think so. [wait=0.3]She used to sing before. But she stopped.
-	Maria: [#sad] And she'd stare at the wall sometimes. Like she wasn't really there.
-	=> main_menu
-- Your Papa was keeping you safe
-	Maria: [#accepting] That's what I thought! [wait=0.3]Mommy said we needed him.
-	Maria: [#uncertain] But... if he was good, why did people say mean things?
-	Maria: [#confused] They called me names. Called Mommy worse names.
-	=> main_menu
-
-~ looking_for_something
-
-Maria: [#helpful] Oh! Maybe I can help!
-Maria: [#eager] I know this house really well. Every corner.
-
-- I'm looking for anything that can be used as ritual like a rosary
-	Maria: [#thinking] Unusual... [wait=0.5]Well, there's the locked drawer.
-	Maria: [#pointing] And the markings on the walls. The old writing.
-- I'm not sure what I'm looking for yet
-	Maria: [#understanding] That's okay. You can look around.
-	Maria: [#offering] If you need help, just ask me!
-	=> main_menu
 
 ~ about_rosary
-set GameState.HOUSE_has_met_ghost_girl = true
+set GameState.HOUSE_has_asked_about_rosary = true
 Maria: [#recognition] Oh! You mean Mommy's rosary!
-Maria: [#nodding] I know where it is. She held it here locked
+Maria: [#nodding] I know where it is. She held it here locked inside this chest
 
 Where is the key???
 
 Maria: I don't know, mom went outside, you should try the other house. But I hear an evil old lady lauging sometimes
+Maria: I was meaning to ask you if your ok to find it for me.
 
+Alright I'm on it
 
-
-
-
-
-~ memory_path_hints
-
-- Why those three things?
-	Maria: [#explaining] Because they're important. They tell the story.
-	Maria: [#childlike] The baro is me. Made from Papa's cloth. That's where I came from.
-	Maria: [#innocent] Mommy made it from the fabric Papa brought. She doesn't particularly care for it
-	Maria: [#somber] The bullet is what I used to collect when I was young, 
-	Maria: [#quiet] The vase papa would give would be the most shiniest and coolest. But it seems like my Mom isn't interested with it.
-	=> main_menu
-
-
-~ puzzle_completed_response
-
-Maria: [#emotional] You understood. You really understood.
-Maria: [#tearful] No one ever... [wait=0.5]no one ever tried to know my story before.
-
-- I'm glad I could help
-- What happens now?
-	Maria: [#uncertain] I don't know. But something feels different.
-	Maria: [#lighter] Less heavy. Like... like a weight is lifting.
-
-
-~ after_puzzle_thanks
-
-if GameState.HOUSE_ARTIFACT_has_artifact_rosary
-	Maria: [#knowing] You have Mommy's rosary. And you know my story.
-	Maria: [#intuitive] I think... I think there's one more thing to do.
-	Maria: [#guiding] The old chapel. Near here. That's where Mommy would pray.
-	Maria: [#remembering] Before Papa. When she still had hope.
-	Maria: [#hopeful] Maybe if you pray there... for me... I can finally leave this place.
-	=> main_menu
-else
-	Maria: [#gentle] But you still need Mommy's rosary. That's part of it too.
-	Maria: [#patient] Find the key. Get the rosary. Then... then we'll know what to do next.
-	=> main_menu
-
-~ after_rosary_found
-
-
-~ chapel_directions
-
-- Where exactly is this chapel?
-	Maria: [#pointing] Through the trees, past the old well.
-	Maria: [#describing] It's small. Made of stone. The roof has holes now.
-	Maria: [#nostalgic] But it's still holy. Mommy said prayers always work there.
-	Maria: [#remembering] She'd go there when Papa didn't come for a long time. To ask for help.
-	=> chapel_instructions
-- What should I do there?
-	=> chapel_instructions
-
-~ chapel_instructions
-
-Maria: [#teaching] Light a candle. If there are any left.
-Maria: [#explaining] Hold the rosary. Say a prayer.
-Maria: [#uncertain] I don't know what prayer. Just... something from your heart.
-Maria: [#hopeful] I think if you do that, I can finally go where Mommy went.
-
-- I'll do this for you
-	Maria: [#grateful] Thank you. [wait=0.5]Thank you so much.
-	Maria: [#peaceful] I'm not scared anymore. Because you helped me understand.
-	Maria: [#understanding] I understand now why things were the way they were.
-	Maria: [#accepting] Mommy did what she had to do. For us to survive.
-	=> final_goodbye
-- Are you sure this will work?
-	Maria: [#honest] No. But it feels right.
-	Maria: [#trusting] And you've helped me this much already. I trust you.
-	=> final_goodbye
-
-~ final_goodbye
-
-Maria: [#farewell] When you're ready, go to the chapel.
-Maria: [#gentle] I'll know when you're there. I'll feel it.
-Maria: [#grateful] Thank you for seeing me. For hearing me. For remembering me.
-Maria: [#soft] And thank you for understanding about Mommy. She did her best.
-
+Maria: Thank you mister
 => END
 
 ~ farewell
 
-if GameState.HOUSE_ARTIFACT_has_artifact_rosary and GameState.HOUSE_finished_puzzle
-	Maria: Good luck on your way! hope we meet again.
-	=> END
-elif GameState.HOUSE_has_asked_about_rosary and not GameState.HOUSE_ARTIFACT_has_artifact_rosary
-	Maria: [#reminder] Don't forget about the rosary! The key should be right over that house.
+if not GameState.HOUSE_has_asked_about_rosary:
+	set GameState.HOUSE_has_asked_about_rosary = true
+	Maria: [#reminder] Don't know how important this would be, but can you help find a key
+	Maria: [#reminder] It would help me open this box to see what it has.
+	Maria: [#reminder] It's the last things my Mom cherished.
 	=> END
 else
 	Maria: [#goodbye] Okay. Come back soon? It gets lonely here.

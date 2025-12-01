@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cag8p67hnquaq" path="res://map_phase/cave/effects/AttackImpact.tscn" id="7_tws12"]
 [ext_resource type="AudioStream" uid="uid://dcwpwjgsgkot0" path="res://art/Audio Assets/Cave/cave_echoes.mp3" id="10_u7gak"]
 [ext_resource type="Script" uid="uid://cweybxvfhrt3m" path="res://map_phase/cave/effects/cave_shocker.gd" id="11_kujlx"]
+[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="12_kujlx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ua1a0"]
 atlas = ExtResource("6_fthu5")
@@ -462,6 +463,9 @@ script = ExtResource("11_kujlx")
 
 [node name="Timer" type="Timer" parent="CaveShocker"]
 one_shot = true
+
+[node name="PlayerCat" parent="." instance=ExtResource("12_kujlx")]
+scale = Vector2(0.5, 0.5)
 
 [connection signal="body_entered" from="Map/Regions/MainEntrance" to="." method="_on_main_entrance_body_entered"]
 [connection signal="body_entered" from="Map/Regions/EndEntrance" to="." method="_on_end_entrance_body_entered"]

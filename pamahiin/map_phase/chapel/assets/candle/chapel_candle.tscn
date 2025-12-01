@@ -1,24 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dw6fsi37gpvsg"]
+[gd_scene load_steps=14 format=3 uid="uid://dw6fsi37gpvsg"]
 
-[ext_resource type="Texture2D" uid="uid://do2c2igmneqv2" path="res://art/GAMEDES art/Flowers & Rocks/Garden_Flower2.png" id="1_1xjtb"]
-[ext_resource type="Script" uid="uid://5jebutrcie4f" path="res://dev/environment_objects/chapel_candle.gd" id="1_p2mk0"]
-[ext_resource type="Shader" uid="uid://dr63qas7tthd" path="res://dev/shaders/mesh_candle.gdshader" id="2_ssiyx"]
+[ext_resource type="Script" uid="uid://5jebutrcie4f" path="res://map_phase/chapel/assets/candle/chapel_candle.gd" id="1_p2mk0"]
+[ext_resource type="Texture2D" uid="uid://ct0f21su7007" path="res://map_phase/chapel/assets/candle/lit candle.png" id="2_c5pr7"]
+[ext_resource type="Texture2D" uid="uid://boxx3tj3q03l8" path="res://map_phase/chapel/assets/candle/unlit candle.png" id="2_j1ykk"]
+[ext_resource type="Material" uid="uid://bjyqoqv8v1sfa" path="res://map_phase/chapel/assets/candle/chapel_candle_material.tres" id="3_ed68v"]
 [ext_resource type="Texture2D" uid="uid://10qhshvxmbrc" path="res://dev/light_textures/chapel_candle_round.tres" id="4_p2mk0"]
+[ext_resource type="Texture2D" uid="uid://bmj3pmiwvitce" path="res://art/icons/arrow-right.png" id="6_ed68v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssiyx"]
-size = Vector2(11, 8)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4e86"]
-shader = ExtResource("2_ssiyx")
-shader_parameter/fire_color = Color(1, 0.33, 0.068, 1)
-shader_parameter/fire_power_factor = 2.0
-shader_parameter/fire_intensity = 3.0
-shader_parameter/fire_start = 1.0
-shader_parameter/ball_size = 1.0
-shader_parameter/roughness = 0.675
-shader_parameter/detail = 6
-shader_parameter/scale = 4.0
-shader_parameter/lacunarity = 2.0
+size = Vector2(4.6, 8.000003)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ssiyx"]
 size = Vector2(40, 50)
@@ -48,10 +38,34 @@ tracks/1/keys = {
 "points": PackedFloat32Array(1.9082031, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_j1ykk")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance2D-Fire:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_k4e86"]
 resource_name = "slowly_fading fire"
-length = 15.0
+length = 20.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,9 +73,9 @@ tracks/0/path = NodePath("PointLight2D:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2),
+"handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(5, 0, 0, 2.5, -0.83333164, 1e-05, -2.5, 0.4108056, 0, 0),
-"times": PackedFloat32Array(0, 15)
+"times": PackedFloat32Array(0, 20)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -70,9 +84,33 @@ tracks/1/path = NodePath("PointLight2D:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2),
+"handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(3.87, 0, 0, 2.5, -0.6449983, 1e-05, -2.5, 0.31803218, 0, 0),
-"times": PackedFloat32Array(0, 15)
+"times": PackedFloat32Array(0, 20)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_c5pr7"), ExtResource("2_j1ykk")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance2D-Fire:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oe71q"]
@@ -91,20 +129,19 @@ radius = 64.0
 script = ExtResource("1_p2mk0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.9999999, -59.999992)
+position = Vector2(0.5, 5.999993)
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_ssiyx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -69.99999)
-scale = Vector2(5, 5)
-texture = ExtResource("1_1xjtb")
+scale = Vector2(2, 2)
+texture = ExtResource("2_j1ykk")
 
 [node name="MeshInstance2D-Fire" type="MeshInstance2D" parent="."]
-material = SubResource("ShaderMaterial_k4e86")
-position = Vector2(-2.9999998, -180)
+material = ExtResource("3_ed68v")
+position = Vector2(-2, -103)
 rotation = 1.5707964
-scale = Vector2(5, 5)
+scale = Vector2(4, 2)
 mesh = SubResource("PlaneMesh_ssiyx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -114,7 +151,6 @@ libraries = {
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 33
-position = Vector2(0, -69)
 scale = Vector2(2.4648438, 1.9082031)
 shadow_enabled = true
 shadow_item_cull_mask = 33
@@ -134,11 +170,21 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_p2mk0")
 
 [node name="Area2D-Interactable" type="Area2D" parent="."]
-position = Vector2(0, -69)
+position = Vector2(0, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-Interactable"]
 shape = SubResource("CircleShape2D_oe71q")
 debug_color = Color(0.55862606, 0.39717948, 1, 0.41960785)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = 17.0
+offset_top = -125.0
+offset_right = 57.0
+offset_bottom = -85.0
+rotation = 1.5707964
+scale = Vector2(1, 0.7600016)
+texture = ExtResource("6_ed68v")
 
 [connection signal="body_entered" from="Area2D-Interactable" to="." method="_on_area_2d_interactable_body_entered"]
 [connection signal="body_exited" from="Area2D-Interactable" to="." method="_on_area_2d_interactable_body_exited"]

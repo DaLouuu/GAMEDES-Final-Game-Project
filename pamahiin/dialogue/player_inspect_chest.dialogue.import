@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cqioolk2jk2f7"
+path="res://.godot/imported/player_inspect_chest.dialogue-9044e31c74018d85a4082286b057dc1a.tres"
+
+[deps]
+
+source_file="res://dialogue/player_inspect_chest.dialogue"
+dest_files=["res://.godot/imported/player_inspect_chest.dialogue-9044e31c74018d85a4082286b057dc1a.tres"]
+
+[params]
+
+defaults=true

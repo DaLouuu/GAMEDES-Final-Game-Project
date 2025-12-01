@@ -5,9 +5,16 @@ extends Node2D
 
 var locationType : EnumsRef.LocationType = EnumsRef.LocationType.HOME
 
+func _ready() -> void:
+	if $LittleGirl:
+		$Chest.chest_opened.connect($LittleGirl.free_npc)
+		
 func getLocationType()->EnumsRef.LocationType:
 	return locationType
-	
+func playTreasureOpen():
+	$"AudioStreamPlayer2D-open".play()
+func playObtainedItem():
+	$"AudioStreamPlayer2D-GottenItem".play()
 	
 func _on_area_2d_to_room_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -16,4 +23,4 @@ func _on_area_2d_to_room_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_back_to_world_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		Global.game_controller.change_2d_scene_custom("res://map_phase/houses/house_together.tscn", EnumsRef.LOCAL_FROM_TYPE.H1)
+		Global.game_controller.change_2d_scene_custom("uid://y0bf0te04dqb", EnumsRef.LOCAL_FROM_TYPE.H1)
