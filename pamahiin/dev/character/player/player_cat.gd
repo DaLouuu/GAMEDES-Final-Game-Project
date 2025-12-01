@@ -20,7 +20,7 @@ signal sanity_damaged
 @export var walkSoundMaxDistance = 200
 var footsteps_Sound : AudioStream
 @export var footstep_sfx_map: Dictionary[String, Resource] = {
-	"stone": preload("uid://ddty6kh3k1x7p"),
+	"cave_stone": preload("uid://ddty6kh3k1x7p"),
 	"salt": preload("uid://qnqi6x0wy5g7"),
 	"wood": preload("uid://4xdwy8c4atu4"),
 	"carpet": preload("uid://bryk4kumpuid"),

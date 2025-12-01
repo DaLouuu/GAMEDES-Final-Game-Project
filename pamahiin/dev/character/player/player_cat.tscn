@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://d3yisgeep3p7b" path="res://dev/character/player/components/HitEffectDamage.gd" id="8_c8r0g"]
 [ext_resource type="PackedScene" uid="uid://bpbf560c0338r" path="res://dev/resource_scripts/inventory/inventory_ui.tscn" id="9_ohocd"]
 [ext_resource type="Texture2D" uid="uid://br7dqghldew4e" path="res://dev/light_textures/lantern_round.tres" id="10_04nme"]
-[ext_resource type="PackedScene" uid="uid://eacn5vqet4jd" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
+[ext_resource type="PackedScene" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cvuuwq222nvfx" path="res://art/Audio Assets/20 - Player Grab.wav" id="15_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cw1gbbtkyhtjn" path="res://art/Audio Assets/17 - Moderate Heartbeat-mprMode.mp3" id="17_l5slc"]
 [ext_resource type="Script" uid="uid://b3o3ajfg8m46d" path="res://dev/character/player/FootStepManager.gd" id="18_iqj7j"]
@@ -369,7 +369,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "method"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("AudioStreamPlayer2D-FootSound")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -382,6 +382,20 @@ tracks/1/keys = {
 }, {
 "args": [],
 "method": &"stop"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attempt_play_footsteps"
 }]
 }
 
@@ -403,7 +417,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "method"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("AudioStreamPlayer2D-FootSound")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -416,6 +430,20 @@ tracks/1/keys = {
 }, {
 "args": [],
 "method": &"stop"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attempt_play_footsteps"
 }]
 }
 
@@ -437,7 +465,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "method"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("AudioStreamPlayer2D-FootSound")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -450,6 +478,20 @@ tracks/1/keys = {
 }, {
 "args": [],
 "method": &"stop"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attempt_play_footsteps"
 }]
 }
 
@@ -471,7 +513,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "method"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("AudioStreamPlayer2D-FootSound")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -484,6 +526,20 @@ tracks/1/keys = {
 }, {
 "args": [],
 "method": &"stop"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attempt_play_footsteps"
 }]
 }
 
