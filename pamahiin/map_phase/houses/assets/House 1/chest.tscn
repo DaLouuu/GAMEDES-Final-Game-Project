@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://egbkdyoie7lc"]
+
+[ext_resource type="Texture2D" uid="uid://jrwq56x1vlg8" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="1_ddo6w"]
+[ext_resource type="Script" uid="uid://b1kdo6u1xoxbr" path="res://map_phase/houses/assets/House 1/chest.gd" id="1_w71re"]
+[ext_resource type="AudioStream" uid="uid://dole1vr4lxacx" path="res://art/Audio Assets/chest_open.mp3" id="3_slurs"]
+[ext_resource type="Texture2D" uid="uid://bmj3pmiwvitce" path="res://art/icons/arrow-right.png" id="4_8t8oq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w71re"]
+size = Vector2(16, 11)
+
+[sub_resource type="Animation" id="Animation_8t8oq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_slurs"]
+resource_name = "chest_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.53333336, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b518g"]
+_data = {
+&"RESET": SubResource("Animation_8t8oq"),
+&"chest_open": SubResource("Animation_slurs")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w71re"]
+radius = 30.0
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_w71re")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_w71re")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ddo6w")
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_b518g")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_w71re")
+
+[node name="AudioStreamPlayer2D-open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_slurs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = 3.0000002
+offset_top = -11.0
+offset_right = 14.746605
+offset_bottom = 2.3352585
+rotation = 1.5707964
+scale = Vector2(0.465, 0.465)
+texture = ExtResource("4_8t8oq")
+expand_mode = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

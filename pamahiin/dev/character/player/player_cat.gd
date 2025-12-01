@@ -18,17 +18,17 @@ signal sanity_damaged
 @export var has_light : bool = false
 @export var sprintSoundMaxDistance = 350
 @export var walkSoundMaxDistance = 200
-
 var footsteps_Sound : AudioStream
 @export var footstep_sfx_map: Dictionary[String, Resource] = {
-	"ground_stone": preload("uid://ddty6kh3k1x7p"),
+	"cave_stone": preload("uid://ddty6kh3k1x7p"),
 	"salt": preload("uid://qnqi6x0wy5g7"),
-	"wood_plank": preload("uid://4xdwy8c4atu4"),
+	"wood": preload("uid://4xdwy8c4atu4"),
 	"carpet": preload("uid://bryk4kumpuid"),
 	"grass": preload("uid://dqwal04bj3dqk"),
 	"stone": preload("uid://deyrlfjtlv8c3"),
 	"tile": preload("uid://cccmwejegywa6"),
-	"bone": preload("uid://cfueffcslv628")
+	"bone": preload("uid://cfueffcslv628"),
+	"soil": preload("uid://o5nf5hj0jvn6")
 }
 @export var tile_maps: Node
 
@@ -41,6 +41,7 @@ var _is_footstep_sfx_playing: Dictionary[String, bool] = {}
 
 # onready get animation_tree under this node
 @onready var animation_tree = $AnimationTree 
+@onready var animation_player = $AnimationPlayer
 @onready var state_machine= animation_tree.get("parameters/playback")
 @onready var hit_effect_manager = $HitEffectManager
 @onready var invul_timer = $InvulTimer
@@ -49,6 +50,8 @@ var _is_footstep_sfx_playing: Dictionary[String, bool] = {}
 @onready var audioPlayer : AudioStreamPlayer2D = $"AudioStreamPlayer2D-FootSound"
 @onready var uiLayer:CanvasLayer = $CanvasLayer
 @onready var GrabSound_asp:AudioStreamPlayer2D = $"AnimationPlayer-GrabSound"
+@onready var audioPlayerNearDeath = $"AudioStreamPlayer2D-Heartbeat"
+
 func changeFootstepSound():
 	if not Global.game_controller:
 		return
@@ -56,39 +59,16 @@ func changeFootstepSound():
 	#var location = Global.game_controller.locationType
 	#var audio_path = "res://art/Audio Assets/"
 	#var isCave: bool = false
-	## Map location types to footstep sounds
-	#match location:
-		#EnumsRef.LocationType.GRAVEYARD, \
-		#EnumsRef.LocationType.GARDEN, \
-		#EnumsRef.LocationType.WORLD:
-			## Grass footsteps
-			#footsteps_Sound = load(audio_path + "5 - Stomping on Grass.wav")
-			#
-		#EnumsRef.LocationType.MOTEL, \
-		#EnumsRef.LocationType.HOME:
-			## Tile footsteps
-			#footsteps_Sound = load(audio_path + "6 - Stomping on Tile.wav")
-			#
-		#EnumsRef.LocationType.CHAPEL:
-						## Stone footsteps
-			#footsteps_Sound = load(audio_path + "7 - Stomping on Stone.wav")
-		#EnumsRef.LocationType.CAVE:
-			#audioPlayer.stream =null
-			#isCave = true
-	#
-	## Update the audio player with new footstep sound
-	#if footsteps_Sound and audioPlayer and not isCave:
-		#audioPlayer.stream = footsteps_Sound
-		#print("🔊 Footstep sound changed to: ", location)
-		
+
 	
 	
 func _ready():
+	sanity_changed.connect(check_health_changes)
 	for ctrl in $CanvasLayer.get_children():
 		if ctrl is Control:
 			ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_init_footstep_sfx_playing_dict()
-	
+	$Sprite2D.texture = load("res://dev/character/player/Character_Spritesheet_Walking.png")
 	update_animation_parameters(starting_direction)
 	remote_transform_2d.remote_path = camera.get_path()
 	
@@ -100,7 +80,10 @@ func _ready():
 		
 
 # Anything moving and colliding is always under the collision
-func _physics_process(delta):
+func _physics_process(_delta):
+	
+	if sanity <= 0:
+		return
 	if is_cutscene_controlled:
 		return
 	
@@ -158,16 +141,35 @@ func pick_new_state():
 		state_machine.travel("Walk")
 	else:
 		state_machine.travel("Idle")
-
+		
+func check_health_changes(num : float):
+	if sanity <= 30:
+		if audioPlayer.playing:
+			return
+		audioPlayerNearDeath.play()
+		audioPlayerNearDeath.pitch_scale = 1.4
+		
+	if sanity <= 0:
+		audioPlayerNearDeath.pitch_scale = 1.0	
+		
+		play_death()
+func play_death():
+	await get_tree().physics_frame
+	audioPlayerNearDeath.stream = load("res://art/Audio Assets/dramatic-death-collapse.mp3")
+	audioPlayerNearDeath.play()
+	update_animation_parameters(Vector2.ZERO)
+	await get_tree().physics_frame
+	
+	velocity = Vector2.ZERO
+	state_machine.travel("death")
 # Sanity Logic
 func ReceiveSanityDamage(dmg: float, effect_name : EnumsRef.HitEffectType):	
 	if is_invulnerable:
 		return
 	
-
+	
 	# Hit effect manager should implement how sanity would be decreased	
 	hit_effect_manager.apply_hit_effect(effect_name, dmg, self)	
-	
 	# Clamping restricts between 0 and max sanity value
 	#sanity = clamp(sanity - dmg, 0, max_sanity)
 	#
@@ -184,7 +186,11 @@ func _on_invul_timer_timeout():
 	print("🔓 Player is now vulnerable again.")
 func turnOnLight():
 	$PointLight2D.enabled = true
-	
+
+func delete(item:InvItem):
+	inventory.lose_item(item)
+
+
 # Player adds item to his inventory	
 func collect(item : InvItem):
 	if item.name == "Lantern":
@@ -270,6 +276,7 @@ func attempt_play_footsteps() -> void:
 			audio_player.finished.connect(func():
 				audio_player.queue_free()
 				_is_footstep_sfx_playing[tile_type] = false
+				
 			)
 			
 			audio_player.play()

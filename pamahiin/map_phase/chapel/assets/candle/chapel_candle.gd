@@ -17,10 +17,11 @@ func _on_area_2d_interactable_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"): 
 		is_player_in_area = true
 		player = body	
-	
+		$TextureRect.visible = true
 
 
 func _on_area_2d_interactable_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"): 
 		is_player_in_area = false
 		player = null	
+		$TextureRect.visible = false

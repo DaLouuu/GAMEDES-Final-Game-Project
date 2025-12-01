@@ -11,14 +11,23 @@ func getLocationType()->EnumsRef.LocationType:
 func _ready() -> void:
 	Global.game_controller.stop_curr_global_audio()
 func _on_area_2d_to_room_body_entered(body: Node2D) -> void:
-	if GameState.HOUSE_has_met_ghost_girl == false or GameState.HOUSE_has_read_clue == false:
+	if GameState.HOUSE_has_met_ghost_girl == false and GameState.HOUSE_has_read_clue == false:
 		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/house_dialogues/player_enter_puzzle.dialogue"))
 		return
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and not GameState.HOUSE_finished_puzzle:
 		Global.game_controller.change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
-
+	elif body.is_in_group("Player"):
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/HOUSE_finished_puzzle.dialogue"))
+		
 
 
 func _on_area_2d_back_to_world_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		Global.game_controller.change_2d_scene_custom("res://map_phase/houses/house_together.tscn", EnumsRef.LOCAL_FROM_TYPE.H2)
+
+
+func _on_area_2d_clue_body_entered(body: Node2D) -> void:
+	print( GameState.HOUSE_seen_key_but_did_not_pickup)
+	if body.is_in_group("Player") and GameState.HOUSE_seen_key_but_did_not_pickup:
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/HOUSE_player_dumb_no_key.dialogue"))
+		GameState.HOUSE_seen_key_but_did_not_pickup = false

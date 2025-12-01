@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://o5nf5hj0jvn6"
+path="res://.godot/imported/soil_step.mp3-d0c38fff59b60cc11b7d9e2044d83875.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/soil_step.mp3"
+dest_files=["res://.godot/imported/soil_step.mp3-d0c38fff59b60cc11b7d9e2044d83875.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

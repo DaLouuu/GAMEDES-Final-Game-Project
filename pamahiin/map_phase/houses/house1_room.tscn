@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://c84sfbn2e7dnq"]
+[gd_scene load_steps=14 format=4 uid="uid://c84sfbn2e7dnq"]
 
 [ext_resource type="Script" uid="uid://6lc11sccbhka" path="res://map_phase/houses/house_1_room.gd" id="1_2qk7u"]
 [ext_resource type="TileSet" uid="uid://xgb1kfo8b417" path="res://map_phase/houses/house2_full_asset_tileset.tres" id="2_uuc6d"]
-[ext_resource type="PackedScene" uid="uid://bvhq27uldmy8t" path="res://map_phase/houses/assets/House 1/clue_paper.tscn" id="5_8u7j1"]
 [ext_resource type="Shader" uid="uid://dax5u6f5b2eii" path="res://dev/shaders/screen_effect.gdshader" id="6_uuc6d"]
 [ext_resource type="QuadMesh" uid="uid://b7bui5a06ao3p" path="res://dev/shaders/mesh_empty.tres" id="7_rj3yu"]
-[ext_resource type="PackedScene" uid="uid://8fegnh450g03" path="res://dev/resource_scripts/inventory/items/lantern.tscn" id="8_rj3yu"]
+[ext_resource type="PackedScene" uid="uid://egbkdyoie7lc" path="res://map_phase/houses/assets/House 1/chest.tscn" id="8_6keb6"]
 [ext_resource type="PackedScene" uid="uid://bpd8l2bnrcvqr" path="res://map_phase/houses/assets/npcs/little_girl.tscn" id="8_tkphy"]
+[ext_resource type="AudioStream" uid="uid://dole1vr4lxacx" path="res://art/Audio Assets/chest_open.mp3" id="10_6keb6"]
+[ext_resource type="AudioStream" uid="uid://jbn3j0i3cw0x" path="res://art/Audio Assets/obtained_item.mp3" id="11_gwxqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qk7u"]
 size = Vector2(47.999992, 8.833335)
@@ -61,10 +62,6 @@ shape = SubResource("RectangleShape2D_2qk7u")
 [node name="Marker2D-OutFromP" type="Marker2D" parent="."]
 position = Vector2(238.33334, 68.33333)
 
-[node name="CluePaper" parent="." instance=ExtResource("5_8u7j1")]
-position = Vector2(241.6667, 166.66666)
-scale = Vector2(0.09333252, 0.106667064)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
@@ -72,12 +69,9 @@ visible = false
 material = SubResource("ShaderMaterial_tkphy")
 mesh = ExtResource("7_rj3yu")
 
-[node name="Lantern" parent="." instance=ExtResource("8_rj3yu")]
-position = Vector2(71.333336, 170.33334)
-
 [node name="LittleGirl" parent="." instance=ExtResource("8_tkphy")]
 z_index = 10
-position = Vector2(150, 139)
+position = Vector2(189.66667, 140.66667)
 
 [node name="Node" type="Node" parent="."]
 
@@ -107,5 +101,14 @@ collision_layer = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Area2D2"]
 position = Vector2(-4.3333435, -4.333336)
 shape = SubResource("RectangleShape2D_rj3yu")
+
+[node name="Chest" parent="." instance=ExtResource("8_6keb6")]
+position = Vector2(149.33333, 120)
+
+[node name="AudioStreamPlayer2D-open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_6keb6")
+
+[node name="AudioStreamPlayer2D-GottenItem" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_gwxqy")
 
 [connection signal="body_entered" from="Area2D-BackToWorld" to="." method="_on_area_2d_back_to_world_body_entered"]

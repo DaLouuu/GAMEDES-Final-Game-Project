@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_vajyx")
 name = "shirt"
-description = Array[String](["Just a shirt"])
+description = Array[String](["Red shirt, curiously placed as if pointing me somewhere."])
 texture = ExtResource("2_4n3dl")
 metadata/_custom_type_script = "uid://26w5lr3t485j"

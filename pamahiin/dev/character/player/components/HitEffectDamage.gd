@@ -1,7 +1,7 @@
 class_name HitEffectDamage
 extends HitEffect
 
-func apply(damage: float, player:CharacterBody2D) -> void:
+func apply(damage: float, player:Player) -> void:
 
 		
 	player.sanity_damaged.connect(player.camera.start_shake)

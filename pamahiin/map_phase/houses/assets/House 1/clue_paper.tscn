@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvhq27uldmy8t"]
+[gd_scene load_steps=6 format=3 uid="uid://bvhq27uldmy8t"]
 
 [ext_resource type="Texture2D" uid="uid://c4hx62hi55hlh" path="res://map_phase/houses/assets/HouseInt - Torn Paper.png" id="1_6ussf"]
 [ext_resource type="Script" uid="uid://cofv28hasth0o" path="res://map_phase/houses/assets/House 1/area_2d.gd" id="2_b00js"]
 [ext_resource type="AudioStream" uid="uid://dd0j6yiqnv7ld" path="res://art/Audio Assets/30 - Opening Paper.wav" id="3_ilpru"]
+[ext_resource type="Texture2D" uid="uid://bmj3pmiwvitce" path="res://art/icons/arrow-right.png" id="4_dl07y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b00js"]
 radius = 100.0
@@ -20,6 +21,16 @@ shape = SubResource("CircleShape2D_b00js")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ilpru")
 volume_db = 0.305
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = 45.0
+offset_top = -109.99999
+offset_right = 85.0
+offset_bottom = -69.99999
+rotation = 1.5707964
+scale = Vector2(1, 2.2000008)
+texture = ExtResource("4_dl07y")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

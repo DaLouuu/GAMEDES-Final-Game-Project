@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://daf660i617sba"]
+[gd_scene load_steps=28 format=3 uid="uid://daf660i617sba"]
 
 [ext_resource type="Script" uid="uid://w3mu6cwo3rjm" path="res://map_phase/houses/puzzle_pathways/pathway_2/house_puzzle_bullets_2.gd" id="1_6rlm5"]
 [ext_resource type="Texture2D" uid="uid://ck4dcu7rqfq06" path="res://map_phase/houses/assets/house1_ver1_full_tileset.png" id="2_qcum2"]
@@ -11,11 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://mjwnd1wi34pg" path="res://map_phase/houses/assets/objects_art/00 _ Free Assets/props.png" id="9_ufhaw"]
 [ext_resource type="Texture2D" uid="uid://b5kpyqcp5jee" path="res://map_phase/houses/assets/objects_art/00 _ Free Assets/TopDownHouse_FurnitureState2.png" id="10_2dtf4"]
 [ext_resource type="PackedScene" uid="uid://dds6v1b14r58m" path="res://dev/resource_scripts/inventory/items/item_template.tscn" id="11_x4hyg"]
-[ext_resource type="Resource" uid="uid://dtftljekysnxc" path="res://map_phase/houses/assets/items/shirt.tres" id="12_hqi5a"]
-[ext_resource type="Resource" uid="uid://rtueee8tki4g" path="res://map_phase/houses/assets/items/bullets-fake.tres" id="13_ynqcw"]
+[ext_resource type="Resource" uid="uid://dcwyptg1xyjn6" path="res://map_phase/houses/assets/items/shirt-fake.tres" id="12_gq01x"]
 [ext_resource type="Resource" uid="uid://8rk0mg4enke" path="res://map_phase/houses/assets/items/vase-fake.tres" id="14_xb5vg"]
 [ext_resource type="Texture2D" uid="uid://bj4rf637ngd4r" path="res://map_phase/houses/assets/objects_art/Floor-Carpet/HouseInt_X PATH.png" id="15_ooabh"]
-[ext_resource type="Resource" uid="uid://c3bj6vucbsef1" path="res://map_phase/houses/assets/items/vase.tres" id="16_a5nc5"]
+[ext_resource type="Resource" uid="uid://hqudl32cib8q" path="res://map_phase/houses/assets/items/bullets.tres" id="16_gq01x"]
 [ext_resource type="PackedScene" uid="uid://c6karpfd60fbv" path="res://map_phase/houses/assets/npcs/enemy/white_lady.tscn" id="17_gq01x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs3y1"]
@@ -488,14 +487,13 @@ position = Vector2(379, 618)
 script = ExtResource("1_6rlm5")
 
 [node name="Marker2D-SpawnP" type="Marker2D" parent="."]
-position = Vector2(19, 819)
+position = Vector2(11, 799)
 
 [node name="PathwaysTP-Normal" type="Node" parent="."]
 
 [node name="Area2D-Block1" type="Area2D" parent="PathwaysTP-Normal"]
 z_index = 10
-position = Vector2(1124, 438)
-rotation = 0.008505821
+position = Vector2(1137, 437)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathwaysTP-Normal/Area2D-Block1"]
 position = Vector2(60.25, 118)
@@ -503,8 +501,8 @@ shape = SubResource("RectangleShape2D_bs3y1")
 
 [node name="Area2D-Answer" type="Area2D" parent="PathwaysTP-Normal"]
 z_index = 10
-position = Vector2(200, 1512)
-rotation = -1.570854
+position = Vector2(192, 1500.0001)
+rotation = -1.5638359
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathwaysTP-Normal/Area2D-Answer"]
 position = Vector2(60.25, 118)
@@ -544,27 +542,28 @@ layer_1/tile_data = PackedInt32Array(1048609, 65538, 3, 1114145, 65538, 3, 11796
 layer_2/name = "Wall2"
 layer_2/tile_data = PackedInt32Array(1769506, 65539, 1, 1769507, 65539, 1, 1769508, 65539, 1, 1769509, 65539, 1, 1769510, 65539, 1, 1769511, 65539, 1, 1769512, 65539, 1, 1769513, 65539, 1, 1769514, 65539, 1, 1769515, 65539, 1, 1769516, 65539, 1, 1769517, 65539, 1, 1769518, 65539, 1, 1769519, 65539, 1, 1769520, 65539, 1, 1769521, 65539, 1, 1769522, 65539, 1, 1769523, 65539, 1, 1769472, 65539, 1, 1769473, 65539, 1, 1769474, 65539, 1, 1769475, 65539, 1, 1769476, 65539, 1, 1769477, 65539, 1, 1769478, 65539, 1, 1769479, 65539, 1, 1769480, 65539, 1, 1769481, 65539, 1, 1769482, 65539, 1, 1769483, 65539, 1, 1769484, 65539, 1, 1769485, 65539, 1, 1769486, 65539, 1, 1769487, 65539, 1, 1769488, 65539, 1, 1769489, 131075, 1, 1835025, 131075, 2, 1900561, 131075, 2, 1966097, 131075, 2, 2031633, 131075, 2, 2097169, 131075, 2, 2162705, 131075, 2, 2228241, 131075, 2, 2293777, 131075, 2, 2359313, 131075, 2, 2424849, 131075, 2, 2490385, 131075, 2, 2555921, 131075, 2, 2621457, 131075, 2, 2686993, 131075, 2, 2752529, 131075, 2, 2818065, 131075, 2, 2883601, 131075, 2, 2949137, 131075, 2, 3014673, 131075, 2, 3080209, 131075, 2, 3145745, 131075, 2, 1835041, 3, 2, 1900577, 3, 2, 1966113, 3, 2, 2031649, 3, 2, 2097185, 3, 2, 2162721, 3, 2, 2228257, 3, 2, 2293793, 3, 2, 2359329, 3, 2, 2424865, 3, 2, 2490401, 3, 2, 2555937, 3, 2, 2621473, 3, 2, 2687009, 3, 2, 2752545, 3, 2, 2818081, 3, 2, 2883617, 3, 2, 2949153, 3, 2, 3014689, 3, 2, 3080225, 3, 2, 3145761, 3, 2, 1769505, 3, 1, 1048593, 131074, 2, 65553, 131074, 1, 131089, 131074, 1, 196625, 131074, 1, 262161, 131074, 1, 327697, 131074, 1, 393233, 131074, 1, 458769, 131074, 1, 524305, 131074, 1, 589841, 131074, 1, 655377, 131074, 1, 720913, 131074, 1, 786449, 131074, 1, 851985, 131074, 1, 917521, 131074, 1, 983057, 131074, 1, 17, 131074, 1, 1048578, 65538, 2, 1048579, 65538, 2, 1048580, 65538, 2, 1048581, 65538, 2, 1048582, 65538, 2, 1048583, 65538, 2, 1048584, 65538, 2, 1048585, 65538, 2, 1048586, 65538, 2, 1048587, 65538, 2, 1048588, 65538, 2, 1048589, 65538, 2, 1048590, 65538, 2, 1048591, 65538, 2, 1048592, 65538, 2, 1048576, 65538, 2, 1048577, 65538, 2, 983073, 2, 2, 983074, 65538, 2, 983075, 65538, 2, 983076, 65538, 2, 983077, 65538, 2, 983078, 65538, 2, 983079, 65538, 2, 983080, 65538, 2, 983081, 65538, 2, 983082, 65538, 2, 983083, 65538, 2, 983084, 65538, 2, 983085, 65538, 2, 983086, 65538, 2, 983087, 65538, 2, 983088, 65538, 2, 983089, 65538, 2, 983090, 65538, 2, 983091, 65538, 2, 917537, 2, 1, 852001, 2, 1, 786465, 2, 1, 720929, 2, 1, 655393, 2, 1, 589857, 2, 1, 524321, 2, 1, 458785, 2, 1, 393249, 2, 1, 327713, 2, 1, 262177, 2, 1, 196641, 2, 1, 33, 2, 1, 65569, 2, 1, 131105, 2, 1)
 layer_3/name = "Paintings"
-layer_3/tile_data = PackedInt32Array(1179662, 65541, 4, 1245198, 65541, 5, 1179658, 196613, 4, 1245194, 196613, 5, 1179654, 327685, 4, 1245190, 327685, 5, 1114147, 327685, 4, 1179683, 327685, 5, 1114151, 196613, 4, 1179687, 196613, 5, 1114155, 65541, 4, 1179691, 65541, 5, 1114160, 65541, 1, 1179696, 65541, 2, 1114161, 131077, 1, 1179697, 131077, 2, 1179649, 458757, 1, 1245185, 458757, 2, 1179650, 524293, 1, 1245186, 524293, 2)
+layer_3/tile_data = PackedInt32Array(1179662, 65541, 4, 1245198, 65541, 5, 1179658, 327685, 4, 1245194, 327685, 5, 1179654, 196613, 4, 1245190, 196613, 5, 1114147, 65541, 4, 1179683, 65541, 5, 1114151, 327685, 4, 1179687, 327685, 5, 1114155, 196613, 4, 1179691, 196613, 5, 1114160, 65541, 1, 1179696, 65541, 2, 1114161, 131077, 1, 1179697, 131077, 2, 1179649, 458757, 1, 1245185, 458757, 2, 1179650, 524293, 1, 1245186, 524293, 2)
 layer_4/name = "Objects"
 layer_4/tile_data = PackedInt32Array(1245221, 7, 0, 1310757, 7, 1, 1245222, 65543, 0, 1310758, 65543, 1)
 
 [node name="Puzzle" type="Node" parent="."]
 
 [node name="ItemTemplate-Shirt" parent="Puzzle" instance=ExtResource("11_x4hyg")]
-position = Vector2(532, 733)
-item = ExtResource("12_hqi5a")
+position = Vector2(1210, 1065)
+scale = Vector2(0.5, 0.5)
+item = ExtResource("12_gq01x")
 isInspectable = true
 collision_scale = 3.0
 
 [node name="ItemTemplate-Bullets" parent="Puzzle" instance=ExtResource("11_x4hyg")]
-position = Vector2(809, 592)
+position = Vector2(811, 1426)
 scale = Vector2(0.8, 0.8)
-item = ExtResource("13_ynqcw")
+item = ExtResource("16_gq01x")
 isInspectable = true
 collision_scale = 3.0
 
 [node name="ItemTemplate-Vase" parent="Puzzle" instance=ExtResource("11_x4hyg")]
-position = Vector2(1226, 592)
+position = Vector2(1602.055, 1211)
 item = ExtResource("14_xb5vg")
 isInspectable = true
 collision_scale = 7.0
@@ -581,20 +580,21 @@ position = Vector2(-2446, 522)
 
 [node name="ItemTemplate-Shirt" parent="Puzzle2" instance=ExtResource("11_x4hyg")]
 position = Vector2(-2565, 1506)
-item = ExtResource("12_hqi5a")
+scale = Vector2(0.5, 0.5)
+item = ExtResource("12_gq01x")
 isInspectable = true
 collision_scale = 3.0
 
 [node name="ItemTemplate-Bullets" parent="Puzzle2" instance=ExtResource("11_x4hyg")]
 position = Vector2(-2152.9998, 1481)
 scale = Vector2(0.8, 0.8)
-item = ExtResource("13_ynqcw")
+item = ExtResource("16_gq01x")
 isInspectable = true
 collision_scale = 3.0
 
 [node name="ItemTemplate-Vase" parent="Puzzle2" instance=ExtResource("11_x4hyg")]
-position = Vector2(-2351, 1254)
-item = ExtResource("16_a5nc5")
+position = Vector2(-2479, 1245)
+item = ExtResource("14_xb5vg")
 collision_scale = 7.0
 collision_pos_offset = Vector2(-5, 10)
 
@@ -621,6 +621,36 @@ position = Vector2(-2514, 411)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-580, -64, -217, 198, 148, -62, 454, -60, -87, -278, -334, -278, -872, -264, -944, 779, 281, 750, 515, 750, 497, 503, 449, -64, -75, 300, 468, 691, 174, 684, -213, 419, -577, 666, -869, 666, -784, 600, -360, 295, -850, -53)
+
+[node name="BlockingNodes" type="Node" parent="."]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(321, 1252)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D2"]
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(827, 1044)
+rotation = 3.1336052
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D3"]
+position = Vector2(-1265.1511, -612.1247)
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(968, 2276.0002)
+rotation = 4.685294
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D4"]
+polygon = PackedVector2Array(86.48071, 20.350342, 88.69922, -24.60608, -57, -17, -57, 354, -57, 396, 77.88159, 485.28802, 78.18237, 437.2785, 46.194336, 436.41156, 47.088135, 403.42377, 15.072754, 403.55646, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, 4.2072754, 103.151855, 26.334473, 98.749695, 22.555664, 53.630737, 54.679443, 49.49945, 57.491455, 19.564697)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(1421, 550)
+rotation = 1.6083138
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D5"]
+polygon = PackedVector2Array(68.552246, 13.43811, 63.866455, -31.417725, -57, -17, -57, 354, -57, 396, 83.9577, 477.18658, 85.2677, 432.1057, 52.32843, 434.34277, 51.05316, 400.3667, 18.076355, 401.6045, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, -9.277496, 99.41785, 6.523651, 93.82129, 5.0608215, 54.848755, 36.813232, 47.652588, 35.57544, 14.675781)
 
 [connection signal="body_entered" from="PathwaysTP-Normal/Area2D-Block1" to="." method="_on_area_2d_back_to_room_body_entered"]
 [connection signal="body_entered" from="PathwaysTP-Normal/Area2D-Answer" to="." method="_on_area_2d_answer_body_entered"]
