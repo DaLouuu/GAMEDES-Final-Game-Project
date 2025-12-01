@@ -20,12 +20,12 @@ signal sanity_damaged
 @export var walkSoundMaxDistance = 200
 var footsteps_Sound : AudioStream
 @export var footstep_sfx_map: Dictionary[String, Resource] = {
-	"cave_stone": preload("uid://ddty6kh3k1x7p"),
+	"stone": preload("uid://ddty6kh3k1x7p"),
 	"salt": preload("uid://qnqi6x0wy5g7"),
 	"wood": preload("uid://4xdwy8c4atu4"),
 	"carpet": preload("uid://bryk4kumpuid"),
 	"grass": preload("uid://dqwal04bj3dqk"),
-	"stone": preload("uid://deyrlfjtlv8c3"),
+	#"stone": preload("uid://deyrlfjtlv8c3"),
 	"tile": preload("uid://cccmwejegywa6"),
 	"bone": preload("uid://cfueffcslv628"),
 	"soil": preload("uid://o5nf5hj0jvn6")
@@ -97,21 +97,25 @@ func _physics_process(_delta):
 	# Sprinting multiplier
 	var current_speed = move_speed
 	var is_sprinting = Input.is_action_pressed("sprint")
-	
+	$FootStepManager.mode = $FootStepManager.Mode.LAYERED
+
 	if is_sprinting:
 		current_speed *= sprint_multiplier
+		$FootStepManager.base_player.pitch_scale =  sprint_multiplier
+		$FootStepManager.base_player.volume_db =  5.0
 		# Speed up animation to match sprint speed
 		animation_tree.set("parameters/TimeScale/scale", sprint_multiplier)
-		 #Also speed up footstep sounds
-		audioPlayer.pitch_scale = sprint_multiplier
-		audioPlayer.volume_db = 5.0
-		
+		 ##Also speed up footstep sounds
+		#audioPlayer.pitch_scale = sprint_multiplier
+		#audioPlayer.volume_db = 5.0
+		#
 	else:
 		# Normal animation speed
 		animation_tree.set("parameters/TimeScale/scale", 1.0)
-
-		audioPlayer.pitch_scale = 1.0
-		audioPlayer.volume_db = 0
+		$FootStepManager.base_player.pitch_scale =  1.0
+		$FootStepManager.base_player.volume_db =   0	#
+		#audioPlayer.pitch_scale = 1.0
+		#audioPlayer.volume_db = 0
 
 		
 	velocity = input_direction * current_speed
@@ -249,34 +253,28 @@ func move_towards(target: DirectionMarker) -> void:
 func _init_footstep_sfx_playing_dict() -> void:
 	for tile_type in footstep_sfx_map:
 		_is_footstep_sfx_playing[tile_type] = false
-func attempt_play_footsteps() -> void:
+func attempt_play_footsteps():
+	var tile_types =[]
 	var tile_data: Array[TileData] = []
-	
-	for child in tile_maps.get_children():
+	for child in get_tree().get_nodes_in_group("tilemaps"):
 		var tilemap := child as TileMapLayer
+		if child.tile_set.get_custom_data_layer_by_name("footstep_sfx")==-1:
+			continue
 		
 		var tile_position := tilemap.local_to_map(tilemap.to_local(global_position))
 		var data := tilemap.get_cell_tile_data(tile_position)
 		
 		if data:
+			var tile_type = data.get_custom_data("footstep_sfx")
+			var sprint := sprint_multiplier if Input.is_action_pressed("sprint") else 1.0
+			$FootStepManager.play_step(global_position, tile_type, sprint)
 			tile_data.push_back(data)
-	
-	for tile_datum in tile_data:
-		var tile_type = tile_datum.get_custom_data('footstep_sfx')
-		
-		if footstep_sfx_map.has(tile_type) and not _is_footstep_sfx_playing[tile_type]:
-			var audio_player := AudioStreamPlayer2D.new()
-			audio_player.stream = footstep_sfx_map[tile_type]
-			audio_player.global_position = global_position
-			
-			get_tree().root.add_child(audio_player)
-			
-			_is_footstep_sfx_playing[tile_type] = true
-			
-			audio_player.finished.connect(func():
-				audio_player.queue_free()
-				_is_footstep_sfx_playing[tile_type] = false
-				
-			)
-			
-			audio_player.play()
+	#for data in tile_data:
+		#if data:
+			#var tile_type = data.get_custom_data("footstep_sfx")
+			#if tile_type:
+				#tile_types.append(tile_type)
+#
+	#
+	#for tile_type in tile_types:
+		#$FootStepManager.play_step(global_position, tile_type, sprint)

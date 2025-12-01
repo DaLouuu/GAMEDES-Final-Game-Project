@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cbiyjqctoq0j3"]
+[gd_scene load_steps=50 format=3 uid="uid://cbiyjqctoq0j3"]
 
 [ext_resource type="Script" uid="uid://e8vo2bsuywb5" path="res://dev/character/player/player_cat.gd" id="1_u0lhy"]
 [ext_resource type="Resource" uid="uid://dp4dsw13mlp8d" path="res://dev/resource_scripts/inventory/player_inventory.tres" id="2_u0b4o"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://eacn5vqet4jd" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cvuuwq222nvfx" path="res://art/Audio Assets/20 - Player Grab.wav" id="15_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cw1gbbtkyhtjn" path="res://art/Audio Assets/17 - Moderate Heartbeat-mprMode.mp3" id="17_l5slc"]
+[ext_resource type="Script" uid="uid://b3o3ajfg8m46d" path="res://dev/character/player/FootStepManager.gd" id="18_iqj7j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gx6m4"]
 radius = 43.8
@@ -577,7 +578,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 
 [node name="PlayerCat" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_u0lhy")
-move_speed = 300.0
+move_speed = 200.0
 inventory = ExtResource("2_u0b4o")
 metadata/_edit_horizontal_guides_ = [-31.0]
 
@@ -699,6 +700,11 @@ simplify_epsilon = 2.0
 [node name="AudioStreamPlayer2D-Heartbeat" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_l5slc")
 max_distance = 100.0
+
+[node name="FootStepManager" type="Node" parent="." node_paths=PackedStringArray("player", "base_player")]
+script = ExtResource("18_iqj7j")
+player = NodePath("..")
+base_player = NodePath("../AudioStreamPlayer2D-FootSound")
 
 [connection signal="body_entered" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_entered"]
 [connection signal="body_exited" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_exited"]

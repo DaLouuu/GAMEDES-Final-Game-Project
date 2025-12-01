@@ -8,6 +8,7 @@ var current_step = 0
 
 
 func _ready():
+	$"ItemTemplate-paper clue".item_inspected.connect(start_enemies)
 	$"ItemTemplate-chalice".item_inspected.connect(start_enemies)
 	var node = $TileMap/Animatable_puzzle
 	var tween = create_tween().set_loops()  # Repeat forever
@@ -22,7 +23,8 @@ func start_enemies(_item: InvItem):
 	$EnemyAntilight.start_funcs()
 	$EnemyAntilight2.start_funcs()
 	$EnemyAntilight3.start_funcs()
-	
+	$"ItemTemplate-paper clue".item_inspected.disconnect(start_enemies)
+	$"ItemTemplate-chalice".item_inspected.disconnect(start_enemies)
 func _on_light_pressed(light_name):
 	if light_name == correct_order[current_step]:
 		# Correct light
