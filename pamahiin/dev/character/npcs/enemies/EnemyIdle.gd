@@ -15,6 +15,7 @@ func randomize_wander():
 	wander_time = randf_range(wander_minTime,wander_maxTime)
 
 func Enter():
+	print("Idle Mode")
 	move_speed = enemy.move_speed
 
 	player_detector.body_entered.connect(_on_body_entered)

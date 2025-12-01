@@ -27,12 +27,9 @@ func _physics_process(delta: float) -> void:
 		
 		
 	if velocity.x > 0:
-		#$Sprite2D.flip_h = false
-		scale.x = -1 * scale_move
-		
+		scale.x = scale.x * -1
 	else:
-		#$Sprite2D.flip_h = true
-		scale.x = 1 * scale_move
+		scale.x = scale.x * 1 
 		
 
 	move_and_slide()
