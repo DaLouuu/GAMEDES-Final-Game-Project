@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://cyqsdqbaspryc"]
+[gd_scene load_steps=58 format=4 uid="uid://cyqsdqbaspryc"]
 
 [ext_resource type="Texture2D" uid="uid://bpo30nsus5lg1" path="res://art/GAMEDES art/Grass/Corner top left.png" id="1_nlmiy"]
 [ext_resource type="Texture2D" uid="uid://da5f3jy0mnaey" path="res://art/GAMEDES art/Grass/Middle_1.png" id="2_nl4u2"]
@@ -15,9 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://d3t8xal4a3esk" path="res://map_phase/garden/Fences & Door/Garden_Fence_M_Cont.png" id="13_l5576"]
 [ext_resource type="Texture2D" uid="uid://g4wy7k8we2pk" path="res://map_phase/garden/Fences & Door/Garden_Fence_Side_L.png" id="14_fne1g"]
 [ext_resource type="Texture2D" uid="uid://dxg76tvedny8r" path="res://map_phase/garden/Fences & Door/Garden_Fence_Side_L_Corner.png" id="15_nhv60"]
-[ext_resource type="PackedScene" uid="uid://dp66p8v8rpwbu" path="res://dev/dana's_testing_stuff/treedoor.tscn" id="16_kdcv5"]
+[ext_resource type="PackedScene" uid="uid://dp66p8v8rpwbu" path="res://map_phase/garden/treedoor.tscn" id="16_kdcv5"]
 [ext_resource type="Texture2D" uid="uid://t4kfw3yukxq3" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Scratches.png" id="17_4opa5"]
-[ext_resource type="PackedScene" uid="uid://be3aleowsfjpa" path="res://dev/dana's_testing_stuff/fog.tscn" id="17_r2txa"]
+[ext_resource type="PackedScene" uid="uid://be3aleowsfjpa" path="res://map_phase/garden/fog.tscn" id="17_r2txa"]
 [ext_resource type="Texture2D" uid="uid://guyeujptgpr" path="res://art/GAMEDES art/Trees & Bush/Garden_Bush.png" id="17_sy3qf"]
 [ext_resource type="Texture2D" uid="uid://dbfi208ii3db5" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Wind 1.png" id="18_mekk0"]
 [ext_resource type="Texture2D" uid="uid://13j5fojx81a2" path="res://art/GAMEDES art/Trees & Bush/Garden_Grass1.png" id="19_l5576"]
@@ -25,13 +25,16 @@
 [ext_resource type="Texture2D" uid="uid://b7gluepug3qqu" path="res://art/GAMEDES art/Trees & Bush/Garden_Plant1.png" id="20_fne1g"]
 [ext_resource type="Texture2D" uid="uid://bpe46p7ms65no" path="res://art/GAMEDES art/Trees & Bush/Garden_Tree3.png" id="20_nhv60"]
 [ext_resource type="Script" uid="uid://bqwps21quferp" path="res://utils-scripts/ZoneAController.gd" id="20_p32c4"]
-[ext_resource type="PackedScene" uid="uid://cdkqkqf8jc7yt" path="res://dev/dana's_testing_stuff/signage.tscn" id="23_fne1g"]
+[ext_resource type="PackedScene" uid="uid://dcsrif8oijnrq" path="res://map_phase/garden/wellcrafting.tscn" id="22_2bacp"]
+[ext_resource type="PackedScene" uid="uid://cdkqkqf8jc7yt" path="res://map_phase/garden/signage.tscn" id="23_fne1g"]
+[ext_resource type="Texture2D" uid="uid://c8bwxsq4xo6s1" path="res://art/GAMEDES art/Items/Garden_Bucket.png" id="23_mqem8"]
 [ext_resource type="Script" uid="uid://cbqngajf04ty8" path="res://utils-scripts/CicadaTimer.gd" id="29_2cbjx"]
 [ext_resource type="AudioStream" uid="uid://e1pdx1ublcov" path="res://art/Audio Assets/35 - cicadas buzzing.mp3" id="29_405qd"]
+[ext_resource type="PackedScene" uid="uid://ui81aqjylkl" path="res://map_phase/garden/boulder.tscn" id="29_sns8l"]
 [ext_resource type="Script" uid="uid://dkts5qggt4eme" path="res://utils-scripts/GardenState.gd" id="32_2cbjx"]
 [ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="32_oool1"]
-[ext_resource type="Script" uid="uid://cjv17wjx0bj2x" path="res://dev/dana's_testing_stuff/DwendeSpawner.gd" id="33_ook4w"]
-[ext_resource type="PackedScene" uid="uid://boxtooqck02ur" path="res://dev/dana's_testing_stuff/dwende.tscn" id="34_cghnp"]
+[ext_resource type="Script" uid="uid://cjv17wjx0bj2x" path="res://map_phase/garden/DwendeSpawner.gd" id="33_ook4w"]
+[ext_resource type="PackedScene" uid="uid://boxtooqck02ur" path="res://map_phase/garden/dwende.tscn" id="34_cghnp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_am7ft"]
 texture = ExtResource("1_nlmiy")
@@ -174,14 +177,56 @@ cicada_player = NodePath("../../../Effects/CicadaPlayer")
 duwende_spawner = NodePath("../../../../DwendeSpawner")
 
 [node name="Treedoor" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
-position = Vector2(341, 309)
+position = Vector2(520, -365)
 metadata/_edit_group_ = true
 
 [node name="Trunk" parent="Environment/Props/Trees/Treedoor" index="1"]
 texture = ExtResource("17_4opa5")
 
+[node name="Treedoor5" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
+position = Vector2(1032, -190)
+metadata/_edit_group_ = true
+
+[node name="Trunk" parent="Environment/Props/Trees/Treedoor5" index="1"]
+texture = ExtResource("17_4opa5")
+
+[node name="Treedoor6" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
+position = Vector2(1032, 353)
+metadata/_edit_group_ = true
+
+[node name="Trunk" parent="Environment/Props/Trees/Treedoor6" index="1"]
+texture = ExtResource("17_4opa5")
+
+[node name="Treedoor7" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
+position = Vector2(1564, 360)
+metadata/_edit_group_ = true
+
+[node name="Trunk" parent="Environment/Props/Trees/Treedoor7" index="1"]
+texture = ExtResource("17_4opa5")
+
+[node name="Treedoor8" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
+position = Vector2(1576, -197)
+metadata/_edit_group_ = true
+
+[node name="Trunk" parent="Environment/Props/Trees/Treedoor8" index="1"]
+texture = ExtResource("17_4opa5")
+
+[node name="Treedoor9" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
+position = Vector2(2048, 182)
+metadata/_edit_group_ = true
+
+[node name="Trunk" parent="Environment/Props/Trees/Treedoor9" index="1"]
+texture = ExtResource("17_4opa5")
+
+[node name="Treedoor10" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
+position = Vector2(1756, -675)
+metadata/_edit_group_ = true
+
+[node name="Trunk" parent="Environment/Props/Trees/Treedoor10" index="1"]
+texture = ExtResource("17_4opa5")
+
 [node name="Treedoor2" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
-position = Vector2(92, 93)
+position = Vector2(2067, -366)
 is_correct_tree = true
 metadata/_edit_group_ = true
 
@@ -189,11 +234,11 @@ metadata/_edit_group_ = true
 texture = ExtResource("18_mekk0")
 
 [node name="Treedoor3" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
-position = Vector2(598, 86)
+position = Vector2(849, -681)
 metadata/_edit_group_ = true
 
 [node name="Treedoor4" parent="Environment/Props/Trees" groups=["treedoor"] instance=ExtResource("16_kdcv5")]
-position = Vector2(854, 261)
+position = Vector2(529, 180)
 metadata/_edit_group_ = true
 
 [node name="Trunk" parent="Environment/Props/Trees/Treedoor4" index="1"]
@@ -201,7 +246,23 @@ texture = ExtResource("19_p32c4")
 
 [node name="WellArea" type="Node2D" parent="Environment/Props"]
 
-[node name="well" type="Sprite2D" parent="Environment/Props/WellArea"]
+[node name="Wellcrafting" parent="Environment/Props/WellArea" instance=ExtResource("22_2bacp")]
+position = Vector2(1451, -1059)
+scale = Vector2(0.5, 0.5)
+
+[node name="Wellcrafting2" parent="Environment/Props/WellArea" instance=ExtResource("22_2bacp")]
+position = Vector2(1462, -1058)
+scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" parent="Environment/Props/WellArea/Wellcrafting2" index="0"]
+position = Vector2(70, 65)
+texture = ExtResource("23_mqem8")
+
+[node name="CollisionShape2D" parent="Environment/Props/WellArea/Wellcrafting2/Area2D" index="0"]
+position = Vector2(72, 66)
+
+[node name="CollisionShape2D" parent="Environment/Props/WellArea/Wellcrafting2/StaticBody2D" index="0"]
+position = Vector2(70, 66)
 
 [node name="GateArea" type="Node2D" parent="Environment/Props"]
 
@@ -269,7 +330,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush30" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(812, 697)
+position = Vector2(981, 751)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush30"]
@@ -281,7 +342,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush31" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(943, 711)
+position = Vector2(1112, 765)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush31"]
@@ -317,7 +378,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush34" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(233, 624)
+position = Vector2(1544, 259.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush34"]
@@ -341,7 +402,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush16" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(950, 734)
+position = Vector2(1119, 788)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush16"]
@@ -353,7 +414,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush17" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(795, 707)
+position = Vector2(964, 761)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush17"]
@@ -365,7 +426,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush18" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(817, 731)
+position = Vector2(986, 785)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush18"]
@@ -377,7 +438,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush19" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(913, 753)
+position = Vector2(1082, 807)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush19"]
@@ -461,7 +522,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush2" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(29, 504)
+position = Vector2(1518, 203.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush2"]
@@ -473,7 +534,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush6" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(190, 521)
+position = Vector2(1679, 220.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush6"]
@@ -485,7 +546,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush4" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(230, 539)
+position = Vector2(1719, 238.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush4"]
@@ -497,7 +558,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush5" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(174, 541)
+position = Vector2(1663, 240.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush5"]
@@ -509,7 +570,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush7" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(21, 535)
+position = Vector2(1510, 234.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush7"]
@@ -521,7 +582,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush8" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(48, 558)
+position = Vector2(1678, 369.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush8"]
@@ -533,7 +594,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush3" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(29, 584)
+position = Vector2(1518, 283.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush3"]
@@ -593,7 +654,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush13" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(289, 758)
+position = Vector2(808.99994, 663)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush13"]
@@ -605,7 +666,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush14" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(309, 779)
+position = Vector2(828.99994, 684)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush14"]
@@ -617,7 +678,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush15" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(269, 790)
+position = Vector2(788.99994, 695)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush15"]
@@ -1553,7 +1614,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush215" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1047, -194.00012)
+position = Vector2(1500, -440)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush215"]
@@ -1565,7 +1626,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush216" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1169, -20.000122)
+position = Vector2(989, 216.99998)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush216"]
@@ -1577,7 +1638,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush217" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1300, -6.000122)
+position = Vector2(1120, 230.99998)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush217"]
@@ -1613,7 +1674,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush223" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1152, -10.000122)
+position = Vector2(972, 226.99998)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush223"]
@@ -1625,7 +1686,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush224" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1174, 13.999878)
+position = Vector2(994, 250.99998)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush224"]
@@ -1649,7 +1710,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush226" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1038, -166.00012)
+position = Vector2(1491, -412)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush226"]
@@ -1938,7 +1999,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush254" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1034, -532)
+position = Vector2(1190, -440)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush254"]
@@ -1950,7 +2011,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush255" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1266, -893)
+position = Vector2(1584, -326.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush255"]
@@ -2070,7 +2131,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush265" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1158, -849)
+position = Vector2(1536, -469.00003)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush265"]
@@ -2094,7 +2155,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush267" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1062, -1013)
+position = Vector2(1145, -425.99994)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush267"]
@@ -2106,7 +2167,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush268" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1223, -996)
+position = Vector2(1573, -448)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush268"]
@@ -2118,7 +2179,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush269" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1263, -978)
+position = Vector2(1613, -430.00006)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush269"]
@@ -2130,7 +2191,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush270" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1207, -976)
+position = Vector2(1557, -428.00006)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush270"]
@@ -2142,7 +2203,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush271" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1054, -982)
+position = Vector2(1108, -397.99994)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush271"]
@@ -2154,7 +2215,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush272" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1081, -959)
+position = Vector2(1150, -328)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush272"]
@@ -2166,7 +2227,7 @@ texture = ExtResource("17_sy3qf")
 shape = SubResource("CircleShape2D_nhv60")
 
 [node name="Bush273" type="Node2D" parent="Environment/Props/Bushes"]
-position = Vector2(1062, -933)
+position = Vector2(1158, -464)
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Props/Bushes/Bush273"]
@@ -5630,6 +5691,10 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(1980, 529)
 scale = Vector2(0.5, 0.5)
 
+[node name="Boulder" parent="Environment/Props" instance=ExtResource("29_sns8l")]
+position = Vector2(1329, -448.00006)
+scale = Vector2(0.3, 0.3)
+
 [node name="Effects" type="Node2D" parent="Environment"]
 
 [node name="Fog" type="CanvasLayer" parent="Environment/Effects"]
@@ -5656,7 +5721,7 @@ script = ExtResource("29_2cbjx")
 stream = ExtResource("29_405qd")
 
 [node name="PlayerCat" parent="." instance=ExtResource("32_oool1")]
-position = Vector2(1132, 2187)
+position = Vector2(1581, 1551)
 scale = Vector2(0.3, 0.3)
 move_speed = 100.0
 
@@ -5668,7 +5733,14 @@ script = ExtResource("33_ook4w")
 duwende_scene = ExtResource("34_cghnp")
 
 [editable path="Environment/Props/Trees/Treedoor"]
+[editable path="Environment/Props/Trees/Treedoor5"]
+[editable path="Environment/Props/Trees/Treedoor6"]
+[editable path="Environment/Props/Trees/Treedoor7"]
+[editable path="Environment/Props/Trees/Treedoor8"]
+[editable path="Environment/Props/Trees/Treedoor9"]
+[editable path="Environment/Props/Trees/Treedoor10"]
 [editable path="Environment/Props/Trees/Treedoor2"]
 [editable path="Environment/Props/Trees/Treedoor3"]
 [editable path="Environment/Props/Trees/Treedoor4"]
+[editable path="Environment/Props/WellArea/Wellcrafting2"]
 [editable path="PlayerCat"]

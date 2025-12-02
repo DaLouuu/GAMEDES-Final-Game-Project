@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://boi1h6htkrrld" path="res://map_phase/garden/Garden_Well.png" id="1_itpsu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vicfh"]
-size = Vector2(94.5, 102)
+size = Vector2(67.910645, 79.78571)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh4ji"]
 size = Vector2(59, 63.5)
