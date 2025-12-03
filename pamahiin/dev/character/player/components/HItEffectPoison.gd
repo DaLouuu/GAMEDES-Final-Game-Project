@@ -5,7 +5,7 @@ extends HitEffect
 
 var elapsed := 0.0
 
-func apply(damage: float, player: CharacterBody2D) -> void:
+func apply(damage: float, player: Player) -> void:
 	var poison = PoisonProcess.new()
 	
 	# Process pattern loop to connect back to camera, emmit that im damaged, say im invulnerable for further stacking

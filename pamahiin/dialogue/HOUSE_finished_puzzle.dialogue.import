@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cu5fw5vu2vudw"
+path="res://.godot/imported/HOUSE_finished_puzzle.dialogue-df3720069a2104cb42735dc838721a1d.tres"
+
+[deps]
+
+source_file="res://dialogue/HOUSE_finished_puzzle.dialogue"
+dest_files=["res://.godot/imported/HOUSE_finished_puzzle.dialogue-df3720069a2104cb42735dc838721a1d.tres"]
+
+[params]
+
+defaults=true

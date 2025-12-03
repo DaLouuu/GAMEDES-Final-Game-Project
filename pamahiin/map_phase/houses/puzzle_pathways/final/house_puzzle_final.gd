@@ -50,8 +50,11 @@ func _on_area_2d_back_to_room_body_entered(body: Node2D) -> void:
 	$AudioStreamPlayer2D.stop()
 	
 	if body.is_in_group("Player") and GameState.HOUSE_has_gotten_house_key:
+		GameState.HOUSE_seen_key_but_did_not_pickup = false
 		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/puzzle_pathways/pathway_3/house_puzzle_vase_3.tscn", true)
-	else:
+		
+	elif body.is_in_group("Player"):
+		GameState.HOUSE_seen_key_but_did_not_pickup = true
 		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/house2_room.tscn")
 		
 		

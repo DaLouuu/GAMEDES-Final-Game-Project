@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cnqvrcm23nkr7"
+path="res://.godot/imported/chest_locked.dialogue-b8dcbc3b48d4bd05e80d8ddc8c318c8e.tres"
+
+[deps]
+
+source_file="res://dialogue/chest_locked.dialogue"
+dest_files=["res://.godot/imported/chest_locked.dialogue-b8dcbc3b48d4bd05e80d8ddc8c318c8e.tres"]
+
+[params]
+
+defaults=true

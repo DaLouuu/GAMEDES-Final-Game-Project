@@ -493,7 +493,7 @@ position = Vector2(0, 12)
 script = ExtResource("1_3ojjj")
 
 [node name="Marker2D-SpawnP" type="Marker2D" parent="."]
-position = Vector2(44, 815)
+position = Vector2(-2, 838)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)
@@ -585,6 +585,36 @@ rotation = 1.5862683
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-BackToRoom3"]
 position = Vector2(60.25, 118)
 shape = SubResource("RectangleShape2D_bs3y1")
+
+[node name="BlockingNodes" type="Node" parent="."]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(-54, 647)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D2"]
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(452, 439)
+rotation = 3.1336052
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D3"]
+position = Vector2(-1265.1511, -612.1247)
+polygon = PackedVector2Array(57, 39, 55, -16, -57, -17, -57, 354, -57, 396, 52, 402, 52, 354, 27, 357, 25, 328, -8, 324, -8, 282, -27, 273, -30, 117, -5, 115, -5, 66, 22, 66, 22, 35)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(593, 1671.0002)
+rotation = 4.685294
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D4"]
+polygon = PackedVector2Array(86.48071, 20.350342, 88.69922, -24.60608, -57, -17, -57, 354, -57, 396, 77.88159, 485.28802, 78.18237, 437.2785, 46.194336, 436.41156, 47.088135, 403.42377, 15.072754, 403.55646, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, 4.2072754, 103.151855, 26.334473, 98.749695, 22.555664, 53.630737, 54.679443, 49.49945, 57.491455, 19.564697)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="BlockingNodes"]
+position = Vector2(1046, -55)
+rotation = 1.6083138
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockingNodes/StaticBody2D5"]
+polygon = PackedVector2Array(68.552246, 13.43811, 63.866455, -31.417725, -57, -17, -57, 354, -57, 396, 83.9577, 477.18658, 85.2677, 432.1057, 52.32843, 434.34277, 51.05316, 400.3667, 18.076355, 401.6045, 16.346191, 356.57367, -0.62060547, 355.11346, -0.50683594, 277.08783, -9.277496, 99.41785, 6.523651, 93.82129, 5.0608215, 54.848755, 36.813232, 47.652588, 35.57544, 14.675781)
 
 [connection signal="body_entered" from="Area2D-BackToRoom" to="." method="_on_area_2d_back_to_room_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

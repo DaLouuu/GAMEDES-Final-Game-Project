@@ -87,7 +87,6 @@ func _on_interact_area_body_entered(body: Node2D) -> void:
 		if _state != State.ATTACKING:
 			_to_attack_state()
 	else:
-		print(111111, body.get_path())
 		_to_fleeing_state()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:

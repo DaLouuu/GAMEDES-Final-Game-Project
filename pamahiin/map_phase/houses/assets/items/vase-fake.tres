@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_otbfh")
 name = "Vase"
-description = Array[String](["A vase with flowers"])
+description = Array[String](["A vase with flowers."])
 texture = ExtResource("2_eylya")
 metadata/_custom_type_script = "uid://26w5lr3t485j"

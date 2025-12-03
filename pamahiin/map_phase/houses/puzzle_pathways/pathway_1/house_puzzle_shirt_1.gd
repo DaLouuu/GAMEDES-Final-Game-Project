@@ -47,12 +47,15 @@ func _on_timer_timeout() -> void:
 	$AudioStreamPlayer2D.play()
 
 func _physics_process(delta: float) -> void:
-	if is_moving_up:
+	if is_moving_up and $WhiteLady4:
 		$WhiteLady4.position.y -= 200 *delta
 func _on_area_2d_body_entered(_body: Node2D) -> void:
+	if GameState.HOUSE_has_seen_white_lady and $WhiteLady4:
+		$WhiteLady4.queue_free()
+		return
 	is_moving_up = true
 	move_timer.start()
-
+	GameState.HOUSE_has_seen_white_lady = true
 
 func _on_timer_2_move_timer_timeout() -> void:
 	is_moving_up = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://coemh8xcwabvy"]
+[gd_scene load_steps=15 format=4 uid="uid://coemh8xcwabvy"]
 
 [ext_resource type="Script" uid="uid://dqqaflb3k8s0u" path="res://map_phase/houses/house_2_room.gd" id="1_ws1gk"]
 [ext_resource type="TileSet" uid="uid://xgb1kfo8b417" path="res://map_phase/houses/house2_full_asset_tileset.tres" id="2_ws1gk"]
@@ -24,6 +24,9 @@ shader = ExtResource("6_4473s")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ws1gk"]
 size = Vector2(33.333344, 18.333336)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00ikb"]
+size = Vector2(21.674301, 23.807575)
 
 [node name="House2Room" type="Node2D"]
 scale = Vector2(3, 3)
@@ -79,7 +82,7 @@ position = Vector2(165.33333, 180.66667)
 shape = SubResource("RectangleShape2D_e7i0l")
 
 [node name="Marker2D-OutFromP" type="Marker2D" parent="."]
-position = Vector2(253.00002, 71.333336)
+position = Vector2(256, 66.66667)
 
 [node name="OldLadyAtTheHouse" parent="." instance=ExtResource("4_ajkb8")]
 position = Vector2(148, 92)
@@ -107,5 +110,13 @@ position = Vector2(0, -0.83333397)
 shape = SubResource("RectangleShape2D_ws1gk")
 debug_color = Color(0.6428652, 0.5153701, 0.26751333, 0.41960785)
 
+[node name="Area2D-Clue" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-Clue"]
+position = Vector2(255, 71.66667)
+rotation = 0.71675146
+shape = SubResource("RectangleShape2D_00ikb")
+
 [connection signal="body_entered" from="Area2D-ToRoom" to="." method="_on_area_2d_to_room_body_entered"]
 [connection signal="body_entered" from="Area2D-BackToWorld" to="." method="_on_area_2d_back_to_world_body_entered"]
+[connection signal="body_entered" from="Area2D-Clue" to="." method="_on_area_2d_clue_body_entered"]

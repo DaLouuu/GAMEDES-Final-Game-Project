@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://boxd6l17tha7r"
+path="res://.godot/imported/HOUSE_player_dumb_no_key.dialogue-91b7b0ff380b6f8c68e790355ffa4276.tres"
+
+[deps]
+
+source_file="res://dialogue/HOUSE_player_dumb_no_key.dialogue"
+dest_files=["res://.godot/imported/HOUSE_player_dumb_no_key.dialogue-91b7b0ff380b6f8c68e790355ffa4276.tres"]
+
+[params]
+
+defaults=true
