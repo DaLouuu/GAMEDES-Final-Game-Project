@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://basb5dp8egkf4"
+path="res://.godot/imported/motel_part2.1.dialogue-a3bea62a983762a5c7230519a9745ce5.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/motel_part2.1.dialogue"
+dest_files=["res://.godot/imported/motel_part2.1.dialogue-a3bea62a983762a5c7230519a9745ce5.tres"]
+
+[params]
+
+defaults=true

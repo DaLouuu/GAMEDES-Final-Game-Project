@@ -20,8 +20,8 @@ config/icon="res://icon.svg"
 Global="*res://utils-scripts/global.gd"
 EnumsRef="*res://utils-scripts/enums_ref.gd"
 Ref="*res://utils-scripts/Ref.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Savestate="*res://utils/savestate/Savestate.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameState="*res://GameState.gd"
 AudioManager="*res://AudioManager.gd"
 
@@ -119,7 +119,7 @@ move_right={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue", "res://dialogue/house_dialogues/player_enter_puzzle.dialogue", "res://dialogue/house_dialogues/little_girl.dialogue", "res://dialogue/dialogue_outside.dialogue", "res://dialogue/HOUSE_dialogue_outside.dialogue", "res://dialogue/HOUSE_finished_puzzle.dialogue", "res://dialogue/GAMECONTROLLER_UPDATE.dialogue", "res://dialogue/player_inspect_chest.dialogue", "res://dialogue/HOUSE_player_dumb_no_key.dialogue", "res://dialogue/chest_locked.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue", "res://dialogue/house_dialogues/player_enter_puzzle.dialogue", "res://dialogue/house_dialogues/little_girl.dialogue", "res://map_phase/motel/dialogues/bed_interact.dialogue", "res://map_phase/motel/dialogues/motel_part2.dialogue", "res://map_phase/motel/dialogues/motel_part3.dialogue", "res://map_phase/motel/dialogues/church.dialogue", "res://map_phase/motel/dialogues/graveyard.dialogue", "res://map_phase/motel/dialogues/worldmap.dialogue", "res://map_phase/motel/dialogues/burial.dialogue", "res://map_phase/motel/dialogues/preworldmap.dialogue", "res://map_phase/motel/dialogues/motel_part2.1.dialogue", "res://map_phase/motel/dialogues/motel_part2.2.dialogue", "res://map_phase/motel/dialogues/motel_part2.3.dialogue", "res://map_phase/motel/dialogues/motel_part1.dialogue", "res://map_phase/motel/dialogues/motel_part4.dialogue")
 
 [layer_names]
 

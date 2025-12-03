@@ -20,7 +20,7 @@ func start_interaction():
 	is_interacting = true 
 	player.is_cutscene_controlled = true
 	
-	DialogueManager.show_dialogue_balloon(_DIALOGUE)
+	DialogueManager.show_example_dialogue_balloon(_DIALOGUE)
 	await DialogueManager.dialogue_ended
 	
 	player.is_cutscene_controlled = false
