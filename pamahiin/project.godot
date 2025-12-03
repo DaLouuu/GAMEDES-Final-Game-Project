@@ -48,6 +48,10 @@ Enemy=""
 InteractArea=""
 tilemaps="TileMap searcher for faster indexing"
 
+[gui]
+
+theme/custom_font="uid://c2wo58c67afq"
+
 [input]
 
 up={
