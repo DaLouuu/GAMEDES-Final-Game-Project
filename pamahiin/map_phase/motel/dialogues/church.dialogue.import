@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cpipx4msue08b"
+path="res://.godot/imported/church.dialogue-1c675d5abc47fb4c9c11de8e53cf82a6.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/church.dialogue"
+dest_files=["res://.godot/imported/church.dialogue-1c675d5abc47fb4c9c11de8e53cf82a6.tres"]
+
+[params]
+
+defaults=true

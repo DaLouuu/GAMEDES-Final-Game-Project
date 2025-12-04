@@ -3,7 +3,7 @@ class_name Player
 
 extends CharacterBody2D
 
-
+signal artifact_collect(item:InvItem)
 signal sanity_changed(new_value: float)
 signal sanity_damaged
 
@@ -33,6 +33,9 @@ var footsteps_Sound : AudioStream
 @export var tile_maps: Node
 
 var is_cutscene_controlled := false
+var cutscene_animation_state := "Idle"
+var cutscene_animation_direction := Vector2.DOWN
+var is_motel_introduction := false
 
 var is_invulnerable: bool = false
 var max_sanity : float = 100.0
@@ -60,24 +63,32 @@ func changeFootstepSound():
 	#var audio_path = "res://art/Audio Assets/"
 	#var isCave: bool = false
 
-	
-	
-func _ready():
+func trigger_cat_ready():
+	$Camera2D.make_current()
 	sanity_changed.connect(check_health_changes)
+	$CanvasLayer/ArtifactProgress.text = "Artifact: " + str(Global.artifactCount) +"/4"
+	
 	for ctrl in $CanvasLayer.get_children():
 		if ctrl is Control:
 			ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_init_footstep_sfx_playing_dict()
 	$Sprite2D.texture = load("res://dev/character/player/Character_Spritesheet_Walking.png")
 	update_animation_parameters(starting_direction)
-	remote_transform_2d.remote_path = camera.get_path()
+	remote_transform_2d.remote_path = camera.get_path()	
+	
+func _ready():
+	
+	pass
 	
 	# For debugging purposes lets you know object ids that pass through certain events
-	var obj = instance_from_id(41003517335)
-	if obj:
-		print(obj.name)
-		print(obj.get_path())
+	#var obj = instance_from_id(41003517335)
+	#if obj:
+		#print(obj.name)
+		#print(obj.get_path())
 		
+func setCutsceneAnimationBehavior(state : String, direction : Vector2):
+	cutscene_animation_state = state
+	cutscene_animation_direction = direction
 
 # Anything moving and colliding is always under the collision
 func _physics_process(_delta):
@@ -85,6 +96,9 @@ func _physics_process(_delta):
 	if sanity <= 0:
 		return
 	if is_cutscene_controlled:
+		if is_motel_introduction:
+			update_animation_parameters(cutscene_animation_direction)
+			state_machine.travel(cutscene_animation_state)
 		return
 	
 	# Smart logic cancelling inputs of both directional keys
@@ -92,6 +106,7 @@ func _physics_process(_delta):
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up") 
 	)
+	input_direction = input_direction.normalized()
 	update_animation_parameters(input_direction)
 	
 	# Sprinting multiplier
@@ -166,11 +181,28 @@ func play_death():
 	
 	velocity = Vector2.ZERO
 	state_machine.travel("death")
+	
+# Sanity Logic
+func RecoverSanity():
+	sanity = 100
+	sanity_changed.emit(sanity)
+	# Hit effect manager should implement how sanity would be decreased	
+	# Clamping restricts between 0 and max sanity value
+	#sanity = clamp(sanity - dmg, 0, max_sanity)
+	#
+	#
+	#print("💢 Player sanity now:", sanity)
+	#sanity_changed.emit(sanity)
+	#sanity_damaged.emit()
+	#is_invulnerable = true
+	#invul_timer.start()
+
+# ✅ When invulnerability period ends
 # Sanity Logic
 func ReceiveSanityDamage(dmg: float, effect_name : EnumsRef.HitEffectType):	
 	if is_invulnerable:
 		return
-	
+	animation_player.play("invul_got_hit")
 	
 	# Hit effect manager should implement how sanity would be decreased	
 	hit_effect_manager.apply_hit_effect(effect_name, dmg, self)	
@@ -189,7 +221,8 @@ func _on_invul_timer_timeout():
 	is_invulnerable = false
 	print("🔓 Player is now vulnerable again.")
 func turnOnLight():
-	$PointLight2D.enabled = true
+	if $PointLight2D:
+		$PointLight2D.enabled = true
 
 func delete(item:InvItem):
 	inventory.lose_item(item)
@@ -199,9 +232,32 @@ func delete(item:InvItem):
 func collect(item : InvItem):
 	if item.name == "Lantern":
 		turnOnLight()
+		return
+	elif item.itemType == EnumsRef.ItemType.ARTIFACT:
+		$"AudioStreamPlayer-Obtained".play()
+		artifact_collect.emit(item)
+		Global.game_controller.update_artifactCheck()
+		await update_artifact_text_flash()
+		RecoverSanity()
+		return
 	GrabSound_asp.play(0.10)
 	inventory.obtain(item)
+func update_artifact_text_flash():
+	var label: Label = $CanvasLayer/ArtifactProgress
+	
+	# Update text
+	label.text = "Artifact: " + str(Global.artifactCount) + "/4"
+	
 
+	
+	# Store original color
+	var original_color: Color = label.modulate
+	
+	# Create flash tween
+	var tween := create_tween()
+	tween.tween_property(label, "modulate", Color(0, 1, 0), 0.12) # Flash green fast
+	tween.tween_property(label, "modulate", Color(0, 1, 0), 0.8) # Flash green fast
+	tween.tween_property(label, "modulate", original_color, 0.18).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 ## CUTSCENE UTIL
 func lerp_towards(target: Marker2D, duration: float) -> void:

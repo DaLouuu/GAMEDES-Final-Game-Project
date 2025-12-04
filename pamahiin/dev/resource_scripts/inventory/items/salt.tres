@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=2 format=3 uid="uid://bpep1reenml12"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_fc3dq"]
+
+[resource]
+script = ExtResource("1_fc3dq")
+name = "Salt"
+description = Array[String](["Received Salt"])
+itemType = 0
+metadata/_custom_type_script = "uid://26w5lr3t485j"

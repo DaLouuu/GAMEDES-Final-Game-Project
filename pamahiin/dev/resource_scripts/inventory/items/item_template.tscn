@@ -18,6 +18,7 @@ material = SubResource("ShaderMaterial_65je2")
 script = ExtResource("1_jyctp")
 hover_tex = ExtResource("3_8ioot")
 item = ExtResource("3_8mude")
+isInspectable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8mude")

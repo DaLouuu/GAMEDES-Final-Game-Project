@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bhrgm6uea2hwl"
+path="res://.godot/imported/worldmap.dialogue-4d458b29799aca6790f084f68a10680d.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/worldmap.dialogue"
+dest_files=["res://.godot/imported/worldmap.dialogue-4d458b29799aca6790f084f68a10680d.tres"]
+
+[params]
+
+defaults=true

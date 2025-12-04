@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ub7kmiix26l7"
+path="res://.godot/imported/blood-chillingly-creepy-atmospheres-183561.mp3-230ad803047307c0140bc5a3da5e0765.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/blood-chillingly-creepy-atmospheres-183561.mp3"
+dest_files=["res://.godot/imported/blood-chillingly-creepy-atmospheres-183561.mp3-230ad803047307c0140bc5a3da5e0765.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

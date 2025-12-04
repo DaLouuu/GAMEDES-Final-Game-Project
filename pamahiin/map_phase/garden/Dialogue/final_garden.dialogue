@@ -1,0 +1,68 @@
+~ start
+# Do not start from here. Call specific branches:
+# prechase, escape_success, escape_fail
+=> END
+
+
+##############################################################
+#                PRE–CHASE SEQUENCE (TRIGGER)
+##############################################################
+
+~ prechase
+Sign: [The moment the last knot tightens, the air goes still.]
+Whisper: [#whisper] …wait… something is shifting…
+Whisper: [#whisper] …you gathered them… you gathered *me*…
+
+Sign: [A trembling ripples through the soil beneath your feet.]
+Sign: My child—RUN. Whatever you’ve stirred can no longer stay gentle.
+Sign: The fragments… they do not understand what they are anymore.
+
+Player: [#thinking] “They’re coming—whatever they are.”
+=> END
+
+
+##############################################################
+#            SUCCESSFUL ESCAPE — OUTSIDE THE GATE
+##############################################################
+
+~ escape_success
+Sign: [The dwendes halt at the threshold, unable to pass the gate.]
+Sign: Their bodies flicker… small shapes stretching upward… reshaping into silhouettes of people they once were.
+
+Whisper: [#whisper] …home…?
+
+Player: [#thinking] “They’re remembering… not chasing.”
+
+# A faint figure forms—your sister.
+Sister: [#soft] You helped me… even if I could not return whole.
+Sister: [#soft] Tell Mama… I tried. I tried so hard.
+
+Sister: [#fading] And tell her… thank you… for keeping the garden bright.
+
+Sign: The silhouettes dissolve into dust, carried by the wind.
+Player: [#thinking] “…I will.”
+=> END
+
+
+##############################################################
+#              FAILED ESCAPE — PLAYER TRAPPED
+##############################################################
+
+~ escape_fail
+Sign: [The gate slams shut before you reach it.]
+Sign: The air thickens. Small frantic footsteps swarm around you—too many, too fast.
+
+Whisper: [#whisper] …don’t leave… don’t leave me…
+
+Whisper: [#whisper] …stay… stay with me… please…
+
+Player: [#thinking] “No—no, the gate—!”
+
+# A broken voice rises above the chaos.
+Sister: [#broken] I tried to come home…
+Sister: [#broken] …but you’re stopping me… you’re stopping me…
+
+Whisper: [#whisper] …stay… stay… STAY…
+
+Sign: The shadows collapse over you—cold, desperate, clinging.
+=> END

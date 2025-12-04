@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0hwb158mmfby"
+path="res://.godot/imported/monster-bite-44538.mp3-4a2b6fae4a0e831baacdf41ba15d4e11.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/monster-bite-44538.mp3"
+dest_files=["res://.godot/imported/monster-bite-44538.mp3-4a2b6fae4a0e831baacdf41ba15d4e11.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

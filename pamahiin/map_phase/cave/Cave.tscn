@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dp2ohqaws3xyx"]
+[gd_scene load_steps=25 format=4 uid="uid://dnvq5fs7tu167"]
 
 [ext_resource type="Script" uid="uid://cglix2bc5f5kp" path="res://map_phase/cave/cave.gd" id="1_non6b"]
 [ext_resource type="TileSet" uid="uid://c0axof3qfikqk" path="res://art/GAMEDES art/Cave/maze_tiles.tres" id="1_nqyx7"]
@@ -6,12 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dv47fu3pxwub6" path="res://map_phase/cave/interactables/Cobweb.tscn" id="4_gopa2"]
 [ext_resource type="PackedScene" uid="uid://byj6caynuunot" path="res://map_phase/cave/interactables/Crystal.tscn" id="4_wirwf"]
 [ext_resource type="Texture2D" uid="uid://baii42wxttg28" path="res://art/GAMEDES art/Characters/abularyo spritesheet.png" id="6_fthu5"]
-[ext_resource type="Script" uid="uid://chipuf8bx7uo6" path="res://map_phase/cave/direction_marker.gd" id="6_kujlx"]
+[ext_resource type="Script" path="res://map_phase/cave/direction_marker.gd" id="6_kujlx"]
 [ext_resource type="Texture2D" uid="uid://dgikxbb8cutv0" path="res://art/GAMEDES art/Cave/cave_sprites.png" id="7_tkibw"]
 [ext_resource type="PackedScene" uid="uid://cag8p67hnquaq" path="res://map_phase/cave/effects/AttackImpact.tscn" id="7_tws12"]
 [ext_resource type="AudioStream" uid="uid://dcwpwjgsgkot0" path="res://art/Audio Assets/Cave/cave_echoes.mp3" id="10_u7gak"]
 [ext_resource type="Script" uid="uid://cweybxvfhrt3m" path="res://map_phase/cave/effects/cave_shocker.gd" id="11_kujlx"]
-[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="12_kujlx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ua1a0"]
 atlas = ExtResource("6_fthu5")
@@ -464,8 +463,8 @@ script = ExtResource("11_kujlx")
 [node name="Timer" type="Timer" parent="CaveShocker"]
 one_shot = true
 
-[node name="PlayerCat" parent="." instance=ExtResource("12_kujlx")]
-scale = Vector2(0.5, 0.5)
+[node name="Marker2D-Custom" type="Marker2D" parent="."]
+position = Vector2(3459, -276)
 
 [connection signal="body_entered" from="Map/Regions/MainEntrance" to="." method="_on_main_entrance_body_entered"]
 [connection signal="body_entered" from="Map/Regions/EndEntrance" to="." method="_on_end_entrance_body_entered"]

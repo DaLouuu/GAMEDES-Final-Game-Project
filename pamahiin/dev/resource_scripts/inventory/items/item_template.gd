@@ -173,6 +173,11 @@ func item_emit_finish():
 	item_inspected_finish.emit(item)
 	#DialogueManager.dialogue_ended.disconnect(item_emit_finish)
 func on_item_clicked():
+	var player = get_tree().get_first_node_in_group("Player")
+	if player:
+		var pl = player as Player
+		if player.is_cutscene_controlled:
+			return
 	print("🖱️ Item clicked: ", item.name if item else "Unknown")
 	item_clicked.emit(item)
 	
