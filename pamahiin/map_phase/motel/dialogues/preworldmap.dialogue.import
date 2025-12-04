@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ceyiyty5lfndm"
+path="res://.godot/imported/preworldmap.dialogue-03ba9e9b0389f3ef29482776effdc9c2.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/preworldmap.dialogue"
+dest_files=["res://.godot/imported/preworldmap.dialogue-03ba9e9b0389f3ef29482776effdc9c2.tres"]
+
+[params]
+
+defaults=true
