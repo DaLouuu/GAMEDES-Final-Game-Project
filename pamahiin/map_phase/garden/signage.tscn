@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdkqkqf8jc7yt"]
+[gd_scene load_steps=6 format=3 uid="uid://cdkqkqf8jc7yt"]
 
+[ext_resource type="Script" uid="uid://bnwmpr416f1hy" path="res://map_phase/garden/signage.gd" id="1_2qg08"]
 [ext_resource type="Texture2D" uid="uid://4b13tdg87if3" path="res://art/GAMEDES art/Items/Garden_WoodenSign.png" id="1_tgd30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqgmp"]
+size = Vector2(80, 82.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysg5a"]
 size = Vector2(6, 35)
@@ -9,6 +13,7 @@ size = Vector2(6, 35)
 size = Vector2(34, 17)
 
 [node name="Signage" type="Node2D"]
+script = ExtResource("1_2qg08")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tgd30")
@@ -16,6 +21,8 @@ texture = ExtResource("1_tgd30")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_lqgmp")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -26,3 +33,11 @@ shape = SubResource("RectangleShape2D_ysg5a")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_x6vh2")
+
+[node name="InteractionPrompt" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -56.0
+offset_right = 5.0
+offset_bottom = -33.0
+text = "E"
+autowrap_mode = 3

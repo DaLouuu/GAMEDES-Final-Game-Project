@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://be3aleowsfjpa"]
 
-[ext_resource type="Shader" uid="uid://bkafmnnro8u4f" path="res://dev/shaders/fog_overlay.gdshader" id="1_esalm"]
+[ext_resource type="Shader" uid="uid://b117lgvw37ciu" path="res://dev/shaders/fog_overlay.gdshader" id="1_esalm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_esalm"]
 noise_type = 4
