@@ -11,8 +11,7 @@ func _process(_delta: float) -> void:
 		if not is_opened_chest:
 			$AnimationPlayer.play("chest_open")
 			is_opened_chest = true
-		GameState.HOUSE_ARTIFACT_has_artifact_rosary = true
-		Global.game_controller.update_artifactCheck()
+
 		await get_tree().physics_frame
 		chest_opened.emit(load("res://dev/resource_scripts/inventory/items/key.tres"))
 		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/player_inspect_chest.dialogue"))

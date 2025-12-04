@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dipk4cyprwv2d"
+path="res://.godot/imported/CHURCH_set_player_observe_perform_fake_ritual.dialogue-d6661b10268ef978f00a52caccfc616e.tres"
+
+[deps]
+
+source_file="res://dialogue/cutscene/CHURCH_set_player_observe_perform_fake_ritual.dialogue"
+dest_files=["res://.godot/imported/CHURCH_set_player_observe_perform_fake_ritual.dialogue-d6661b10268ef978f00a52caccfc616e.tres"]
+
+[params]
+
+defaults=true

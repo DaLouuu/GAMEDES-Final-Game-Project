@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://cgn44m0sf3twq"]
 
-[ext_resource type="TileSet" uid="uid://b4tuxeandetbo" path="res://map_phase/world_map_tile_texture.tres" id="1_6k3ta"]
+[ext_resource type="TileSet" uid="uid://c6le0wc7geyog" path="res://map_phase/world_map_tile_texture.tres" id="1_6k3ta"]
 [ext_resource type="Script" uid="uid://dsbcsdx5088tu" path="res://script/house1/house_1.gd" id="1_gqi42"]
 [ext_resource type="Texture2D" uid="uid://ct737dodxrp7e" path="res://map_phase/houses/assets/House 1/House_House1_2ndFloor.png" id="3_mqay7"]
 [ext_resource type="Texture2D" uid="uid://icyko4i288yl" path="res://map_phase/houses/assets/House 1/House_House1_Roof.png" id="4_luwkh"]

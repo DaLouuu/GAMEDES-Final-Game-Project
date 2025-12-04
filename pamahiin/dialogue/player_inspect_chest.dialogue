@@ -4,8 +4,7 @@ do playTreasureOpen()
 You inpsect the chest... *
 You see both a little girl with cracked opened skull beside a rosary. *
 if not GameState.HOUSE_has_artifact_rosary_said_in_dialogue:
-	do playObtainedItem()
-	set GameState.HOUSE_has_artifact_rosary_said_in_dialogue = true
+	do obtainItemArtifact()
 	You get the rosary from her*
 	=>< finished_check/update
 

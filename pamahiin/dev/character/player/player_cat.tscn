@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cbiyjqctoq0j3"]
+[gd_scene load_steps=53 format=3 uid="uid://cbiyjqctoq0j3"]
 
 [ext_resource type="Script" uid="uid://e8vo2bsuywb5" path="res://dev/character/player/player_cat.gd" id="1_u0lhy"]
 [ext_resource type="Resource" uid="uid://dp4dsw13mlp8d" path="res://dev/resource_scripts/inventory/player_inventory.tres" id="2_u0b4o"]
@@ -14,10 +14,12 @@
 [ext_resource type="Script" uid="uid://d3yisgeep3p7b" path="res://dev/character/player/components/HitEffectDamage.gd" id="8_c8r0g"]
 [ext_resource type="PackedScene" uid="uid://bpbf560c0338r" path="res://dev/resource_scripts/inventory/inventory_ui.tscn" id="9_ohocd"]
 [ext_resource type="Texture2D" uid="uid://br7dqghldew4e" path="res://dev/light_textures/lantern_round.tres" id="10_04nme"]
-[ext_resource type="PackedScene" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
+[ext_resource type="FontFile" uid="uid://d0ejdc3d705ia" path="res://art/Fonts/EB_Garamond/EB_Garamond/static/EBGaramond-ExtraBold.ttf" id="12_8j6tj"]
+[ext_resource type="PackedScene" uid="uid://eacn5vqet4jd" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cvuuwq222nvfx" path="res://art/Audio Assets/20 - Player Grab.wav" id="15_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cw1gbbtkyhtjn" path="res://art/Audio Assets/17 - Moderate Heartbeat-mprMode.mp3" id="17_l5slc"]
-[ext_resource type="Script" uid="uid://b3o3ajfg8m46d" path="res://dev/character/player/FootStepManager.gd" id="18_iqj7j"]
+[ext_resource type="Script" path="res://dev/character/player/FootStepManager.gd" id="18_iqj7j"]
+[ext_resource type="AudioStream" uid="uid://jbn3j0i3cw0x" path="res://art/Audio Assets/obtained_item.mp3" id="20_muts0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gx6m4"]
 radius = 43.8
@@ -26,8 +28,8 @@ radius = 43.8
 cull_mode = 2
 polygon = PackedVector2Array(-10, -28, -1, -30, 9, -28, 13, -20, 6, -6, 5, -3, 6, 3, 3, 23, 3, 28, -7, 26, -8, 4, -8, 0, -6, -3, -14, -18)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8dsg"]
-size = Vector2(22, 39)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iqj7j"]
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_u0lhy"]
 length = 0.001
@@ -78,6 +80,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_l5slc"]
@@ -351,6 +365,22 @@ tracks/3/keys = {
 "values": [4]
 }
 
+[sub_resource type="Animation" id="Animation_iqj7j"]
+resource_name = "invul_got_hit"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.6, 0.8666667, 1.1, 1.3333334, 1.6, 1.8333334, 2.0666666, 2.3333335, 2.5666666, 2.8000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 0.28235295), Color(1, 1, 1, 1), Color(1, 1, 1, 0.28235295), Color(1, 1, 1, 1), Color(1, 1, 1, 0.28235295), Color(1, 1, 1, 1), Color(1, 1, 1, 0.28235295), Color(1, 1, 1, 1), Color(1, 1, 1, 0.28235295), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_hhb2n"]
 resource_name = "walk_down"
 length = 0.4
@@ -551,6 +581,7 @@ _data = {
 &"idle_left": SubResource("Animation_nf2gw"),
 &"idle_right": SubResource("Animation_ctw3t"),
 &"idle_up": SubResource("Animation_k8wwv"),
+&"invul_got_hit": SubResource("Animation_iqj7j"),
 &"walk_down": SubResource("Animation_hhb2n"),
 &"walk_left": SubResource("Animation_10mfh"),
 &"walk_right": SubResource("Animation_t8sd1"),
@@ -633,8 +664,12 @@ states/death/position = Vector2(451, 183)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_t8sd1"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_nf2gw"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ctw3t"), "Idle", "death", SubResource("AnimationNodeStateMachineTransition_yegy7"), "Walk", "death", SubResource("AnimationNodeStateMachineTransition_l5slc")]
 
 [node name="PlayerCat" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 35
+collision_mask = 35
 script = ExtResource("1_u0lhy")
 move_speed = 200.0
+sanity = 50.0
+invul_duration = 3.0
 inventory = ExtResource("2_u0b4o")
 metadata/_edit_horizontal_guides_ = [-31.0]
 
@@ -662,9 +697,9 @@ shape = SubResource("CircleShape2D_gx6m4")
 occluder = SubResource("OccluderPolygon2D_71ai2")
 occluder_light_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -2)
-shape = SubResource("RectangleShape2D_k8dsg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
+position = Vector2(-1, 6)
+shape = SubResource("CapsuleShape2D_iqj7j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -700,11 +735,19 @@ metadata/_custom_type_script = "uid://d3yisgeep3p7b"
 remote_path = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("6_1f8vj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ArtifactProgress" type="Label" parent="CanvasLayer"]
+offset_left = 1037.0
+offset_top = 24.0
+offset_right = 1077.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("12_8j6tj")
+theme_override_font_sizes/font_size = 32
 
 [node name="SanityUIComponent" parent="CanvasLayer" instance=ExtResource("7_6merf")]
 anchors_preset = 15
@@ -761,6 +804,9 @@ max_distance = 100.0
 script = ExtResource("18_iqj7j")
 player = NodePath("..")
 base_player = NodePath("../AudioStreamPlayer2D-FootSound")
+
+[node name="AudioStreamPlayer-Obtained" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_muts0")
 
 [connection signal="body_entered" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_entered"]
 [connection signal="body_exited" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_exited"]
