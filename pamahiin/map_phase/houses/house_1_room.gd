@@ -31,4 +31,4 @@ func _on_area_2d_to_room_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_back_to_world_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		Global.game_controller.change_2d_scene_custom("uid://y0bf0te04dqb", EnumsRef.LOCAL_FROM_TYPE.H1)
+		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.H1)

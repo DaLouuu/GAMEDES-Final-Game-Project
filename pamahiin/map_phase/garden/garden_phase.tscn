@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://cyqsdqbaspryc"]
+[gd_scene load_steps=60 format=4 uid="uid://cyqsdqbaspryc"]
 
 [ext_resource type="Texture2D" uid="uid://dphgv71np6ag7" path="res://art/GAMEDES art/Grass/Grass Full Tileset.png" id="1_x6s6a"]
 [ext_resource type="Texture2D" uid="uid://da5f3jy0mnaey" path="res://art/GAMEDES art/Grass/Middle_1.png" id="2_nl4u2"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d3t8xal4a3esk" path="res://map_phase/garden/Fences & Door/Garden_Fence_M_Cont.png" id="13_l5576"]
 [ext_resource type="Texture2D" uid="uid://g4wy7k8we2pk" path="res://map_phase/garden/Fences & Door/Garden_Fence_Side_L.png" id="14_fne1g"]
 [ext_resource type="Texture2D" uid="uid://dxg76tvedny8r" path="res://map_phase/garden/Fences & Door/Garden_Fence_Side_L_Corner.png" id="15_nhv60"]
-[ext_resource type="Script" path="res://map_phase/garden/GardenState.gd" id="16_4mh6s"]
+[ext_resource type="Script" uid="uid://dkts5qggt4eme" path="res://map_phase/garden/GardenState.gd" id="16_4mh6s"]
 [ext_resource type="PackedScene" uid="uid://dp66p8v8rpwbu" path="res://map_phase/garden/treedoor.tscn" id="16_kdcv5"]
 [ext_resource type="Texture2D" uid="uid://t4kfw3yukxq3" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Scratches.png" id="17_4opa5"]
 [ext_resource type="Script" uid="uid://drsl6d8aiyj4t" path="res://map_phase/garden/ZoneAController.gd" id="17_dwyiy"]
@@ -33,7 +33,6 @@
 [ext_resource type="Texture2D" uid="uid://cbhcunfnvmoh0" path="res://art/GAMEDES art/Trees & Bush/Garden_Balete Tree - Tally 4.png" id="26_5ddjf"]
 [ext_resource type="AudioStream" uid="uid://e1pdx1ublcov" path="res://art/Audio Assets/35 - cicadas buzzing.mp3" id="29_405qd"]
 [ext_resource type="PackedScene" uid="uid://ui81aqjylkl" path="res://map_phase/garden/boulder.tscn" id="29_sns8l"]
-[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="32_oool1"]
 [ext_resource type="Texture2D" uid="uid://yck2a32ylt6e" path="res://art/GAMEDES art/Items/Garden_WoodenSign - SLANT.png" id="33_4mh6s"]
 [ext_resource type="Script" uid="uid://cjv17wjx0bj2x" path="res://map_phase/garden/DwendeSpawner.gd" id="33_ook4w"]
 [ext_resource type="PackedScene" uid="uid://boxtooqck02ur" path="res://map_phase/garden/dwende.tscn" id="34_cghnp"]
@@ -7254,11 +7253,6 @@ script = ExtResource("36_8vun7")
 
 [node name="CicadaPlayer" type="AudioStreamPlayer" parent="Environment/Effects"]
 stream = ExtResource("29_405qd")
-
-[node name="PlayerCat" parent="." instance=ExtResource("32_oool1")]
-position = Vector2(1288, 2320)
-scale = Vector2(0.3, 0.3)
-move_speed = 100.0
 
 [node name="DwendeSpawner" type="Node2D" parent="."]
 script = ExtResource("33_ook4w")

@@ -99,6 +99,7 @@ mesh = ExtResource("7_sfsx6")
 
 [node name="Lantern" parent="." instance=ExtResource("8_j5k75")]
 position = Vector2(93, 84.33333)
+pickupable = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(253.33334, 31.333334)

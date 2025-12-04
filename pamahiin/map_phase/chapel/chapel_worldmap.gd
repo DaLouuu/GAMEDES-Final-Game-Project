@@ -16,9 +16,6 @@ func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:
 
 func _ready() -> void:
 	close_door()
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT1] = $"Marker2D-Left"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT2] = $"Marker2D-SpawnP"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3] = $"Marker2D-Right"
 
 	 
 	  

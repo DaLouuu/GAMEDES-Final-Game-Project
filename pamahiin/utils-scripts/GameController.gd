@@ -23,7 +23,9 @@ var audioDictionary: Dictionary[AUDIO_PLAY, Resource] = {
 var garden_state: Node = null
 
 
-
+func setupPlayer(_player_: Player):
+	player = Player.new()
+	player.collect(load("res://dev/resource_scripts/inventory/items/lantern.tres"))
 func _ready() -> void:
 	# Register controller globally
 	await get_tree().physics_frame
@@ -37,9 +39,8 @@ func _ready() -> void:
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
 	#change_2d_scene("res://map_phase/houses/house_together.tscn")
-
-	
-	change_2d_scene("uid://cyc8laq2oakj0") # WorldMap
+	change_2d_scene("uid://bev6rvoc16yms") # Motel
+	#change_2d_scene("uid://cyc8laq2oakj0") # WorldMap
 	#change_2d_scene("res://map_phase/cave/Cave.tscn")
   # Try to attach GardenState if current scene has one
 	#_find_and_set_garden_state()
@@ -66,9 +67,6 @@ func stop_curr_global_audio():
 	AudioManager.music_player.stop()
 
 func presetup():
-	player.scale = Vector2(1.0,1.0)
-	player.camera.zoom = Vector2(2.0,2.0)
-	
 	pass
 
 func change_2d_scene_custom(new_scene: String, localFromType : EnumsRef.LOCAL_FROM_TYPE, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
@@ -202,8 +200,8 @@ func change_2d_scene(new_scene: String, load_state: EnumsRef.SceneLoadState = En
 			
 			var camera: Camera2D = player.get_node("Camera2D")
 			changed_scene_with_character.emit()
-
-			camera.reset_smoothing()
+			if camera:
+				camera.reset_smoothing()
 		else:
 			push_warning("No Marker2D-SpawnP found in scene.")
 	else:

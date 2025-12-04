@@ -147,8 +147,10 @@ func _on_body_exited(body):
 		$"doorclose".play()
 
 func _go_outside(body):
-	if body.is_in_group("Player"):
-		print("Went outside")
+	if body.is_in_group("Player") and not player.is_cutscene_controlled:
+
+		Global.game_controller.change_2d_scene("res://map_phase/world_map.tscn")
+		
 
 # use only if no dialogue after playing animation
 func _on_animation_finished(animation_name: String):

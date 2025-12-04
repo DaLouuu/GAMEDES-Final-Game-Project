@@ -66,14 +66,16 @@ func light_setup():
 
 
 func disable_endgame_nodes():
+	$"Area2D-Confession-Detection/CollisionShape2D".disabled = true
 	$"Cutscene_priest/Area2D-TriggerPriestCutscene/CollisionShape2D".disabled = true
 	$"Cutscene_priest/Area2D-RitualStart/CollisionShape2D".disabled = true
 func enable_endgame_nodes():
+	$"Area2D-Confession-Detection/CollisionShape2D".disabled = false
 	$"Cutscene_priest/Area2D-TriggerPriestCutscene/CollisionShape2D".disabled = false
 	$"Cutscene_priest/Area2D-RitualStart/CollisionShape2D".disabled = false
 func _ready():
 	await get_tree().physics_frame
-	
+	disable_endgame_nodes()
 	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_ENTER1] = $"Marker2D-Left1"
 	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_ENTER2] = $"Marker2D-SpawnP1"
 	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_ENTER3] = $"Marker2D-Right1"
@@ -203,18 +205,18 @@ func _on_area_2d_confession_detection_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		Global.game_controller.change_2d_scene_custom("uid://ckyiaik6rgotk", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT1)
+		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT1)
 
 
 
 func _on_area_2d_2_mid_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		Global.game_controller.change_2d_scene_custom("uid://ckyiaik6rgotk", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT2)
+		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT2)
 
 
 func _on_area_2d_3_right_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		Global.game_controller.change_2d_scene_custom("uid://ckyiaik6rgotk", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3)
+		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3)
 		
 func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:
 	print(type)

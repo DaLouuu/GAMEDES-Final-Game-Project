@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dxhni64oxaov4"]
+[gd_scene load_steps=31 format=4 uid="uid://dxhni64oxaov4"]
 
 [ext_resource type="Script" uid="uid://b6e6l2pt7gwbl" path="res://script/chapel/chapel.gd" id="1_gmmbn"]
 [ext_resource type="TileSet" uid="uid://dvp8dwdk8kb61" path="res://map_phase/chapel/assets/chapel_interior_tilemap.tres" id="2_t4d6x"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c3rwwc0anmpxk" path="res://map_phase/chapel/assets/confession booth/confession booth.png" id="6_hkgfx"]
 [ext_resource type="PackedScene" uid="uid://dds6v1b14r58m" path="res://dev/resource_scripts/inventory/items/item_template.tscn" id="7_idnxw"]
 [ext_resource type="Texture2D" uid="uid://dyx4d4jexwqxt" path="res://map_phase/chapel/assets/altar/altar.png" id="7_t4d6x"]
-[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="8_idnxw"]
 [ext_resource type="Resource" uid="uid://2nwjrtwvcpe4" path="res://map_phase/chapel/assets/holy water basin/chalice.tres" id="8_lgo5a"]
 [ext_resource type="Resource" uid="uid://b1vsprysjynfp" path="res://map_phase/chapel/assets/paper_clue/paper1.tres" id="9_lgo5a"]
 [ext_resource type="Texture2D" uid="uid://cdr7kopgo36d6" path="res://map_phase/chapel/assets/priest/Final_jumpscare_initial.png" id="12_pdrtk"]
@@ -308,14 +307,12 @@ texture = ExtResource("7_t4d6x")
 position = Vector2(752, 2024)
 scale = Vector2(1.5, 1.5)
 item = ExtResource("8_lgo5a")
-isInspectable = true
 collision_scale = 1.5
 
 [node name="ItemTemplate-paper clue" parent="." instance=ExtResource("7_idnxw")]
 position = Vector2(880, 1928)
 scale = Vector2(0.2, 0.2)
 item = ExtResource("9_lgo5a")
-isInspectable = true
 
 [node name="EnemyAntilight" parent="." instance=ExtResource("3_a3c1c")]
 visible = false
@@ -519,9 +516,6 @@ vertices = PackedVector2Array(791, 250, 788, 351, 954, 348, 954, 243, 788, 243, 
 affect_navigation_mesh = true
 carve_navigation_mesh = true
 avoidance_layers = 9
-
-[node name="PlayerCat" parent="." instance=ExtResource("8_idnxw")]
-position = Vector2(849, 1696)
 
 [node name="Area2D-Left" type="Area2D" parent="."]
 position = Vector2(231, 2092)

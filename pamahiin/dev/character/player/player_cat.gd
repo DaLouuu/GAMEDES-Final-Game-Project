@@ -218,7 +218,8 @@ func _on_invul_timer_timeout():
 	is_invulnerable = false
 	print("🔓 Player is now vulnerable again.")
 func turnOnLight():
-	$PointLight2D.enabled = true
+	if $PointLight2D:
+		$PointLight2D.enabled = true
 
 func delete(item:InvItem):
 	inventory.lose_item(item)
