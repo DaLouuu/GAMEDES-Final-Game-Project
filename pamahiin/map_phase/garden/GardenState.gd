@@ -5,9 +5,9 @@ class_name GardenState
 # SIGNALS
 # ---------------------------------------------------------
 signal state_ready
-signal correct_trees_changed(new_set: Array)       # ZoneAController listens to this
-signal trunk_swap_triggered(step: int)             # Every 3 mistakes → trunk change
-signal mistake_changed(new_value: int)             # Useful for whispers / signages
+signal correct_trees_changed(new_set: Array)       # Trees listen to this
+signal trunk_swap_triggered(step: int)             # Trees/Controller listen to this
+signal mistake_changed(new_value: int)             # Signages/Whispers listen to this
 
 
 # ---------------------------------------------------------
@@ -18,9 +18,12 @@ var is_ready: bool = false
 
 # TREE PUZZLE
 var cicadas_active: bool = false
-var correct_tree_markings: Array[String] = ["wind"]    # now supports multiple correct trees
+
+# EXPORTED FOR TESTING:
+# Add ["wind", "spiral", "eye", "tally", "hollow"] in Inspector to test collecting 5 sticks.
+@export var correct_tree_markings: Array[String] = []
+
 var zone_a_completed: bool = false
-var found_stick_zone_a: bool = false
 
 # STICK COLLECTION
 var total_sticks_collected: int = 0
@@ -43,12 +46,22 @@ var ambience_enabled: bool = false
 # ---------------------------------------------------------
 func _ready():
 	is_ready = true
+	
+	# INITIALIZE PUZZLE
+	# If you set trees in the Inspector, use those. Otherwise, random.
+	if correct_tree_markings.is_empty():
+		_randomize_correct_trees()
+	else:
+		print("[GardenState] Using Inspector settings for trees: ", correct_tree_markings)
+		# We must defer the signal slightly to ensure listeners are ready
+		call_deferred("emit_signal", "correct_trees_changed", correct_tree_markings)
+	
 	emit_signal("state_ready")
 	print("[GardenState] Initialized.")
 
 
 # ---------------------------------------------------------
-#  MISTAKE SYSTEM — called by ZoneAController on wrong knock
+#  MISTAKE SYSTEM
 # ---------------------------------------------------------
 func add_mistake():
 	mistake_count += 1
@@ -60,39 +73,43 @@ func add_mistake():
 	if mistake_count % 3 == 0:
 		trunk_swap_step += 1
 		emit_signal("trunk_swap_triggered", trunk_swap_step)
-		_randomize_correct_trees()
+		
+		# Only re-randomize if we aren't manually testing specific trees
+		if correct_tree_markings.is_empty() or correct_tree_markings.size() == 1:
+			_randomize_correct_trees()
 
 
 # ---------------------------------------------------------
-# RANDOMIZE CORRECT TREES AFTER MAJOR MISTAKES
+# RANDOMIZE CORRECT TREES
 # ---------------------------------------------------------
 func _randomize_correct_trees():
 	var marking_pool = ["wind", "spiral", "eye", "tally", "hollow"]
 	marking_pool.shuffle()
 
-	# pick 1 correct tree per cycle (can be more if you want)
+	# Pick 1 correct tree per cycle
 	correct_tree_markings = [marking_pool[0]]
 
-	print("[GardenState] correct_tree_markings updated:", correct_tree_markings)
+	# Emit signal so trees update themselves
 	emit_signal("correct_trees_changed", correct_tree_markings)
+	print("[GardenState] correct_tree_markings updated:", correct_tree_markings)
 
 
 # ---------------------------------------------------------
-# RESET (optional use)
+# RESET
 # ---------------------------------------------------------
 func reset():
 	cicadas_active = false
-	correct_tree_markings = ["wind"]
-	zone_a_completed = false
-	found_stick_zone_a = false
+	
+	# Reset puzzle
+	trunk_swap_step = 0
+	mistake_count = 0
+	_randomize_correct_trees()
 
+	zone_a_completed = false
 	total_sticks_collected = 0
 
 	has_rope = false
 	broom_crafted = false
-
-	mistake_count = 0
-	trunk_swap_step = 0
 
 	fog_density = 0.25
 	ambience_enabled = false

@@ -4,38 +4,39 @@ signal garden_state_ready(state)
 
 @export var cicada_timer: Timer
 @export var cicada_player: AudioStreamPlayer
-
-# Optional trunk textures for swapping
 @export var trunk_textures: Array[Texture2D] = []
 
-
-# ---------------------------------------------------------
-# FOG + FLASH SYSTEM (PARALLAX COMPATIBLE)
-# ---------------------------------------------------------
-@export var fog: CanvasItem                                # fallback fog node
-@export var fog_parallax_layer: ParallaxLayer = null       # ParallaxLayer containing fog sprite
-@export var fog_node_path: NodePath = ""                   # path to fog sprite inside the layer
-
+# FOG + FLASH VARIABLES
+@export var fog: CanvasItem
+@export var fog_parallax_layer: ParallaxLayer = null
+@export var fog_node_path: NodePath = ""
 @export var fog_increase_rate := 0.02
 @export var max_fog_density := 0.85
 
 @export var flash_rect: ColorRect
 @export var flash_duration := 0.25
 
-var _flash_original_color: Color = Color.WHITE
+# Lighting State Storage
+var _original_lighting_color: Color = Color.WHITE
+var _original_lighting_alpha: float = 0.0
 
 var zone_a_locked: bool = false
 var _garden_state_ready: bool = false
 
 
 func _ready():
+	# 1. CAPTURE ORIGINAL LIGHTING (Dark/Ambient)
 	if flash_rect:
-		_flash_original_color = flash_rect.color
+		_original_lighting_color = flash_rect.color
+		_original_lighting_alpha = flash_rect.modulate.a
+		flash_rect.visible = true
 
 	_setup_controller_fallback()
 	_connect_treedoors()
 	_connect_cicada_timer()
-	start_cicadas()
+	
+	# NOTE: We do NOT start cicadas here anymore. 
+	# We wait for _retry_attach_garden_state to ensure variables are synced.
 
 	set_process(true)
 
@@ -51,8 +52,6 @@ func _setup_controller_fallback():
 	if Global.game_controller != null:
 		call_deferred("_retry_attach_garden_state")
 		return
-
-	print("ZoneA: No GameController found. Creating fallback.")
 
 	var temp_gc := Node.new()
 	temp_gc.name = "TempGameController"
@@ -79,11 +78,8 @@ func _retry_attach_garden_state():
 		_garden_state_ready = true
 		print("ZoneA: GardenState attached.")
 
-		if cicada_player and cicada_player.playing:
-			gs.cicadas_active = true
-
-		if gs.has_signal("correct_trees_changed"):
-			gs.correct_trees_changed.connect(_on_correct_tree_set_changed)
+		# --- FIX: START CICADAS ONLY AFTER STATE IS READY ---
+		start_cicadas()
 
 		if gs.has_signal("trunk_swap_triggered"):
 			gs.trunk_swap_triggered.connect(_on_trunk_swap_triggered)
@@ -117,31 +113,28 @@ func _connect_cicada_timer():
 # CORRECT KNOCK
 # ---------------------------------------------------------
 func _on_correct_knock(tree):
-	if zone_a_locked:
-		return
+	# COMMENTED OUT TO ALLOW COLLECTING 5 STICKS
+	# if zone_a_locked: return
 
 	var gs = _gs()
 	if gs:
-		gs.found_stick_zone_a = true
 		gs.zone_a_completed = true
 		gs.total_sticks_collected += 1
+		print("ZoneA: Stick collected! Total: ", gs.total_sticks_collected)
 
 	print("ZoneA: Correct knock on", tree.name)
 
-	zone_a_locked = true
+	# zone_a_locked = true # Keep unlocked for testing
 	stop_cicadas()
 
-	flash_screen(Color(0.2, 1.0, 0.2, 0.6))
+	# FLASH GREEN
+	flash_screen(Color(0.2, 1.0, 0.2))
 
 
 # ---------------------------------------------------------
 # WRONG KNOCK
 # ---------------------------------------------------------
 func _on_wrong_knock(tree):
-	if zone_a_locked:
-		print("ZoneA: Wrong knock ignored — zone completed.")
-		return
-
 	print("ZoneA: Wrong knock on", tree.name)
 
 	var player = get_tree().get_first_node_in_group("Player")
@@ -155,7 +148,8 @@ func _on_wrong_knock(tree):
 	if gs:
 		gs.add_mistake()
 
-	flash_screen(Color(1.0, 0.1, 0.1, 0.6))
+	# FLASH RED
+	flash_screen(Color(1.0, 0.1, 0.1))
 
 
 # ---------------------------------------------------------
@@ -201,7 +195,7 @@ func _on_cicada_timer_timeout():
 
 
 # ---------------------------------------------------------
-# FOG CONTROL (PARALLAX)
+# FOG CONTROL
 # ---------------------------------------------------------
 func _update_fog(delta: float) -> void:
 	var gs = _gs()
@@ -225,36 +219,31 @@ func _update_fog(delta: float) -> void:
 
 
 # ---------------------------------------------------------
-# FLASH EFFECT
+# FLASH EFFECT (RETURNS TO AMBIENT)
 # ---------------------------------------------------------
-func flash_screen(color: Color) -> void:
+func flash_screen(target_flash_color: Color) -> void:
 	if flash_rect == null:
 		return
 
+	# 1. Snap to Flash Color
 	flash_rect.visible = true
-	flash_rect.color = color
-	flash_rect.modulate.a = 1.0
+	flash_rect.color = target_flash_color
+	flash_rect.modulate.a = 0.8
 
+	# 2. Tween back to Original Lighting Color
 	var tween := get_tree().create_tween()
-	tween.tween_property(flash_rect, "modulate:a", 0.0, flash_duration)
-	tween.finished.connect(func():
-		flash_rect.visible = false
-		flash_rect.color = _flash_original_color
-		flash_rect.modulate.a = 1.0
-	)
+	tween.set_parallel(true)
+	
+	# Fade Color back to Dark/Ambient
+	tween.tween_property(flash_rect, "color", _original_lighting_color, flash_duration)
+	
+	# Fade Alpha back to Original Ambient Alpha
+	tween.tween_property(flash_rect, "modulate:a", _original_lighting_alpha, flash_duration)
 
 
 # ---------------------------------------------------------
-# CALLBACKS FROM GARDENSTATE
+# TRUNK SWAP CALLBACK
 # ---------------------------------------------------------
-func _on_correct_tree_set_changed(new_markings: Array):
-	for td in get_tree().get_nodes_in_group("treedoor"):
-		if td.has_method("set_is_correct_tree"):
-			td.set_is_correct_tree(td.marking_id in new_markings)
-		else:
-			td.is_correct_tree = td.marking_id in new_markings
-
-
 func _on_trunk_swap_triggered(step: int):
 	if trunk_textures.is_empty():
 		return
