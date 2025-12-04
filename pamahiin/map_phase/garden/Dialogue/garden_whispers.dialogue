@@ -1,0 +1,79 @@
+~ start
+# Do not call this directly. Call sub-branches.
+=> END
+
+##############################################################
+#                     CORRECT WHISPERS
+##############################################################
+
+~ correct_wind
+- [#whisper] Here… I used to sit here… => END
+- [#whisper] The wind remembers me… => END
+- [#whisper] Stay… please… just a little longer… => END
+=> END
+
+~ correct_spiral
+- [#whisper] Spin with me… like before… => END
+- [#whisper] I laughed here… didn’t I? => END
+- [#whisper] Round and round… I was happy… => END
+=> END
+
+~ correct_eye
+- [#whisper] Someone was watching me… => END
+- [#whisper] I felt seen here… safe… => END
+- [#whisper] Do you see me… still? => END
+=> END
+
+~ correct_tally
+- [#whisper] One more mark… one more day… => END
+- [#whisper] Count with me… => END
+- [#whisper] You brought the stick… thank you… => END
+=> END
+
+~ correct_hollow
+- [#whisper] I hid here… once… => END
+- [#whisper] The hollow remembers me… => END
+- [#whisper] Light used to reach inside… => END
+=> END
+
+
+##############################################################
+#                  WRONG WHISPERS — TIER 1
+##############################################################
+
+~ wrong_tier_1
+- [#whisper] …no… not that one… => END
+- [#whisper] …please… be gentle… => END
+- [#whisper] …why here…? => END
+=> END
+
+
+##############################################################
+#                  WRONG WHISPERS — TIER 2
+##############################################################
+
+~ wrong_tier_2
+- [#whisper] Stop… you’re waking it… => END
+- [#whisper] Don’t touch that… it hurts… => END
+- [#whisper] Leave it—leave it alone… => END
+=> END
+
+
+##############################################################
+#                  WRONG WHISPERS — TIER 3
+##############################################################
+
+~ wrong_tier_3
+- [#whisper] STOP! => END
+- [#whisper] GO AWAY—GO AWAY—GO AWAY— => END
+- [#whisper] You’ll break her again—STOP! => END
+=> END
+
+
+##############################################################
+#                  RARE SPECIAL WHISPER (optional)
+##############################################################
+
+~ whisper_special
+[#whisper] …why won’t you let me come home…?
+=> END
