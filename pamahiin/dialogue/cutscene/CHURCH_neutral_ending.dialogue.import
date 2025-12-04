@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d06bub8tdrcnx"
+path="res://.godot/imported/CHURCH_neutral_ending.dialogue-a2a81e31becbfe92d5c3c532867e5ec6.tres"
+
+[deps]
+
+source_file="res://dialogue/cutscene/CHURCH_neutral_ending.dialogue"
+dest_files=["res://.godot/imported/CHURCH_neutral_ending.dialogue-a2a81e31becbfe92d5c3c532867e5ec6.tres"]
+
+[params]
+
+defaults=true

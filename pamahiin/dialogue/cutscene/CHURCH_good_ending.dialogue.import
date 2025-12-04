@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d0i8825qhpn56"
+path="res://.godot/imported/CHURCH_good_ending.dialogue-0c9493691074ea6a6341cd6a05fd640d.tres"
+
+[deps]
+
+source_file="res://dialogue/cutscene/CHURCH_good_ending.dialogue"
+dest_files=["res://.godot/imported/CHURCH_good_ending.dialogue-0c9493691074ea6a6341cd6a05fd640d.tres"]
+
+[params]
+
+defaults=true

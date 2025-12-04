@@ -68,10 +68,9 @@ tile_set = ExtResource("2_ws1gk")
 
 [node name="Area2D-ToRoom" type="Area2D" parent="."]
 z_index = 10
-position = Vector2(256.33334, 51.666664)
+position = Vector2(254.00002, 37.999996)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-ToRoom"]
-position = Vector2(-3.0000002, -16.333334)
 shape = SubResource("CircleShape2D_neesx")
 
 [node name="Area2D-BackToWorld" type="Area2D" parent="."]
@@ -93,7 +92,6 @@ position = Vector2(248.66664, 131.33331)
 scale = Vector2(0.09333252, 0.106667064)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="MeshInstance2D-ShaderCRTVig" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_6u4xy")

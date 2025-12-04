@@ -11,12 +11,14 @@ func getLocationType()->EnumsRef.LocationType:
 func _ready() -> void:
 	Global.game_controller.stop_curr_global_audio()
 func _on_area_2d_to_room_body_entered(body: Node2D) -> void:
-	if GameState.HOUSE_has_met_ghost_girl == false and GameState.HOUSE_has_read_clue == false:
+	print("ghost:", GameState.HOUSE_has_met_ghost_girl)
+	print("clue:", GameState.HOUSE_has_read_clue)
+	print("puzzle:", GameState.HOUSE_finished_puzzle)
+	if body.is_in_group("Player") and ( GameState.HOUSE_has_met_ghost_girl == false or GameState.HOUSE_has_read_clue == false ):
 		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/house_dialogues/player_enter_puzzle.dialogue"))
-		return
-	if body.is_in_group("Player") and not GameState.HOUSE_finished_puzzle:
+	elif body.is_in_group("Player") and not GameState.HOUSE_finished_puzzle and not ( GameState.HOUSE_has_met_ghost_girl == false or GameState.HOUSE_has_read_clue == false ):
 		Global.game_controller.change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
-	elif body.is_in_group("Player"):
+	elif body.is_in_group("Player") and GameState.HOUSE_finished_puzzle:
 		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/HOUSE_finished_puzzle.dialogue"))
 		
 

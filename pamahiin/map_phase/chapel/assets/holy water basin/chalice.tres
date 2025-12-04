@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_qht3s")
 name = "empty_chalice"
-description = Array[String](["Empty chalice with a message", "\"As God began the first day... Let there be light\"", "Am I suppose to follow the days of creation? Seems like it."])
+description = Array[String](["Empty chalice with a message", "\"As God began the first day... Let there be light\"", "Am I suppose to follow the days of creation? Seems like it.", "It also seems like there's creatures around here but they don't seem to like the light"])
 texture = ExtResource("2_jrft6")
 metadata/_custom_type_script = "uid://26w5lr3t485j"

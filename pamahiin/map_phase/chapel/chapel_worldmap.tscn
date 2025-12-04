@@ -9,6 +9,74 @@
 [ext_resource type="AudioStream" uid="uid://bi14kem5hjv03" path="res://art/Audio Assets/12-door-opening-fast_short.wav" id="6_5jvht"]
 [ext_resource type="AudioStream" uid="uid://bkpg8q5brq1d0" path="res://art/Audio Assets/14-door-close-slow_short.wav" id="7_4l0p7"]
 
+[sub_resource type="Animation" id="Animation_df3kj"]
+
+[sub_resource type="Animation" id="Animation_4l0p7"]
+resource_name = "door_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TileMap/Door:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node/AudioStreamPlayer2D-DoorClose:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_5jvht"]
+resource_name = "door_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TileMap/Door:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node/AudioStreamPlayer2D-DoorOpen:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jvht"]
+_data = {
+&"RESET": SubResource("Animation_df3kj"),
+&"door_close": SubResource("Animation_4l0p7"),
+&"door_open": SubResource("Animation_5jvht")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nh1l5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4l0p7"]
+radius = 24.73
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4l0p7"]
 texture = ExtResource("1_re8iv")
 1:0/0 = 0
@@ -1053,81 +1121,81 @@ sources/2 = SubResource("TileSetAtlasSource_lqj3g")
 sources/3 = SubResource("TileSetAtlasSource_p82pr")
 sources/4 = SubResource("TileSetAtlasSource_df3kj")
 
-[sub_resource type="Animation" id="Animation_df3kj"]
-
-[sub_resource type="Animation" id="Animation_5jvht"]
-resource_name = "door_open"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TileMap/Door:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node/AudioStreamPlayer2D-DoorOpen:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_4l0p7"]
-resource_name = "door_close"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TileMap/Door:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node/AudioStreamPlayer2D-DoorClose:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jvht"]
-_data = {
-&"RESET": SubResource("Animation_df3kj"),
-&"door_close": SubResource("Animation_4l0p7"),
-&"door_open": SubResource("Animation_5jvht")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_nh1l5"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4l0p7"]
-radius = 24.73
-
 [node name="ChapelWorldmap" type="Node2D"]
+y_sort_enabled = true
 position = Vector2(0, 176)
 scale = Vector2(4, 4)
 script = ExtResource("1_4l0p7")
 
+[node name="Marker2D-Right" type="Marker2D" parent="."]
+position = Vector2(261.5, 288)
+
 [node name="Marker2D-SpawnP" type="Marker2D" parent="."]
-position = Vector2(188, 361.5)
+position = Vector2(182.75, 312.5)
+
+[node name="Marker2D-Left" type="Marker2D" parent="."]
+position = Vector2(104, 288)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5jvht")
+}
+
+[node name="Node" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D-DoorOpen" type="AudioStreamPlayer2D" parent="Node"]
+stream = ExtResource("6_5jvht")
+
+[node name="AudioStreamPlayer2D-DoorClose" type="AudioStreamPlayer2D" parent="Node"]
+stream = ExtResource("7_4l0p7")
+
+[node name="Area2D-rightdoor" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2(263.75, 277.75)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-rightdoor"]
+show_behind_parent = true
+shape = SubResource("CircleShape2D_nh1l5")
+
+[node name="Area2D-leftdoor" type="Area2D" parent="Area2D-rightdoor"]
+show_behind_parent = true
+position = Vector2(-640, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-rightdoor/Area2D-leftdoor"]
+show_behind_parent = true
+shape = SubResource("CircleShape2D_nh1l5")
+
+[node name="Area2D-centerSoundTrigger" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2(184.75, 296.5)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-centerSoundTrigger"]
+show_behind_parent = true
+z_index = 11
+position = Vector2(-4, -20)
+shape = SubResource("CircleShape2D_4l0p7")
+
+[node name="Area2D-spawnInsideDetector" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, -44)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D-spawnInsideDetector"]
+show_behind_parent = true
+position = Vector2(742, 1263)
+polygon = PackedVector2Array(-75, -7, -106, -111, -261, -114, -264, -36, -351, -90, -360, -114, -245, -147, 74, -147, 349, -138, 360, -72, 309, -55, 270, -17, 255, -97, 69, -119, 60, 6, -4, 27)
+
+[node name="AreaNode" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+show_behind_parent = true
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+show_behind_parent = true
+position = Vector2(68, 161.5)
+polygon = PackedVector2Array(-1, 40.5, 0.5, 110.5, 3, 118, 16.5, 118, 19, 114.5, 24.5, 114.5, 28.5, 90.5, 38.5, 89, 42.5, 91.75, 42.5, 115, 50.75, 113.75, 54.75, 117.75, 65.75, 117.75, 67.25, 113.75, 69.75, 115, 70, 134, 75.25, 134, 75.25, 140.75, 91.75, 140.75, 92, 132.75, 102.5, 132.75, 105.25, 105.5, 119, 101.5, 124.5, 108, 125.75, 134, 135.25, 134, 138, 140.75, 155.75, 140.75, 155.75, 134.25, 161.5, 134.25, 159.75, 119.25, 164.5, 120.25, 163.25, 123.25, 175, 124.75, 176.5, 117.5, 185.5, 117.5, 188.75, 98, 191.75, 93.5, 197.5, 93.5, 202.25, 98, 202, 112.75, 202, 119, 211, 117.5, 202.75, 119, 210.5, 119, 212, 125, 223.5, 123.5, 223.5, 119.75, 229.75, 120.5, 231.5, 65, 231.5, 15.5, 78.25, 12.25, 0.5, 12)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w5tvs")
@@ -1144,7 +1212,6 @@ tile_map_data = PackedByteArray("AAAEAA8AAAAFABUAAAAFAA8AAAAFABUAAAAFABAAAAAFABU
 tile_set = SubResource("TileSet_w5tvs")
 
 [node name="Door" type="TileMapLayer" parent="TileMap"]
-visible = false
 use_parent_material = true
 position = Vector2(-16, -14)
 tile_map_data = PackedByteArray("AAALABEAAAADABgAAAALABIAAAADABkAAAALABMAAAADABoAAAAMABAAAAAEABcAAAAMABEAAAAEABgAAAAMABIAAAAEABkAAAAMABMAAAAEABoAAAANABEAAAAFABgAAAANABIAAAAFABkAAAANABMAAAAFABoAAAA=")
@@ -1171,45 +1238,8 @@ position = Vector2(6, 9)
 tile_map_data = PackedByteArray("AAA8AAoAAAAXABQAAAADAAkABAAHABEAAAADAAoABAAHABIAAAADAAsABAAHABMAAAADAAwABAAHABQAAAADAA0ABAAHABUAAAADAA4ABAAHABYAAAADAA8ABAAHABcAAAADABAABAAHABgAAAAEAAgABAAIABAAAAAEAAkABAAIABEAAAAEAAoABAAIABIAAAAEAAsABAAIABMAAAAEAAwABAAIABQAAAAEAA0ABAAIABUAAAAEAA4ABAAIABYAAAAEAA8ABAAIABcAAAAEABAABAAIABgAAAAFAAcABAAJAA8AAAAFAAgABAAJABAAAAAFAAkABAAJABEAAAAFAAoABAAJABIAAAAFAAsABAAJABMAAAAFAAwABAAJABQAAAAFAA0ABAAJABUAAAAFAA4ABAAJABYAAAAFAA8ABAAJABcAAAAFABAABAAJABgAAAAGAAcABAAKAA8AAAAGAAgABAAKABAAAAAGAAkABAAKABEAAAAGAAoABAAKABIAAAAGAAsABAAKABMAAAAGAAwABAAKABQAAAAGAA0ABAAKABUAAAAGAA4ABAAKABYAAAAGAA8ABAAKABcAAAAGABAABAAKABgAAAAHAAgABAALABAAAAAHAAkABAALABEAAAAHAAoABAALABIAAAAHAAsABAALABMAAAAHAAwABAALABQAAAAHAA0ABAALABUAAAAHAA4ABAALABYAAAAHAA8ABAALABcAAAAHABAABAALABgAAAAIAAgABAAMABAAAAAIAAkABAAMABEAAAAIAAoABAAMABIAAAAIAAsABAAMABMAAAAIAAwABAAMABQAAAAIAA0ABAAMABUAAAAIAA4ABAAMABYAAAAIAA8ABAAMABcAAAAIABAABAAMABgAAAA=")
 tile_set = SubResource("TileSet_w5tvs")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5jvht")
-}
-autoplay = "door_open"
-
-[node name="Node" type="Node" parent="."]
-
-[node name="AudioStreamPlayer2D-DoorOpen" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("6_5jvht")
-
-[node name="AudioStreamPlayer2D-DoorClose" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("7_4l0p7")
-
-[node name="AreaNode" type="Node" parent="."]
-
-[node name="Area2D-rightdoor" type="Area2D" parent="AreaNode"]
-position = Vector2(1055, 1287)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaNode/Area2D-rightdoor"]
-shape = SubResource("CircleShape2D_nh1l5")
-
-[node name="Area2D-leftdoor" type="Area2D" parent="AreaNode"]
-position = Vector2(415, 1259)
-
-[node name="Area2D-centerSoundTrigger" type="Area2D" parent="AreaNode"]
-position = Vector2(739, 1362)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaNode/Area2D-centerSoundTrigger"]
-z_index = 11
-position = Vector2(-4, -20)
-shape = SubResource("CircleShape2D_4l0p7")
-
-[node name="Area2D-spawnInsideDetector" type="Area2D" parent="AreaNode"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaNode/Area2D-spawnInsideDetector"]
-position = Vector2(742, 1263)
-polygon = PackedVector2Array(-75, -7, -106, -111, -261, -114, -264, -36, -351, -90, -360, -114, -245, -147, 74, -147, 349, -138, 360, -72, 309, -55, 270, -17, 255, -97, 69, -119, 60, 6, -4, 27)
-
-[connection signal="body_entered" from="AreaNode/Area2D-centerSoundTrigger" to="." method="_on_area_2_dcenter_body_entered"]
-[connection signal="body_exited" from="AreaNode/Area2D-centerSoundTrigger" to="." method="_on_area_2_dcenter_body_exited"]
-[connection signal="body_entered" from="AreaNode/Area2D-spawnInsideDetector" to="." method="_on_area_2_dspawn_inside_detector_body_entered"]
+[connection signal="body_entered" from="Area2D-rightdoor" to="." method="_on_area_2_drightdoor_body_entered"]
+[connection signal="body_entered" from="Area2D-rightdoor/Area2D-leftdoor" to="." method="_on_area_2_dleftdoor_body_entered"]
+[connection signal="body_entered" from="Area2D-centerSoundTrigger" to="." method="_on_area_2_dcenter_body_entered"]
+[connection signal="body_exited" from="Area2D-centerSoundTrigger" to="." method="_on_area_2_dcenter_body_exited"]
+[connection signal="body_entered" from="Area2D-spawnInsideDetector" to="." method="_on_area_2_dspawn_inside_detector_body_entered"]

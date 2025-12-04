@@ -14,11 +14,10 @@ extends State
 var hit_effect_type : EnumsRef.HitEffectType
 var damage_to_player : float
 func Enter() -> void:
+	await get_tree().physics_frame
 	
-	if move_behavior:
-		pass
-	else:
-		move_behavior = enemy.move_behavior
+	move_behavior = enemy.move_behavior
+	hit_distance = enemy.hit_distance
 	detection_radius = enemy.detection_radius
 	hit_effect_type = enemy.hit_effect_type
 	damage_to_player = enemy.damage_to_player
@@ -35,18 +34,17 @@ func Physics_Update(delta: float) -> void:
 	vision_ray.force_raycast_update()
 	
 	
-	# VisionRay Collision Logic
+	## VisionRay Collision Logic
 	if vision_ray.is_colliding():
 		var collider = vision_ray.get_collider()
 		#print("Hit:", collider)
 		if collider and collider.is_in_group("EnemyVisionBlock"):
 			has_clear_sight = false
-		else:
-			if enemy.global_position.distance_to(player.global_position) < detection_radius:
-				has_clear_sight = true	
+		#else:
+			#if enemy.global_position.distance_to(player.global_position) < detection_radius:
+				#has_clear_sight = true	
 
 
-					
 	# --- Behavior logic ---
 	if has_clear_sight:
 		# Reset lose timer since player is visible
@@ -69,10 +67,11 @@ func Physics_Update(delta: float) -> void:
 			Transitioned.emit(self, "EnemyIdle")
 			#print("Lost sight of player — switching to idle.")
 			
+	hitPlayer()
 	
+func hitPlayer():
 	# Theres two types of damage currently HitEffectPoison and HitEffectDamage		
 	if enemy.global_position.distance_to(player.global_position) < hit_distance:
 		player.ReceiveSanityDamage(damage_to_player, hit_effect_type)		
-
 func Exit() -> void:
 	enemy.velocity = Vector2.ZERO

@@ -6,13 +6,21 @@ extends Node2D
 var locationType : EnumsRef.LocationType = EnumsRef.LocationType.HOME
 
 func _ready() -> void:
+	if GameState.HOUSE_has_chest_opened:
+		if $LittleGirl:
+			$LittleGirl.queue_free()
 	if $LittleGirl:
 		$Chest.chest_opened.connect($LittleGirl.free_npc)
-		
+func obtainItemArtifact():
+	GameState.HOUSE_ARTIFACT_has_artifact_rosary = true
+	var player = get_tree().get_first_node_in_group("Player")
+	player.collect(load("uid://b2t3hhapem6qe"))
+	
 func getLocationType()->EnumsRef.LocationType:
 	return locationType
 func playTreasureOpen():
 	$"AudioStreamPlayer2D-open".play()
+	GameState.HOUSE_has_chest_opened = true
 func playObtainedItem():
 	$"AudioStreamPlayer2D-GottenItem".play()
 	

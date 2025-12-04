@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cic8481p3itdu"
+path="res://.godot/imported/blood-moon-horror-cinematic-atmosphere-shortened.mp3-f2ee2cf83e309da9aa106354eddd7c74.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/blood-moon-horror-cinematic-atmosphere-shortened.mp3"
+dest_files=["res://.godot/imported/blood-moon-horror-cinematic-atmosphere-shortened.mp3-f2ee2cf83e309da9aa106354eddd7c74.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
