@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dp2ohqaws3xyx"]
+[gd_scene load_steps=26 format=4 uid="uid://dp2ohqaws3xyx"]
 
 [ext_resource type="Script" uid="uid://cglix2bc5f5kp" path="res://map_phase/cave/cave.gd" id="1_non6b"]
 [ext_resource type="TileSet" uid="uid://c0axof3qfikqk" path="res://art/GAMEDES art/Cave/maze_tiles.tres" id="1_nqyx7"]
