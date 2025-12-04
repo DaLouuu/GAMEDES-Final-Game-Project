@@ -854,3 +854,6 @@ stream = ExtResource("46_kwkps")
 
 [node name="mirrorglassbreak" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("47_wlw8e")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-217, 120)
