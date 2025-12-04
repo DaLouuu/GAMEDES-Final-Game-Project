@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://dduywjf84s7ht"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_tihyx"]
+[ext_resource type="Texture2D" uid="uid://cmfdrlcf1b4pl" path="res://map_phase/chapel/assets/holy water basin/holy water basin full.png" id="2_ppls1"]
+
+[resource]
+script = ExtResource("1_tihyx")
+name = "Chalice with holy water"
+description = Array[String](["Its full of holy water now", "Now let's get to the altar and service our prayer"])
+texture = ExtResource("2_ppls1")
+metadata/_custom_type_script = "uid://26w5lr3t485j"

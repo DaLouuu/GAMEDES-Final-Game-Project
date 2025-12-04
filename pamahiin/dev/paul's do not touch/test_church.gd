@@ -7,6 +7,7 @@ extends Node2D
 var player : CharacterBody2D
 
 func _ready():
+	await get_tree().physics_frame
 	enemy.start_funcs()
 	
 

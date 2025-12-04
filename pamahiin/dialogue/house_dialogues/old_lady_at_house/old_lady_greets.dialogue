@@ -363,6 +363,7 @@ elif GameState.HOUSE_has_met_ghost_girl and not GameState.HOUSE_has_read_clue
 	Old Lady: [#warning] Before you go. Look for her path.
 	Old Lady: Look for the paper over there, it may guide you. 
 	Old Lady: The spirit cannot rest until someone walks it.
+	Old Lady: All paths including the ones you leave behind is part of the choice.
 	=> END
 elif GameState.HOUSE_has_read_clue and not GameState.HOUSE_finished_puzzle
 	Old Lady: [#encouraging] Think on what you've seen, anak. The path will make sense.
@@ -370,6 +371,7 @@ elif GameState.HOUSE_has_read_clue and not GameState.HOUSE_finished_puzzle
 	=> END
 else
 	Old Lady: [#calm] Return when you are ready. The spirits are patient.
+	Old Lady: All paths including the ones you leave behind is part of following THEIR memory.
 	=> END
 
 => END

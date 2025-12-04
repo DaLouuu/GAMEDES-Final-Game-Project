@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://q26y70q2mork"
+path="res://.godot/imported/burial.dialogue-bec6a3137df487b3c0e51ad5a55d634b.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/burial.dialogue"
+dest_files=["res://.godot/imported/burial.dialogue-bec6a3137df487b3c0e51ad5a55d634b.tres"]
+
+[params]
+
+defaults=true

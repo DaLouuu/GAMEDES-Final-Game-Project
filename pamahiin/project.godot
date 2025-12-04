@@ -20,8 +20,8 @@ config/icon="res://icon.svg"
 Global="*res://utils-scripts/global.gd"
 EnumsRef="*res://utils-scripts/enums_ref.gd"
 Ref="*res://utils-scripts/Ref.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Savestate="*res://utils/savestate/Savestate.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameState="*res://GameState.gd"
 AudioManager="*res://AudioManager.gd"
 
@@ -96,10 +96,30 @@ cursor_interact={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+move_up={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+]
+}
+move_down={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue", "res://dialogue/house_dialogues/player_enter_puzzle.dialogue", "res://dialogue/house_dialogues/little_girl.dialogue", "res://dialogue/dialogue_outside.dialogue", "res://dialogue/HOUSE_dialogue_outside.dialogue", "res://dialogue/HOUSE_finished_puzzle.dialogue", "res://dialogue/GAMECONTROLLER_UPDATE.dialogue", "res://dialogue/player_inspect_chest.dialogue", "res://dialogue/HOUSE_player_dumb_no_key.dialogue", "res://dialogue/chest_locked.dialogue", "res://map_phase/garden/Dialogue/final_garden.dialogue", "res://map_phase/garden/Dialogue/garden_signages.dialogue", "res://map_phase/garden/Dialogue/garden_whispers.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://map_phase/cave/cave_ending.dialogue", "res://dialogue/house_dialogues/inspect_paper_clue.dialogue", "res://dialogue/house_dialogues/old_lady_at_house/old_lady_greets.dialogue", "res://dialogue/house_dialogues/player_enter_puzzle.dialogue", "res://dialogue/house_dialogues/little_girl.dialogue", "res://map_phase/motel/dialogues/bed_interact.dialogue", "res://map_phase/motel/dialogues/motel_part3.dialogue", "res://map_phase/motel/dialogues/church.dialogue", "res://map_phase/motel/dialogues/graveyard.dialogue", "res://map_phase/motel/dialogues/worldmap.dialogue", "res://map_phase/motel/dialogues/burial.dialogue", "res://map_phase/motel/dialogues/preworldmap.dialogue", "res://map_phase/motel/dialogues/motel_part2.1.dialogue", "res://map_phase/motel/dialogues/motel_part2.2.dialogue", "res://map_phase/motel/dialogues/motel_part2.3.dialogue", "res://map_phase/motel/dialogues/motel_part1.dialogue", "res://map_phase/motel/dialogues/motel_part4.dialogue", "res://dialogue/chest_locked.dialogue", "res://dialogue/dialogue_outside.dialogue", "res://dialogue/GAMECONTROLLER_UPDATE.dialogue", "res://dialogue/HOUSE_dialogue_outside.dialogue", "res://dialogue/HOUSE_finished_puzzle.dialogue", "res://dialogue/HOUSE_player_dumb_no_key.dialogue", "res://dialogue/player_inspect_chest.dialogue", "res://dialogue/dialogue_outside.dialogue", "res://dialogue/HOUSE_dialogue_outside.dialogue", "res://dialogue/HOUSE_finished_puzzle.dialogue", "res://dialogue/GAMECONTROLLER_UPDATE.dialogue", "res://dialogue/player_inspect_chest.dialogue", "res://dialogue/HOUSE_player_dumb_no_key.dialogue", "res://dialogue/chest_locked.dialogue", "res://dialogue/church/CHURCH_dumb_dumb_read.dialogue", "res://dialogue/CHURCH_on_entrance.dialogue", "res://dialogue/cutscene/CHURCH_set_player_observe_perform_fake_ritual.dialogue", "res://dialogue/cutscene/CHURCH_priest_dialogue.dialogue", "res://dialogue/cutscene/CHURCH_good_ending.dialogue", "res://dialogue/cutscene/CHURCH_neutral_ending.dialogue", "res://dialogue/cutscene/CHURCH_bad_ending.dialogue", "res://map_phase/garden/Dialogue/final_garden.dialogue", "res://map_phase/garden/Dialogue/garden_signages.dialogue", "res://map_phase/garden/Dialogue/garden_whispers.dialogue", "res://dialogue/CAVE_cave_done.dialogue")
 
 [layer_names]
 
@@ -116,6 +136,7 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", 
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="bullets"
 2d_physics/layer_5="actionables"
+2d_physics/layer_6="player_track_visionray"
 
 [rendering]
 

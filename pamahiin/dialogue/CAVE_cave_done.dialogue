@@ -1,0 +1,7 @@
+~ start
+if GameState.CAVE_has_salt:
+	I shouldn't come back here
+else:
+	do gotoCave()
+
+=> END

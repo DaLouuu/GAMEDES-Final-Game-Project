@@ -12,11 +12,12 @@ const _CAVE_ENDING_DIALOGUE = preload("uid://cploqh0i3n2c5")
 @onready var _attack_timer: Timer = $AttackTimer
 @onready var _end_entrance_shadow: Sprite2D = $Map/Regions/EndEntrance/Shadow
 @onready var _rest_point: DirectionMarker = $Map/Center/RestPoint
-
+@onready var customMarker := $"Marker2D-Custom"
 var _attack_ongoing := false
 var _attacker_count := 0
 var _has_entered_main_room := false
-
+func getCustomMarker(_local: EnumsRef.LOCAL_FROM_TYPE = EnumsRef.LOCAL_FROM_TYPE.CAVE):
+	return customMarker
 func _ready() -> void:
 	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, true)
 	
@@ -32,7 +33,9 @@ func _exit_tree() -> void:
 	
 func _on_attack_timer_timeout() -> void:
 	_get_player().ReceiveSanityDamage(_attacker_count * SANITY_DAMAGE, EnumsRef.HitEffectType.HitEffectCustom)
-
+func makePlayerObtain():
+	_get_player().collect(load("uid://bpep1reenml12"))
+	GameState.CAVE_has_salt = true
 func _on_end_entrance_body_entered(_body: Node2D) -> void:
 	if not _has_entered_main_room:
 		_has_entered_main_room = true
@@ -48,7 +51,8 @@ func _on_end_entrance_body_entered(_body: Node2D) -> void:
 		
 		_end_entrance_shadow.visible = true
 	else:
-		Global.game_controller.change_2d_scene_check_from("uid://cyc8laq2oakj0")
+		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CAVE)
+		
 
 func _on_main_entrance_body_entered(body: Node2D) -> void:
 	if not is_inside_tree():
@@ -57,7 +61,7 @@ func _on_main_entrance_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Player"):
 		return
 
-	Global.game_controller.change_2d_scene_check_from("uid://cyc8laq2oakj0")
+	Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CAVE)
 
 func _on_player_attack_started() -> void:
 	_attacker_count += 1

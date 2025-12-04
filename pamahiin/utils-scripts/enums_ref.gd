@@ -1,7 +1,9 @@
 extends Node
 # name under Globals: EnumsRef
 
-enum LOCAL_FROM_TYPE {H1, H2}
+enum LOCAL_FROM_TYPE {H1, H2, CAVE, 
+CHAPEL_ENTER1,CHAPEL_ENTER2, CHAPEL_ENTER3, 
+CHAPEL_EXIT1, CHAPEL_EXIT2, CHAPEL_EXIT3}
 
 enum SceneLoadState {
 	VISIBLE, # All data and memory present
@@ -73,7 +75,11 @@ enum EventTrigger {
 	ON_SANITY_LOW,
 	ON_ITEM_USE,
 }
-
+enum EndingType {
+	GOOD,
+	NEUTRAL,
+	BAD
+}
 
 enum GamePhase { PROLOGUE, 
 				ROSARY, 

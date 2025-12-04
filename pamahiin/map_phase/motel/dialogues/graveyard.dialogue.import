@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bbqvi23sbe1fp"
+path="res://.godot/imported/graveyard.dialogue-6d67eb829c3a764b6330e1c2b4c5df6b.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/graveyard.dialogue"
+dest_files=["res://.godot/imported/graveyard.dialogue-6d67eb829c3a764b6330e1c2b4c5df6b.tres"]
+
+[params]
+
+defaults=true

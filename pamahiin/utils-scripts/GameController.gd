@@ -11,44 +11,36 @@ enum AUDIO_PLAY {CHASE_HOUSE}
 
 var curr_2d_scene: Node = null
 var curr_gui_scene: Node = null
+
+
+
+
 var audioDictionary: Dictionary[AUDIO_PLAY, Resource] = {
 	AUDIO_PLAY.CHASE_HOUSE: preload("uid://bc7c7kecbm4bl"),
-
-	
 }
-
-func update_artifactCheck():
-	Global.artifactCount =0
-	if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
-		Global.artifactCount += 1
-
-func play_curr_global_audio(playType : AUDIO_PLAY):
-	if audioDictionary.has(playType):
-		AudioManager.music_player.stream = audioDictionary[playType]
-		AudioManager.music_player.play()
-
-
-func stop_curr_global_audio():
-	AudioManager.music_player.stop()
-
-	
 
 
 var garden_state: Node = null
 
 
-
+func setupPlayer(_player_: Player):
+	player = Player.new()
+	player.collect(load("res://dev/resource_scripts/inventory/items/lantern.tres"))
 func _ready() -> void:
 	# Register controller globally
+	await get_tree().physics_frame
 	Global.game_controller = self
+	await get_tree().physics_frame
 	DialogueManager.get_current_scene = func():
 		return Global.game_controller.curr_2d_scene
-
+	#player.artifact_collect.connect(Global.game_controller.updateArtifactCount)
 	#DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "start")
 	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
-	change_2d_scene("res://map_phase/houses/house_together.tscn")
+	#change_2d_scene("res://map_phase/houses/house_together.tscn")
+	change_2d_scene("uid://bev6rvoc16yms") # Motel
+	#change_2d_scene("uid://cyc8laq2oakj0") # WorldMap
 	#change_2d_scene("res://map_phase/cave/Cave.tscn")
   # Try to attach GardenState if current scene has one
 	#_find_and_set_garden_state()
@@ -57,21 +49,45 @@ func _ready() -> void:
 	# change_2d_scene("res://dev/dana's_testing_stuff/garden_phase.tscn")
 
 
+
+func update_artifactCheck():
+	Global.artifactCount =0
+	if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
+		Global.artifactCount += 1
+	if GameState.CAVE_has_salt:
+		Global.artifactCount += 1
+func play_curr_global_audio(playType : AUDIO_PLAY):
+	if audioDictionary.has(playType):
+		AudioManager.music_player.stream = audioDictionary[playType]
+		AudioManager.music_player.play()
+func getCurrScene():
+	return curr_2d_scene
+
+func stop_curr_global_audio():
+	AudioManager.music_player.stop()
+
+func presetup():
+	pass
+
 func change_2d_scene_custom(new_scene: String, localFromType : EnumsRef.LOCAL_FROM_TYPE, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
+	presetup()
 	# Placeholder: implement GUI scene swapping later
+	var promiseToFree = false
 	if curr_2d_scene:
 		match load_state:
 			
 			EnumsRef.SceneLoadState.DELETE:
+				promiseToFree = true
 				curr_2d_scene.queue_free()
+				
 			EnumsRef.SceneLoadState.HIDE:
 				curr_2d_scene.visible = false
 			EnumsRef.SceneLoadState.REMOVE_HIDDEN:
 				gui.remove_child(curr_2d_scene)
 			_:
 				print("Error: Load state specified is undefined in EnumsRef")
-
 	var new_scene_instance = load(new_scene).instantiate()
+	#var old_scene = curr_2d_scene
 	world_2d.add_child(new_scene_instance)
 	curr_2d_scene = new_scene_instance
 	
@@ -82,7 +98,10 @@ func change_2d_scene_custom(new_scene: String, localFromType : EnumsRef.LOCAL_FR
 		if curr_2d_scene.has_method("getCustomMarker"):
 			mark = curr_2d_scene.getCustomMarker(localFromType)
 		if mark:
+			
 			player.global_position = mark.global_position
+			#new_scene_instance.add_child(player)
+			
 			var camera : Camera2D = player.get_node("Camera2D")
 			changed_scene_with_character.emit()
 			if new_scene_instance.has_method("goto_coming_out_from_spawn"):
@@ -96,7 +115,9 @@ func change_2d_scene_custom(new_scene: String, localFromType : EnumsRef.LOCAL_FR
 				
 	else:
 		push_error("Player not initialized in GameController.")
-
+	#if promiseToFree:
+		#old_scene.queue_free()
+		
 	
 	
 		
@@ -107,6 +128,7 @@ func change_gui_scene(new_scene: String, load_state : EnumsRef.SceneLoadState = 
 	return
 
 func change_2d_scene_check_from(new_scene: String, startFuncs = false, isComingOut = true, load_state : EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
+	presetup()
 	if curr_2d_scene:
 		match load_state:
 			EnumsRef.SceneLoadState.DELETE:
@@ -115,7 +137,7 @@ func change_2d_scene_check_from(new_scene: String, startFuncs = false, isComingO
 				curr_2d_scene.visible = false
 			EnumsRef.SceneLoadState.REMOVE_HIDDEN:
 				gui.remove_child(curr_2d_scene)
-
+		
 	var new_scene_instance = load(new_scene).instantiate()
 	world_2d.add_child(new_scene_instance)
 	curr_2d_scene = new_scene_instance
@@ -126,10 +148,12 @@ func change_2d_scene_check_from(new_scene: String, startFuncs = false, isComingO
 	if player:
 		var spawn_marker = new_scene_instance.get_node_or_null("Marker2D-OutFromP")
 		if spawn_marker:
+			
 			if new_scene_instance.has_method("start_funcs") and startFuncs:
 				new_scene_instance.start_funcs()
 			player.global_position = spawn_marker.global_position
-
+			#new_scene_instance.add_child(player)
+			
 			var camera: Camera2D = player.get_node("Camera2D")
 			changed_scene_with_character.emit()
 
@@ -149,7 +173,7 @@ func change_2d_scene_check_from(new_scene: String, startFuncs = false, isComingO
 # -----------------------------------------------------------------------------
 
 func change_2d_scene(new_scene: String, load_state: EnumsRef.SceneLoadState = EnumsRef.SceneLoadState.DELETE) -> void:
-
+	presetup()
 	if curr_2d_scene:
 		match load_state:
 			EnumsRef.SceneLoadState.DELETE:
@@ -158,7 +182,6 @@ func change_2d_scene(new_scene: String, load_state: EnumsRef.SceneLoadState = En
 				curr_2d_scene.visible = false
 			EnumsRef.SceneLoadState.REMOVE_HIDDEN:
 				gui.remove_child(curr_2d_scene)
-
 	var new_scene_instance = load(new_scene).instantiate()
 	world_2d.add_child(new_scene_instance)
 	curr_2d_scene = new_scene_instance
@@ -170,14 +193,15 @@ func change_2d_scene(new_scene: String, load_state: EnumsRef.SceneLoadState = En
 		var spawn_marker = new_scene_instance.get_node_or_null("Marker2D-SpawnP")
 
 		if spawn_marker:
-
+			
 			
 			player.global_position = spawn_marker.global_position
-
+			#new_scene_instance.add_child(player)
+			
 			var camera: Camera2D = player.get_node("Camera2D")
 			changed_scene_with_character.emit()
-
-			camera.reset_smoothing()
+			if camera:
+				camera.reset_smoothing()
 		else:
 			push_warning("No Marker2D-SpawnP found in scene.")
 	else:

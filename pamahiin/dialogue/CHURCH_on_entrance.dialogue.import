@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c2cttecxiik0g"
+path="res://.godot/imported/CHURCH_on_entrance.dialogue-4346f18f2d8585c6a0933f2ba5e8a35b.tres"
+
+[deps]
+
+source_file="res://dialogue/CHURCH_on_entrance.dialogue"
+dest_files=["res://.godot/imported/CHURCH_on_entrance.dialogue-4346f18f2d8585c6a0933f2ba5e8a35b.tres"]
+
+[params]
+
+defaults=true
