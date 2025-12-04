@@ -158,6 +158,7 @@ func puzzle_solved():
 	$EnemyAntilight2.queue_free()
 	$EnemyAntilight3.queue_free()
 	enable_endgame_nodes()
+	DialogueManager.show_example_dialogue_balloon(load("res://dialogue/church/CHURCH_finished_puzzle.dialogue"))
 
 func highlight_correct(light_name):
 	for c in $LightGroup.get_children():
