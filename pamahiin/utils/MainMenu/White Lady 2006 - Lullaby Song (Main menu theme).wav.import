@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dsvsfgc3b3gkm"
+path="res://.godot/imported/White Lady 2006 - Lullaby Song (Main menu theme).wav-2c5431134a9529fa6f15b5663157745b.sample"
+
+[deps]
+
+source_file="res://utils/MainMenu/White Lady 2006 - Lullaby Song (Main menu theme).wav"
+dest_files=["res://.godot/imported/White Lady 2006 - Lullaby Song (Main menu theme).wav-2c5431134a9529fa6f15b5663157745b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
