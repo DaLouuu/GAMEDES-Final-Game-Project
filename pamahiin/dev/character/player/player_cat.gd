@@ -67,7 +67,7 @@ func trigger_cat_ready():
 	$Camera2D.make_current()
 	sanity_changed.connect(check_health_changes)
 	$CanvasLayer/ArtifactProgress.text = "Artifact: " + str(Global.artifactCount) +"/4"
-	
+	$CanvasLayer.visible = true
 	for ctrl in $CanvasLayer.get_children():
 		if ctrl is Control:
 			ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -77,7 +77,7 @@ func trigger_cat_ready():
 	remote_transform_2d.remote_path = camera.get_path()	
 	
 func _ready():
-	
+	$CanvasLayer.visible = false	
 	pass
 	
 	# For debugging purposes lets you know object ids that pass through certain events

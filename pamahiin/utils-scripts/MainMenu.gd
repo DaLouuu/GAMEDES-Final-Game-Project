@@ -135,9 +135,8 @@ func _on_play_pressed():
 	# Wait a moment for animation, then transition
 	await get_tree().create_timer(0.2).timeout
 	
-	# Transition to game scene
-	# get_tree().change_scene_to_file("res://scenes/game.tscn")
-
+	Global.game_controller.triggerStart()
+	self.queue_free()
 func _on_cheat_menu_pressed():
 	print("Cheat menu button pressed!")
 	animate_button_press(cheat_button)

@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dsvsfgc3b3gkm" path="res://utils/MainMenu/White Lady 2006 - Lullaby Song (Main menu theme).wav" id="2_5cur7"]
 [ext_resource type="Texture2D" uid="uid://b7k0upjd7gh2v" path="res://utils/MainMenu/Pop Up.png" id="2_gref8"]
 [ext_resource type="Texture2D" uid="uid://baaq1tp3n56xd" path="res://utils/MainMenu/Menu Button.png" id="3_gref8"]
-[ext_resource type="Script" uid="uid://bf1q07y5vwlwf" path="res://utils-scripts/CheatMenuPopup.gd" id="5_jo0y6"]
+[ext_resource type="Script" path="res://utils-scripts/CheatMenuPopup.gd" id="5_jo0y6"]
 
 [sub_resource type="Theme" id="Theme_qnbnv"]
 
@@ -109,6 +109,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_qnbnv")
 text = "Exit"
 
 [node name="CheatMenuPopup" type="TextureRect" parent="."]
+visible = false
 anchors_preset = -1
 anchor_right = 0.690625
 anchor_bottom = 0.7486111

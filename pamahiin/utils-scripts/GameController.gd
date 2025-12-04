@@ -22,11 +22,18 @@ var audioDictionary: Dictionary[AUDIO_PLAY, Resource] = {
 
 var garden_state: Node = null
 
-
+func triggerStart():
+	await get_tree().physics_frame
+	player.visible = true
+	var new_scene_instance = load("uid://c4psaq201foex").instantiate()
+	#var old_scene = curr_2d_scene
+	world_2d.add_child(new_scene_instance)
+	curr_2d_scene = new_scene_instance
 func setupPlayer(_player_: Player):
 	player = Player.new()
 	player.collect(load("res://dev/resource_scripts/inventory/items/lantern.tres"))
 func _ready() -> void:
+	player.visible = false
 	# Register controller globally
 	await get_tree().physics_frame
 	Global.game_controller = self
@@ -39,7 +46,7 @@ func _ready() -> void:
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
 	#change_2d_scene("res://map_phase/houses/house_together.tscn")
-	var new_scene_instance = load("uid://c4psaq201foex").instantiate()
+	var new_scene_instance = load("uid://bdt62bgxs0isa").instantiate()
 	#var old_scene = curr_2d_scene
 	world_2d.add_child(new_scene_instance)
 	curr_2d_scene = new_scene_instance
@@ -50,7 +57,6 @@ func _ready() -> void:
 
 	# TEMPORARY: load your debugging scene
 	# change_2d_scene("res://dev/dana's_testing_stuff/garden_phase.tscn")
-
 
 
 func update_artifactCheck():
