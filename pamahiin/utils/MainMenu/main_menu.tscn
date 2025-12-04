@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdt62bgxs0isa"]
+[gd_scene load_steps=10 format=3 uid="uid://bdt62bgxs0isa"]
 
 [ext_resource type="Texture2D" uid="uid://yj7to3mw8ou6" path="res://utils/MainMenu/UI Guide.png" id="1_ppg3m"]
 [ext_resource type="Script" uid="uid://ptobmt5fj26f" path="res://utils-scripts/MainMenu.gd" id="1_qnbnv"]
+[ext_resource type="AudioStream" uid="uid://dsvsfgc3b3gkm" path="res://utils/MainMenu/White Lady 2006 - Lullaby Song (Main menu theme).wav" id="2_5cur7"]
 [ext_resource type="Texture2D" uid="uid://b7k0upjd7gh2v" path="res://utils/MainMenu/Pop Up.png" id="2_gref8"]
 [ext_resource type="Texture2D" uid="uid://baaq1tp3n56xd" path="res://utils/MainMenu/Menu Button.png" id="3_gref8"]
 [ext_resource type="Script" uid="uid://bf1q07y5vwlwf" path="res://utils-scripts/CheatMenuPopup.gd" id="5_jo0y6"]
@@ -15,6 +16,10 @@ texture = ExtResource("3_gref8")
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_qnbnv")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5cur7")
+autoplay = true
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15

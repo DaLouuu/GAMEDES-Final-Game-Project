@@ -8,7 +8,8 @@ extends CanvasLayer
 @onready var play_button = $ButtonsContainer/Control/Play as Button
 @onready var cheat_button = $ButtonsContainer/Control/Cheat as Button
 @onready var exit_button = $ButtonsContainer/Control/Exit as Button
-@onready var cheat_menu_popup = $CheatMenuPopup as TextureRect
+@onready var cheat_menu_popup = $CheatMenuPopup as TextureRect 
+@onready var background_music = $BackgroundMusic as AudioStreamPlayer
 
 # Animation variables
 var tween: Tween
@@ -33,10 +34,34 @@ func _ready():
 	setup_button_feedback()
 	
 	# Create fade overlay but don't add it yet
-	fade_overlay = create_fade_overlay()
+	fade_overlay = create_fade_overlay() 
+	
+	# Setup background music
+	setup_background_music()
 	
 	# Optional: Animate menu entrance
 	animate_menu_entrance() 
+
+func setup_background_music():
+	# Ensure the AudioStreamPlayer exists
+	if background_music:
+		# Set properties for background music
+		background_music.volume_db = -5.0  # Adjust as needed
+		background_music.autoplay = true  # Play automatically
+		
+		# Connect for looping
+		background_music.finished.connect(_on_background_music_finished)
+		
+		# Start playing (in case autoplay doesn't work)
+		if not background_music.playing:
+			background_music.play()
+	else:
+		print("Warning: BackgroundMusic node not found")
+
+func _on_background_music_finished():
+	# Loop the music when it ends
+	if background_music:
+		background_music.play()
 
 func create_fade_overlay() -> ColorRect:
 	var overlay = ColorRect.new()
@@ -103,6 +128,10 @@ func _on_play_pressed():
 	print("Play button pressed!")
 	animate_button_press(play_button)
 	
+	# Fade out music before changing scene
+	fade_out_music(1.0)
+	await get_tree().create_timer(1.0).timeout
+	
 	# Wait a moment for animation, then transition
 	await get_tree().create_timer(0.2).timeout
 	
@@ -121,6 +150,9 @@ func _on_exit_pressed():
 	# Disable all buttons
 	set_main_menu_buttons_enabled(false)
 	
+	# Fade out music before quitting
+	fade_out_music(1.5)
+	
 	# Add and show fade overlay
 	add_child(fade_overlay)
 	fade_overlay.show()
@@ -129,12 +161,12 @@ func _on_exit_pressed():
 	# Bring to front
 	move_child(fade_overlay, get_child_count() - 1)
 	
-	# Animate fade to black
+	# Animate fade to black (in parallel with music fade)
 	if tween:
 		tween.kill()
 	
 	tween = create_tween()
-	tween.tween_property(fade_overlay, "modulate:a", 1.0, 1.0)\
+	tween.tween_property(fade_overlay, "modulate:a", 1.0, 1.5)\
 		.set_trans(Tween.TRANS_SINE)
 	
 	await tween.finished
@@ -143,6 +175,17 @@ func _on_exit_pressed():
 	await get_tree().create_timer(0.3).timeout
 	
 	get_tree().quit()
+
+func fade_out_music(duration: float = 1.0):
+	# Only fade if music is playing
+	if background_music and background_music.playing:
+		var fade_tween = create_tween()
+		fade_tween.tween_property(background_music, "volume_db", -80.0, duration)\
+			.set_trans(Tween.TRANS_SINE)
+		await fade_tween.finished
+		background_music.stop()
+		# Reset volume for next time (if returning to menu)
+		background_music.volume_db = 0.0
 
 # Cheat Menu Methods
 func show_cheat_menu():
