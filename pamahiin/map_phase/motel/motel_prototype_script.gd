@@ -54,83 +54,83 @@ func _ready() -> void:
 			player_cam.zoom = Vector2(1.75, 1.75)
 			_camera_active = true
 
-		## story context introduction
-		#await get_tree().create_timer(2.0).timeout
-		#$WhistleBGM.play()
-		#await story_context_display("story_img1", true, 4.0)
-		#DialogueManager.show_example_dialogue_balloon(_CHURCH_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img1", false, 1.5)
-		#await story_context_display("story_img2", true, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_BURIAL_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img2", false, 1.5)
-		#await story_context_display("story_img3", true, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_GRAVEYARD_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img3", false, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_PREWORLDMAP_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img4", true, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_WORLDMAP_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img4", false, 1.5)
-		#
-		#
-		#$WhistleBGM.stop()
+		# story context introduction
+		await get_tree().create_timer(2.0).timeout
+		$WhistleBGM.play()
+		await story_context_display("story_img1", true, 4.0)
+		DialogueManager.show_example_dialogue_balloon(_CHURCH_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img1", false, 1.5)
+		await story_context_display("story_img2", true, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_BURIAL_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img2", false, 1.5)
+		await story_context_display("story_img3", true, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_GRAVEYARD_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img3", false, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_PREWORLDMAP_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img4", true, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_WORLDMAP_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img4", false, 1.5)
+		
+		
+		$WhistleBGM.stop()
 		# play motel cutscene part 1
-		#$Paper.set_deferred("visible", false)
-		#animation_player.play("motel_introduction_part1")
-		#await get_tree().create_timer(2.0).timeout
-		#blackscreen_set(0.0,1.0)
-		#await get_tree().create_timer(1.0).timeout
-		#DialogueManager.show_example_dialogue_balloon(_MOTEL_PART1)
-		#await DialogueManager.dialogue_ended
-	#
-		## play motel cutscene part 2
-		#animation_player.play("motel_introduction_part2")
-		#await get_tree().create_timer(5.52).timeout
-		#DialogueManager.show_example_dialogue_balloon(_MOTEL_PART2_1)
-		#$toothbrushing.play()
-		#await DialogueManager.dialogue_ended
-		#$toothbrushing.stop()
-		#await story_context_display("story_img6", true, 0.5)
-		#$toothdrop.play()
-		#await story_context_display("story_img7", true, 0.3)
-		#$toothdrop.play()
-		#await story_context_display("story_img8", true, 0.5)
-		#$toothdrop.play()
-		#await story_context_display("story_img9", true, 0.4)
-		#await get_tree().create_timer(1.0).timeout
-		#await story_context_display("story_img6", false, 0.0)
-		#await story_context_display("story_img7", false, 0.0)
-		#await story_context_display("story_img8", false, 0.0)
-		#await story_context_display("story_img9", false, 0.0)
-		#await get_tree().create_timer(1.0).timeout
-		#DialogueManager.show_example_dialogue_balloon(_MOTEL_PART2_2)
-		#await DialogueManager.dialogue_ended
-		#
-		#await story_context_display("story_img10", true, 0.0)
-		#$jumpscaresfx.play()
-		#blackscreen_set(1.0,0.0)
-		#await get_tree().create_timer(2.0).timeout
-		#DialogueManager.show_example_dialogue_balloon(_MOTEL_PART2_3)
-		#await DialogueManager.dialogue_ended
-		## await story_context_display("story_img10", false, 0.0)
-		#await get_tree().create_timer(2.0).timeout
-		#
-		### play motel cutscene part 3
-		#$Paper.set_deferred("visible", true)
-		#animation_player.play("motel_introduction_part3")
-		#blackscreen_set(0.0,3.0)
-		#DialogueManager.show_example_dialogue_balloon(_MOTEL_PART3)
-		#await DialogueManager.dialogue_ended
-#
-		### play motel cutscene part 4
-		#animation_player.play("motel_introduction_part4")
-		#await animation_player.animation_finished
-		#DialogueManager.show_example_dialogue_balloon(_MOTEL_PART4)
-		#await DialogueManager.dialogue_ended
+		$Paper.set_deferred("visible", false)
+		animation_player.play("motel_introduction_part1")
+		await get_tree().create_timer(2.0).timeout
+		blackscreen_set(0.0,1.0)
+		await get_tree().create_timer(1.0).timeout
+		DialogueManager.show_example_dialogue_balloon(_MOTEL_PART1)
+		await DialogueManager.dialogue_ended
+	
+		# play motel cutscene part 2
+		animation_player.play("motel_introduction_part2")
+		await get_tree().create_timer(5.52).timeout
+		DialogueManager.show_example_dialogue_balloon(_MOTEL_PART2_1)
+		$toothbrushing.play()
+		await DialogueManager.dialogue_ended
+		$toothbrushing.stop()
+		await story_context_display("story_img6", true, 0.5)
+		$toothdrop.play()
+		await story_context_display("story_img7", true, 0.3)
+		$toothdrop.play()
+		await story_context_display("story_img8", true, 0.5)
+		$toothdrop.play()
+		await story_context_display("story_img9", true, 0.4)
+		await get_tree().create_timer(1.0).timeout
+		await story_context_display("story_img6", false, 0.0)
+		await story_context_display("story_img7", false, 0.0)
+		await story_context_display("story_img8", false, 0.0)
+		await story_context_display("story_img9", false, 0.0)
+		await get_tree().create_timer(1.0).timeout
+		DialogueManager.show_example_dialogue_balloon(_MOTEL_PART2_2)
+		await DialogueManager.dialogue_ended
+		
+		await story_context_display("story_img10", true, 0.0)
+		$jumpscaresfx.play()
+		blackscreen_set(1.0,0.0)
+		await get_tree().create_timer(2.0).timeout
+		DialogueManager.show_example_dialogue_balloon(_MOTEL_PART2_3)
+		await DialogueManager.dialogue_ended
+		# await story_context_display("story_img10", false, 0.0)
+		await get_tree().create_timer(2.0).timeout
+		
+		## play motel cutscene part 3
+		$Paper.set_deferred("visible", true)
+		animation_player.play("motel_introduction_part3")
+		blackscreen_set(0.0,3.0)
+		DialogueManager.show_example_dialogue_balloon(_MOTEL_PART3)
+		await DialogueManager.dialogue_ended
+
+		## play motel cutscene part 4
+		animation_player.play("motel_introduction_part4")
+		await animation_player.animation_finished
+		DialogueManager.show_example_dialogue_balloon(_MOTEL_PART4)
+		await DialogueManager.dialogue_ended
 		
 		animation_player.play("motel_introduction_cutscene_release")
 		animation_player.animation_finished.connect(_on_animation_finished)

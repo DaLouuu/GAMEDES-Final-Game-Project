@@ -566,7 +566,6 @@ scale = Vector2(1.5, 1.5)
 
 [node name="BlackScreen" type="CanvasLayer" parent="."]
 layer = 100
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="BlackScreen"]
 modulate = Color(0, 0, 0, 1)
