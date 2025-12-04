@@ -63,9 +63,8 @@ func changeFootstepSound():
 	#var audio_path = "res://art/Audio Assets/"
 	#var isCave: bool = false
 
-	
-	
-func _ready():
+func trigger_cat_ready():
+	$Camera2D.make_current()
 	sanity_changed.connect(check_health_changes)
 	$CanvasLayer/ArtifactProgress.text = "Artifact: " + str(Global.artifactCount) +"/4"
 	
@@ -75,13 +74,17 @@ func _ready():
 	_init_footstep_sfx_playing_dict()
 	$Sprite2D.texture = load("res://dev/character/player/Character_Spritesheet_Walking.png")
 	update_animation_parameters(starting_direction)
-	remote_transform_2d.remote_path = camera.get_path()
+	remote_transform_2d.remote_path = camera.get_path()	
+	
+func _ready():
+	
+	pass
 	
 	# For debugging purposes lets you know object ids that pass through certain events
-	var obj = instance_from_id(41003517335)
-	if obj:
-		print(obj.name)
-		print(obj.get_path())
+	#var obj = instance_from_id(41003517335)
+	#if obj:
+		#print(obj.name)
+		#print(obj.get_path())
 		
 func setCutsceneAnimationBehavior(state : String, direction : Vector2):
 	cutscene_animation_state = state

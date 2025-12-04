@@ -25,6 +25,7 @@ const _PREWORLDMAP_DIALOGUE = preload("uid://ceyiyty5lfndm")
 const _WORLDMAP_DIALOGUE = preload("uid://bhrgm6uea2hwl")
 
 func _ready() -> void:
+	await get_tree().physics_frame
 	player = get_tree().get_first_node_in_group("Player")
 	door_prox.body_entered.connect(_on_body_entered)
 	door_prox.body_exited.connect(_on_body_exited)
@@ -37,6 +38,8 @@ func _ready() -> void:
 	$Toilet/ItemTemplate.item_inspected.connect(_on_inspect)
 	
 	if player:
+		var pl = player as Player
+		pl.camera.make_current()
 		player.is_cutscene_controlled = true
 		player.is_motel_introduction = true
 		
@@ -49,31 +52,31 @@ func _ready() -> void:
 		if player_cam:
 			player_cam.zoom = Vector2(1.75, 1.75)
 			_camera_active = true
-			
-		# story context introduction
-		await get_tree().create_timer(2.0).timeout
-		$WhistleBGM.play()
-		await story_context_display("story_img1", true, 4.0)
-		DialogueManager.show_example_dialogue_balloon(_CHURCH_DIALOGUE)
-		await DialogueManager.dialogue_ended
-		await story_context_display("story_img1", false, 1.5)
-		await story_context_display("story_img2", true, 1.5)
-		DialogueManager.show_example_dialogue_balloon(_BURIAL_DIALOGUE)
-		await DialogueManager.dialogue_ended
-		await story_context_display("story_img2", false, 1.5)
-		await story_context_display("story_img3", true, 1.5)
-		DialogueManager.show_example_dialogue_balloon(_GRAVEYARD_DIALOGUE)
-		await DialogueManager.dialogue_ended
-		await story_context_display("story_img3", false, 1.5)
-		DialogueManager.show_example_dialogue_balloon(_PREWORLDMAP_DIALOGUE)
-		await DialogueManager.dialogue_ended
-		await story_context_display("story_img4", true, 1.5)
-		DialogueManager.show_example_dialogue_balloon(_WORLDMAP_DIALOGUE)
-		await DialogueManager.dialogue_ended
-		await story_context_display("story_img4", false, 1.5)
-		
-		
-		$WhistleBGM.stop()
+
+		## story context introduction
+		#await get_tree().create_timer(2.0).timeout
+		#$WhistleBGM.play()
+		#await story_context_display("story_img1", true, 4.0)
+		#DialogueManager.show_example_dialogue_balloon(_CHURCH_DIALOGUE)
+		#await DialogueManager.dialogue_ended
+		#await story_context_display("story_img1", false, 1.5)
+		#await story_context_display("story_img2", true, 1.5)
+		#DialogueManager.show_example_dialogue_balloon(_BURIAL_DIALOGUE)
+		#await DialogueManager.dialogue_ended
+		#await story_context_display("story_img2", false, 1.5)
+		#await story_context_display("story_img3", true, 1.5)
+		#DialogueManager.show_example_dialogue_balloon(_GRAVEYARD_DIALOGUE)
+		#await DialogueManager.dialogue_ended
+		#await story_context_display("story_img3", false, 1.5)
+		#DialogueManager.show_example_dialogue_balloon(_PREWORLDMAP_DIALOGUE)
+		#await DialogueManager.dialogue_ended
+		#await story_context_display("story_img4", true, 1.5)
+		#DialogueManager.show_example_dialogue_balloon(_WORLDMAP_DIALOGUE)
+		#await DialogueManager.dialogue_ended
+		#await story_context_display("story_img4", false, 1.5)
+		#
+		#
+		#$WhistleBGM.stop()
 		# play motel cutscene part 1
 		$Paper.set_deferred("visible", false)
 		animation_player.play("motel_introduction_part1")
@@ -148,7 +151,7 @@ func _on_body_exited(body):
 
 func _go_outside(body):
 	if body.is_in_group("Player") and not player.is_cutscene_controlled:
-
+		Global.game_controller.player.trigger_cat_ready()
 		Global.game_controller.change_2d_scene("res://map_phase/world_map.tscn")
 		
 

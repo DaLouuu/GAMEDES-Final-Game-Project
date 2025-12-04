@@ -1,5 +1,6 @@
-[gd_scene load_steps=93 format=4 uid="uid://bev6rvoc16yms"]
+[gd_scene load_steps=96 format=4 uid="uid://c4psaq201foex"]
 
+[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="1_34l4x"]
 [ext_resource type="Script" uid="uid://cutmlrc6ks8pe" path="res://map_phase/motel/motel_prototype_script.gd" id="1_rwiny"]
 [ext_resource type="Texture2D" uid="uid://ccb8dy7s2bonc" path="res://map_phase/motel/assets/floor/corner_floor_motel.png" id="1_yboj4"]
 [ext_resource type="AudioStream" uid="uid://bi14kem5hjv03" path="res://art/Audio Assets/12-door-opening-fast_short.wav" id="2_l45d7"]
@@ -25,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bgopf302m88ji" path="res://map_phase/motel/assets/bathroom/bath tub.png" id="15_qn1lx"]
 [ext_resource type="Texture2D" uid="uid://cnc7vhc45x6hy" path="res://map_phase/motel/assets/furniture/tablechair.png" id="16_l45d7"]
 [ext_resource type="Texture2D" uid="uid://cndvvsvf3vlmf" path="res://map_phase/motel/assets/bathroom/bathroom mirror.png" id="16_v4fx0"]
+[ext_resource type="Shader" uid="uid://hvmppn3y8j2j" path="res://map_phase/motel/motel_prototype.gdshader" id="16_v6mxx"]
 [ext_resource type="Texture2D" uid="uid://b8djh0n7gdhik" path="res://map_phase/motel/assets/bed/bottom_frame_layer.png" id="17_pt38b"]
 [ext_resource type="Texture2D" uid="uid://br8teqe3k7kq4" path="res://map_phase/motel/assets/bathroom/sink.png" id="17_vspby"]
 [ext_resource type="Texture2D" uid="uid://cx4u6jvy6bbfw" path="res://map_phase/motel/assets/miscellaneous/paper.png" id="18_j5yei"]
@@ -51,10 +53,22 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlackScreen/ColorRect:modulate")
+tracks/0/path = NodePath("PlayerCat:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-217, 106)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackScreen/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -64,17 +78,78 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_j5yei"]
 resource_name = "motel_introduction_cutscene_release"
 length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(184.385, 40)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Idle", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_qn1lx"]
 resource_name = "motel_introduction_part1"
 length = 9.0
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dooropen")
+tracks/0/path = NodePath("PlayerCat:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(3, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-217, 106), Vector2(113.95, 106), Vector2(113.95, -154.1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": ["Idle", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dooropen")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -82,13 +157,13 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("doorclose")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("doorclose")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -96,13 +171,13 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("BlackScreen/ColorRect:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("BlackScreen/ColorRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(1.5, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -112,14 +187,119 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_vspby"]
 resource_name = "motel_introduction_part2"
 length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3.5, 4.5, 4.6, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(113.95, -154.1), Vector2(110, -154.1), Vector2(110, 100), Vector2(-70, 100), Vector2(-70, -100), Vector2(-47.53, -100), Vector2(-47.53, -182.805)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3.5, 4.5, 4.6, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": ["Walk", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ob2wa"]
 resource_name = "motel_introduction_part3"
 length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.3527613e-08),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(242, -216.47)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Idle", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_emqv5"]
 resource_name = "motel_introduction_part4"
 length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 2.5333333, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(176.66, -175), Vector2(176.66, -175), Vector2(176.66, 40), Vector2(185.115, 40)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 2.5333333, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": ["Idle", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vspby"]
 _data = {
@@ -226,6 +406,13 @@ sources/0 = SubResource("TileSetAtlasSource_vy0li")
 sources/3 = SubResource("TileSetAtlasSource_8fqaf")
 sources/4 = SubResource("TileSetAtlasSource_xbr43")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emqv5"]
+shader = ExtResource("16_v6mxx")
+shader_parameter/darkness_amount = 1.0
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/use_static = true
+shader_parameter/static_strength = 0.2
+
 [sub_resource type="Resource" id="Resource_emqv5"]
 script = ExtResource("3_cyxst")
 name = "Paper"
@@ -235,7 +422,7 @@ texture = ExtResource("18_j5yei")
 metadata/_custom_type_script = "uid://26w5lr3t485j"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlw8e"]
-size = Vector2(42, 48)
+size = Vector2(39, 48)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_34l4x"]
 
@@ -372,6 +559,12 @@ tile_map_data = PackedByteArray("AAAAAPr/AAAAAAAAADAAAPn/AAAAAAAAADD///n/BAAAAAA
 tile_set = SubResource("TileSet_6wl64")
 metadata/_edit_lock_ = true
 
+[node name="PlayerCat" parent="." instance=ExtResource("1_34l4x")]
+z_index = 6
+material = SubResource("ShaderMaterial_emqv5")
+position = Vector2(-217, 106)
+scale = Vector2(1.5, 1.5)
+
 [node name="BlackScreen" type="CanvasLayer" parent="."]
 layer = 100
 
@@ -447,7 +640,7 @@ z_index = 10
 position = Vector2(-249, 119)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="outside"]
-position = Vector2(11, 1)
+position = Vector2(9.5, 1)
 shape = SubResource("RectangleShape2D_wlw8e")
 
 [node name="Table_chair" type="StaticBody2D" parent="."]
@@ -662,5 +855,5 @@ stream = ExtResource("46_kwkps")
 [node name="mirrorglassbreak" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("47_wlw8e")
 
-[node name="Marker2D-SpawnP" type="Marker2D" parent="."]
-position = Vector2(-230, 120)
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-217, 120)

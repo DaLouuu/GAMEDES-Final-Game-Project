@@ -39,7 +39,10 @@ func _ready() -> void:
 	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
 	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
 	#change_2d_scene("res://map_phase/houses/house_together.tscn")
-	change_2d_scene("uid://bev6rvoc16yms") # Motel
+	var new_scene_instance = load("uid://c4psaq201foex").instantiate()
+	#var old_scene = curr_2d_scene
+	world_2d.add_child(new_scene_instance)
+	curr_2d_scene = new_scene_instance
 	#change_2d_scene("uid://cyc8laq2oakj0") # WorldMap
 	#change_2d_scene("res://map_phase/cave/Cave.tscn")
   # Try to attach GardenState if current scene has one
