@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cni0684qg5ij"
+path="res://.godot/imported/garden_whispers.dialogue-c3e2eae54ea423d78062261ef0953d58.tres"
+
+[deps]
+
+source_file="res://map_phase/garden/Dialogue/garden_whispers.dialogue"
+dest_files=["res://.godot/imported/garden_whispers.dialogue-c3e2eae54ea423d78062261ef0953d58.tres"]
+
+[params]
+
+defaults=true
