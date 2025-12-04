@@ -127,7 +127,7 @@ func animate_menu_entrance():
 func _on_play_pressed():
 	print("Play button pressed!")
 	animate_button_press(play_button)
-	
+	$BackgroundMusic.stop()
 	# Fade out music before changing scene
 	fade_out_music(1.0)
 	await get_tree().create_timer(1.0).timeout

@@ -18,6 +18,8 @@ var HOUSE_read_first_item_puzzle = false
 var CHURCH_read_first_chalice_clue = false
 var CHURCH_read_paper_for_candle_clue = false
 var CHURCH_has_first_enter_church = false
+var CHURCH_has_finished_puzzle = false
+var CHURCH_has_finished_cutscene = false
 
 
 var CAVE_has_salt = false

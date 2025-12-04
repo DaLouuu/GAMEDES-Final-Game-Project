@@ -2,14 +2,23 @@ extends Node2D
 
 @onready var default_coords: Vector2 = $"Marker2D-SpawnP".position
 var isLadyStart = false
+var player : Player
+
+func reset_player():
+	Global.game_controller.change_2d_scene("uid://bbim0h8qggemx")
+
 func _ready():
-	$WhiteLady.stop_funcs()
+	player = get_tree().get_first_node_in_group("Player")
+	player.player_resetted.connect(reset_player)
 	if not isLadyStart:
 		$AudioStreamPlayer2D.play()
 func start_funcs():
+	
+	await get_tree().physics_frame
 	$WhiteLady.start_funcs()
 	isLadyStart = true
 func _on_area_2d_back_to_room_body_entered(body: Node2D) -> void:
+	await get_tree().physics_frame
 	if body.is_in_group("Player"):
 		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/house2_room.tscn")
 

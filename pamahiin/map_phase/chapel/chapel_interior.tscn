@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dxhni64oxaov4"]
+[gd_scene load_steps=32 format=4 uid="uid://dxhni64oxaov4"]
 
 [ext_resource type="Script" uid="uid://b6e6l2pt7gwbl" path="res://script/chapel/chapel.gd" id="1_gmmbn"]
 [ext_resource type="TileSet" uid="uid://dvp8dwdk8kb61" path="res://map_phase/chapel/assets/chapel_interior_tilemap.tres" id="2_t4d6x"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ctbq8eij708v5" path="res://map_phase/chapel/assets/priest/cross.png" id="17_eyanm"]
 [ext_resource type="PackedScene" uid="uid://0hr1j5fkq18m" path="res://map_phase/chapel/assets/priest/priest.tscn" id="18_86jcg"]
 [ext_resource type="AudioStream" uid="uid://dvqnwx3wbld7a" path="res://art/Audio Assets/footsteps/fall_wood.mp3" id="19_6ov81"]
+[ext_resource type="AudioStream" uid="uid://ub7kmiix26l7" path="res://art/Audio Assets/blood-chillingly-creepy-atmospheres-183561.mp3" id="20_abstw"]
 [ext_resource type="Script" path="res://map_phase/cave/direction_marker.gd" id="20_vlcxl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hile"]
@@ -238,7 +239,7 @@ size = Vector2(306, 32)
 radius = 145.54
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ov81"]
-size = Vector2(154, 94)
+size = Vector2(159, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abstw"]
 size = Vector2(235, 38)
@@ -318,6 +319,7 @@ item = ExtResource("9_lgo5a")
 visible = false
 position = Vector2(912, 104)
 scale = Vector2(0.5, 0.5)
+damage_to_player = 20.0
 follow_speed = 200.0
 move_speed = 150.0
 detection_radius = 500.0
@@ -328,6 +330,7 @@ hit_distance = 50.0
 visible = false
 position = Vector2(256, 296)
 scale = Vector2(0.5, 0.5)
+damage_to_player = 20.0
 follow_speed = 200.0
 move_speed = 150.0
 detection_radius = 500.0
@@ -338,6 +341,7 @@ hit_distance = 50.0
 visible = false
 position = Vector2(1464, 376)
 scale = Vector2(0.5, 0.5)
+damage_to_player = 20.0
 follow_speed = 200.0
 move_speed = 150.0
 detection_radius = 500.0
@@ -435,9 +439,8 @@ shape = SubResource("CircleShape2D_vlcxl")
 [node name="StaticBody2D-TableAltarCollision" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D-TableAltarCollision"]
-position = Vector2(869, 300)
+position = Vector2(874, 308)
 shape = SubResource("RectangleShape2D_6ov81")
-disabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-8, 8)
@@ -537,6 +540,11 @@ position = Vector2(1420, 2092)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3-Right"]
 position = Vector2(65.5, 41)
 shape = SubResource("RectangleShape2D_abstw")
+
+[node name="AudioStreamPlayer-sfx" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer-churchbg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_abstw")
 
 [connection signal="body_entered" from="Area2D-Confession-Detection" to="." method="_on_area_2d_confession_detection_body_entered"]
 [connection signal="body_entered" from="Cutscene_priest/Area2D-TriggerPriestCutscene" to="." method="_on_area_2d_trigger_priest_cutscen_body_entered"]

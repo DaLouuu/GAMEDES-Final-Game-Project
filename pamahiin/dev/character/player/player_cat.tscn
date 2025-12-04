@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cbiyjqctoq0j3"]
+[gd_scene load_steps=54 format=3 uid="uid://cbiyjqctoq0j3"]
 
 [ext_resource type="Script" uid="uid://e8vo2bsuywb5" path="res://dev/character/player/player_cat.gd" id="1_u0lhy"]
 [ext_resource type="Resource" uid="uid://dp4dsw13mlp8d" path="res://dev/resource_scripts/inventory/player_inventory.tres" id="2_u0b4o"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://br7dqghldew4e" path="res://dev/light_textures/lantern_round.tres" id="10_04nme"]
 [ext_resource type="FontFile" uid="uid://d0ejdc3d705ia" path="res://art/Fonts/EB_Garamond/EB_Garamond/static/EBGaramond-ExtraBold.ttf" id="12_8j6tj"]
 [ext_resource type="PackedScene" uid="uid://eacn5vqet4jd" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
+[ext_resource type="FontFile" uid="uid://bpg7no7cifuv6" path="res://art/Fonts/EB_Garamond/EB_Garamond/static/EBGaramond-Bold.ttf" id="15_msdei"]
 [ext_resource type="AudioStream" uid="uid://cvuuwq222nvfx" path="res://art/Audio Assets/20 - Player Grab.wav" id="15_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cw1gbbtkyhtjn" path="res://art/Audio Assets/17 - Moderate Heartbeat-mprMode.mp3" id="17_l5slc"]
 [ext_resource type="Script" path="res://dev/character/player/FootStepManager.gd" id="18_iqj7j"]
@@ -768,6 +769,47 @@ offset_top = -15.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1251.0
+offset_bottom = 659.0
+theme_override_fonts/font = ExtResource("12_8j6tj")
+theme_override_font_sizes/font_size = 128
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button-Play" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 447.0
+offset_right = 510.0
+offset_bottom = 526.0
+theme_override_fonts/font = ExtResource("15_msdei")
+theme_override_font_sizes/font_size = 32
+text = "RETRY"
+
+[node name="Button-Quit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 709.0
+offset_top = 455.0
+offset_right = 907.0
+offset_bottom = 531.0
+theme_override_fonts/font = ExtResource("15_msdei")
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+
+[node name="QuitConfirmDialog" type="ConfirmationDialog" parent="CanvasLayer/Control"]
+
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 
@@ -810,3 +852,7 @@ stream = ExtResource("20_muts0")
 [connection signal="body_entered" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_entered"]
 [connection signal="body_exited" from="Sprite2D/InteractionComponent" to="Sprite2D/InteractionComponent" method="_on_InteractionComponent_body_exited"]
 [connection signal="timeout" from="InvulTimer" to="." method="_on_invul_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/Button-Play" to="." method="reset_player"]
+[connection signal="pressed" from="CanvasLayer/Control/Button-Quit" to="." method="_on_button_quit_pressed"]
+[connection signal="canceled" from="CanvasLayer/Control/QuitConfirmDialog" to="." method="_on_quit_confirm_dialog_canceled"]
+[connection signal="confirmed" from="CanvasLayer/Control/QuitConfirmDialog" to="." method="_on_quit_confirm_dialog_confirmed"]
