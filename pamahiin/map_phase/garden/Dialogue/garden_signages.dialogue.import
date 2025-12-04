@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dn7wx8hbhfeo1"
+path="res://.godot/imported/garden_signages.dialogue-fa1e17bc98148950de44e6962f1b700f.tres"
+
+[deps]
+
+source_file="res://map_phase/garden/Dialogue/garden_signages.dialogue"
+dest_files=["res://.godot/imported/garden_signages.dialogue-fa1e17bc98148950de44e6962f1b700f.tres"]
+
+[params]
+
+defaults=true

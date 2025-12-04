@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvqnwx3wbld7a"
+path="res://.godot/imported/fall_wood.mp3-7cc17c6cca189570f8e8628906f3b4ec.mp3str"
+
+[deps]
+
+source_file="res://art/Audio Assets/footsteps/fall_wood.mp3"
+dest_files=["res://.godot/imported/fall_wood.mp3-7cc17c6cca189570f8e8628906f3b4ec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

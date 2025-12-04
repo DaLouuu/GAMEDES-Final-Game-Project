@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dhp6gnl1wi73g"
+path="res://.godot/imported/CHURCH_priest_dialogue.dialogue-84b3efd6042d276d1e4b4f020890d3be.tres"
+
+[deps]
+
+source_file="res://dialogue/cutscene/CHURCH_priest_dialogue.dialogue"
+dest_files=["res://.godot/imported/CHURCH_priest_dialogue.dialogue-84b3efd6042d276d1e4b4f020890d3be.tres"]
+
+[params]
+
+defaults=true

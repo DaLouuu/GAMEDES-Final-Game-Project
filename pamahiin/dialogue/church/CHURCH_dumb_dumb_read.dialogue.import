@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c84qq75yc6tbw"
+path="res://.godot/imported/CHURCH_dumb_dumb_read.dialogue-89d9f61dd0da0eb176892056bb7de9cc.tres"
+
+[deps]
+
+source_file="res://dialogue/church/CHURCH_dumb_dumb_read.dialogue"
+dest_files=["res://.godot/imported/CHURCH_dumb_dumb_read.dialogue-89d9f61dd0da0eb176892056bb7de9cc.tres"]
+
+[params]
+
+defaults=true

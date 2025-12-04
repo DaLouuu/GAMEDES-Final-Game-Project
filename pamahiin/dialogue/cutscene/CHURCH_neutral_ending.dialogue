@@ -1,0 +1,22 @@
+~ start
+ You begin to confess, but your words land flat, unfamiliar in your own mouth.
+ A voice behind the screen murmurs, low and disappointed:
+do stopSounds()
+ “You followed our ways… only when it suited you.”
+The candle sputters.
+do flickerStaticImage()
+Something shifts behind the lattice, too slow, too deliberate.
+ Wood groans like it remembers something you don’t.
+do playCreakingNoise()
+A silhouette leans forward, its shape almost human—
+ but not shaped for your kind.
+“Half-offerings… half-respect,” it breathes.
+ “We notice.”
+The door unlocks with a soft click.
+ “Go. But remember—
+ the things you ignored…
+ haven’t ignored you.”
+You turn to leave.
+ Your shadow follows—
+ one step too many.
+=> END

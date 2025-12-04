@@ -1,0 +1,4 @@
+~ start
+Hmm, these torches, are slowly fading.
+set GameState.CHURCH_has_first_enter_church = true
+=> END

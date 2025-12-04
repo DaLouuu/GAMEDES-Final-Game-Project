@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://biovkaff3r6f1"]
+[gd_scene load_steps=29 format=4 uid="uid://biovkaff3r6f1"]
 
 [ext_resource type="Script" uid="uid://btusj7ja8nguq" path="res://dev/paul's do not touch/test_church.gd" id="1_cd04r"]
 [ext_resource type="Texture2D" uid="uid://btm4q6ici3da5" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Roof_Tilset.png" id="1_u822y"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://dax5u6f5b2eii" path="res://dev/shaders/screen_effect.gdshader" id="7_hq0d3"]
 [ext_resource type="QuadMesh" uid="uid://b7bui5a06ao3p" path="res://dev/shaders/mesh_empty.tres" id="9_3tvq6"]
 [ext_resource type="PackedScene" uid="uid://8fegnh450g03" path="res://dev/resource_scripts/inventory/items/lantern.tscn" id="11_nsnuw"]
+[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="12_xteye"]
 
 [sub_resource type="Gradient" id="Gradient_usb2y"]
 offsets = PackedFloat32Array(0, 0.003968254, 0.63492066)
@@ -337,9 +338,12 @@ tile_set = SubResource("TileSet_nsnuw")
 [node name="EnemyAntilight" parent="." instance=ExtResource("6_a5ovh")]
 z_index = 1
 position = Vector2(337, 1007)
-collision_layer = 4
-collision_mask = 4
 scale_move = 4.0
+hit_distance = 60.0
+
+[node name="PlayerCat" parent="." instance=ExtResource("12_xteye")]
+z_index = 1
+position = Vector2(1146, 1485)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

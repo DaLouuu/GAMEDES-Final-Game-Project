@@ -1,82 +1,98 @@
 extends Node
 
-##
-##  GARDEN PHASE - LOCAL GLOBAL STATE
-##
-
-signal state_ready        # NEW — emitted when GardenState is fully initialized
-var is_ready: bool = false   # NEW — treedoors and controllers check this
+# ---------------------------------------------------------
+# SIGNALS
+# ---------------------------------------------------------
+signal state_ready
+signal correct_trees_changed(new_set: Array)       # ZoneAController listens to this
+signal trunk_swap_triggered(step: int)             # Every 3 mistakes → trunk change
+signal mistake_changed(new_value: int)             # Useful for whispers / signages
 
 
 # ---------------------------------------------------------
-#   ZONE A — TREE DOORS
+# STATE VARIABLES
 # ---------------------------------------------------------
+
+var is_ready: bool = false
+
+# TREE PUZZLE
 var cicadas_active: bool = false
-var correct_tree_marking: String = "wind"
+var correct_tree_markings: Array[String] = ["wind"]    # now supports multiple correct trees
 var zone_a_completed: bool = false
 var found_stick_zone_a: bool = false
 
-
-# ---------------------------------------------------------
-#   ZONE B — SOIL MOUNDS
-# ---------------------------------------------------------
-var zone_b_completed: bool = false
-var found_stick_zone_b: bool = false
-
-
-# ---------------------------------------------------------
-#   ZONE C — ROCK HUMMING
-# ---------------------------------------------------------
-var hum_target: int = 0
-var zone_c_completed: bool = false
-var found_stick_zone_c: bool = false
-
-
-# ---------------------------------------------------------
-#   TOTAL STICK COUNT
-# ---------------------------------------------------------
+# STICK COLLECTION
 var total_sticks_collected: int = 0
 
+# WELL & BROOM
+var has_rope: bool = false
+var broom_crafted: bool = false
 
-# ---------------------------------------------------------
-#   FOG / AMBIENCE
-# ---------------------------------------------------------
+# MISTAKES
+var mistake_count: int = 0
+var trunk_swap_step: int = 0   # increments every 3 mistakes
+
+# AMBIENCE
 var fog_density: float = 0.25
 var ambience_enabled: bool = false
 
 
 # ---------------------------------------------------------
-#   READY — inform systems this state exists
+# READY
 # ---------------------------------------------------------
 func _ready():
 	is_ready = true
 	emit_signal("state_ready")
-	print("[GardenState] Ready & initialized.")
+	print("[GardenState] Initialized.")
 
 
 # ---------------------------------------------------------
-#   RESET GARDEN STATE TO DEFAULTS
+#  MISTAKE SYSTEM — called by ZoneAController on wrong knock
+# ---------------------------------------------------------
+func add_mistake():
+	mistake_count += 1
+	emit_signal("mistake_changed", mistake_count)
+
+	print("[GardenState] mistake_count =", mistake_count)
+
+	# Every 3 mistakes → cycle tree trunks & correct answers
+	if mistake_count % 3 == 0:
+		trunk_swap_step += 1
+		emit_signal("trunk_swap_triggered", trunk_swap_step)
+		_randomize_correct_trees()
+
+
+# ---------------------------------------------------------
+# RANDOMIZE CORRECT TREES AFTER MAJOR MISTAKES
+# ---------------------------------------------------------
+func _randomize_correct_trees():
+	var marking_pool = ["wind", "spiral", "eye", "tally", "hollow"]
+	marking_pool.shuffle()
+
+	# pick 1 correct tree per cycle (can be more if you want)
+	correct_tree_markings = [marking_pool[0]]
+
+	print("[GardenState] correct_tree_markings updated:", correct_tree_markings)
+	emit_signal("correct_trees_changed", correct_tree_markings)
+
+
+# ---------------------------------------------------------
+# RESET (optional use)
 # ---------------------------------------------------------
 func reset():
-	# ----- ZONE A -----
 	cicadas_active = false
-	correct_tree_marking = "wind"
+	correct_tree_markings = ["wind"]
 	zone_a_completed = false
 	found_stick_zone_a = false
 
-	# ----- ZONE B -----
-	zone_b_completed = false
-	found_stick_zone_b = false
-
-	# ----- ZONE C -----
-	hum_target = 0
-	zone_c_completed = false
-	found_stick_zone_c = false
-
-	# ----- TOTAL -----
 	total_sticks_collected = 0
 
-	# ----- AMBIENCE -----
+	has_rope = false
+	broom_crafted = false
+
+	mistake_count = 0
+	trunk_swap_step = 0
+
 	fog_density = 0.25
 	ambience_enabled = false
 

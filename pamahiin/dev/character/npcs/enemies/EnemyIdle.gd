@@ -17,7 +17,7 @@ func randomize_wander():
 func Enter():
 	print("Idle Mode")
 	move_speed = enemy.move_speed
-
+	enemy.state_machine.travel("Walk")
 	player_detector.body_entered.connect(_on_body_entered)
 	randomize_wander()	
 	
@@ -42,7 +42,7 @@ func Update(delta:float):
 	
 	if overlapping.size() > 0:
 		for b in overlapping:
-			if b.is_in_group("Player"):
+			if b.is_in_group("Player") or b.is_in_group("EnemyBlockVision"):
 				_on_body_entered(b)
 	if wander_time > 0:
 		wander_time -= delta

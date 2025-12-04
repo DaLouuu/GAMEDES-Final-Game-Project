@@ -1,0 +1,38 @@
+~ start
+The moment you step in, the wood tightens—
+not in welcome, but in judgment.
+
+Behind the screen, the voice is already waiting.
+Too close.
+Too eager.
+do stopSounds()
+“You mocked what we guard.”
+“You brought nothing… and offered even less.”
+
+do swapToBad()
+The candle dies without a sound.
+Darkness folds inward, hungry.
+
+“You refused our ways.”
+A pause.
+Soft.
+Almost pitying.
+
+“So now you learn them… properly.”
+
+You reach for the door.
+It doesn’t move.
+It will not move.
+
+Something else shifts instead—
+slow, deliberate—
+from the empty space behind you,
+where nothing should fit.
+The booth creaks.
+
+A breath hits the back of your neck.
+Not human.
+Not gentle.
+Priest?: “TURN AROUND.”
+do showJumpscare()
+=> END

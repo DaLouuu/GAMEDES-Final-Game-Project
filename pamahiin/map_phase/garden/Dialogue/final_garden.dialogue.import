@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://brefiuj57srn5"
+path="res://.godot/imported/final_garden.dialogue-f3b9b4fe22f72e311ef3016d2d31b6b6.tres"
+
+[deps]
+
+source_file="res://map_phase/garden/Dialogue/final_garden.dialogue"
+dest_files=["res://.godot/imported/final_garden.dialogue-f3b9b4fe22f72e311ef3016d2d31b6b6.tres"]
+
+[params]
+
+defaults=true

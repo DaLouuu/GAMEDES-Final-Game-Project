@@ -40,6 +40,7 @@ func _on_area_2d_answer_body_entered(body: Node2D) -> void:
 
 func _on_area_flipped_answer(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		GameState.HOUSE_finished_puzzle = true
 		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/house2_room.tscn")
 
 
@@ -59,5 +60,6 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 func _on_timer_2_move_timer_timeout() -> void:
 	is_moving_up = false
-	$WhiteLady4.queue_free()
+	if $WhiteLady4:
+		$WhiteLady4.queue_free()
 	

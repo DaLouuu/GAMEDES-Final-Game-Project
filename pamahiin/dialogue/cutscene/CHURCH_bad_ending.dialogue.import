@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://crblom4fynctd"
+path="res://.godot/imported/CHURCH_bad_ending.dialogue-b91dcbedaa87775676b865493d33053b.tres"
+
+[deps]
+
+source_file="res://dialogue/cutscene/CHURCH_bad_ending.dialogue"
+dest_files=["res://.godot/imported/CHURCH_bad_ending.dialogue-b91dcbedaa87775676b865493d33053b.tres"]
+
+[params]
+
+defaults=true

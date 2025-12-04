@@ -1,0 +1,153 @@
+############################################################
+#   GARDEN SIGNAGES — TREE NOTES + LORE + WORLD SIGNAGES
+############################################################
+
+############################################################
+#  TREE NOTES (mother speaking to her child)
+############################################################
+
+~ wind_tree
+Sign: [A soft carving circles the bark like a breeze passing through fingers.]
+Sign: My child… your sister used to stand here and listen for the wind.
+Sign: She said it carried stories — ones she wished she could follow.
+Sign: When she left, I would find her ribbons tied to these branches…
+Sign: …as if she wanted the wind to remember her when we could not.
+
+Player: “…She must have stood here often.”
+Player: “Maybe the wind was the only thing that answered her back.”
+=> END
+
+
+~ spiral_tree
+Sign: [A spiral is etched into the wood, looping in on itself.]
+Sign: Do you remember how your sister spun in circles until she fell laughing?
+Sign: She carved this swirl the day she said the world felt too heavy to turn.
+Sign: I tried to tell her the world turns for us — even when we are tired…
+Sign: …but she only smiled, as if she already felt herself slipping away.
+
+Player: “…A moment she tried to hold onto.”
+Player: “Even the dizziness feels sad.”
+=> END
+
+
+~ eye_tree
+Sign: [A single eye is carved into the trunk, watching quietly.]
+Sign: She drew eyes everywhere… on stones, leaves, even my baskets.
+Sign: She said someone far away might see through them —
+Sign: …someone she missed, someone she feared forgetting.
+Sign: And now, sometimes at night… I feel these carvings watching back.
+
+Player: “…She was afraid of being forgotten.”
+Player: “Even by the ones she waited for.”
+=> END
+
+
+~ tally_tree
+Sign: [Uneven tally marks climb the trunk like years stacked on years.]
+Sign: When your sister was taken, I began marking each day she was gone.
+Sign: At first, they were neat, hopeful lines… waiting for her footsteps.
+Sign: But the new scratches — the small, uneven ones — those aren’t mine.
+Sign: Someone else continued the counting… as if time itself refused to stop.
+
+Player: “…Someone small. Or someone fading.”
+Player: “Trying to keep her story from ending.”
+=> END
+
+
+~ hollow_tree
+Sign: [A dark hollow opens at the base, scraped clean as if something hid here.]
+Sign: Your sister used to leave gifts inside hollows just like this —
+Sign: Smooth stones, bird feathers, the things she loved quietly.
+Sign: She said the little folk watched over them… if you treated them gently.
+Sign: But when she vanished… the hollows stayed empty. And angry.
+
+Player: “…So the dwendes remembered her too.”
+Player: “No wonder they’re restless now.”
+=> END
+
+
+############################################################
+#  GATE SIGNAGE — MAIN ENTRANCE LORE
+############################################################
+
+~ gate_signage
+Sign: [The handwriting is steady, patient — a mother’s voice.]
+Sign: My child… before I go, keep our path swept clean.
+Sign: Your sister used to tend this garden each morning — she said spirits wander more gently when the ground is cared for.
+Sign: When she left, she took her broom with her… and never returned.
+Sign: If you must enter, remember what she believed:  
+Sign: A swept path is a safe path.
+
+Player: “…She kept this place alive before everything changed.”
+Player: “Maybe finishing what she started will help her find her way back.”
+=> END
+
+
+############################################################
+#  WELL SIGNAGE — CRAFTING LORE (dialogue only)
+############################################################
+
+~ well_signage
+Sign: [The note is damp, edges softened by time.]
+Sign: My child… your sister once tried to make her own broom.
+Sign: She collected sticks for days — said she wanted to guide lost spirits home.
+Sign: But she never finished it. She said her hands felt too weak… too tired.
+Sign: If you are here, perhaps you can finish what she began.
+
+Player: “…She tried so hard, even when she was fading.”
+Player: “I’ll finish it for her.”
+=> END
+
+
+############################################################
+#  BOULDER SIGNAGE — BLOCKED PATH
+############################################################
+
+~ boulder_signage
+Sign: [A large stone blocks the path. A message is carved beside it.]
+Sign: This stone rolled down after your sister disappeared.
+Sign: I tried to push it aside… but I was alone, and grief is heavier than rock.
+Sign: When the nights grew loud, I would sit here, waiting…  
+Sign: Hoping she might climb over, or call out, or come home.
+
+Player: “…She never made it past this point.”
+Player: “This place held more than just a path — it held her absence.”
+=> END
+
+
+############################################################
+#  FOUND SIGNAGES — LORE FRAGMENTS (three optional notes)
+############################################################
+
+~ found_signage_1
+Sign: [A torn scrap of wood lies half-buried in the soil.]
+Sign: Your sister said the garden changed at night — she heard whispers.
+Sign: Not frightening ones… just lonely.
+Sign: She wanted to answer them, but I told her never to follow voices in the dark.
+
+Player: “…But she did, didn’t she?”
+Player: “She went where no one should go alone.”
+=> END
+
+
+~ found_signage_2
+Sign: [The writing trembles as if written during worry.]
+Sign: She came home shivering one evening… said she saw lights under the roots.
+Sign: I told her the little folk were restless — that they felt what we felt.
+Sign: But she only said, “Maybe they’re calling someone else… someone lost like me.”
+
+Player: “…The dwendes weren’t hunting.”
+Player: “They were echoing her.”
+=> END
+
+
+~ found_signage_3
+Sign: [A final note, weathered, its ink blurred by rain.]
+Sign: My child… if you find this, then I have gone searching for her.
+Sign: I can’t bear to sit and wait while the garden grows quieter.
+Sign: If I don’t return… keep her memory alive.
+Sign: She wanted to come home. She tried. I promise she tried.
+
+Player: “…This garden is full of their echoes.”
+Player: “Both the living… and the ones who slipped away.”
+=> END
