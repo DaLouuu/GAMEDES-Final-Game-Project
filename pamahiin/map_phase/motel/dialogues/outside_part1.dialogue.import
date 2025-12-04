@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://7vc77grvl72k"
+path="res://.godot/imported/outside_part1.dialogue-e66b80ed46587b62ea29da7079c76e44.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/outside_part1.dialogue"
+dest_files=["res://.godot/imported/outside_part1.dialogue-e66b80ed46587b62ea29da7079c76e44.tres"]
+
+[params]
+
+defaults=true

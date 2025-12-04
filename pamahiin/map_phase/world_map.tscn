@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cyc8laq2oakj0"]
+[gd_scene load_steps=29 format=4 uid="uid://cyc8laq2oakj0"]
 
 [ext_resource type="Script" uid="uid://rbijs4nq7swd" path="res://map_phase/world_map.gd" id="1_3n4cx"]
 [ext_resource type="PackedScene" uid="uid://y0bf0te04dqb" path="res://map_phase/houses/house_together.tscn" id="1_geab1"]
@@ -9,12 +9,139 @@
 [ext_resource type="TileSet" uid="uid://c6le0wc7geyog" path="res://map_phase/world_map_tile_texture.tres" id="7_4cwox"]
 [ext_resource type="PackedScene" uid="uid://cyqsdqbaspryc" path="res://map_phase/garden/garden_phase.tscn" id="8_xn0wf"]
 [ext_resource type="TileSet" uid="uid://cau4ldeke3kd2" path="res://map_phase/chapel_worldmap_texture.tres" id="9_pw3h7"]
+[ext_resource type="Texture2D" uid="uid://ctpcu1tenwqbt" path="res://art/GAMEDES art/Cave/wakwak spritesheet.png" id="11_lkvoh"]
+[ext_resource type="Texture2D" uid="uid://baii42wxttg28" path="res://art/GAMEDES art/Characters/abularyo spritesheet.png" id="12_4habc"]
+[ext_resource type="AudioStream" uid="uid://b34a7wrrb4r6k" path="res://art/Audio Assets/wakwakscreech.wav" id="12_pw3h7"]
+
+[sub_resource type="Animation" id="Animation_hux1i"]
+resource_name = "albularyo"
+
+[sub_resource type="Animation" id="Animation_0wvj1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wakwak:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pw3h7"]
+resource_name = "wakwak"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wakwak:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lkvoh"]
+resource_name = "kidnap"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wakwak:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1l4ru"]
+_data = {
+&"RESET": SubResource("Animation_0wvj1"),
+&"albularyo": SubResource("Animation_hux1i"),
+&"kidnap": SubResource("Animation_lkvoh"),
+&"wakwak": SubResource("Animation_pw3h7")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3n4cx"]
 size = Vector2(27.355377, 15.07373)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn0wf"]
+atlas = ExtResource("12_4habc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw3h7"]
+atlas = ExtResource("12_4habc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkvoh"]
+atlas = ExtResource("12_4habc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4habc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn0wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw3h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkvoh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hux1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yocpm"]
+atlas = ExtResource("11_lkvoh")
+region = Rect2(0, 0, 49, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4habc"]
+atlas = ExtResource("11_lkvoh")
+region = Rect2(0, 0, 49, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hux1i"]
+atlas = ExtResource("11_lkvoh")
+region = Rect2(0, 96, 49, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_46ho4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yocpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4habc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hux1i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1jor"]
+size = Vector2(13.5, 17)
+
 [node name="WorldMap" type="Node2D"]
 script = ExtResource("1_3n4cx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1l4ru")
+}
 
 [node name="Marker2D-CaveOut" type="Marker2D" parent="."]
 position = Vector2(3422, -243)
@@ -91,5 +218,48 @@ position = Vector2(818, -2163)
 
 [node name="Garden" parent="." instance=ExtResource("8_xn0wf")]
 position = Vector2(1921, 908)
+
+[node name="Albularyo" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1270, -262)
+scale = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_4habc")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="Albularyo"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Albularyo/Area2D"]
+shape = SubResource("RectangleShape2D_hux1i")
+metadata/_edit_lock_ = true
+
+[node name="Wakwak" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1233, -288)
+scale = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_46ho4")
+autoplay = "default"
+frame_progress = 0.35588056
+
+[node name="Area2D" type="Area2D" parent="Wakwak"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wakwak/Area2D"]
+position = Vector2(-8.5, 3)
+shape = SubResource("RectangleShape2D_r1jor")
+metadata/_edit_lock_ = true
+
+[node name="wakwak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_pw3h7")
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="BlackScreen" type="ColorRect" parent="TransitionLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="body_entered" from="Cave/Area2D-CaveEntrance" to="." method="_on_area_2d_cave_entrance_body_entered"]

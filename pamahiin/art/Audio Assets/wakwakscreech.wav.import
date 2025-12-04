@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b34a7wrrb4r6k"
+path="res://.godot/imported/wakwakscreech.wav-fc3306cf19046edc622fcddd878e8d15.sample"
+
+[deps]
+
+source_file="res://art/Audio Assets/wakwakscreech.wav"
+dest_files=["res://.godot/imported/wakwakscreech.wav-fc3306cf19046edc622fcddd878e8d15.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

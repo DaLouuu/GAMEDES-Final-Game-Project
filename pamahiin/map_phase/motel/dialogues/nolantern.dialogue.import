@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://81mn2e5jlkts"
+path="res://.godot/imported/nolantern.dialogue-6b530de05d6944eb664c43f8b078912d.tres"
+
+[deps]
+
+source_file="res://map_phase/motel/dialogues/nolantern.dialogue"
+dest_files=["res://.godot/imported/nolantern.dialogue-6b530de05d6944eb664c43f8b078912d.tres"]
+
+[params]
+
+defaults=true

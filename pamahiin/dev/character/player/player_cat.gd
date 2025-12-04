@@ -36,6 +36,7 @@ var is_cutscene_controlled := false
 var cutscene_animation_state := "Idle"
 var cutscene_animation_direction := Vector2.DOWN
 var is_motel_introduction := false
+var is_outside_firsttime := false
 
 var is_invulnerable: bool = false
 var max_sanity : float = 100.0
@@ -75,6 +76,7 @@ func trigger_cat_ready():
 	$Sprite2D.texture = load("res://dev/character/player/Character_Spritesheet_Walking.png")
 	update_animation_parameters(starting_direction)
 	remote_transform_2d.remote_path = camera.get_path()	
+	setCutsceneAnimationBehavior("Idle", Vector2(1.0,0.0))
 	
 func _ready():
 	$CanvasLayer.visible = false	
@@ -96,7 +98,7 @@ func _physics_process(_delta):
 	if sanity <= 0:
 		return
 	if is_cutscene_controlled:
-		if is_motel_introduction:
+		if is_motel_introduction or is_outside_firsttime:
 			update_animation_parameters(cutscene_animation_direction)
 			state_machine.travel(cutscene_animation_state)
 		return

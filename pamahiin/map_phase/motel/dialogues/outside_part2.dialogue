@@ -1,0 +1,19 @@
+do show_wakwak()
+do fade_blackscreen(1.0, 0.0, 1.0)
+Albularyo: Terrified No... Sigbin? No... Wakwak! They found me!
+A massive clawed shadow swoops down.
+Albularyo: Run, soldier! Find the artifacts!
+do wakwak_sound()
+The creature screeches again, grabbing the Albularyo by his clothes. He is dragged violently into the darkness, towards the direction of the mountain caves.
+Albularyo: The Cave! Come to the Cave!
+do fade_blackscreen(0.0, 1.0, 1.0)
+do hide_albularyo()
+do hide_wakwak()
+do fade_blackscreen(1.0, 0.0, 1.0)
+The Albularyo disappears into the thick canopy. The pouch he dropped has spilled... but it is empty. He didn't get the chance to give you the salt.
+Silence slams back into the world. You are standing alone in the dirt road.
+You: *Breathing heavily* That wasn't a hallucination. That was real. Flesh and blood. 
+You: He said four artifacts. Rosary. Broom. Water. Salt. 
+You: He has the salt... in the cave. 
+You: *Clenching fists* I can't just leave. If I don't fix this... I'm never waking up.
+The path is open. The night is young. And you are being hunted.
