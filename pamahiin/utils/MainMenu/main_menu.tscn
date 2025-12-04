@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdt62bgxs0isa"]
+[gd_scene load_steps=9 format=3 uid="uid://bdt62bgxs0isa"]
 
 [ext_resource type="Texture2D" uid="uid://yj7to3mw8ou6" path="res://utils/MainMenu/UI Guide.png" id="1_ppg3m"]
+[ext_resource type="Script" uid="uid://ptobmt5fj26f" path="res://utils-scripts/MainMenu.gd" id="1_qnbnv"]
 [ext_resource type="Texture2D" uid="uid://b7k0upjd7gh2v" path="res://utils/MainMenu/Pop Up.png" id="2_gref8"]
 [ext_resource type="Texture2D" uid="uid://baaq1tp3n56xd" path="res://utils/MainMenu/Menu Button.png" id="3_gref8"]
+[ext_resource type="Script" uid="uid://bf1q07y5vwlwf" path="res://utils-scripts/CheatMenuPopup.gd" id="5_jo0y6"]
 
 [sub_resource type="Theme" id="Theme_qnbnv"]
 
@@ -12,6 +14,7 @@
 texture = ExtResource("3_gref8")
 
 [node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_qnbnv")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -100,7 +103,7 @@ theme_override_colors/font_color = Color(0.3019608, 0.28627452, 0.2784314, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_qnbnv")
 text = "Exit"
 
-[node name="CheatMenu" type="TextureRect" parent="."]
+[node name="CheatMenuPopup" type="TextureRect" parent="."]
 anchors_preset = -1
 anchor_right = 0.690625
 anchor_bottom = 0.7486111
@@ -112,9 +115,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_gref8")
 expand_mode = 1
+script = ExtResource("5_jo0y6")
 metadata/_edit_use_anchors_ = true
 
-[node name="PAMAHIIN_Title" type="Label" parent="CheatMenu"]
+[node name="PAMAHIIN_Title" type="Label" parent="CheatMenuPopup"]
 layout_mode = 0
 offset_left = 197.0
 offset_top = 135.0
@@ -127,15 +131,15 @@ text = "CHEAT MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheatButtonsContainer" type="VBoxContainer" parent="CheatMenu"]
+[node name="CheatButtonsContainer" type="VBoxContainer" parent="CheatMenuPopup"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control" type="Control" parent="CheatMenu/CheatButtonsContainer"]
+[node name="Control" type="Control" parent="CheatMenuPopup/CheatButtonsContainer"]
 layout_mode = 2
 
-[node name="CheatOption1" type="Button" parent="CheatMenu/CheatButtonsContainer/Control"]
+[node name="CheatOption1" type="Button" parent="CheatMenuPopup/CheatButtonsContainer/Control"]
 layout_mode = 0
 offset_left = 304.0
 offset_top = 208.0
@@ -145,7 +149,7 @@ theme_override_colors/font_color = Color(0.3019608, 0.28627452, 0.2784314, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_qnbnv")
 text = "Infinite Health"
 
-[node name="CheatOption2" type="Button" parent="CheatMenu/CheatButtonsContainer/Control"]
+[node name="CheatOption2" type="Button" parent="CheatMenuPopup/CheatButtonsContainer/Control"]
 layout_mode = 0
 offset_left = 306.0
 offset_top = 256.0
@@ -155,7 +159,7 @@ theme_override_colors/font_color = Color(0.3019608, 0.28627452, 0.2784314, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_qnbnv")
 text = "Teleport"
 
-[node name="CheatOption3" type="Button" parent="CheatMenu/CheatButtonsContainer/Control"]
+[node name="CheatOption3" type="Button" parent="CheatMenuPopup/CheatButtonsContainer/Control"]
 layout_mode = 0
 offset_left = 305.0
 offset_top = 302.0
@@ -165,7 +169,7 @@ theme_override_colors/font_color = Color(0.3019608, 0.28627452, 0.2784314, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_qnbnv")
 text = "Immunity"
 
-[node name="BackButton" type="Button" parent="CheatMenu/CheatButtonsContainer/Control"]
+[node name="CloseButton" type="Button" parent="CheatMenuPopup/CheatButtonsContainer/Control"]
 layout_mode = 0
 offset_left = 305.0
 offset_top = 348.0
@@ -173,4 +177,4 @@ offset_right = 585.0
 offset_bottom = 389.0
 theme_override_colors/font_color = Color(0.3019608, 0.28627452, 0.2784314, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_qnbnv")
-text = "Back"
+text = "Close"
