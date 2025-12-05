@@ -99,9 +99,7 @@ func _ready():
 	disable_endgame_nodes()
 	$"AudioStreamPlayer-churchbg".play()
 	
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_ENTER1] = $"Marker2D-Left1"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_ENTER2] = $"Marker2D-SpawnP1"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_ENTER3] = $"Marker2D-Right1"
+
 	# Animations
 	first_face.visible = false
 	second_face.visible = false
@@ -280,5 +278,5 @@ func _on_area_2d_3_right_body_entered(body: Node2D) -> void:
 			return
 		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3)
 		
-func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:
+func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> StringName:
 	return GameState.dict_TPs[type]

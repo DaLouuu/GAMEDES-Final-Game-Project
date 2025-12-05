@@ -10,7 +10,7 @@ func close_door():
 	
 
 		
-func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:
+func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> StringName:
 	return GameState.dict_TPs[type]
 
 
@@ -29,8 +29,6 @@ func _on_area_2_dcenter_body_entered(body: Node2D) -> void:
 
 # Door trigger exit
 func _on_area_2_dcenter_body_exited(body: Node2D) -> void:
-	if Global.artifactCount < 3:
-		return
 	if body.is_in_group("Player"): # Replace with function body.
 		close_door()
 

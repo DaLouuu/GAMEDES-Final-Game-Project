@@ -66,18 +66,29 @@ func _ready() -> void:
 
 	
 	# Instantiate main menu
-	var new_scene_instance = load("uid://bdt62bgxs0isa").instantiate()
-	world_2d.add_child(new_scene_instance)
-	curr_2d_scene = new_scene_instance
+	#var new_scene_instance = load("uid://bdt62bgxs0isa").instantiate()
+	#world_2d.add_child(new_scene_instance)
+	#curr_2d_scene = new_scene_instance
 	
 	# Test and debug
-	#startPlayer()
+	startPlayer()
 	##change_2d_scene("uid://bbim0h8qggemx") # House final
 	##change_2d_scene("uid://dxhni64oxaov4") # Church
-	#change_2d_scene("uid://cyc8laq2oakj0")
+	#change_2d_scene("uid://dnvq5fs7tu167") # Cave
+	change_2d_scene("uid://cyc8laq2oakj0")
 	#DialogueManager.readyWithController()
 	
+func findMarkers(name: StringName)-> Marker2D:
+
 	
+	var arr_markers = get_tree().get_nodes_in_group("markerspawners")
+	for mark in arr_markers:
+		if mark.name == name:
+			var m = mark as Marker2D
+			return m
+	return null
+
+
 func update_artifactCheck():
 	await get_tree().physics_frame
 	#Global.artifactCount =0
@@ -109,7 +120,6 @@ func change_2d_scene_custom(new_scene: String, localFromType : EnumsRef.LOCAL_FR
 		match load_state:
 			
 			EnumsRef.SceneLoadState.DELETE:
-				promiseToFree = true
 				curr_2d_scene.queue_free()
 				
 			EnumsRef.SceneLoadState.HIDE:
@@ -127,13 +137,13 @@ func change_2d_scene_custom(new_scene: String, localFromType : EnumsRef.LOCAL_FR
 	if player:
 		# Find the spawn marker in the new scene
 		var mark : Marker2D = null
+		var mark_vec2 : StringName
 		if curr_2d_scene.has_method("getCustomMarker"):
-			mark = curr_2d_scene.getCustomMarker(localFromType)
-		if mark:
-			
-			player.global_position = mark.global_position
+			mark_vec2 = curr_2d_scene.getCustomMarker(localFromType)
+		if mark_vec2:
+			player.global_position = findMarkers(mark_vec2).global_position
 			#new_scene_instance.add_child(player)
-			
+			#player.global_position = Vector2(-460, 1069)	
 			var camera : Camera2D = player.get_node("Camera2D")
 			changed_scene_with_character.emit()
 			if new_scene_instance.has_method("goto_coming_out_from_spawn"):

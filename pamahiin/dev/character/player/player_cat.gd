@@ -93,6 +93,7 @@ func _ready():
 		#print(obj.get_path())
 func reset_player():
 	self.sanity = 100
+	sanity_changed.emit(100)
 	animation_player.play("RESET")
 	game_over_screen.visible = false
 	AudioManager.stopPlayer()
@@ -104,7 +105,6 @@ func setCutsceneAnimationBehavior(state : String, direction : Vector2):
 
 # Anything moving and colliding is always under the collision
 func _physics_process(_delta):
-	
 	if sanity <= 0:
 		return
 	if is_cutscene_controlled:

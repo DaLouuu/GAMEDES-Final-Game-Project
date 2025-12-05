@@ -27,12 +27,20 @@ var broom_crafted: bool = false
 var mistake_count: int = 0
 var fog_density: float = 0.25
 var ambience_enabled: bool = false
-
-
+var player : Player
+func reset_player():
+	player.global_position = $"../../../../Marker2D-resetSpawn".global_position
 func _ready():
 	add_to_group("GardenState")
 	is_ready = true
-	
+	player = get_tree().get_first_node_in_group("Player")
+	if player:
+		player.player_resetted.connect(reset_player)
+		player.scale = Vector2(0.6, 0.6)
+		player.camera.zoom = Vector2(1.2, 1.2)
+		if not GameState.GARDEN_known_hidden:
+			DialogueManager.show_example_dialogue_balloon(load("res://dialogue/GARDEN_garden_hidden.dialogue"))
+			GameState.GARDEN_known_hidden = true
 	if correct_tree_markings.is_empty():
 		_randomize_correct_trees()
 	else:
@@ -79,3 +87,8 @@ func reset():
 	fog_density = 0.25
 	ambience_enabled = false
 	print("[GardenState] Reset to defaults.")
+
+
+func _on_area_2_dexitgarden_2_world_body_entered(_body: Node2D) -> void:
+	if _body.is_in_group("Player"):
+		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.GARDEN)
