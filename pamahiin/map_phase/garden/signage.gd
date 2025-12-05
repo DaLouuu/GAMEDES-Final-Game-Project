@@ -1,16 +1,15 @@
 extends Node2D
 
-# Unified Signage script
-# - Supports tree notes via `marking_id`
-# - Supports general signages via `signage_branch`
-
-@export var signage_branch: String = ""        # e.g. "gate_signage"
-@export var marking_id: String = ""            # e.g. "wind", "spiral"
+@export var signage_branch: String = ""        
+@export var marking_id: String = ""            
 
 @onready var prompt := $InteractionPrompt
 @onready var interact_area := $Area2D
 
 var player_in_range: bool = false
+
+# List of signages that should NEVER change based on mistakes
+const STATIC_SIGNAGES = ["gate_signage", "well_signage", "boulder_signage", "found_signage_1", "found_signage_2", "found_signage_3"]
 
 func _ready() -> void:
 	prompt.visible = false
@@ -32,33 +31,43 @@ func _process(_delta: float) -> void:
 		_interact()
 
 func _interact() -> void:
-	# 1) World signages (gate, well, boulder, found notes)
+	var zone_a = get_tree().get_first_node_in_group("ZoneAController")
+	if zone_a: zone_a.freeze_player(true)
+	
+	var mistakes = 0
+	var gs_candidates = get_tree().get_nodes_in_group("GardenState")
+	for candidate in gs_candidates:
+		if candidate.get("mistake_count") != null:
+			mistakes = candidate.mistake_count
+			break
+	
+	# 1. Handle Named Signages (Gate, Well, etc.)
 	if signage_branch != "":
 		var dlg_res := load("res://map_phase/garden/Dialogue/garden_signages.dialogue")
 		if dlg_res:
-			DialogueManager.show_dialogue_balloon(dlg_res, signage_branch)
+			var final_branch = signage_branch
+			
+			# ONLY apply mistake swapping if it is NOT a static sign
+			if signage_branch not in STATIC_SIGNAGES:
+				final_branch = "%s_%d" % [signage_branch, mistakes]
+				if mistakes > 3: final_branch = "%s_%d" % [signage_branch, 3]
+			
+			# Play the dialogue
+			DialogueManager.show_dialogue_balloon(dlg_res, final_branch)
 			await DialogueManager.dialogue_ended
 
-			# SPECIAL CASE: GATE SIGNAGE
+			# Trigger Intro Sequence (Gate Only)
 			if signage_branch == "gate_signage":
 				var chase := get_tree().get_first_node_in_group("GardenChaseManager")
-				if chase and chase.has_method("open_gate"):
-					chase.open_gate()
-				else:
-					push_warning("Signage: GardenChaseManager not found or open_gate() missing!")
-		else:
-			push_warning("garden_signages.dialogue not found!")
-		return
-
-	# 2) Tree notes (wind, spiral, eye, tally, hollow)
-	if marking_id != "":
+				if chase:
+					chase.trigger_intro_gate_sequence()
+	
+	# 2. Handle Tree Notes (These SHOULD swap if you want them to, or use marking_id logic)
+	elif marking_id != "":
 		var tree_branch := "%s_tree" % marking_id
 		var dlg_res2 := load("res://map_phase/garden/Dialogue/garden_signages.dialogue")
 		if dlg_res2:
 			DialogueManager.show_dialogue_balloon(dlg_res2, tree_branch)
 			await DialogueManager.dialogue_ended
-		else:
-			push_warning("garden_signages.dialogue not found!")
-		return
 
-	push_warning("Signage has neither signage_branch nor marking_id assigned!")
+	if zone_a: zone_a.freeze_player(false)
