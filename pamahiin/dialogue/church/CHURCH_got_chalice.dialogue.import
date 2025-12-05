@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dvwbwd1vkpexr"
+path="res://.godot/imported/CHURCH_got_chalice.dialogue-0c05caad0a134cd8f179cc82626f1f92.tres"
+
+[deps]
+
+source_file="res://dialogue/church/CHURCH_got_chalice.dialogue"
+dest_files=["res://.godot/imported/CHURCH_got_chalice.dialogue-0c05caad0a134cd8f179cc82626f1f92.tres"]
+
+[params]
+
+defaults=true

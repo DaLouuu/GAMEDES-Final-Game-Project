@@ -5,3 +5,6 @@ extends Node
 func _ready():
 	add_child(music_player)
 	music_player.bus = "Music"   # optional
+
+func stopPlayer():
+	music_player.stop()

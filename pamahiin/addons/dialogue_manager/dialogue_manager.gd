@@ -70,6 +70,10 @@ var _dotnet_dialogue_manager: RefCounted
 
 var _expression_parser: DMExpressionParser = DMExpressionParser.new()
 
+func readyWithController():
+	dialogue_ended.connect(Global.game_controller.inCutscene)
+	dialogue_started.connect(Global.game_controller.notCutscene)
+	
 
 func _ready() -> void:
 	# Cache the known Node2D properties
@@ -485,7 +489,8 @@ func _start_balloon(balloon: Node, resource: DialogueResource, title: String, ex
 		balloon.Start(resource, title, extra_game_states)
 	else:
 		assert(false, DMConstants.translate(&"runtime.dialogue_balloon_missing_start_method"))
-
+	
+	
 	dialogue_started.emit(resource)
 	bridge_dialogue_started.emit(resource)
 
@@ -533,6 +538,7 @@ func _bridge_get_next_dialogue_line(resource: DialogueResource, key: String, ext
 	if line == null:
 		# End the conversation
 		dialogue_ended.emit(resource)
+
 
 
 func _bridge_get_line(resource: DialogueResource, key: String, extra_game_states: Array = []) -> void:

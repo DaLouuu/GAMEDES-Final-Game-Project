@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cdieevp44cjjy"
+path="res://.godot/imported/CHURCH_finished_puzzle.dialogue-424d352d98e82823a0fcb3cbbdfa4d25.tres"
+
+[deps]
+
+source_file="res://dialogue/church/CHURCH_finished_puzzle.dialogue"
+dest_files=["res://.godot/imported/CHURCH_finished_puzzle.dialogue-424d352d98e82823a0fcb3cbbdfa4d25.tres"]
+
+[params]
+
+defaults=true

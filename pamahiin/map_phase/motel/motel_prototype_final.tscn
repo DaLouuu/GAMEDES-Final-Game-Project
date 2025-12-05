@@ -1,0 +1,858 @@
+[gd_scene load_steps=96 format=4 uid="uid://c4psaq201foex"]
+
+[ext_resource type="PackedScene" uid="uid://cbiyjqctoq0j3" path="res://dev/character/player/player_cat.tscn" id="1_34l4x"]
+[ext_resource type="Script" uid="uid://cutmlrc6ks8pe" path="res://map_phase/motel/motel_prototype_script.gd" id="1_rwiny"]
+[ext_resource type="Texture2D" uid="uid://ccb8dy7s2bonc" path="res://map_phase/motel/assets/floor/corner_floor_motel.png" id="1_yboj4"]
+[ext_resource type="AudioStream" uid="uid://bi14kem5hjv03" path="res://art/Audio Assets/12-door-opening-fast_short.wav" id="2_l45d7"]
+[ext_resource type="PackedScene" uid="uid://dds6v1b14r58m" path="res://dev/resource_scripts/inventory/items/item_template.tscn" id="2_uitpb"]
+[ext_resource type="Texture2D" uid="uid://delicqoh2qe2x" path="res://map_phase/motel/assets/floor/mid_floor_motel.png" id="2_umaxr"]
+[ext_resource type="Texture2D" uid="uid://dnls5k4gmvtwv" path="res://map_phase/motel/assets/floor/side_floor_motel.png" id="3_34l4x"]
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="3_cyxst"]
+[ext_resource type="AudioStream" uid="uid://bkpg8q5brq1d0" path="res://art/Audio Assets/14-door-close-slow_short.wav" id="3_rqhv5"]
+[ext_resource type="Texture2D" uid="uid://dwruwiifk3tcw" path="res://map_phase/motel/assets/wall/bot_wall_motel.png" id="4_pge43"]
+[ext_resource type="Texture2D" uid="uid://ypi5u0ibh7oe" path="res://map_phase/motel/assets/bathroom/bathroom floor/bathroom floor.png" id="5_8fqaf"]
+[ext_resource type="Texture2D" uid="uid://b7co47h8pfvjm" path="res://map_phase/motel/assets/wall/corner_wall_motel.png" id="5_rwiny"]
+[ext_resource type="Texture2D" uid="uid://sq34ttiem8ws" path="res://map_phase/motel/assets/wall/side_wall_motel.png" id="6_xtdm5"]
+[ext_resource type="Texture2D" uid="uid://hmw5ob64n3mt" path="res://map_phase/motel/assets/wall/top_wall_motel.png" id="7_6wl64"]
+[ext_resource type="Texture2D" uid="uid://beqduqds3xpcb" path="res://map_phase/motel/assets/wall/side_wall_motelspecial.png" id="8_pge43"]
+[ext_resource type="Texture2D" uid="uid://bivflasghkhs3" path="res://map_phase/motel/assets/bed/bed_motel.png" id="8_umaxr"]
+[ext_resource type="Texture2D" uid="uid://bi0s1w4qb7ooc" path="res://map_phase/motel/assets/furniture/bed cabinet.png" id="11_dmw8e"]
+[ext_resource type="Texture2D" uid="uid://dyv7n4lsl180n" path="res://map_phase/motel/assets/bathroom/bathroom walls/bot bathroom wall.png" id="11_xbr43"]
+[ext_resource type="Texture2D" uid="uid://ca61b052w4ehn" path="res://map_phase/motel/assets/furniture/closet side profile.png" id="12_hpbim"]
+[ext_resource type="Texture2D" uid="uid://muxgks38lp34" path="res://map_phase/motel/assets/bathroom/bathroom walls/top bathroom wall.png" id="12_mk1ck"]
+[ext_resource type="Texture2D" uid="uid://bmq2em0fgmrt8" path="res://map_phase/motel/assets/bed/bed_blanket_layer.png" id="12_v4fx0"]
+[ext_resource type="PackedScene" uid="uid://8fegnh450g03" path="res://dev/resource_scripts/inventory/items/lantern.tscn" id="12_xtdm5"]
+[ext_resource type="Script" uid="uid://d0ie1ff8rd06e" path="res://map_phase/motel/bed.gd" id="14_6puld"]
+[ext_resource type="Texture2D" uid="uid://bgopf302m88ji" path="res://map_phase/motel/assets/bathroom/bath tub.png" id="15_qn1lx"]
+[ext_resource type="Texture2D" uid="uid://cnc7vhc45x6hy" path="res://map_phase/motel/assets/furniture/tablechair.png" id="16_l45d7"]
+[ext_resource type="Texture2D" uid="uid://cndvvsvf3vlmf" path="res://map_phase/motel/assets/bathroom/bathroom mirror.png" id="16_v4fx0"]
+[ext_resource type="Shader" uid="uid://hvmppn3y8j2j" path="res://map_phase/motel/motel_prototype.gdshader" id="16_v6mxx"]
+[ext_resource type="Texture2D" uid="uid://b8djh0n7gdhik" path="res://map_phase/motel/assets/bed/bottom_frame_layer.png" id="17_pt38b"]
+[ext_resource type="Texture2D" uid="uid://br8teqe3k7kq4" path="res://map_phase/motel/assets/bathroom/sink.png" id="17_vspby"]
+[ext_resource type="Texture2D" uid="uid://cx4u6jvy6bbfw" path="res://map_phase/motel/assets/miscellaneous/paper.png" id="18_j5yei"]
+[ext_resource type="Texture2D" uid="uid://cqba1xyjb0wxj" path="res://map_phase/motel/assets/bathroom/toilet.png" id="18_ob2wa"]
+[ext_resource type="Texture2D" uid="uid://c6q7lm8p1gbye" path="res://map_phase/motel/assets/static_img_cutscenes/2 - soldier and igorot.png" id="18_yrggf"]
+[ext_resource type="Texture2D" uid="uid://cm0x51uqxnslj" path="res://map_phase/motel/assets/static_img_cutscenes/3 - graveyard.png" id="19_2kna8"]
+[ext_resource type="Texture2D" uid="uid://nktkmqxqvrgh" path="res://map_phase/motel/assets/static_img_cutscenes/4 - convo with jenny.png" id="20_kwkps"]
+[ext_resource type="Texture2D" uid="uid://dwcr4qxmcloh3" path="res://map_phase/motel/assets/static_img_cutscenes/5 - motel room.png" id="21_wlw8e"]
+[ext_resource type="Texture2D" uid="uid://p1mecb6e4bfv" path="res://map_phase/motel/assets/static_img_cutscenes/6 - sink 1.png" id="22_dckpj"]
+[ext_resource type="Texture2D" uid="uid://66474cvsf2jr" path="res://map_phase/motel/assets/static_img_cutscenes/7 - sink 2.png" id="23_rnk80"]
+[ext_resource type="Texture2D" uid="uid://c7ccuaxyxji6s" path="res://map_phase/motel/assets/static_img_cutscenes/8 - sink 3.png" id="24_cbbgb"]
+[ext_resource type="Texture2D" uid="uid://c0o2egp6vejxm" path="res://map_phase/motel/assets/static_img_cutscenes/9 - sink 4.png" id="25_wqtta"]
+[ext_resource type="Texture2D" uid="uid://b8rl28j0gcnc2" path="res://map_phase/motel/assets/static_img_cutscenes/10 - tooth falling out jumpscare.png" id="26_wdpy6"]
+[ext_resource type="AudioStream" uid="uid://c761bnq2nu5yv" path="res://map_phase/motel/audio/whistlebgm.wav" id="33_rqhv5"]
+[ext_resource type="Texture2D" uid="uid://lfj5jcy81uoi" path="res://map_phase/motel/assets/static_img_cutscenes/1 - burial shot.png" id="35_emqv5"]
+[ext_resource type="Texture2D" uid="uid://y0gfbjq4i025" path="res://map_phase/motel/assets/bathroom/bathroomdoor.png" id="35_j5yei"]
+[ext_resource type="AudioStream" uid="uid://bmyygmdjrbo3l" path="res://map_phase/motel/audio/toothdrop.wav" id="44_2kna8"]
+[ext_resource type="AudioStream" uid="uid://bj36cytv078rx" path="res://map_phase/motel/audio/toothbrushing.wav" id="44_yrggf"]
+[ext_resource type="AudioStream" uid="uid://bvwile4hw0fn1" path="res://map_phase/motel/audio/jumpscaresfx.wav" id="46_kwkps"]
+[ext_resource type="AudioStream" uid="uid://bx5wyordk1gaq" path="res://map_phase/motel/audio/mirrorglassbreak.wav" id="47_wlw8e"]
+
+[sub_resource type="Animation" id="Animation_v4fx0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-217, 106)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackScreen/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j5yei"]
+resource_name = "motel_introduction_cutscene_release"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(184.385, 40)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Idle", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qn1lx"]
+resource_name = "motel_introduction_part1"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-217, 106), Vector2(113.95, 106), Vector2(113.95, -154.1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": ["Idle", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dooropen")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("doorclose")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("BlackScreen/ColorRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vspby"]
+resource_name = "motel_introduction_part2"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3.5, 4.5, 4.6, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(113.95, -154.1), Vector2(110, -154.1), Vector2(110, 100), Vector2(-70, 100), Vector2(-70, -100), Vector2(-47.53, -100), Vector2(-47.53, -182.805)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3.5, 4.5, 4.6, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": ["Walk", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(0, -1)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ob2wa"]
+resource_name = "motel_introduction_part3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.3527613e-08),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(242, -216.47)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Idle", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_emqv5"]
+resource_name = "motel_introduction_part4"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 2.5333333, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(176.66, -175), Vector2(176.66, -175), Vector2(176.66, 40), Vector2(185.115, 40)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 2.5333333, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": ["Idle", Vector2(-1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Walk", Vector2(0, 1)],
+"method": &"setCutsceneAnimationBehavior"
+}, {
+"args": ["Idle", Vector2(1, 0)],
+"method": &"setCutsceneAnimationBehavior"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vspby"]
+_data = {
+&"RESET": SubResource("Animation_v4fx0"),
+&"motel_introduction_cutscene_release": SubResource("Animation_j5yei"),
+&"motel_introduction_part1": SubResource("Animation_qn1lx"),
+&"motel_introduction_part2": SubResource("Animation_vspby"),
+&"motel_introduction_part3": SubResource("Animation_ob2wa"),
+&"motel_introduction_part4": SubResource("Animation_emqv5")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmw8e"]
+texture = ExtResource("1_yboj4")
+0:0/0 = 0
+0:0/0/custom_data_0 = &"carpet"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hpbim"]
+texture = ExtResource("2_umaxr")
+0:0/0 = 0
+0:0/0/custom_data_0 = &"carpet"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ed33o"]
+texture = ExtResource("3_34l4x")
+0:0/0 = 0
+0:0/0/custom_data_0 = &"carpet"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y8ovt"]
+texture = ExtResource("5_8fqaf")
+0:0/0 = 0
+0:0/0/custom_data_0 = &"tile"
+
+[sub_resource type="TileSet" id="TileSet_thkev"]
+custom_data_layer_0/name = "footstep_sfx"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_dmw8e")
+sources/1 = SubResource("TileSetAtlasSource_hpbim")
+sources/2 = SubResource("TileSetAtlasSource_ed33o")
+sources/3 = SubResource("TileSetAtlasSource_y8ovt")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qn1lx"]
+texture = ExtResource("4_pge43")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4fx0"]
+texture = ExtResource("5_rwiny")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vspby"]
+texture = ExtResource("6_xtdm5")
+0:0/0 = 0
+0:0/0/z_index = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ob2wa"]
+texture = ExtResource("7_6wl64")
+0:0/0 = 0
+0:0/0/z_index = 2
+0:0/0/y_sort_origin = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwiny"]
+texture = ExtResource("8_pge43")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lilbk"]
+texture = ExtResource("11_xbr43")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6puld"]
+texture = ExtResource("12_mk1ck")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vy0li"]
+sources/0 = SubResource("TileSetAtlasSource_qn1lx")
+sources/1 = SubResource("TileSetAtlasSource_v4fx0")
+sources/2 = SubResource("TileSetAtlasSource_vspby")
+sources/3 = SubResource("TileSetAtlasSource_ob2wa")
+sources/5 = SubResource("TileSetAtlasSource_rwiny")
+sources/6 = SubResource("TileSetAtlasSource_lilbk")
+sources/7 = SubResource("TileSetAtlasSource_6puld")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vy0li"]
+texture = ExtResource("6_xtdm5")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pge43"]
+texture = ExtResource("7_6wl64")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xtdm5"]
+texture = ExtResource("4_pge43")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fqaf"]
+texture = ExtResource("11_xbr43")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbr43"]
+texture = ExtResource("12_mk1ck")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6wl64"]
+sources/1 = SubResource("TileSetAtlasSource_pge43")
+sources/2 = SubResource("TileSetAtlasSource_xtdm5")
+sources/0 = SubResource("TileSetAtlasSource_vy0li")
+sources/3 = SubResource("TileSetAtlasSource_8fqaf")
+sources/4 = SubResource("TileSetAtlasSource_xbr43")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emqv5"]
+shader = ExtResource("16_v6mxx")
+shader_parameter/darkness_amount = 1.0
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/use_static = true
+shader_parameter/static_strength = 0.2
+
+[sub_resource type="Resource" id="Resource_emqv5"]
+script = ExtResource("3_cyxst")
+name = "Paper"
+description = Array[String](["\"To the next guest,\"", "\"The air here is heavy. If you want to survive the night, you must keep your wits about you.\"", "\"Do not stand still. The shadows grow longer when you idle. You must keep moving. ([i]Use [b]WASD[/b] to Walk[i])\"", "\"[b]Trust your eyes to find the truth, but use your hands to claim it.[/b] Study the shadows that draw your gaze. If you find a tool to break this curse, do not hesitate—take it. ([i]Hover & Click [b]LMB[/b] or Press [b]E[/b] to Inspect/Collect[/i])\"", "\"[b]And if you hear the wailing... do not pray.[/b] Prayers do not work here. You run. ([i]Hold [b]Shift[/b] to Sprint[/i])\"", "\"[i][b]Interact[/b] with the furnitures... You might not want to miss a single clue...\""])
+itemType = 4
+texture = ExtResource("18_j5yei")
+metadata/_custom_type_script = "uid://26w5lr3t485j"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlw8e"]
+size = Vector2(39, 48)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_34l4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34l4x"]
+size = Vector2(18.214293, 19.2381)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wl64"]
+size = Vector2(55.116684, 95.99999)
+
+[sub_resource type="Resource" id="Resource_l45d7"]
+script = ExtResource("3_cyxst")
+name = "Cabinet"
+description = Array[String](["A wooden cabinet.", "Seems there's nothing inside..."])
+itemType = 3
+texture = ExtResource("11_dmw8e")
+metadata/_custom_type_script = "uid://26w5lr3t485j"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thkev"]
+size = Vector2(13.333332, 45.333332)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8ovt"]
+size = Vector2(21.71429, 30.285717)
+
+[sub_resource type="Resource" id="Resource_v6mxx"]
+script = ExtResource("3_cyxst")
+name = "Closet"
+description = Array[String](["An old wooden closet.", "Its surface is scratched and the wood smells musty.", "The doors creak ominously as you slowly open them...", "Inside, you find some old clothes, but nothing useful."])
+itemType = 3
+texture = ExtResource("12_hpbim")
+metadata/_custom_type_script = "uid://26w5lr3t485j"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy0li"]
+size = Vector2(38.66667, 15.999998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lilbk"]
+size = Vector2(42.666664, 23.666668)
+
+[sub_resource type="Resource" id="Resource_rqhv5"]
+script = ExtResource("3_cyxst")
+name = "Bathtub"
+description = Array[String](["The lid is cold… too cold. Like someone was just here.", "You hear dripping… but nothing’s leaking."])
+texture = ExtResource("15_qn1lx")
+metadata/_custom_type_script = "uid://26w5lr3t485j"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fqaf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbr43"]
+size = Vector2(20, 15.599998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6puld"]
+size = Vector2(21.2, 24.399994)
+
+[sub_resource type="Resource" id="Resource_fjoe6"]
+script = ExtResource("3_cyxst")
+name = "Sink"
+description = Array[String](["For a moment, your reflection lagged behind…", "The faucet drips even though the pipes shouldn't have pressure."])
+texture = ExtResource("17_vspby")
+metadata/_custom_type_script = "uid://26w5lr3t485j"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk1ck"]
+size = Vector2(18.66667, 9.000008)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt38b"]
+size = Vector2(26.666664, 24.333338)
+
+[sub_resource type="Resource" id="Resource_j5yei"]
+script = ExtResource("3_cyxst")
+name = "Toilet"
+description = Array[String](["A faint ring of grime circles the tub… like something was dragged out.", "There are scratch marks along the inside…"])
+texture = ExtResource("18_ob2wa")
+metadata/_custom_type_script = "uid://26w5lr3t485j"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4fx0"]
+size = Vector2(30, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vspby"]
+size = Vector2(39, 105)
+
+[node name="MotelPrototype" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_rwiny")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vspby")
+}
+
+[node name="dooropen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_l45d7")
+
+[node name="doorclose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rqhv5")
+
+[node name="MapLayer" type="Node" parent="."]
+
+[node name="FloorLayer" type="TileMapLayer" parent="MapLayer" groups=["tilemaps"]]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD//wAAAwAAAAAAAAAAAAAAAgAAAAAAAAAAAP//AgAAAAAAAAD/////AwAAAAAAAAD+////AwAAAAAAAAD+/wAAAwAAAAAAAAABAAAAAQAAAAAAAAABAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP7/AgAAAAAAAAD///7/AwAAAAAAAAD+//7/AwAAAAAAAAD9////AwAAAAAAAAD9/wAAAwAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAABAP3/AQAAAAAAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAAAAP3/AgAAAAAAAAD///3/AwAAAAAAAAD+//3/AwAAAAAAAAD9//3/AwAAAAAAAAD8//3/AwAAAAAAAAD8////AwAAAAAAAAD8/wAAAwAAAAAAAAADAPz/AQAAAAAAAAACAPz/AQAAAAAAAAABAPz/AQAAAAAAAAAAAPz/AgAAAAAAAAD///z/AwAAAAAAAAD+//z/AwAAAAAAAAD9//z/AwAAAAAAAAD8//z/AwAAAAAAAAD7//z/AwAAAAAAAAD7//3/AwAAAAAAAAD7//7/AwAAAAAAAAD7////AwAAAAAAAAD7/wAAAwAAAAAAAAADAAAAAQAAAAAAAAADAP//AQAAAAAAAAADAP7/AQAAAAAAAAADAP3/AQAAAAAAAAD7//v/AwAAAAAAAAD8//v/AwAAAAAAAAD9//v/AwAAAAAAAAD+//v/AwAAAAAAAAD///v/AwAAAAAAAAAAAPv/AAAAAAAAAAABAPv/AgAAAAAAAFACAPv/AgAAAAAAAFADAPv/AgAAAAAAAFAEAPv/AgAAAAAAAFAEAPz/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAEAAAAAQAAAAAAAAD7/wEAAAAAAAAAAAAEAAEAAQAAAAAAAAD8/wEAAgAAAAAAAFD9/wEAAgAAAAAAAFD+/wEAAQAAAAAAAAD//wEAAgAAAAAAAFAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAD7/wIAAQAAAAAAAAD7/wMAAAAAAAAAAGD8/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAMAAgAAAAAAAGD8/wMAAgAAAAAAAGD9/wMAAgAAAAAAAGD+/wMAAgAAAAAAAGD//wMAAgAAAAAAAGAAAAMAAgAAAAAAAGABAAMAAgAAAAAAAGACAAMAAgAAAAAAAGADAAMAAgAAAAAAAGABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAFAAMAAAAAAAAAADAFAPv/AAAAAAAAAFAFAAIAAgAAAAAAADAFAAEAAgAAAAAAADAFAAAAAgAAAAAAADAFAP//AgAAAAAAADAFAP7/AgAAAAAAADAFAP3/AgAAAAAAADAFAPz/AgAAAAAAADD9//7/AwAAAAAAAAD8//7/AwAAAAAAAAA=")
+tile_set = SubResource("TileSet_thkev")
+
+[node name="WallLayer" type="TileMapLayer" parent="MapLayer"]
+z_index = 2
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD7//r/BgAAAAAAAAD8//r/BgAAAAAAAAD9//r/BgAAAAAAAAD+//r/BgAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAADAPr/AAAAAAAAAAAEAPr/AAAAAAAAAAD7//n/BgAAAAAAAAD7//j/AgAAAAAAAFAEAPn/AAAAAAAAADAEAPj/AgAAAAAAAFD8//n/BgAAAAAAAAD8//j/AgAAAAAAAFADAPn/AAAAAAAAADADAPj/AgAAAAAAAFD6/wEAAgAAAAAAAAD6/wAAAgAAAAAAAAD6////AgAAAAAAAAD6//7/AgAAAAAAAAD6//3/AgAAAAAAAAD6//z/AgAAAAAAAAD6//v/AgAAAAAAAAD6//r/AgAAAAAAAAD9//n/BgAAAAAAAAD+//n/BgAAAAAAAAAAAPn/AwAAAAAAAGABAPn/AAAAAAAAADACAPn/AAAAAAAAADD6//n/AgAAAAAAAAD9//j/AgAAAAAAAFD+//j/AgAAAAAAAFD///j/AgAAAAAAAFAAAPj/AgAAAAAAAFABAPj/AgAAAAAAAFACAPj/AgAAAAAAAFD6//j/AQAAAAAAAFAFAPj/AgAAAAAAAFD9////AwAAAAAAAAD/////AwAAAAAAAAD8////AwAAAAAAAAD7////AwAAAAAAAAD///7/AgAAAAAAAAD///3/AgAAAAAAAAD///z/AgAAAAAAAAD///v/AgAAAAAAAAD6/wIAAgAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAEAAQAAgAAAAAAAGADAAQAAgAAAAAAAGACAAQAAgAAAAAAAGABAAQAAgAAAAAAAGAAAAQAAgAAAAAAAGD//wQAAgAAAAAAAGD+/wQAAgAAAAAAAGD9/wQAAgAAAAAAAGD8/wQAAgAAAAAAAGD7/wQAAgAAAAAAAGD6/wMAAgAAAAAAAAD6/wQAAQAAAAAAAAAFAAQAAgAAAAAAAGAAAP7/AgAAAAAAADAAAP3/AgAAAAAAADAAAPz/AgAAAAAAADAAAPv/AgAAAAAAADAAAP//BQAAAAAAADAAAAAABQAAAAAAADAGAPn/AgAAAAAAADAGAPr/AgAAAAAAADAGAPv/AgAAAAAAADAGAPz/AgAAAAAAADAGAP3/AgAAAAAAADAGAP7/AgAAAAAAADAGAP//AgAAAAAAADAGAAAAAgAAAAAAADAGAAEAAgAAAAAAADAGAAIAAgAAAAAAADAGAAMAAgAAAAAAADAGAAQAAQAAAAAAAGAGAPj/AQAAAAAAADAFAPr/AAAAAAAAAAAFAPn/AAAAAAAAADA=")
+tile_set = SubResource("TileSet_vy0li")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MapLayer"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapLayer/StaticBody2D"]
+z_index = 5
+position = Vector2(-246, -341)
+polygon = PackedVector2Array(5, 5, 8, 99, 219, 100, 218, 285, 195, 285, 194, 386, 276, 386, 278, 80, 524, 74, 524, 522, 18, 524, 17, 387, 154, 387, 153, 284, 21, 284, 20, -18, -11, -14, -11, 552, 552, 550, 551, -12, 5, -14)
+
+[node name="3DLayer" type="TileMapLayer" parent="MapLayer"]
+z_index = 1
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAPr/AAAAAAAAADAAAPn/AgAAAAAAADA=")
+tile_set = SubResource("TileSet_6wl64")
+metadata/_edit_lock_ = true
+
+[node name="4DLayer" type="TileMapLayer" parent="MapLayer"]
+z_index = 4
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAPr/AAAAAAAAADAAAPn/AgAAAAAAADA=")
+tile_set = SubResource("TileSet_6wl64")
+metadata/_edit_lock_ = true
+
+[node name="5DLayer" type="TileMapLayer" parent="MapLayer"]
+z_index = 4
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAPr/AAAAAAAAADAAAPn/AAAAAAAAADD///n/BAAAAAAAAFD///r/BAAAAAAAAFA=")
+tile_set = SubResource("TileSet_6wl64")
+metadata/_edit_lock_ = true
+
+[node name="PlayerCat" parent="." instance=ExtResource("1_34l4x")]
+z_index = 6
+material = SubResource("ShaderMaterial_emqv5")
+position = Vector2(-217, 106)
+scale = Vector2(1.5, 1.5)
+
+[node name="BlackScreen" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="BlackScreen"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="story_img1" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("35_emqv5")
+
+[node name="story_img2" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("18_yrggf")
+
+[node name="story_img3" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("19_2kna8")
+
+[node name="story_img4" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("20_kwkps")
+
+[node name="story_img5" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("21_wlw8e")
+
+[node name="story_img6" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("22_dckpj")
+
+[node name="story_img7" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("23_rnk80")
+
+[node name="story_img8" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("24_cbbgb")
+
+[node name="story_img9" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("25_wqtta")
+
+[node name="story_img10" type="Sprite2D" parent="BlackScreen"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(638, 362)
+texture = ExtResource("26_wdpy6")
+
+[node name="Paper" parent="." instance=ExtResource("2_uitpb")]
+z_index = 7
+position = Vector2(231.00002, 37.000008)
+rotation = 3.8624136
+scale = Vector2(2, 2)
+item = SubResource("Resource_emqv5")
+
+[node name="outside" type="Area2D" parent="."]
+z_index = 10
+position = Vector2(-249, 119)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outside"]
+position = Vector2(9.5, 1)
+shape = SubResource("RectangleShape2D_wlw8e")
+
+[node name="Table_chair" type="StaticBody2D" parent="."]
+z_index = 6
+position = Vector2(209, 105)
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Table_chair"]
+polygon = PackedVector2Array(156, -186, -12, -184, -12, -68, -106, -66, -122, -66, -152, -68, -152, 20, -16, 20, -16, 170, 156, 172)
+
+[node name="Sprite2D" type="Sprite2D" parent="Table_chair"]
+texture = ExtResource("16_l45d7")
+
+[node name="Bed" type="StaticBody2D" parent="."]
+z_index = 2
+position = Vector2(244.00002, -216)
+scale = Vector2(1.75, 1.75)
+physics_material_override = SubResource("PhysicsMaterial_34l4x")
+script = ExtResource("14_6puld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
+scale = Vector2(2.9999988, 2.9999988)
+shape = SubResource("RectangleShape2D_34l4x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bed"]
+z_index = 2
+scale = Vector2(3, 3)
+texture = ExtResource("8_umaxr")
+offset = Vector2(0, -1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bed"]
+z_index = 4
+scale = Vector2(2.9999998, 2.9999998)
+texture = ExtResource("12_v4fx0")
+offset = Vector2(0, -1)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Bed"]
+position = Vector2(0, 13.857157)
+scale = Vector2(2.9999988, 2.2559516)
+texture = ExtResource("17_pt38b")
+metadata/_edit_lock_ = true
+
+[node name="BedArea" type="Area2D" parent="Bed"]
+z_index = 1
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="BedProx" type="CollisionShape2D" parent="Bed/BedArea"]
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_6wl64")
+metadata/_edit_lock_ = true
+
+[node name="Lantern" parent="." instance=ExtResource("12_xtdm5")]
+z_index = 6
+position = Vector2(231, 136)
+scale = Vector2(2, 2)
+
+[node name="Cabinet" type="StaticBody2D" parent="."]
+position = Vector2(173, -233)
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cabinet"]
+z_index = 3
+texture = ExtResource("11_dmw8e")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cabinet"]
+polygon = PackedVector2Array(-11, -11.5, -11, -0.5, -5, -3.5, 10.5, -2, 12, 5.5, 13, -11.5)
+
+[node name="ItemTemplate" parent="Cabinet" instance=ExtResource("2_uitpb")]
+z_index = 3
+item = SubResource("Resource_l45d7")
+
+[node name="Closet" type="StaticBody2D" parent="."]
+position = Vector2(76, -229)
+scale = Vector2(3.5, 3.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Closet"]
+position = Vector2(-6, 0)
+shape = SubResource("RectangleShape2D_thkev")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Closet"]
+texture = ExtResource("12_hpbim")
+metadata/_edit_lock_ = true
+
+[node name="ClosetArea" type="Area2D" parent="Closet"]
+
+[node name="ClosetProx" type="CollisionShape2D" parent="Closet/ClosetArea"]
+position = Vector2(-3.1428566, 7.428566)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_y8ovt")
+
+[node name="ItemTemplate" parent="Closet" instance=ExtResource("2_uitpb")]
+z_index = 6
+item = SubResource("Resource_v6mxx")
+
+[node name="Bathtub" type="StaticBody2D" parent="."]
+z_index = 6
+position = Vector2(-174, -237.00002)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bathtub"]
+position = Vector2(-0.33333588, -1.6666641)
+shape = SubResource("RectangleShape2D_vy0li")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Bathtub"]
+texture = ExtResource("15_qn1lx")
+metadata/_edit_lock_ = true
+
+[node name="BathtubArea" type="Area2D" parent="Bathtub"]
+
+[node name="BathtubProx" type="CollisionShape2D" parent="Bathtub/BathtubArea"]
+position = Vector2(1, 1.8333359)
+shape = SubResource("RectangleShape2D_lilbk")
+
+[node name="ItemTemplate" parent="Bathtub" instance=ExtResource("2_uitpb")]
+item = SubResource("Resource_rqhv5")
+
+[node name="Bathroom Mirror" type="StaticBody2D" parent="."]
+z_index = 5
+position = Vector2(-47.000004, -304)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bathroom Mirror"]
+shape = SubResource("RectangleShape2D_8fqaf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Bathroom Mirror"]
+position = Vector2(-0.6666667, -5.6666665)
+texture = ExtResource("16_v4fx0")
+metadata/_edit_lock_ = true
+
+[node name="Sink" type="StaticBody2D" parent="."]
+z_index = 6
+position = Vector2(-49, -245)
+scale = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sink"]
+position = Vector2(0, -2.199997)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_xbr43")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sink"]
+texture = ExtResource("17_vspby")
+metadata/_edit_lock_ = true
+
+[node name="SinkArea" type="Area2D" parent="Sink"]
+
+[node name="SinkProx" type="CollisionShape2D" parent="Sink/SinkArea"]
+position = Vector2(-0.6000004, 2.199997)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_6puld")
+
+[node name="ItemTemplate" parent="Sink" instance=ExtResource("2_uitpb")]
+item = SubResource("Resource_fjoe6")
+
+[node name="Toilet" type="StaticBody2D" parent="."]
+z_index = 6
+position = Vector2(-210, -103)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toilet"]
+position = Vector2(-1.5258789e-05, 9.83334)
+shape = SubResource("RectangleShape2D_mk1ck")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toilet"]
+texture = ExtResource("18_ob2wa")
+metadata/_edit_lock_ = true
+
+[node name="ToiletArea" type="Area2D" parent="Toilet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toilet/ToiletArea"]
+position = Vector2(3.3333282, 5.5000114)
+shape = SubResource("RectangleShape2D_pt38b")
+
+[node name="ItemTemplate" parent="Toilet" instance=ExtResource("2_uitpb")]
+item = SubResource("Resource_j5yei")
+
+[node name="Bathroom Door" type="StaticBody2D" parent="."]
+z_index = 2
+position = Vector2(-72, 12)
+
+[node name="DoorCollision" type="CollisionShape2D" parent="Bathroom Door"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_v4fx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bathroom Door"]
+scale = Vector2(0.15, 0.18)
+texture = ExtResource("35_j5yei")
+
+[node name="DoorArea" type="Area2D" parent="Bathroom Door"]
+
+[node name="DoorAreaProx" type="CollisionShape2D" parent="Bathroom Door/DoorArea"]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_vspby")
+
+[node name="WhistleBGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("33_rqhv5")
+
+[node name="toothdrop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("44_2kna8")
+
+[node name="toothbrushing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("44_yrggf")
+
+[node name="jumpscaresfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("46_kwkps")
+
+[node name="mirrorglassbreak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("47_wlw8e")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-217, 120)

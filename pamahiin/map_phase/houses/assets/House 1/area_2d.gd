@@ -31,7 +31,7 @@ func reset_state():
 		var tween = create_tween()
 		tween.tween_property(sprite_2d, "scale", original_scale, 0.2)
 
-func _on_dialogue_ended(state):
+func _on_dialogue_ended(resource: DialogueResource):
 	GameState.HOUSE_has_read_clue = true
 	if popup:
 		popup.close()

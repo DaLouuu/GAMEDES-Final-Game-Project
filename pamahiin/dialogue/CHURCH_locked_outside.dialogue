@@ -1,0 +1,6 @@
+~ start
+if Global.artifactCount < 3:
+	Look's locked for the moment.
+elif Global.artifactCount == 3:
+	I think I should go check the church out now.
+=> END

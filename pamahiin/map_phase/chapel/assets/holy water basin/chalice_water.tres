@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_tihyx")
 name = "Chalice with holy water"
-description = Array[String](["Its full of holy water now", "Now let's get to the altar and service our prayer"])
+description = Array[String](["Its full of holy water now", "Now let's get to the altar up north over there and service our prayer"])
+itemType = 0
 texture = ExtResource("2_ppls1")
 metadata/_custom_type_script = "uid://26w5lr3t485j"

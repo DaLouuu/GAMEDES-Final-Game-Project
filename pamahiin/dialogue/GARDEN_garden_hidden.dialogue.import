@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://djtbb34rnc8o1"
+path="res://.godot/imported/GARDEN_garden_hidden.dialogue-31f71822f2a774484ec71b86479b2c95.tres"
+
+[deps]
+
+source_file="res://dialogue/GARDEN_garden_hidden.dialogue"
+dest_files=["res://.godot/imported/GARDEN_garden_hidden.dialogue-31f71822f2a774484ec71b86479b2c95.tres"]
+
+[params]
+
+defaults=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://egbkdyoie7lc"]
+[gd_scene load_steps=10 format=3 uid="uid://cvpbwle0w3jmv"]
 
 [ext_resource type="Texture2D" uid="uid://jrwq56x1vlg8" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="1_ddo6w"]
 [ext_resource type="Script" uid="uid://b1kdo6u1xoxbr" path="res://map_phase/houses/assets/House 1/chest.gd" id="1_w71re"]

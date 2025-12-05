@@ -6,15 +6,20 @@ var is_moving_up = false
 var minTime = 3.0
 var maxTime = 8.0
 var isLadySpawns = false
+var player : Player
 func toggle_GlobalState(_item: InvItem):
 	GameState.HOUSE_read_first_item_puzzle = true
 func start_funcs():
+	await get_tree().physics_frame
 	$WhiteLady.start_funcs()
 	$WhiteLady2.start_funcs()
 	$WhiteLady3.start_funcs()
 	
-	
+func player_reset():
+	Global.game_controller.change_2d_scene("uid://bbim0h8qggemx")
 func _ready():
+	player = get_tree().get_first_node_in_group("Player")
+	player.player_resetted.connect(player_reset)
 	$WhiteLady.stop_funcs()
 	$WhiteLady2.stop_funcs()
 	$WhiteLady3.stop_funcs()

@@ -21,41 +21,73 @@ var audioDictionary: Dictionary[AUDIO_PLAY, Resource] = {
 
 
 var garden_state: Node = null
+func startPlayer():
+	player.visible = true
+	player.trigger_cat_ready()
+func triggerStart():
+	await get_tree().physics_frame
+	startPlayer()
+	var new_scene_instance = load("uid://c4psaq201foex").instantiate()
+	#var old_scene = curr_2d_scene
+	world_2d.add_child(new_scene_instance)
+	curr_2d_scene = new_scene_instance
 
+func reset_player_to_scene():
+	var spawn_marker = curr_2d_scene.get_node_or_null("Marker2D-SpawnP")
 
-func setupPlayer(_player_: Player):
-	player = Player.new()
-	player.collect(load("res://dev/resource_scripts/inventory/items/lantern.tres"))
+	if spawn_marker:
+		player.global_position = spawn_marker.global_position
+		#new_scene_instance.add_child(player)
+		
+		var camera: Camera2D = player.get_node("Camera2D")
+		changed_scene_with_character.emit()
+		if camera:
+			camera.reset_smoothing()
+func inCutscene(res : DialogueResource):
+	Global.game_controller.player.is_cutscene_controlled = false
+func notCutscene(res : DialogueResource):
+	Global.game_controller.player.is_cutscene_controlled = true
+func gotoMainMenu():
+	if curr_2d_scene:
+		curr_2d_scene.queue_free()	
+	var new_scene_instance = load("uid://bdt62bgxs0isa").instantiate()
+	world_2d.add_child(new_scene_instance)
+	curr_2d_scene = new_scene_instance	
 func _ready() -> void:
+	player.visible = false
 	# Register controller globally
 	await get_tree().physics_frame
 	Global.game_controller = self
 	await get_tree().physics_frame
 	DialogueManager.get_current_scene = func():
 		return Global.game_controller.curr_2d_scene
-	#player.artifact_collect.connect(Global.game_controller.updateArtifactCount)
-	#DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "start")
-	#change_2d_scene("res://dev/paul's do not touch/test_church.tscn")
-	#change_2d_scene("res://map_phase/houses/puzzle_pathways/pathway_1/house_puzzle_shirt_1.tscn")
-	#change_2d_scene("res://map_phase/chapel/chapel_worldmap.tscn")
-	#change_2d_scene("res://map_phase/houses/house_together.tscn")
-	change_2d_scene("uid://bev6rvoc16yms") # Motel
+
 	#change_2d_scene("uid://cyc8laq2oakj0") # WorldMap
-	#change_2d_scene("res://map_phase/cave/Cave.tscn")
-  # Try to attach GardenState if current scene has one
-	#_find_and_set_garden_state()
 
-	# TEMPORARY: load your debugging scene
-	# change_2d_scene("res://dev/dana's_testing_stuff/garden_phase.tscn")
-
-
-
+	
+	# Instantiate main menu
+	var new_scene_instance = load("uid://bdt62bgxs0isa").instantiate()
+	world_2d.add_child(new_scene_instance)
+	curr_2d_scene = new_scene_instance
+	
+	# Test and debug
+	#startPlayer()
+	##change_2d_scene("uid://bbim0h8qggemx") # House final
+	##change_2d_scene("uid://dxhni64oxaov4") # Church
+	#change_2d_scene("uid://cyc8laq2oakj0")
+	#DialogueManager.readyWithController()
+	
+	
 func update_artifactCheck():
-	Global.artifactCount =0
-	if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
-		Global.artifactCount += 1
-	if GameState.CAVE_has_salt:
-		Global.artifactCount += 1
+	await get_tree().physics_frame
+	#Global.artifactCount =0
+	#if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
+		#Global.artifactCount += 1
+	#if GameState.CAVE_has_salt:
+		#Global.artifactCount += 1
+	#if GameState.CHURCH_has_gotten_water:
+		#Global.artifactCount += 1
+		#
 func play_curr_global_audio(playType : AUDIO_PLAY):
 	if audioDictionary.has(playType):
 		AudioManager.music_player.stream = audioDictionary[playType]

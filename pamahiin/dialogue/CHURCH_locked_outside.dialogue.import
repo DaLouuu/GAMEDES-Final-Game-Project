@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bex4cplplwk4y"
+path="res://.godot/imported/CHURCH_locked_outside.dialogue-a971c17ef9238027f5dc57485859a869.tres"
+
+[deps]
+
+source_file="res://dialogue/CHURCH_locked_outside.dialogue"
+dest_files=["res://.godot/imported/CHURCH_locked_outside.dialogue-a971c17ef9238027f5dc57485859a869.tres"]
+
+[params]
+
+defaults=true

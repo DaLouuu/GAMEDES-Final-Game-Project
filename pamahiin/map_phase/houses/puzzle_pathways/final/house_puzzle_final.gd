@@ -2,16 +2,21 @@ extends Node2D
 
 @onready var default_coords: Vector2 = $"Marker2D-SpawnP".position
 @onready var itemKey = $ItemTemplate
+var player : Player
 
 var locationType : EnumsRef.LocationType = EnumsRef.LocationType.HOME
 
 func getLocationType()->EnumsRef.LocationType:
 	return locationType
+
+func reset_player():
+	Global.game_controller.change_2d_scene("uid://bbim0h8qggemx")
+
 func _ready():
-	if $"Puzzle/ItemTemplate-Key".has_signal("item_collected"):
-		$"Puzzle/ItemTemplate-Key".item_collected.connect(jumpscare_node)
-	else:
-		print("❌ ItemTemplate does NOT have signal item_collected")
+	player = get_tree().get_first_node_in_group("Player")
+	player.player_resetted.connect(reset_player)
+	$"Puzzle/ItemTemplate-Key".item_collected.connect(jumpscare_node)
+
 	
 func jumpscare_node(item:InvItem):
 	print("boo")
@@ -42,18 +47,17 @@ func jumpscare_node(item:InvItem):
 	$WhiteLady.start_funcs()
 	$WhiteLady.visible = true
 	rect.visible = false
-
-
+	$"Area2D-BackToRoom2".queue_free()
+	$"Area2D-BackToRoom3".queue_free()
 
 	rect.queue_free()
 func _on_area_2d_back_to_room_body_entered(body: Node2D) -> void:
 	$AudioStreamPlayer2D.stop()
-	
 	if body.is_in_group("Player") and GameState.HOUSE_has_gotten_house_key:
 		GameState.HOUSE_seen_key_but_did_not_pickup = false
 		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/puzzle_pathways/pathway_3/house_puzzle_vase_3.tscn", true)
 		
-	elif body.is_in_group("Player"):
+	elif body.is_in_group("Player") and not GameState.HOUSE_has_gotten_house_key:
 		GameState.HOUSE_seen_key_but_did_not_pickup = true
 		Global.game_controller.change_2d_scene_check_from("res://map_phase/houses/house2_room.tscn")
 		

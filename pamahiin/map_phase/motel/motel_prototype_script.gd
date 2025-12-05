@@ -23,8 +23,10 @@ const _BURIAL_DIALOGUE = preload("uid://q26y70q2mork")
 const _GRAVEYARD_DIALOGUE = preload("uid://bbqvi23sbe1fp")
 const _PREWORLDMAP_DIALOGUE = preload("uid://ceyiyty5lfndm")
 const _WORLDMAP_DIALOGUE = preload("uid://bhrgm6uea2hwl")
+const _NOLANTERN = preload("uid://81mn2e5jlkts")
 
 func _ready() -> void:
+	await get_tree().physics_frame
 	player = get_tree().get_first_node_in_group("Player")
 	door_prox.body_entered.connect(_on_body_entered)
 	door_prox.body_exited.connect(_on_body_exited)
@@ -37,6 +39,8 @@ func _ready() -> void:
 	$Toilet/ItemTemplate.item_inspected.connect(_on_inspect)
 	
 	if player:
+		var pl = player as Player
+		pl.camera.make_current()
 		player.is_cutscene_controlled = true
 		player.is_motel_introduction = true
 		
@@ -49,7 +53,7 @@ func _ready() -> void:
 		if player_cam:
 			player_cam.zoom = Vector2(1.75, 1.75)
 			_camera_active = true
-			
+
 		# story context introduction
 		await get_tree().create_timer(2.0).timeout
 		$WhistleBGM.play()
@@ -148,7 +152,13 @@ func _on_body_exited(body):
 
 func _go_outside(body):
 	if body.is_in_group("Player") and not player.is_cutscene_controlled:
-
+		if not body.get_node("PointLight2D").enabled:
+			DialogueManager.show_example_dialogue_balloon(_NOLANTERN)
+			return
+		
+		$dooropen.play()
+		$doorclose.play()
+		Global.game_controller.player.trigger_cat_ready()
 		Global.game_controller.change_2d_scene("res://map_phase/world_map.tscn")
 		
 
@@ -156,7 +166,6 @@ func _go_outside(body):
 func _on_animation_finished(animation_name: String):
 	if animation_name == "motel_introduction_cutscene_release":
 		player.is_cutscene_controlled = false
-		player.get_node("CanvasLayer").show()
 	
 func _on_inspect(body):
 	player.is_cutscene_controlled = true

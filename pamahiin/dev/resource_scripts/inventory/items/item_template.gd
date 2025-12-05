@@ -144,7 +144,6 @@ func reset_state():
 func inspect_func():
 	if not isInspectable:
 		return
-		
 	item_inspected.emit(item)
 	var resource = DialogueResource.new()
 	var count := 0
@@ -169,7 +168,7 @@ func inspect_func():
 
 	var runner = DialogueManager.show_example_dialogue_balloon(resource)
 	DialogueManager.dialogue_ended.connect(item_emit_finish)
-func item_emit_finish():
+func item_emit_finish(resource: DialogueResource):
 	item_inspected_finish.emit(item)
 	#DialogueManager.dialogue_ended.disconnect(item_emit_finish)
 func on_item_clicked():
