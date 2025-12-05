@@ -17,11 +17,19 @@ var current_step = 0
 
 
 var player : Player
+
+func showDialogueToAltar(_item:InvItem):
+	if GameState.CHURCH_has_shown_me_to_go_north:
+		return
+	DialogueManager.show_example_dialogue_balloon(load("res://dialogue/CHURCH_player_got_chalice.dialogue"))
+	GameState.CHURCH_has_shown_me_to_go_north = true
+	GameState.CHURCH_has_gotten_water = true
 func fillCup():
 	$"AudioStreamPlayer-sfx".stream = water_sfx
 	$"AudioStreamPlayer-sfx".play()
 	itemTemplateChalice.isCollectible = true
 	itemTemplateChalice.item =load("uid://dduywjf84s7ht")
+	itemTemplateChalice.item_collected.connect(showDialogueToAltar)
 	
 func jumpscare_node():
 	$"AudioStreamPlayer-churchbg".stop()
@@ -64,6 +72,7 @@ func play_face2_and_face3():
 	GameState.CHURCH_has_finished_cutscene = true
 	player.is_cutscene_controlled = false
 	enemyPriest.start_funcs()
+	$"AudioStreamPlayer-churchbg".play()
 	
 	
 func light_setup():
@@ -107,6 +116,8 @@ func _ready():
 	
 	player.player_resetted.connect(func():
 		player.global_position = $"Marker2D-SpawnP".global_position)
+	if GameState.CHURCH_has_finished_puzzle:
+		puzzle_solved()
 	if GameState.CHURCH_has_first_enter_church == false:
 		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/CHURCH_on_entrance.dialogue"))
 		$EnemyAntilight.visible = false
@@ -146,6 +157,8 @@ func item_inspected_chalice(_item:InvItem):
 		return
 	start_enemies(_item)
 func start_enemies(_item: InvItem):
+	if not $EnemyAntilight:
+		return
 	$EnemyAntilight.visible = true
 	$EnemyAntilight2.visible = true
 	$EnemyAntilight3.visible = true
@@ -170,12 +183,13 @@ func _on_light_pressed(light_name):
 		# Wrong light → reset
 		reset_sequence()
 func reset_sequence_lights():
-	$"AudioStreamPlayer-sfx".stream = wrong_sfx
-	$"AudioStreamPlayer-sfx".play()
+
 	print("Lights ran out, resetting puzzle...")
 	current_step = 0
 	reset_lights_visual()
 func reset_sequence():
+	$"AudioStreamPlayer-sfx".stream = wrong_sfx
+	$"AudioStreamPlayer-sfx".play()
 	print("Wrong light, resetting puzzle...")
 	current_step = 0
 	reset_lights_visual()
@@ -194,6 +208,8 @@ func puzzle_solved():
 func highlight_correct(light_name):
 	for c in $LightGroup.get_children():
 		if light_name == c.name:
+			var cdle = c as ChapelCandle
+			cdle.playFire()
 			var node = c
 			node.modulate = Color(0,1,0) # green flash
 
@@ -238,20 +254,30 @@ func _on_area_2d_confession_detection_body_entered(body: Node2D) -> void:
 			Global.ending = EnumsRef.EndingType.GOOD
 		Global.game_controller.change_2d_scene("uid://cs6dmviesqyfy")
 
-
+func noGetOut():
+	DialogueManager.show_example_dialogue_balloon(load("res://dialogue/CHURCH_locked_inside.dialogue"))
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		if GameState.CHURCH_has_finished_cutscene:
+			noGetOut()
+			return
 		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT1)
 
 
 
 func _on_area_2d_2_mid_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		if GameState.CHURCH_has_finished_cutscene:
+			noGetOut()
+			return
 		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT2)
 
 
 func _on_area_2d_3_right_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		if GameState.CHURCH_has_finished_cutscene:
+			noGetOut()
+			return
 		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3)
 		
 func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:

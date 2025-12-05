@@ -248,6 +248,7 @@ func collect(item : InvItem):
 	elif item.itemType == EnumsRef.ItemType.ARTIFACT:
 		$"AudioStreamPlayer-Obtained".play()
 		artifact_collect.emit(item)
+		Global.artifactCount += 1
 		Global.game_controller.update_artifactCheck()
 		await update_artifact_text_flash()
 		RecoverSanity()
@@ -256,9 +257,15 @@ func collect(item : InvItem):
 	inventory.obtain(item)
 func update_artifact_text_flash():
 	var label: Label = $CanvasLayer/ArtifactProgress
-	
+	if Global.artifactCount==4:
+		label.text = "Go to Altar"
+
 	# Update text
-	label.text = "Artifact: " + str(Global.artifactCount) + "/4"
+	else:
+		if Global.artifactCount == 3:
+			DialogueManager.show_dialogue_balloon(load("res://dialogue/CHURCH_locked_outside.dialogue"))
+			
+		label.text = "Artifact: " + str(Global.artifactCount) + "/4"
 	
 
 	

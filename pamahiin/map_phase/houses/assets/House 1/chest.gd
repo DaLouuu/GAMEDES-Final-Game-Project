@@ -5,9 +5,11 @@ signal chest_opened(item:InvItem)
 var is_player_in_range = false
 var is_opened_chest = false
 
-
+func _ready() -> void:
+	if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
+		$Sprite2D.frame = 4
 func _process(_delta: float) -> void:
-	if is_player_in_range and Input.is_action_just_pressed("interact") and GameState.HOUSE_has_gotten_house_key:
+	if is_player_in_range and Input.is_action_just_pressed("interact") and GameState.HOUSE_has_gotten_house_key and not GameState.HOUSE_ARTIFACT_has_artifact_rosary:
 		if not is_opened_chest:
 			$AnimationPlayer.play("chest_open")
 			is_opened_chest = true

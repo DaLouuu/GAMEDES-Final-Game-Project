@@ -54,27 +54,27 @@ func _ready() -> void:
 			_camera_active = true
 
 		## story context introduction
-		#await get_tree().create_timer(2.0).timeout
-		#$WhistleBGM.play()
-		#await story_context_display("story_img1", true, 4.0)
-		#DialogueManager.show_example_dialogue_balloon(_CHURCH_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img1", false, 1.5)
-		#await story_context_display("story_img2", true, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_BURIAL_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img2", false, 1.5)
-		#await story_context_display("story_img3", true, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_GRAVEYARD_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img3", false, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_PREWORLDMAP_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img4", true, 1.5)
-		#DialogueManager.show_example_dialogue_balloon(_WORLDMAP_DIALOGUE)
-		#await DialogueManager.dialogue_ended
-		#await story_context_display("story_img4", false, 1.5)
-		#
+		await get_tree().create_timer(2.0).timeout
+		$WhistleBGM.play()
+		await story_context_display("story_img1", true, 4.0)
+		DialogueManager.show_example_dialogue_balloon(_CHURCH_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img1", false, 1.5)
+		await story_context_display("story_img2", true, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_BURIAL_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img2", false, 1.5)
+		await story_context_display("story_img3", true, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_GRAVEYARD_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img3", false, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_PREWORLDMAP_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img4", true, 1.5)
+		DialogueManager.show_example_dialogue_balloon(_WORLDMAP_DIALOGUE)
+		await DialogueManager.dialogue_ended
+		await story_context_display("story_img4", false, 1.5)
+		
 		#
 		#$WhistleBGM.stop()
 		# play motel cutscene part 1
@@ -150,7 +150,7 @@ func _on_body_exited(body):
 		$"doorclose".play()
 
 func _go_outside(body):
-	if body.is_in_group("Player") and not player.is_cutscene_controlled:
+	if body.is_in_group("Player") and not player.is_cutscene_controlled and GameState.PROLOGUE_has_gotten_lamp:
 		Global.game_controller.player.trigger_cat_ready()
 		Global.game_controller.change_2d_scene("res://map_phase/world_map.tscn")
 		

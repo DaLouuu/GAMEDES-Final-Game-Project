@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=2 format=3 uid="uid://d0coybifkdwf5"]
+
+[ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_w7jvm"]
+
+[resource]
+script = ExtResource("1_w7jvm")
+name = "Walis"
+itemType = 0
+metadata/_custom_type_script = "uid://26w5lr3t485j"

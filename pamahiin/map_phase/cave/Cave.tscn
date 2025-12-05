@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=4 uid="uid://dnvq5fs7tu167"]
 
 [ext_resource type="Script" uid="uid://cglix2bc5f5kp" path="res://map_phase/cave/cave.gd" id="1_non6b"]
-[ext_resource type="TileSet" uid="uid://c0axof3qfikqk" path="res://art/GAMEDES art/Cave/maze_tiles.tres" id="1_nqyx7"]
+[ext_resource type="TileSet" uid="uid://d3kam1yhxtadr" path="res://art/GAMEDES art/Cave/maze_tiles.tres" id="1_nqyx7"]
 [ext_resource type="PackedScene" uid="uid://q681f20jswvn" path="res://map_phase/cave/interactables/CaveMonster.tscn" id="3_52keo"]
 [ext_resource type="PackedScene" uid="uid://dv47fu3pxwub6" path="res://map_phase/cave/interactables/Cobweb.tscn" id="4_gopa2"]
 [ext_resource type="PackedScene" uid="uid://byj6caynuunot" path="res://map_phase/cave/interactables/Crystal.tscn" id="4_wirwf"]

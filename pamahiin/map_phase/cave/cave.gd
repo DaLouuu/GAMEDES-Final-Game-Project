@@ -18,9 +18,13 @@ var _attacker_count := 0
 var _has_entered_main_room := false
 func getCustomMarker(_local: EnumsRef.LOCAL_FROM_TYPE = EnumsRef.LOCAL_FROM_TYPE.CAVE):
 	return customMarker
+
+func player_reset():
+	Global.game_controller.change_2d_scene("uid://dnvq5fs7tu167")
 func _ready() -> void:
-	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, true)
+	_get_player().player_resetted.connect(player_reset)
 	
+	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, true)
 	for enemy: CaveMonster in _get_enemies():
 		enemy.player_attack_started.connect(_on_player_attack_started)
 		enemy.player_attack_ended.connect(_on_player_attack_ended)

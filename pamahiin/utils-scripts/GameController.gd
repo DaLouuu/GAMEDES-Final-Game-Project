@@ -43,7 +43,10 @@ func reset_player_to_scene():
 		changed_scene_with_character.emit()
 		if camera:
 			camera.reset_smoothing()
-
+func inCutscene(res : DialogueResource):
+	Global.game_controller.player.is_cutscene_controlled = false
+func notCutscene(res : DialogueResource):
+	Global.game_controller.player.is_cutscene_controlled = true
 func gotoMainMenu():
 	if curr_2d_scene:
 		curr_2d_scene.queue_free()	
@@ -69,15 +72,22 @@ func _ready() -> void:
 	
 	# Test and debug
 	startPlayer()
-	change_2d_scene("uid://bbim0h8qggemx")
+	#change_2d_scene("uid://bbim0h8qggemx") # House final
+	#change_2d_scene("uid://dxhni64oxaov4") # Church
+	change_2d_scene("uid://cyc8laq2oakj0")
+	DialogueManager.readyWithController()
 	
 	
 func update_artifactCheck():
-	Global.artifactCount =0
-	if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
-		Global.artifactCount += 1
-	if GameState.CAVE_has_salt:
-		Global.artifactCount += 1
+	await get_tree().physics_frame
+	#Global.artifactCount =0
+	#if GameState.HOUSE_ARTIFACT_has_artifact_rosary:
+		#Global.artifactCount += 1
+	#if GameState.CAVE_has_salt:
+		#Global.artifactCount += 1
+	#if GameState.CHURCH_has_gotten_water:
+		#Global.artifactCount += 1
+		#
 func play_curr_global_audio(playType : AUDIO_PLAY):
 	if audioDictionary.has(playType):
 		AudioManager.music_player.stream = audioDictionary[playType]

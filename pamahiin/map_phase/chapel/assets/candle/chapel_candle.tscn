@@ -147,7 +147,7 @@ _data = {
 radius = 256.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oe71q"]
-radius = 64.0
+radius = 52.0
 
 [node name="ChapelCandle" type="StaticBody2D"]
 script = ExtResource("1_p2mk0")

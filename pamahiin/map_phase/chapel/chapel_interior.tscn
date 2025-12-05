@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dxhni64oxaov4"]
+[gd_scene load_steps=34 format=4 uid="uid://dxhni64oxaov4"]
 
 [ext_resource type="Script" uid="uid://b6e6l2pt7gwbl" path="res://script/chapel/chapel.gd" id="1_gmmbn"]
 [ext_resource type="TileSet" uid="uid://dvp8dwdk8kb61" path="res://map_phase/chapel/assets/chapel_interior_tilemap.tres" id="2_t4d6x"]
@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://dvqnwx3wbld7a" path="res://art/Audio Assets/footsteps/fall_wood.mp3" id="19_6ov81"]
 [ext_resource type="AudioStream" uid="uid://ub7kmiix26l7" path="res://art/Audio Assets/blood-chillingly-creepy-atmospheres-183561.mp3" id="20_abstw"]
 [ext_resource type="Script" path="res://map_phase/cave/direction_marker.gd" id="20_vlcxl"]
+[ext_resource type="AudioStream" uid="uid://b2sgislq8jsv2" path="res://art/Audio Assets/correct-156911.mp3" id="20_y6fcv"]
+[ext_resource type="AudioStream" uid="uid://d2o83cvarjt8d" path="res://art/Audio Assets/desk-thud-106752.mp3" id="22_y6fcv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hile"]
 radius = 91.92
@@ -314,6 +316,7 @@ collision_scale = 1.5
 position = Vector2(880, 1928)
 scale = Vector2(0.2, 0.2)
 item = ExtResource("9_lgo5a")
+collision_scale = 7.0
 
 [node name="EnemyAntilight" parent="." instance=ExtResource("3_a3c1c")]
 visible = false
@@ -491,7 +494,7 @@ y_sort_enabled = true
 use_parent_material = true
 position = Vector2(-201, -297.50003)
 rotation = -0.11334442
-tile_map_data = PackedByteArray("AAAUACYACgAAAAEAAAAWACYACgACAAEAAAAQACYACgAAAAEAAAASACYACgACAAEAAAAMACYACgAAAAEAAAAOACYACgACAAEAAAANADEACgAAAAUAAAANADIACgAAAAYAAAAOADEACgABAAUAAAAPADEACgACAAUAAAASADEACgAAAAUAAAASADIACgAAAAYAAAATADEACgABAAUAAAATADIACgABAAYAAAAUADEACgACAAUAAAAUADIACgACAAYAAAAlAC8ACgAAAAUAAAAlADAACgAAAAYAAAAmAC8ACgABAAUAAAAmADAACgABAAYAAAAnAC8ACgACAAUAAAAnADAACgACAAYAAAAnADMACgAAAAUAAAAnADQACgAAAAYAAAAoADMACgABAAUAAAAoADQACgABAAYAAAApADMACgACAAUAAAApADQACgACAAYAAAAgADYACgAAAAUAAAAgADcACgAAAAYAAAAhADYACgABAAUAAAAhADcACgABAAYAAAAiADYACgACAAUAAAAiADcACgACAAYAAAAPACEACgAAAAUAAAAPACIACgAAAAYAAAAQACEACgABAAUAAAAQACIACgABAAYAAAARACEACgACAAUAAAARACIACgACAAYAAAAmACAACgAAAAUAAAAmACEACgAAAAYAAAAnACAACgABAAUAAAAnACEACgABAAYAAAAoACAACgACAAUAAAAoACEACgACAAYAAAAOADIACgABAAYAAAAPADIACgACAAYAAAAuAEUACgAEAAAAAAAuAEYACgAEAAEAAAAvAEUACgAFAAAAAAAvAEYACgAFAAEAAAAwAEUACgAGAAAAAAAwAEYACgAGAAEAAAAqAEsACgAEAAAAAAAqAEwACgAEAAEAAAArAEsACgAFAAAAAAArAEwACgAFAAEAAAAsAEsACgAGAAAAAAAsAEwACgAGAAEAAAArADcACgAEAAAAAAArADgACgAEAAEAAAAsADcACgAFAAAAAAAsADgACgAFAAEAAAAtADcACgAGAAAAAAAtADgACgAGAAEAAAA=")
+tile_map_data = PackedByteArray("AAAUACYACgAAAAEAAAAWACYACgACAAEAAAAQACYACgAAAAEAAAASACYACgACAAEAAAAMACYACgAAAAEAAAAOACYACgACAAEAAAANADEACgAAAAUAAAANADIACgAAAAYAAAAOADEACgABAAUAAAAPADEACgACAAUAAAASADEACgAAAAUAAAASADIACgAAAAYAAAATADEACgABAAUAAAATADIACgABAAYAAAAUADEACgACAAUAAAAUADIACgACAAYAAAAlAC8ACgAAAAUAAAAlADAACgAAAAYAAAAmAC8ACgABAAUAAAAmADAACgABAAYAAAAnAC8ACgACAAUAAAAnADAACgACAAYAAAAnADMACgAAAAUAAAAnADQACgAAAAYAAAAoADMACgABAAUAAAAoADQACgABAAYAAAApADMACgACAAUAAAApADQACgACAAYAAAAgADYACgAAAAUAAAAgADcACgAAAAYAAAAhADYACgABAAUAAAAhADcACgABAAYAAAAiADYACgACAAUAAAAiADcACgACAAYAAAAPACEACgAAAAUAAAAPACIACgAAAAYAAAAQACEACgABAAUAAAAQACIACgABAAYAAAARACEACgACAAUAAAARACIACgACAAYAAAAmACAACgAAAAUAAAAOADIACgABAAYAAAAPADIACgACAAYAAAAuAEUACgAEAAAAAAAuAEYACgAEAAEAAAAvAEUACgAFAAAAAAAvAEYACgAFAAEAAAAwAEUACgAGAAAAAAAwAEYACgAGAAEAAAAqAEsACgAEAAAAAAAqAEwACgAEAAEAAAArAEsACgAFAAAAAAArAEwACgAFAAEAAAAsAEsACgAGAAAAAAAsAEwACgAGAAEAAAArADcACgAEAAAAAAArADgACgAEAAEAAAAsADcACgAFAAAAAAAsADgACgAFAAEAAAAtADcACgAGAAAAAAAtADgACgAGAAEAAAA=")
 tile_set = ExtResource("2_t4d6x")
 
 [node name="Chairs3" type="TileMapLayer" parent="TileMap" groups=["tilemaps"]]
@@ -509,6 +512,7 @@ tile_map_data = PackedByteArray("AAAeACgAAQAAAAIAAAAYACgAAQAJAAQAAAAYADUAAQAHAAY
 tile_set = ExtResource("2_t4d6x")
 
 [node name="Animatable_puzzle" type="TileMapLayer" parent="TileMap" groups=["tilemaps"]]
+self_modulate = Color(3.2359245, 2.4560845, 2.4560845, 1)
 y_sort_enabled = true
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAxAB4AAQAGAAUAAAADAA4AAQAHAAQAAAAeABoAAQAKAAAAAAAYACgAAQAKAAQAAAAeACgAAQAGAAIAAAAeADUAAQAIAAAAAAA=")
@@ -542,9 +546,13 @@ position = Vector2(65.5, 41)
 shape = SubResource("RectangleShape2D_abstw")
 
 [node name="AudioStreamPlayer-sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_y6fcv")
 
 [node name="AudioStreamPlayer-churchbg" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_abstw")
+
+[node name="AudioStreamPlayer-wrong-sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_y6fcv")
 
 [connection signal="body_entered" from="Area2D-Confession-Detection" to="." method="_on_area_2d_confession_detection_body_entered"]
 [connection signal="body_entered" from="Cutscene_priest/Area2D-TriggerPriestCutscene" to="." method="_on_area_2d_trigger_priest_cutscen_body_entered"]
