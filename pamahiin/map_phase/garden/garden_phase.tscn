@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://cyqsdqbaspryc"]
+[gd_scene load_steps=62 format=4 uid="uid://cyqsdqbaspryc"]
 
 [ext_resource type="Texture2D" uid="uid://dphgv71np6ag7" path="res://art/GAMEDES art/Grass/Grass Full Tileset.png" id="1_x6s6a"]
 [ext_resource type="Texture2D" uid="uid://da5f3jy0mnaey" path="res://art/GAMEDES art/Grass/Middle_1.png" id="2_nl4u2"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://cjv17wjx0bj2x" path="res://map_phase/garden/DwendeSpawner.gd" id="33_ook4w"]
 [ext_resource type="PackedScene" uid="uid://boxtooqck02ur" path="res://map_phase/garden/dwende.tscn" id="34_cghnp"]
 [ext_resource type="Script" uid="uid://cgr17worugxb5" path="res://map_phase/garden/CicadaTimer.gd" id="36_8vun7"]
+[ext_resource type="TileSet" uid="uid://d3kam1yhxtadr" path="res://art/GAMEDES art/Cave/maze_tiles.tres" id="39_krrnd"]
 [ext_resource type="Script" uid="uid://ipiosyylu66j" path="res://map_phase/garden/ChaseManager.gd" id="41_4mh6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_krrnd"]
@@ -189,6 +190,9 @@ radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_84riu"]
 radius = 18.248287
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6s6a"]
+size = Vector2(2755.9988, 210)
 
 [node name="Garden" type="Node2D"]
 
@@ -7277,6 +7281,41 @@ duwende_scene = ExtResource("34_cghnp")
 spawn_points = [NodePath("../SpawnPoints/Spawn1"), NodePath("../SpawnPoints/Spawn2")]
 
 [node name="ChaseTimer" type="Timer" parent="ChaseManager"]
+
+[node name="Marker2D-SpawnP" type="Marker2D" parent="."]
+position = Vector2(1339, 2443)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1053, 2573)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(323, 95)
+shape = SubResource("RectangleShape2D_x6s6a")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(125.00006, 814)
+rotation = 1.5716358
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(393.08032, 95)
+shape = SubResource("RectangleShape2D_x6s6a")
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2(1053, -358)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(323, 95)
+shape = SubResource("RectangleShape2D_x6s6a")
+
+[node name="Cave2" type="TileMapLayer" parent="."]
+position = Vector2(4880, -324)
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AADd/wIAAAADAAAAAADd/wMAAAADAAAAAADd/wQAAAADAAAAAADd/wUAAAADAAAAAADd/wYAAAADAAAAAADd/wcAAAADAAAAAADd/wgAAAADAAAAAADd/wkAAAADAAAAAADd/woAAAADAAAAAADd/wsAAAADAAAAAADd/wwAAAADAAAAAADd/w0AAAADAAAAAADd/w4AAAADAAAAAADd/w8AAAADAAAAAADd/xAAAAADAAAAAADd/xEAAAADAAAAAADd/xIAAAADAAAAAADd/xMAAAADAAAAAADd/xQAAAADAAAAAADd/xUAAAADAAAAAADd/xYAAAADAAAAAADd/xcAAAADAAAAAADd/xgAAAADAAAAAADd/xkAAAADAAAAAADd/xoAAAADAAAAAADd/xsAAAADAAAAAADd/xwAAAADAAAAAADd/x0AAAADAAAAAADd/x4AAAADAAAAAADd/x8AAAADAAAAAADd/yAAAAADAAAAAADd/yEAAAADAAAAAADd/yIAAAADAAAAAADd/yMAAAADAAAAAADd/yQAAAADAAAAAADd/yUAAAADAAAAAADd/yYAAAADAAAAAADd/ycAAAADAAAAAADd/ygAAAADAAAAAADd/ykAAAADAAAAAADd/yoAAAADAAAAAADe/wIAAAADAAAAAADe/wMAAAADAAAAAADe/wQAAAADAAAAAADe/wUAAAADAAAAAADe/wYAAAADAAAAAADe/wcAAAADAAAAAADe/wgAAAADAAAAAADe/wkAAAADAAAAAADe/woAAAADAAAAAADe/wsAAAADAAAAAADe/wwAAAADAAAAAADe/w0AAAADAAAAAADe/w4AAAADAAAAAADe/w8AAAADAAAAAADe/xAAAAADAAAAAADe/xEAAAADAAAAAADe/xIAAAADAAAAAADe/xMAAAADAAAAAADe/xQAAAADAAAAAADe/xUAAAADAAAAAADe/xYAAAADAAAAAADe/xcAAAADAAAAAADe/xgAAAADAAAAAADe/xkAAAADAAAAAADe/xoAAAADAAAAAADe/xsAAAADAAAAAADe/xwAAAADAAAAAADe/x0AAAADAAAAAADe/x4AAAADAAAAAADe/x8AAAADAAAAAADe/yAAAAADAAAAAADe/yEAAAADAAAAAADe/yIAAAADAAAAAADe/yMAAAADAAAAAADe/yQAAAADAAAAAADe/yUAAAADAAAAAADe/yYAAAADAAAAAADe/ycAAAADAAAAAADe/ygAAAADAAAAAADe/ykAAAADAAAAAADe/yoAAAADAAAAAADf/wIAAAADAAAAAADf/wMAAAADAAAAAADf/wQAAAADAAAAAADf/wUAAAADAAAAAADf/wYAAAADAAAAAADf/wcAAAADAAAAAADf/wgAAAADAAAAAADf/wkAAAADAAAAAADf/woAAAADAAAAAADf/wsAAAADAAAAAADf/wwAAAADAAAAAADf/w0AAAADAAAAAADf/w4AAAADAAAAAADf/w8AAAADAAAAAADf/xAAAAADAAAAAADf/xEAAAADAAAAAADf/xIAAAADAAAAAADf/xMAAAADAAAAAADf/xQAAAADAAAAAADf/xUAAAADAAAAAADf/xYAAAADAAAAAADf/xcAAAADAAAAAADf/xgAAAADAAAAAADf/xkAAAADAAAAAADf/xoAAAADAAAAAADf/xsAAAADAAAAAADf/xwAAAADAAAAAADf/x0AAAADAAAAAADf/x4AAAADAAAAAADf/x8AAAADAAAAAADf/yAAAAADAAAAAADf/yEAAAADAAAAAADf/yIAAAADAAAAAADf/yMAAAADAAAAAADf/yQAAAADAAAAAADf/yUAAAADAAAAAADf/yYAAAADAAAAAADf/ycAAAADAAAAAADf/ygAAAADAAAAAADf/ykAAAADAAAAAADf/yoAAAADAAAAAADg/wIAAAADAAAAAADg/wMAAAADAAAAAADg/wQAAAADAAAAAADg/wUAAAADAAAAAADg/wYAAAADAAAAAADg/wcAAAADAAAAAADg/wgAAAADAAAAAADg/wkAAAADAAAAAADg/woAAAADAAAAAADg/wsAAAADAAAAAADg/wwAAAADAAAAAADg/w0AAAADAAAAAADg/w4AAAADAAAAAADg/w8AAAADAAAAAADg/xAAAAADAAAAAADg/xEAAAADAAAAAADg/xIAAAADAAAAAADg/xMAAAADAAAAAADg/xQAAAADAAAAAADg/xUAAAADAAAAAADg/xYAAAADAAAAAADg/xcAAAADAAAAAADg/xgAAAADAAAAAADg/xkAAAADAAAAAADg/xoAAAADAAAAAADg/xsAAAADAAAAAADg/xwAAAADAAAAAADg/x0AAAADAAAAAADg/x4AAAADAAAAAADg/x8AAAADAAAAAADg/yAAAAADAAAAAADg/yEAAAADAAAAAADg/yIAAAADAAAAAADg/yMAAAADAAAAAADg/yQAAAADAAAAAADg/yUAAAADAAAAAADg/yYAAAADAAAAAADg/ycAAAADAAAAAADg/ygAAAADAAAAAADg/ykAAAADAAAAAADg/yoAAAADAAAAAADh/wIAAAADAAAAAADh/wMAAAADAAAAAADh/wQAAAADAAAAAADh/wUAAAADAAAAAADh/wYAAAADAAAAAADh/wcAAAADAAAAAADh/wgAAAADAAAAAADh/wkAAAADAAAAAADh/woAAAADAAAAAADh/wsAAAADAAAAAADh/wwAAAADAAAAAADh/w0AAAADAAAAAADh/w4AAAADAAAAAADh/w8AAAADAAAAAADh/xAAAAADAAAAAADh/xEAAAADAAAAAADh/xIAAAADAAAAAADh/xMAAAADAAAAAADh/xQAAAADAAAAAADh/xUAAAADAAAAAADh/xYAAAADAAAAAADh/xcAAAADAAAAAADh/xgAAAADAAAAAADh/xkAAAADAAAAAADh/xoAAAADAAAAAADh/xsAAAADAAAAAADh/xwAAAADAAAAAADh/x0AAAADAAAAAADh/x4AAAADAAAAAADh/x8AAAADAAAAAADh/yAAAAADAAAAAADh/yEAAAADAAAAAADh/yIAAAADAAAAAADh/yMAAAADAAAAAADh/yQAAAADAAAAAADh/yUAAAADAAAAAADh/yYAAAADAAAAAADh/ycAAAADAAAAAADh/ygAAAADAAAAAADh/ykAAAADAAAAAADh/yoAAAADAAAAAADd/ysAAAADAAAAAADd/ywAAAADAAAAAADd/y0AAAADAAAAAADd/y4AAAADAAAAAADd/y8AAAADAAAAAADd/zAAAAADAAAAAADe/ysAAAADAAAAAADe/ywAAAADAAAAAADe/y0AAAADAAAAAADe/y4AAAADAAAAAADe/y8AAAADAAAAAADe/zAAAAADAAAAAADf/ysAAAADAAAAAADf/ywAAAADAAAAAADf/y0AAAADAAAAAADf/y4AAAADAAAAAADf/y8AAAADAAAAAADf/zAAAAADAAAAAADg/ysAAAADAAAAAADg/ywAAAADAAAAAADg/y0AAAADAAAAAADg/y4AAAADAAAAAADg/y8AAAADAAAAAADg/zAAAAADAAAAAADh/ysAAAADAAAAAADh/ywAAAADAAAAAADh/y0AAAADAAAAAADh/y4AAAADAAAAAADh/y8AAAADAAAAAADh/zAAAAADAAAAAAA=")
+tile_set = ExtResource("39_krrnd")
+
+[connection signal="body_entered" from="Area2D" to="Environment/Props/Trees/GardenState" method="_on_area_2d_body_entered_back_to_world_map"]
+[connection signal="body_entered" from="Area2D2" to="Environment/Props/Trees/GardenState" method="_on_area_2d_body_entered_back_to_world_map"]
+[connection signal="body_entered" from="Area2D3" to="Environment/Props/Trees/GardenState" method="_on_area_2d_body_entered_back_to_world_map"]
 
 [editable path="Environment/Props/Trees/Treedoor_Tally"]
 [editable path="Environment/Props/Trees/Treedoor_Hollow"]

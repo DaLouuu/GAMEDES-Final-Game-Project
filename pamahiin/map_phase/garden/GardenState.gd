@@ -45,8 +45,14 @@ func _ready():
 	is_ready = true
 	emit_signal("state_ready")
 	print("[GardenState] Initialized.")
-
-
+	var player_var = get_tree().get_first_node_in_group("Player")
+	if player_var:
+		var pl = player_var as Player
+		if GameState.GARDEN_known_hidden:
+			pass
+		elif not GameState.GARDEN_known_hidden:
+			DialogueManager.show_example_dialogue_balloon(load("res://dialogue/GARDEN_garden_hidden.dialogue"))
+			GameState.GARDEN_known_hidden = true
 # ---------------------------------------------------------
 #  MISTAKE SYSTEM — called by ZoneAController on wrong knock
 # ---------------------------------------------------------
@@ -98,3 +104,8 @@ func reset():
 	ambience_enabled = false
 
 	print("[GardenState] Reset to defaults.")
+
+
+func _on_area_2d_body_entered_back_to_world_map(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		Global.game_controller.change_2d_scene_custom("uid://cyc8laq2oakj0", EnumsRef.LOCAL_FROM_TYPE.GARDEN)

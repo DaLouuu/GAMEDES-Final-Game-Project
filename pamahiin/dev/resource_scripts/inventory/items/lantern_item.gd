@@ -14,6 +14,7 @@ func _process(_delta):
 		if pickupable:
 			player.collect(item)
 			collected_light.emit()
+			GameState.PROLOGUE_has_gotten_lamp = true
 			# delay after collecting item
 			await get_tree().create_timer(0.1).timeout
 			self.queue_free()

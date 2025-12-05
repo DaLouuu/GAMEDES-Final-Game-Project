@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=2 format=3 uid="uid://cb1oubdju6ais"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cb1oubdju6ais"]
 
 [ext_resource type="Script" uid="uid://26w5lr3t485j" path="res://dev/resource_scripts/inventory/inventory_item.gd" id="1_41qgm"]
+[ext_resource type="Texture2D" uid="uid://b5ymoymardqex" path="res://map_phase/houses/assets/key/00.png" id="2_s0pi5"]
 
 [resource]
 script = ExtResource("1_41qgm")
 name = "Key"
 description = Array[String](["Found a shiny key. This might be the key the little girl was talking about"])
 itemType = 3
+texture = ExtResource("2_s0pi5")
 metadata/_custom_type_script = "uid://26w5lr3t485j"

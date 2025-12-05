@@ -74,8 +74,8 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nh1l5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4l0p7"]
-radius = 24.73
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l0p7"]
+size = Vector2(74, 89)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4l0p7"]
 texture = ExtResource("1_re8iv")
@@ -1270,8 +1270,8 @@ scale = Vector2(0.25, 0.25)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D-centerSoundTrigger"]
 show_behind_parent = true
 z_index = 11
-position = Vector2(-4, -20)
-shape = SubResource("CircleShape2D_4l0p7")
+position = Vector2(-1, -20.5)
+shape = SubResource("RectangleShape2D_4l0p7")
 
 [node name="Area2D-spawnInsideDetector" type="Area2D" parent="."]
 show_behind_parent = true
@@ -1281,7 +1281,7 @@ scale = Vector2(0.25, 0.25)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D-spawnInsideDetector"]
 show_behind_parent = true
 position = Vector2(742, 1263)
-polygon = PackedVector2Array(-75, -7, -106, -111, -261, -114, -264, -36, -351, -90, -360, -114, -245, -147, 74, -147, 349, -138, 360, -72, 309, -55, 270, -17, 255, -97, 69, -119, 60, 6, -4, 27)
+polygon = PackedVector2Array(-75, -7, -106, -111, -261, -114, -264, -36, -351, -90, -360, -114, -245, -147, 74, -147, 349, -138, 360, -72, 309, -55, 270, -17, 255, -97, 69, -119, 60, 6, -6, 45)
 
 [node name="AreaNode" type="Node" parent="."]
 

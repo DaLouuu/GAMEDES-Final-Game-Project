@@ -6,8 +6,10 @@ extends CharacterBody2D
 signal artifact_collect(item:InvItem)
 signal sanity_changed(new_value: float)
 signal sanity_damaged
+signal player_resetted
 
-
+@onready var quit_confirm_dialog: ConfirmationDialog =$CanvasLayer/Control/QuitConfirmDialog
+@onready var game_over_screen: Control = $CanvasLayer/Control
 
 @export var move_speed : float =  100
 @export var sprint_multiplier : float = 1.8
@@ -79,15 +81,23 @@ func trigger_cat_ready():
 	setCutsceneAnimationBehavior("Idle", Vector2(1.0,0.0))
 	
 func _ready():
-	$CanvasLayer.visible = false	
-	pass
+	$CanvasLayer.visible = false
+	quit_confirm_dialog.hide()
+	
+	quit_confirm_dialog.close_requested.connect(func(): quit_confirm_dialog.hide())
 	
 	# For debugging purposes lets you know object ids that pass through certain events
 	#var obj = instance_from_id(41003517335)
 	#if obj:
 		#print(obj.name)
 		#print(obj.get_path())
-		
+func reset_player():
+	self.sanity = 100
+	animation_player.play("RESET")
+	game_over_screen.visible = false
+	AudioManager.stopPlayer()
+	player_resetted.emit()
+	
 func setCutsceneAnimationBehavior(state : String, direction : Vector2):
 	cutscene_animation_state = state
 	cutscene_animation_direction = direction
@@ -114,6 +124,7 @@ func _physics_process(_delta):
 	# Sprinting multiplier
 	var current_speed = move_speed
 	var is_sprinting = Input.is_action_pressed("sprint")
+	
 	$FootStepManager.mode = $FootStepManager.Mode.LAYERED
 
 	if is_sprinting:
@@ -174,6 +185,7 @@ func check_health_changes(num : float):
 		audioPlayerNearDeath.pitch_scale = 1.0	
 		
 		play_death()
+		game_over_screen.visible = true
 func play_death():
 	await get_tree().physics_frame
 	audioPlayerNearDeath.stream = load("res://art/Audio Assets/dramatic-death-collapse.mp3")
@@ -238,6 +250,7 @@ func collect(item : InvItem):
 	elif item.itemType == EnumsRef.ItemType.ARTIFACT:
 		$"AudioStreamPlayer-Obtained".play()
 		artifact_collect.emit(item)
+		Global.artifactCount += 1
 		Global.game_controller.update_artifactCheck()
 		await update_artifact_text_flash()
 		RecoverSanity()
@@ -246,9 +259,15 @@ func collect(item : InvItem):
 	inventory.obtain(item)
 func update_artifact_text_flash():
 	var label: Label = $CanvasLayer/ArtifactProgress
-	
+	if Global.artifactCount==4:
+		label.text = "Go to Altar"
+
 	# Update text
-	label.text = "Artifact: " + str(Global.artifactCount) + "/4"
+	else:
+		if Global.artifactCount == 3:
+			DialogueManager.show_dialogue_balloon(load("res://dialogue/CHURCH_locked_outside.dialogue"))
+			
+		label.text = "Artifact: " + str(Global.artifactCount) + "/4"
 	
 
 	
@@ -336,3 +355,17 @@ func attempt_play_footsteps():
 	#
 	#for tile_type in tile_types:
 		#$FootStepManager.play_step(global_position, tile_type, sprint)
+
+
+func _on_button_quit_pressed() -> void:
+	game_over_screen.visible = false
+	quit_confirm_dialog.popup_centered()
+	
+
+func _on_quit_confirm_dialog_confirmed() -> void:
+	game_over_screen.visible = false
+	Global.game_controller.gotoMainMenu()
+
+
+func _on_quit_confirm_dialog_canceled() -> void:
+	quit_confirm_dialog.hide()

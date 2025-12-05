@@ -14,8 +14,10 @@ func _enter_tree() -> void:
 		player.move_speed = 250
 		player.sprint_multiplier = 1.8
 		player.turnOnLight()
-
-
+		player.player_resetted.connect(reset_player)
+		
+func reset_player():
+	player.global_position = $"Marker2D-SpawnP".global_position
 func _ready() -> void:
 	await get_tree().physics_frame
 	await get_tree().process_frame
@@ -42,6 +44,7 @@ func _ready() -> void:
 	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT1] = $"Marker2D-Left"
 	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT2] = $"Marker2D-Mid"
 	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3] = $"Marker2D-Right"
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.GARDEN] = $"Marker2D-GardenOut"
 
 		
 func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:
@@ -54,6 +57,11 @@ func _on_area_2d_cave_entrance_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/CAVE_cave_done.dialogue"))
 		
+
+
+func _on_area_2d_2_body_entered_garden(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		Global.game_controller.change_2d_scene("uid://cyqsdqbaspryc")
 func show_wakwak() -> void:
 	$Wakwak.set_deferred("visible", true)
 	

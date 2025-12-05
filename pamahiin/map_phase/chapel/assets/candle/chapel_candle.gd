@@ -12,14 +12,16 @@ func _ready():
 func _process(_delta):
 	if is_player_in_area and Input.is_action_just_pressed("interact"):
 		interacted.emit()
-		anim_player.play("slowly_fading fire")
-
+func playFire():
+	anim_player.stop()
+	anim_player.play("slowly_fading fire")
+	
 func lights_off_emit():
 	lights_off.emit()
 	play_stop()
 func play_stop():
 	await get_tree().physics_frame
-	anim_player.seek(20)
+	anim_player.seek(30)
 	self.modulate = Color(1,1,1)
 	
 func _on_area_2d_interactable_body_entered(body: Node2D) -> void:

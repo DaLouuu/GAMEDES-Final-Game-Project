@@ -1,10 +1,18 @@
 extends Node2D
 
 @onready var default_coords: Vector2 = $"Marker2D-SpawnP".position
+var player : Player
+
+func reset_player():
+	Global.game_controller.change_2d_scene("uid://bbim0h8qggemx")
+
 func _ready():
+	player = get_tree().get_first_node_in_group("Player")
+	player.player_resetted.connect(reset_player)
 	$WhiteLady.stop_funcs()
 
 func start_funcs():
+	await get_tree().physics_frame
 	$WhiteLady.start_funcs()
 func _on_area_2d_back_to_room_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

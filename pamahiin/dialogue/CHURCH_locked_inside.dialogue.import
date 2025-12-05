@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dlm1rfdctvd7y"
+path="res://.godot/imported/CHURCH_locked_inside.dialogue-c9680c5394fc0c6b54c4d516de1851a7.tres"
+
+[deps]
+
+source_file="res://dialogue/CHURCH_locked_inside.dialogue"
+dest_files=["res://.godot/imported/CHURCH_locked_inside.dialogue-c9680c5394fc0c6b54c4d516de1851a7.tres"]
+
+[params]
+
+defaults=true
