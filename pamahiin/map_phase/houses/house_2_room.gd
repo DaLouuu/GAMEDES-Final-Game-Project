@@ -10,6 +10,7 @@ func getLocationType()->EnumsRef.LocationType:
 
 func _ready() -> void:
 	Global.game_controller.stop_curr_global_audio()
+	
 func _on_area_2d_to_room_body_entered(body: Node2D) -> void:
 	#print("ghost:", GameState.HOUSE_has_met_ghost_girl)
 	#print("clue:", GameState.HOUSE_has_read_clue)
