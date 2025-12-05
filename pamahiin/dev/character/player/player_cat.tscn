@@ -15,11 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://bpbf560c0338r" path="res://dev/resource_scripts/inventory/inventory_ui.tscn" id="9_ohocd"]
 [ext_resource type="Texture2D" uid="uid://br7dqghldew4e" path="res://dev/light_textures/lantern_round.tres" id="10_04nme"]
 [ext_resource type="FontFile" uid="uid://d0ejdc3d705ia" path="res://art/Fonts/EB_Garamond/EB_Garamond/static/EBGaramond-ExtraBold.ttf" id="12_8j6tj"]
-[ext_resource type="PackedScene" uid="uid://eacn5vqet4jd" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
+[ext_resource type="PackedScene" path="res://dev/character/player/audio_stream_player_2d_foot_sound.tscn" id="14_mxnrt"]
 [ext_resource type="FontFile" uid="uid://bpg7no7cifuv6" path="res://art/Fonts/EB_Garamond/EB_Garamond/static/EBGaramond-Bold.ttf" id="15_msdei"]
 [ext_resource type="AudioStream" uid="uid://cvuuwq222nvfx" path="res://art/Audio Assets/20 - Player Grab.wav" id="15_mxnrt"]
 [ext_resource type="AudioStream" uid="uid://cw1gbbtkyhtjn" path="res://art/Audio Assets/17 - Moderate Heartbeat-mprMode.mp3" id="17_l5slc"]
-[ext_resource type="Script" path="res://dev/character/player/FootStepManager.gd" id="18_iqj7j"]
+[ext_resource type="Script" uid="uid://b3o3ajfg8m46d" path="res://dev/character/player/FootStepManager.gd" id="18_iqj7j"]
 [ext_resource type="AudioStream" uid="uid://jbn3j0i3cw0x" path="res://art/Audio Assets/obtained_item.mp3" id="20_muts0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gx6m4"]
@@ -743,9 +743,9 @@ script = ExtResource("6_1f8vj")
 
 [node name="ArtifactProgress" type="Label" parent="CanvasLayer"]
 offset_left = 1037.0
-offset_top = 24.0
+offset_top = 32.0
 offset_right = 1077.0
-offset_bottom = 67.0
+offset_bottom = 75.00009
 theme_override_fonts/font = ExtResource("12_8j6tj")
 theme_override_font_sizes/font_size = 32
 

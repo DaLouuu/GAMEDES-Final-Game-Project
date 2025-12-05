@@ -64,17 +64,17 @@ func _ready() -> void:
 
 	#change_2d_scene("uid://cyc8laq2oakj0") # WorldMap
 
-	
+
 	# Instantiate main menu
-	var new_scene_instance = load("uid://bdt62bgxs0isa").instantiate()
-	world_2d.add_child(new_scene_instance)
-	curr_2d_scene = new_scene_instance
+	#var new_scene_instance = load("uid://bdt62bgxs0isa").instantiate()
+	#world_2d.add_child(new_scene_instance)
+	#curr_2d_scene = new_scene_instance
 	
 	# Test and debug
-	#startPlayer()
+	startPlayer()
 	##change_2d_scene("uid://bbim0h8qggemx") # House final
-	##change_2d_scene("uid://dxhni64oxaov4") # Church
-	#change_2d_scene("uid://cyc8laq2oakj0")
+	#change_2d_scene("uid://dxhni64oxaov4") # Church
+	change_2d_scene("uid://dnvq5fs7tu167")
 	#DialogueManager.readyWithController()
 	
 	

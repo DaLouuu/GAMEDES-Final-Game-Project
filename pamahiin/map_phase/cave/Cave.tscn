@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dv47fu3pxwub6" path="res://map_phase/cave/interactables/Cobweb.tscn" id="4_gopa2"]
 [ext_resource type="PackedScene" uid="uid://byj6caynuunot" path="res://map_phase/cave/interactables/Crystal.tscn" id="4_wirwf"]
 [ext_resource type="Texture2D" uid="uid://baii42wxttg28" path="res://art/GAMEDES art/Characters/abularyo spritesheet.png" id="6_fthu5"]
-[ext_resource type="Script" path="res://map_phase/cave/direction_marker.gd" id="6_kujlx"]
+[ext_resource type="Script" uid="uid://chipuf8bx7uo6" path="res://map_phase/cave/direction_marker.gd" id="6_kujlx"]
 [ext_resource type="Texture2D" uid="uid://dgikxbb8cutv0" path="res://art/GAMEDES art/Cave/cave_sprites.png" id="7_tkibw"]
 [ext_resource type="PackedScene" uid="uid://cag8p67hnquaq" path="res://map_phase/cave/effects/AttackImpact.tscn" id="7_tws12"]
 [ext_resource type="AudioStream" uid="uid://dcwpwjgsgkot0" path="res://art/Audio Assets/Cave/cave_echoes.mp3" id="10_u7gak"]
@@ -402,6 +402,7 @@ frame = 20
 
 [node name="MainEntrance" type="Area2D" parent="Map/Regions"]
 position = Vector2(-1, 81)
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Map/Regions/MainEntrance"]
@@ -433,7 +434,7 @@ shape = SubResource("RectangleShape2D_kujlx")
 metadata/_edit_lock_ = true
 
 [node name="Marker2D-SpawnP" type="Marker2D" parent="."]
-position = Vector2(0, -75)
+position = Vector2(0, -83)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.08789561, 0.070022084, 0.14863655, 1)
@@ -462,9 +463,6 @@ script = ExtResource("11_kujlx")
 
 [node name="Timer" type="Timer" parent="CaveShocker"]
 one_shot = true
-
-[node name="Marker2D-Custom" type="Marker2D" parent="."]
-position = Vector2(3459, -276)
 
 [connection signal="body_entered" from="Map/Regions/MainEntrance" to="." method="_on_main_entrance_body_entered"]
 [connection signal="body_entered" from="Map/Regions/EndEntrance" to="." method="_on_end_entrance_body_entered"]
