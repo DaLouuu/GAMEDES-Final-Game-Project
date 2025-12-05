@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=26 format=3 uid="uid://xgb1kfo8b417"]
+[gd_resource type="TileSet" load_steps=26 format=3 uid="uid://c12vq4wfljdpu"]
 
 [ext_resource type="Texture2D" uid="uid://c0u3mqc4m1jrn" path="res://map_phase/houses/assets/objects_art/Walls/HouseInt - House 1 Wall Sprite .png" id="1_lcjjt"]
 [ext_resource type="Texture2D" uid="uid://ck4dcu7rqfq06" path="res://map_phase/houses/assets/house1_ver1_full_tileset.png" id="2_hjpgv"]

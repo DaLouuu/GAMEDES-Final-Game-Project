@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=4 uid="uid://coemh8xcwabvy"]
 
 [ext_resource type="Script" uid="uid://dqqaflb3k8s0u" path="res://map_phase/houses/house_2_room.gd" id="1_ws1gk"]
-[ext_resource type="TileSet" uid="uid://xgb1kfo8b417" path="res://map_phase/houses/house2_full_asset_tileset.tres" id="2_ws1gk"]
-[ext_resource type="PackedScene" uid="uid://clvvc443dd441" path="res://dev/character/npcs/old_lady_at_the_house.tscn" id="4_ajkb8"]
+[ext_resource type="TileSet" uid="uid://c12vq4wfljdpu" path="res://map_phase/houses/house2_full_asset_tileset.tres" id="2_ws1gk"]
+[ext_resource type="PackedScene" uid="uid://cvxo1x2eifywq" path="res://dev/character/npcs/old_lady_at_the_house.tscn" id="4_ajkb8"]
 [ext_resource type="PackedScene" uid="uid://bvhq27uldmy8t" path="res://map_phase/houses/assets/House 1/clue_paper.tscn" id="5_de18i"]
 [ext_resource type="Shader" uid="uid://dax5u6f5b2eii" path="res://dev/shaders/screen_effect.gdshader" id="6_4473s"]
 [ext_resource type="QuadMesh" uid="uid://b7bui5a06ao3p" path="res://dev/shaders/mesh_empty.tres" id="7_sfsx6"]
 [ext_resource type="PackedScene" uid="uid://8fegnh450g03" path="res://dev/resource_scripts/inventory/items/lantern.tscn" id="8_j5k75"]
-[ext_resource type="Shader" uid="uid://bhpym5e45mhsw" path="res://dev/resource_scripts/inventory/items/item_template_saturation.gdshader" id="14_2tqnf"]
+[ext_resource type="Shader" path="res://dev/resource_scripts/inventory/items/item_template_saturation.gdshader" id="14_2tqnf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_neesx"]
 radius = 17.0

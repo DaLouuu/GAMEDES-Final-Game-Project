@@ -74,7 +74,7 @@ func _ready() -> void:
 	#startPlayer()
 	##change_2d_scene("uid://bbim0h8qggemx") # House final
 	#change_2d_scene("uid://dxhni64oxaov4") # Church
-	#change_2d_scene("uid://dnvq5fs7tu167")
+	#change_2d_scene("res://map_phase/houses/house2_room.tscn")
 	#DialogueManager.readyWithController()
 	
 	
