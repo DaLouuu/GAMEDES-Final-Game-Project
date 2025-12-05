@@ -36,18 +36,21 @@ var trunk_swap_step: int = 0   # increments every 3 mistakes
 # AMBIENCE
 var fog_density: float = 0.25
 var ambience_enabled: bool = false
-
+var player : Player = null
 
 # ---------------------------------------------------------
 # READY
 # ---------------------------------------------------------
+func reset_player():
+	player = $"../../../../Marker2D-SpawnP".global_position
 func _ready():
 	is_ready = true
 	emit_signal("state_ready")
 	print("[GardenState] Initialized.")
 	var player_var = get_tree().get_first_node_in_group("Player")
 	if player_var:
-		var pl = player_var as Player
+		player = player_var as Player
+		player.player_resetted.connect(reset_player)
 		if GameState.GARDEN_known_hidden:
 			pass
 		elif not GameState.GARDEN_known_hidden:
