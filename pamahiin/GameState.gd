@@ -1,6 +1,6 @@
 extends Node2D
 
-var dict_TPs : Dictionary[EnumsRef.LOCAL_FROM_TYPE, Marker2D]
+var dict_TPs : Dictionary[EnumsRef.LOCAL_FROM_TYPE, StringName]
 
 var PROLOGUE_has_gotten_lamp = false
 

@@ -5,6 +5,6 @@ extends Node2D
 
 
 		
-func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:
+func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> StringName:
 	return GameState.dict_TPs[type]
 	

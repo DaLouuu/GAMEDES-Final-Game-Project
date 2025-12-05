@@ -24,6 +24,7 @@ func _ready() -> void:
 	bs.color.a = 1.0
 	player = get_tree().get_first_node_in_group("Player")
 	if player:
+		player.player_resetted.connect(reset_player)
 		if Global.is_player_outside_first_time:
 			player.turnOnLight()
 			player.is_outside_firsttime = true
@@ -37,17 +38,21 @@ func _ready() -> void:
 			player.is_cutscene_controlled = false
 			player.is_outside_firsttime = false
 			Global.is_player_outside_first_time = false
+		else:
+			$TransitionLayer.visible = false
 			
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CAVE] = cave_marker
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.H1] = $"Marker2D-H1"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.H2] = $"Marker2D-H2"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT1] = $"Marker2D-Left"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT2] = $"Marker2D-Mid"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3] = $"Marker2D-Right"
-	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.GARDEN] = $"Marker2D-GardenOut"
+	
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CAVE] = "Marker2D-CaveOut"
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.H1] = "Marker2D-H1"
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.H2] = "Marker2D-H2"
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT1] = "Marker2D-Left"
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT2] = "Marker2D-Mid"
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.CHAPEL_EXIT3] = "Marker2D-Right"
+	GameState.dict_TPs[EnumsRef.LOCAL_FROM_TYPE.GARDEN] = "Marker2D-GardenOut"
 
-		
-func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> Marker2D:
+
+
+func getCustomMarker(type :EnumsRef.LOCAL_FROM_TYPE) -> StringName:
 	return GameState.dict_TPs[type]
 	
 func gotoCave():
