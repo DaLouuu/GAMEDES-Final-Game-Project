@@ -742,9 +742,9 @@ script = ExtResource("6_1f8vj")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ArtifactProgress" type="Label" parent="CanvasLayer"]
-offset_left = 1037.0
+offset_left = 1052.595
 offset_top = 32.0
-offset_right = 1077.0
+offset_right = 1092.595
 offset_bottom = 75.00009
 theme_override_fonts/font = ExtResource("12_8j6tj")
 theme_override_font_sizes/font_size = 32
