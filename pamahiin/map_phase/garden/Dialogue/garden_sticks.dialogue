@@ -1,0 +1,20 @@
+~ pickup_1
+[#thinking] I found a stick. That makes 1 out of 5.
+=> END
+
+~ pickup_2
+[#thinking] I found a stick. That makes 2 out of 5.
+=> END
+
+~ pickup_3
+[#thinking] I found a stick. That makes 3 out of 5.
+=> END
+
+~ pickup_4
+[#thinking] I found a stick. That makes 4 out of 5.
+=> END
+
+~ pickup_final
+[#thinking] That's all of them.
+[#thinking] Wait... the ground is shaking!
+=> END

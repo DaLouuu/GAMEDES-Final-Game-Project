@@ -1,0 +1,25 @@
+~ gate_closes_scared
+[#shocked] W-What was that?!
+[#shocked] The gate... it slammed shut on its own!
+[#thinking] Okay... calm down. It's just... wind?
+[#thinking] Very specific, aggressive wind.
+[#thinking] I guess I'm stuck here until I finish this.
+=> END
+
+~ chase_start_warning
+[#shocked] The gate is open again!
+[#shocked] But they sound angry... really angry!
+[#thinking] I need to run! NOW!
+=> END
+
+~ ending_good
+[#relief] I made it...
+[#relief] I can't believe I made it out.
+[#thinking] Hopefully, that broom helps her find peace.
+=> END
+
+~ ending_bad
+[#scared] No... the gate!
+[#scared] It's too late... they're everywhere!
+[#scared] I'm sorry... I couldn't make it...
+=> END

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://8nwvyw7lskit"
+path="res://.godot/imported/garden_sticks.dialogue-615779b8533655e2480429f5895e5234.tres"
+
+[deps]
+
+source_file="res://map_phase/garden/Dialogue/garden_sticks.dialogue"
+dest_files=["res://.godot/imported/garden_sticks.dialogue-615779b8533655e2480429f5895e5234.tres"]
+
+[params]
+
+defaults=true

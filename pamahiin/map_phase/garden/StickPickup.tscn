@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnvsxeugcorpl"]
+
+[ext_resource type="Script" uid="uid://xp2lk53h0013" path="res://map_phase/garden/stick_pickup.gd" id="1_wpgyu"]
+[ext_resource type="Texture2D" uid="uid://de7l3b0agko3n" path="res://art/GAMEDES art/Items/Garden_Broomstick_Only.png" id="2_ih3ad"]
+[ext_resource type="Resource" uid="uid://8nwvyw7lskit" path="res://map_phase/garden/Dialogue/garden_sticks.dialogue" id="2_jl7at"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jl7at"]
+size = Vector2(71, 69)
+
+[node name="StickPickup" type="Node2D"]
+script = ExtResource("1_wpgyu")
+stick_dialogue_resource = ExtResource("2_jl7at")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_jl7at")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ih3ad")

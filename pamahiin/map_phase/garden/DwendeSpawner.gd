@@ -10,30 +10,33 @@ var can_spawn: bool = true
 
 func spawn(at_position: Vector2) -> void:
 	if not can_spawn:
-		print("DuwendeSpawner: spawn cooldown active.")
 		return
 
 	if duwende_scene == null:
-		print("DuwendeSpawner: duwende_scene is not set.")
+		print("DuwendeSpawner Error: duwende_scene is not set in Inspector.")
 		return
 
 	if active_duwendes.size() >= max_active_duwendes:
-		print("DuwendeSpawner: max duwendes reached.")
+		# Optional: print("Max dwendes reached.")
 		return
 
 	var d := duwende_scene.instantiate()
-	add_child(d)
+	
+	# Add to the current scene root so they aren't affected if the Spawner moves/scales
+	# If you prefer them to be children of the spawner, use add_child(d)
+	get_tree().current_scene.add_child(d)
+	
 	d.global_position = at_position
-
-	# add to group
 	d.add_to_group("duwende")
 	active_duwendes.append(d)
 
-	# connect cleanup signals if available
+	# --- CONNECTION UPDATE ---
+	# Only listen for DEATH. Do not listen for "finished_behavior".
 	if d.has_signal("died"):
 		d.died.connect(_on_duwende_cleanup)
-	if d.has_signal("finished_behavior"):
-		d.finished_behavior.connect(_on_duwende_cleanup)
+
+	# We REMOVED the "finished_behavior" connection here.
+	# This guarantees the spawner will NEVER delete a living Dwende.
 
 	_start_cooldown()
 
@@ -55,7 +58,10 @@ func _start_cooldown() -> void:
 func _on_duwende_cleanup(d) -> void:
 	if d == null:
 		return
+	
 	if d in active_duwendes:
 		active_duwendes.erase(d)
+	
+	# Only free if it's valid and not already being freed
 	if is_instance_valid(d) and not d.is_queued_for_deletion():
 		d.queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ui81aqjylkl"]
+[gd_scene load_steps=6 format=3 uid="uid://ui81aqjylkl"]
 
 [ext_resource type="Texture2D" uid="uid://ge0lwolddq8y" path="res://art/GAMEDES art/Flowers & Rocks/garden_boulder.png" id="1_o8tuh"]
+[ext_resource type="Script" uid="uid://ym5jovgb1o2l" path="res://map_phase/garden/boulder.gd" id="1_rp6kj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8tuh"]
 size = Vector2(1061.75, 816)
@@ -13,6 +14,7 @@ height = 762.0
 radius = 163.15024
 
 [node name="Boulder" type="Node2D"]
+script = ExtResource("1_rp6kj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o8tuh")
