@@ -23,6 +23,7 @@ const _BURIAL_DIALOGUE = preload("uid://q26y70q2mork")
 const _GRAVEYARD_DIALOGUE = preload("uid://bbqvi23sbe1fp")
 const _PREWORLDMAP_DIALOGUE = preload("uid://ceyiyty5lfndm")
 const _WORLDMAP_DIALOGUE = preload("uid://bhrgm6uea2hwl")
+const _NOLANTERN = preload("uid://81mn2e5jlkts")
 
 func _ready() -> void:
 	await get_tree().physics_frame
@@ -53,7 +54,7 @@ func _ready() -> void:
 			player_cam.zoom = Vector2(1.75, 1.75)
 			_camera_active = true
 
-		## story context introduction
+		# story context introduction
 		await get_tree().create_timer(2.0).timeout
 		$WhistleBGM.play()
 		await story_context_display("story_img1", true, 4.0)
@@ -75,8 +76,8 @@ func _ready() -> void:
 		await DialogueManager.dialogue_ended
 		await story_context_display("story_img4", false, 1.5)
 		
-		#
-		#$WhistleBGM.stop()
+		
+		$WhistleBGM.stop()
 		# play motel cutscene part 1
 		$Paper.set_deferred("visible", false)
 		animation_player.play("motel_introduction_part1")
@@ -150,7 +151,13 @@ func _on_body_exited(body):
 		$"doorclose".play()
 
 func _go_outside(body):
-	if body.is_in_group("Player") and not player.is_cutscene_controlled and GameState.PROLOGUE_has_gotten_lamp:
+	if body.is_in_group("Player") and not player.is_cutscene_controlled:
+		if not body.get_node("PointLight2D").enabled:
+			DialogueManager.show_example_dialogue_balloon(_NOLANTERN)
+			return
+		
+		$dooropen.play()
+		$doorclose.play()
 		Global.game_controller.player.trigger_cat_ready()
 		Global.game_controller.change_2d_scene("res://map_phase/world_map.tscn")
 		
@@ -159,7 +166,6 @@ func _go_outside(body):
 func _on_animation_finished(animation_name: String):
 	if animation_name == "motel_introduction_cutscene_release":
 		player.is_cutscene_controlled = false
-		player.get_node("CanvasLayer").show()
 	
 func _on_inspect(body):
 	player.is_cutscene_controlled = true

@@ -530,7 +530,6 @@ tile_map_data = PackedByteArray("AAD7//r/BgAAAAAAAAD8//r/BgAAAAAAAAD9//r/BgAAAAA
 tile_set = SubResource("TileSet_vy0li")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MapLayer"]
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapLayer/StaticBody2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://bev6rvoc16yms"]
+[gd_scene load_steps=86 format=4 uid="uid://bev6rvoc16yms"]
 
 [ext_resource type="Script" uid="uid://cutmlrc6ks8pe" path="res://map_phase/motel/motel_prototype_script.gd" id="1_rwiny"]
 [ext_resource type="Texture2D" uid="uid://ccb8dy7s2bonc" path="res://map_phase/motel/assets/floor/corner_floor_motel.png" id="1_yboj4"]
@@ -45,91 +45,6 @@
 [ext_resource type="AudioStream" uid="uid://bj36cytv078rx" path="res://map_phase/motel/audio/toothbrushing.wav" id="44_yrggf"]
 [ext_resource type="AudioStream" uid="uid://bvwile4hw0fn1" path="res://map_phase/motel/audio/jumpscaresfx.wav" id="46_kwkps"]
 [ext_resource type="AudioStream" uid="uid://bx5wyordk1gaq" path="res://map_phase/motel/audio/mirrorglassbreak.wav" id="47_wlw8e"]
-
-[sub_resource type="Animation" id="Animation_v4fx0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BlackScreen/ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_j5yei"]
-resource_name = "motel_introduction_cutscene_release"
-length = 0.01
-
-[sub_resource type="Animation" id="Animation_qn1lx"]
-resource_name = "motel_introduction_part1"
-length = 9.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("dooropen")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("doorclose")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("BlackScreen/ColorRect:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.5, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vspby"]
-resource_name = "motel_introduction_part2"
-length = 6.0
-
-[sub_resource type="Animation" id="Animation_ob2wa"]
-resource_name = "motel_introduction_part3"
-length = 0.1
-
-[sub_resource type="Animation" id="Animation_emqv5"]
-resource_name = "motel_introduction_part4"
-length = 3.0
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vspby"]
-_data = {
-&"RESET": SubResource("Animation_v4fx0"),
-&"motel_introduction_cutscene_release": SubResource("Animation_j5yei"),
-&"motel_introduction_part1": SubResource("Animation_qn1lx"),
-&"motel_introduction_part2": SubResource("Animation_vspby"),
-&"motel_introduction_part3": SubResource("Animation_ob2wa"),
-&"motel_introduction_part4": SubResource("Animation_emqv5")
-}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmw8e"]
 texture = ExtResource("1_yboj4")
@@ -318,11 +233,6 @@ size = Vector2(39, 105)
 y_sort_enabled = true
 script = ExtResource("1_rwiny")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vspby")
-}
-
 [node name="dooropen" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_l45d7")
 
@@ -374,6 +284,7 @@ metadata/_edit_lock_ = true
 
 [node name="BlackScreen" type="CanvasLayer" parent="."]
 layer = 100
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="BlackScreen"]
 modulate = Color(0, 0, 0, 1)

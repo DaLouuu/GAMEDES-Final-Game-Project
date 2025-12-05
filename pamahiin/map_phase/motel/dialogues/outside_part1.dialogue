@@ -1,0 +1,18 @@
+do hide_wakwak()
+do fade_blackscreen(1.0, 0.0, 1.0)
+do show_albularyo()
+Albularyo: Urgent, hushed tone. You should not have slept, Amerikano. Sleep makes the spirit heavy... and easy to drag away.
+You: Who are you? The man from the chapel?
+Albularyo: I am one who cleans the mess others leave behind. You broke the pagpag. You brought the dust of the dead to your bed, and now... he gestures to the air around you ...they are waiting in line.
+You: I don't have time for riddles. I have a job to do.
+Albularyo: Your job is finished. Now, you are merely prey. The Weaver... the girl you brought... she has called the others. The spirits of the taken. They are angry. They want you to stay here... forever.
+The Albularyo steps closer, his eyes wide and milky.
+Albularyo: There is only one way to leave Sagada alive. You must cleanse the ground you walked on. You must make peace.
+You: How?
+Albularyo: Four offerings. Artifacts of faith and tradition. Albularyo: The Rosary, lost in the house of grief. Albularyo: The Walis Tingting, from the guardians of the garden. Albularyo: The Holy Water, from the church they desecrated. Albularyo: And Salt... to burn the shadows.
+Action: The Albularyo fumbles with the pouch at his side.
+Albularyo: I have the salt. I prepared it for you. Take it, and—
+do wakwak_sound()
+A sharp, piercing shriek cuts through the air. It sounds like a bird, but massive and distorted.
+The wind picks up violently. The Albularyo freezes, looking up at the sky. Giant, winged shadows blot out the moon.
+do fade_blackscreen(0.0, 1.0, 1.0)
