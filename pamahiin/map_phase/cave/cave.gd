@@ -20,6 +20,11 @@ var _has_entered_main_room := false
 func player_reset():
 	Global.game_controller.change_2d_scene("uid://dnvq5fs7tu167")
 	
+	_attack_ongoing = false
+	_attacker_count = 0
+	_attack_impact.stop()
+	_attack_timer.stop()
+	
 func _ready() -> void:
 	_get_player().player_resetted.connect(player_reset)
 	
@@ -27,21 +32,13 @@ func _ready() -> void:
 	for enemy: CaveMonster in _get_enemies():
 		enemy.player_attack_started.connect(_on_player_attack_started)
 		enemy.player_attack_ended.connect(_on_player_attack_ended)
-		
-	var t := Timer.new()
-	add_child(t)
-	t.start(1)
-	await t.timeout
-	t.queue_free()
-	
-	$Map/Regions/MainEntrance.monitoring = true
 
 func _enter_tree() -> void:
 	_init_player()
 	
 func _exit_tree() -> void:
 	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, false)
-	
+
 func _on_attack_timer_timeout() -> void:
 	_get_player().ReceiveSanityDamage(_attacker_count * SANITY_DAMAGE, EnumsRef.HitEffectType.HitEffectCustom)
 
@@ -121,5 +118,9 @@ func _init_player() -> void:
 	# Debug only:
 	player.turnOnLight()
 	
+	player.set_collision_layer_value(2, false)
+	player.set_collision_layer_value(6, false)
+	
 	player.set_collision_mask_value(1, false)
 	player.set_collision_mask_value(2, true)
+	player.set_collision_mask_value(6, false)

@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 	_attack_frame += 1
 	
 	var player := _get_player()
+	_jumpscare_instance.global_position = player.global_position
 	player.camera.offset = player.camera.offset.lerp(_shake_vector, SHAKE_LERP_SMOOTH * delta)
 	
 	
